@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, useDisclosure } from "@nextui-org/react";
+import { Modal } from "@nextui-org/react";
 import {
   ContentModal,
   HeaderModal,
@@ -8,6 +8,9 @@ import {
 } from "../moleculas/ventanaModal";
 
 interface VentanaModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  isDimissable: boolean;
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
@@ -19,17 +22,18 @@ interface VentanaModalProps {
 }
 
 const VentanaModal: React.FC<VentanaModalProps> = ({
+  isOpen,
+  onClose,
+  isDimissable,
   header,
   body,
   footer,
   style,
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <button onClick={onOpen}>Open Modal</button>
-      <Modal isOpen={isOpen} onOpenChange={onClose}>
+      <Modal isOpen={isOpen} onOpenChange={onClose} size="xl" isDismissable={isDimissable}>
         <ContentModal
           header={<HeaderModal className={style?.header}>{header}</HeaderModal>}
           body={<BodyModal className={style?.body}>{body}</BodyModal>}

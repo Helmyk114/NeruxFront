@@ -1,15 +1,44 @@
 import React from "react";
 import VentanaModal from "../../organismo/modal";
+import BodyPopUp from "../../atomos/notificaciones/bodyPopUp";
+import TitleImagePopUp from "../../atomos/notificaciones/titleImagePopUp";
+import ButtonModal from "../../atomos/notificaciones/buttonModal";
 
-const NotificationTemplate: React.FC = ({}) => {
+interface NotificationTemplateProps{
+  isOpen: boolean;
+  onClose: () => void;
+  imageUrl?: string;
+  title: string;
+  mensaje1: string;
+  mensaje2: string;
+}
+
+const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onClose, imageUrl, title, mensaje1, mensaje2 }) => {
   return (
-    <VentanaModal
-      header="¡Listo! 🎉"
-      body="Tu contraseña ha sido actualizada exitosamente.
-      Ahora puedes volver a iniciar sesión con tu nueva contraseña.
-      ¡Gracias por tu paciencia!"
-      footer="Iniciar Sesión"
-      style={{ header: "text-3xl", body: "text-base", footer: "" }}
+    <VentanaModal 
+      isOpen={isOpen}
+      onClose={onClose}
+      isDimissable={false}
+      header={
+        <TitleImagePopUp 
+          imageUrl={imageUrl} 
+          title={title} 
+        />}
+      body={
+        <BodyPopUp
+          mensaje1={mensaje1}
+          mensaje2={mensaje2}
+        />
+      }
+      footer={<ButtonModal
+          texto="Iniciar sesión"
+        />
+      }
+      style={{
+        header: "flex justify-center text-3xl",
+        body: " text-center",
+        footer: "flex justify-center",
+      }}
     />
   );
 };
