@@ -1,7 +1,8 @@
 import React from "react";
 import PlantillaGenerica from "./components/ui/template/plantillaGenerica";
 import TextoInicio from './components/ui/atoms/textoInicio';
-
+import login from "../../images/Login.png"
+import Logo from "./components/ui/atoms/logo";
 const Login: React.FC = () =>{
     return(
         <div className="flex items-center justify-center h-screen bg-gradient-to-b from-purpleStart to-purpleEnd">
@@ -9,6 +10,11 @@ const Login: React.FC = () =>{
             izquierda={
                 <div>
                  <div className="flex ml-14 mt-20">
+                    <Logo
+                     src={login} alt="logo"
+                     width="260px"
+                     heigth="260px"
+                    />
                  </div>
                     <div className="mt-36 ml-14">
                         <div className="overflow-visible">
