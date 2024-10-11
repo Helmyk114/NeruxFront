@@ -1,4 +1,5 @@
 import { Button } from '@nextui-org/react'
+import Login from './presentacion/pages/Login'
 
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Button color='primary'>Hola</Button>
+       <Login/>
     </>
   )
 }
