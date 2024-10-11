@@ -1,6 +1,6 @@
 import React from "react";
 import NotificationTemplate from "../../presentacion/components/ui/template/notificaciones/notificacion";
-import ImagenSucces from "../../../images/Variant8.png";
+import ImagenSucces from "../../images/Variant8.png";
 
 interface PopUpSuccessProps {
   isOpen: boolean;
