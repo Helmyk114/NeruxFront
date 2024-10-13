@@ -1,14 +1,14 @@
-import { Button } from '@nextui-org/react'
-
+import { useDisclosure } from "@nextui-org/react";
+import PopUpSuccess from "./utils/popUps/success";
 
 function App() {
-
-
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button color='primary'>Hola</Button>
+      <button onClick={onOpen}>Open Modal</button>
+      <PopUpSuccess isOpen={isOpen} onClose={onClose} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
