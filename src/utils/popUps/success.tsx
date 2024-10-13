@@ -17,6 +17,8 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({ isOpen, onClose }) => {
         title="¡Listo! 🎉"
         mensaje1={`Tu contraseña ha sido restablecida correctamente. ${"\n"}Ahora puedes iniciar sesión con tu nueva contraseña.`}
         mensaje2={`${"\n"}¡Gracias por tu paciencia!`}
+        texto="Iniciar Sesión"
+        ruta="/test"
       />
     </>
   );

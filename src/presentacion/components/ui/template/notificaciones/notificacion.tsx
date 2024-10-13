@@ -11,9 +11,11 @@ interface NotificationTemplateProps{
   title: string;
   mensaje1: string;
   mensaje2: string;
+  texto: string;
+  ruta: string;
 }
 
-const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onClose, imageUrl, title, mensaje1, mensaje2 }) => {
+const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onClose, imageUrl, title, mensaje1, mensaje2, texto, ruta }) => {
   return (
     <VentanaModal 
       isOpen={isOpen}
@@ -31,13 +33,14 @@ const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onC
         />
       }
       footer={<ButtonModal
-          texto="Iniciar sesión"
+          texto={texto}
+          ruta={ruta}
         />
       }
       style={{
         header: "flex justify-center text-3xl",
         body: " text-center",
-        footer: "flex justify-center",
+        footer: "flex justify-center"
       }}
     />
   );
