@@ -1,10 +1,10 @@
 import React from "react";
-import PlantillaGenerica from "./components/ui/template/plantillaGenerica";
-import TextoInicio from './components/ui/atoms/textoInicio';
+import PlantillaGenerica from "../components/ui/template/notificaciones/paginaPrincipal/plantillaGenerica";
+import TextoInicio from '../components/ui/atomos/paginaPrincipal/textoInicio';
 import login from "../../images/Login.png";
-import Logo from "./components/ui/atoms/logo";
-import Background from "./components/ui/atoms/background";
-import ImgBackground from './components/ui/atoms/imgFondo';
+import Logo from "../components/ui/atomos/paginaPrincipal/logo";
+import Background from "../components/ui/atomos/paginaPrincipal/background";
+import ImgBackground from '../components/ui/atomos/paginaPrincipal/imgFondo';
 import FondoLogin from '../../images/FondoLogin.png';
 
 const OlvidarContraseña: React.FC = () => {
