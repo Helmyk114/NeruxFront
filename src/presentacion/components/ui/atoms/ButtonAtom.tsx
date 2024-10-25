@@ -12,7 +12,8 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({ text, type = "submit", disabled
     <Button
       type={type}
       disabled={disabled}
-      className={disabled ? "bg-gray-400" : "bg-purple-500 hover:bg-purple-600"} // Estilos condicionales
+      className={`w-full ${disabled ? "bg-gray-400" : "bg-purple-500 hover:bg-purple-600"} rounded-lg`} // Añadimos w-full y rounded-lg para el mismo ancho y estilo que los inputs
+      style={{ borderRadius: "12px" }} // Agregamos un border-radius consistente
     >
       {text}
     </Button>
