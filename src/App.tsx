@@ -1,14 +1,12 @@
-import { Button } from '@nextui-org/react'
-
+import React from "react";
+import LoginFormik from "../src/presentacion/components/ui/organismos/loginFormik";
 
 function App() {
-
-
   return (
-    <>
-      <Button color='primary'>Hola</Button>
-    </>
-  )
+    <div className="App">
+      <LoginFormik />
+    </div>
+  );
 }
 
-export default App
+export default App;
