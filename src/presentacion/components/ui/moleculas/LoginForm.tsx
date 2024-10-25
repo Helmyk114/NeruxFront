@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import InputField from "../atoms/InputField";
-import ButtonAtom from "../atoms/ButtonAtom";
+import InputField from "../atomos/InputField";
+import ButtonAtom from "../atomos/ButtonAtom";
 import { loginValidationSchema } from "../../../../validators/validacionesLogin";
 
 const LoginForm: React.FC<{ onSubmit: (values: any) => void }> = ({ onSubmit }) => {

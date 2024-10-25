@@ -1,5 +1,5 @@
 import React from "react";
-import LoginForm from "../molecules/LoginForm";
+import LoginForm from "../moleculas/LoginForm";
 
 const LoginFormik: React.FC = () => {
   const handleLoginSubmit = (values: { usuario: string; password: string }) => {
