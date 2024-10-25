@@ -9,6 +9,23 @@ module.exports = {
   ],
   theme: {
     extend: {
+        borderRadius: {
+          'radius-34': '34px',
+        },
+        fontFamily: {
+          OpenSans: ['"Open Sans"', 'sans-serif'],
+          calligraffitti: ['Calligraffitti', 'cursive'],
+        },
+        colors:{
+          background1: '#121212',
+          background2: ' #8E05C226',
+          purpleStart: '#8E05C2',
+          purpleEnd: '#43025C',
+          pinkButton: '#D50891',
+          gris: "#D0D5DD",
+          grisFondo: "#F2F2F2",
+           text: 'rgba(242, 242, 242, 0.44)',
+        },  
     
     },
   },

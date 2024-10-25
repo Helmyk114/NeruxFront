@@ -1,11 +1,13 @@
-import React from "react";
-import LoginFormik from "../src/presentacion/components/ui/organismos/loginFormik";
+import { useDisclosure } from "@nextui-org/react";
+import PopUpSuccess from "./utils/popUps/success";
 
 function App() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <div className="App">
-      <LoginFormik />
-    </div>
+    <>
+      <button onClick={onOpen}>Open Modal</button>
+      <PopUpSuccess isOpen={isOpen} onClose={onClose} />
+    </>
   );
 }
 
