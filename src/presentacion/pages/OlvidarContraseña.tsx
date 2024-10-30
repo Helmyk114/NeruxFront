@@ -4,22 +4,21 @@ import TextoInicio from '../components/ui/atomos/paginaPrincipal/textoInicio';
 import login from "../../images/Login.png";
 import Logo from "../components/ui/atomos/paginaPrincipal/logo";
 import Background from "../components/ui/atomos/paginaPrincipal/background";
-import ImgBackground from '../components/ui/atomos/paginaPrincipal/imgFondo';
 import FondoLogin from '../../images/FondoLogin.png';
 
 const OlvidarContraseña: React.FC = () => {
   return (
-    <Background className="bg-gradient-to-b from-purpleStart to-purpleEnd">
+    <Background className="bg-black">
       <div className="relative flex items-center justify-center h-screen">
         <PlantillaGenerica
           izquierda={
             <div>
-              < ImgBackground
+              < Logo
                 src={FondoLogin}
                 alt="fondo"
                 width=""
                 heigth=""
-                className="absolute inset-0 z-0 rounded-radius-34 w-full h-full" 
+                className="w-[97%] h-[94%] absolute inset-4  z-0 rounded-l-[34px] " 
               />
               <div className="relative z-10">
                 <div className="flex ml-12 mt-12">
@@ -32,7 +31,7 @@ const OlvidarContraseña: React.FC = () => {
                   />
                 </div>
 
-                <div className="mt-72 ml-14">
+                <div className="mt-64 ml-14">
                   <div className="overflow-visible">
                     <TextoInicio
                       spans={[

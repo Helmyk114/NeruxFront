@@ -4,17 +4,17 @@ import TextoInicio from '../components/ui/atomos/paginaPrincipal/textoInicio';
 import login from "../../images/Login.png";
 import Logo from "../components/ui/atomos/paginaPrincipal/logo";
 import Background from "../components/ui/atomos/paginaPrincipal/background";
-import FondoLogin from '../../images/FondoLogin (1).png';
+import FondoLogin from '../../images/FondoLogin.png';
 
-const Login: React.FC = () => {
+const NuevaContraseña: React.FC = () => {
   return (
     <Background className="bg-black">
       <div className="relative flex items-center justify-center h-screen">
         <PlantillaGenerica
           izquierda={
             <div>
-              <Logo
-                 src={FondoLogin}
+              < Logo
+                src={FondoLogin}
                 alt="fondo"
                 width=""
                 heigth=""
@@ -31,13 +31,13 @@ const Login: React.FC = () => {
                   />
                 </div>
 
-                <div className="mt-64 ml-14">
+                <div className="mt-72 ml-14">
                   <div className="overflow-visible">
                     <TextoInicio
                       spans={[
-                        { texto: "BIENVENID@\n", className: "font-bold text-3xl lg:text-5xl" },
-                        { texto: "¡Empieza tu viaje con\n nuestro ", className: "italic font-light text-2xl lg:text-4xl" },
-                        { texto: "sistema de\n gestión!", className: "font-semibold 4xl lg:text-4xl" },
+                        { texto: "¡VAMOS A CREAR TU\n NUEVA CONTRASEÑA!\n", className: "font-bold text-3xl lg:text-4xl" },
+                   
+                        { texto: "Solo queda un paso más para\n completar el proceso.", className: "italic 2xl lg:text-2xl" },
                       ]}
                       className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
                     />
@@ -53,4 +53,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default NuevaContraseña;

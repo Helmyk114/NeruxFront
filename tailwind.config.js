@@ -11,6 +11,8 @@ module.exports = {
     extend: {
         borderRadius: {
           'radius-34': '34px',
+        
+
         },
         fontFamily: {
           OpenSans: ['"Open Sans"', 'sans-serif'],
