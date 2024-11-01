@@ -52,7 +52,11 @@ const Login: React.FC = () => {
               </div>
             </div>
           }
-          derecha={<div>{/* Contenido derecho si es necesario */}</div>}
+          derecha={<div className="flex items-center justify-center h-full"> {/* Centrar vertical y horizontalmente */}
+          <div className="w-72"> {/* Ancho del contenedor del formulario */}
+            <LoginForm onSubmit={handleLoginSubmit} />
+          </div>
+        </div>}
         />
       </div>
     </Background>
