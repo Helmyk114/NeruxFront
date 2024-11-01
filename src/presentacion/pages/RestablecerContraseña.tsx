@@ -6,7 +6,7 @@ import Logo from "../components/ui/atomos/paginaPrincipal/logo";
 import Background from "../components/ui/atomos/paginaPrincipal/background";
 import FondoLogin from '../../images/FondoLogin.png';
 
-const OlvidarContraseña: React.FC = () => {
+const RestablecerContraseña: React.FC = () => {
   return (
     <Background className="bg-black">
       <div className="relative flex items-center justify-center h-screen">
@@ -35,9 +35,9 @@ const OlvidarContraseña: React.FC = () => {
                   <div className="overflow-visible">
                     <TextoInicio
                       spans={[
-                        { texto: "¡NO TE PREOCUPES\n A TODOS NOS PASA!\n", className: "font-bold text-3xl lg:text-4xl" },
+                        { texto: "¡TU CONTRASEÑA!\n ANTERIOR HA SIDO\n RESTABLECIDA!\n", className: "font-bold text-3xl lg:text-4xl" },
                    
-                        { texto: "Ingresa tu correo electrónico para\n que podamos ayudarte a restablecer\n tu contraseña.", className: "italic 2xl lg:text-2xl" },
+                        { texto: "Por favor, establece una nueva\n contraseña para tu cuenta.", className: "italic 2xl lg:text-2xl" },
                       ]}
                       className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
                     />
@@ -53,4 +53,4 @@ const OlvidarContraseña: React.FC = () => {
   );
 };
 
-export default OlvidarContraseña;
+export default RestablecerContraseña;
