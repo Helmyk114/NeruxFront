@@ -8,7 +8,9 @@ import FondoLogin from '../../images/FondoLogin (1).png';
 
 const Login: React.FC = () => {
   return (
-    <Background className="bg-black">
+    <Background
+    className=""
+    >
       <div className="relative flex items-center justify-center h-screen">
         <PlantillaGenerica
           izquierda={
