@@ -5,8 +5,14 @@ import login from "../../images/Login.png";
 import Logo from "../components/ui/atomos/paginaPrincipal/logo";
 import Background from "../components/ui/atomos/paginaPrincipal/background";
 import FondoLogin from '../../images/FondoLogin (1).png';
+import LoginForm from "../components/ui/moleculas/LoginForm";
 
 const Login: React.FC = () => {
+  const handleLoginSubmit = (values: { usuario: string; password: string }) => {
+    console.log("Datos del formulario:", values);
+    // Aquí puedes implementar la lógica de autenticación
+  };
+
   return (
     <Background
     className=""
@@ -48,7 +54,11 @@ const Login: React.FC = () => {
               </div>
             </div>
           }
-          derecha={<div>{/* Contenido derecho si es necesario */}</div>}
+          derecha={<div className="flex items-center justify-center h-full"> {/* Centrar vertical y horizontalmente */}
+          <div className="w-72"> {/* Ancho del contenedor del formulario */}
+            <LoginForm onSubmit={handleLoginSubmit} />
+          </div>
+        </div>}
         />
       </div>
     </Background>
