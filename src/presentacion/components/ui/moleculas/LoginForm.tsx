@@ -3,7 +3,7 @@ import { Formik, Form } from "formik";
 import InputField from "../atomos/InputField";
 import ButtonAtom from "../atomos/ButtonAtom";
 import { loginValidationSchema } from "../../../../validators/validacionesLogin";
-import { FiUser } from "react-icons/fi"; // Ícono de usuario
+//import { FiUser } from "react-icons/fi"; // Ícono de usuario
 
 const LoginForm: React.FC<{ onSubmit: (values: any) => void }> = ({ onSubmit }) => {
   const initialValues = {
@@ -30,7 +30,7 @@ const LoginForm: React.FC<{ onSubmit: (values: any) => void }> = ({ onSubmit }) 
             onChange={handleChange} 
             onBlur={handleBlur} 
             value={values.usuario} 
-            icon={<FiUser />}
+            icon={""}
           />
           <InputField 
             name="password" 
@@ -41,11 +41,11 @@ const LoginForm: React.FC<{ onSubmit: (values: any) => void }> = ({ onSubmit }) 
             value={values.password} 
           />
           <div className="flex justify-between items-center">
-            <a href="#" className="text-blue-500 text-xs underline">¿Olvidaste tu contraseña?</a>
+            <a href="/olvidarContraseña" className="text-blue-500 text-xs underline">¿Olvidaste tu contraseña?</a>
           </div>
           <ButtonAtom
             text="Iniciar sesión"
-            className="w-full bg-gray-600 text-sm py-2 rounded-md mt-2"
+            //className="w-full bg-gray-600 text-sm py-2 rounded-md mt-2"
             disabled={isSubmitting || !isValid || !values.usuario || !values.password}
           />
         </Form>
