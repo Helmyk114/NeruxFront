@@ -7,9 +7,9 @@ interface BackgroundProps{
     children: React.ReactNode;
 };
 
-const Background: React.FC<BackgroundProps> = ({  color = "black", children }) => {
+const Background: React.FC<BackgroundProps> = ({ className = "", color = "black", children }) => {
     return (
-        <div style={{ backgroundColor: color }}>
+        <div className={`${className} min-h-screen`} style={{ backgroundColor: color }}>
             {children}
         </div>
     );
