@@ -4,7 +4,7 @@ import TextoInicio from '../components/ui/atomos/paginaPrincipal/textoInicio';
 import login from "../../images/Login.png";
 import Logo from "../components/ui/atomos/paginaPrincipal/logo";
 import Background from "../components/ui/atomos/paginaPrincipal/background";
-import FondoLogin from '../../images/FondoLogin.png';
+import FondoLogin from '../../images/FondoLogin (1).png';
 
 const RestablecerContraseña: React.FC = () => {
   return (
