@@ -19,10 +19,10 @@ import {
   ChipProps,
   SortDescriptor
 } from "@nextui-org/react";
-import { IconBadge4k } from '@tabler/icons-react'
-import {VerticalDotsIcon} from "./VerticalDotsIcon";
-import {ChevronDownIcon} from "./ChevronDownIcon";
-import {SearchIcon} from "./SearchIcon";
+import { IconPlus } from '@tabler/icons-react' 
+import { IconDotsVertical } from '@tabler/icons-react' 
+import { IconChevronDown } from '@tabler/icons-react' 
+import {IconSearch} from '@tabler/icons-react'
 import {columns, users, statusOptions} from "../data";
 import {capitalize} from "../utils";
 
@@ -37,7 +37,7 @@ const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
 type User = typeof users[0];
 
-export default function App() {
+export default function Tablas() {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
@@ -127,7 +127,7 @@ export default function App() {
             <Dropdown>
               <DropdownTrigger>
                 <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon className="text-default-300" />
+                  <IconDotsVertical stroke={2} />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
@@ -182,7 +182,7 @@ export default function App() {
             isClearable
             className="w-full sm:max-w-[44%]"
             placeholder="Search by name..."
-            startContent={<SearchIcon />}
+            startContent={<IconSearch/>}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
@@ -190,7 +190,7 @@ export default function App() {
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                <Button endContent={<IconChevronDown stroke={1.25} />} variant="flat">
                   Status
                 </Button>
               </DropdownTrigger>
@@ -211,7 +211,7 @@ export default function App() {
             </Dropdown>
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+                <Button endContent={<IconChevronDown stroke={1.25} />} variant="flat">
                   Columns
                 </Button>
               </DropdownTrigger>
@@ -230,7 +230,7 @@ export default function App() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button color="primary" endContent={<IconBadge4k stroke={2} />}>
+            <Button color="primary" endContent={<IconPlus stroke={2} />}>
               Add New
             </Button>
           </div>
