@@ -19,12 +19,14 @@ import {
   ChipProps,
   SortDescriptor
 } from "@nextui-org/react";
-import { IconPlus } from '@tabler/icons-react' 
+import { IconEye, IconPencil, IconPlus } from '@tabler/icons-react' 
 import { IconDotsVertical } from '@tabler/icons-react' 
 import { IconChevronDown } from '@tabler/icons-react' 
 import {IconSearch} from '@tabler/icons-react'
 import {columns, users, statusOptions} from "../data";
 import {capitalize} from "../utils";
+import ButtonAtom from "../../atomos/ButtonAtom";
+import TextoInicio from '../../atomos/paginaPrincipal/textoInicio';
 
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
@@ -32,6 +34,7 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
   paused: "danger",
   vacation: "warning",
 };
+
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
@@ -117,25 +120,22 @@ export default function Tablas() {
         );
       case "status":
         return (
-          <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
-            {cellValue}
+          <Chip   
+          className={`capitalize border-none gap-1 text-${statusColorMap[user.status]}`}
+          variant="dot"
+          color={statusColorMap[user.status]}>
+             {cellValue}
           </Chip>
         );
       case "actions":
         return (
-          <div className="relative flex justify-end items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
+          <div className="relative flex justify-center items-center gap-2">
                 <Button isIconOnly size="sm" variant="light">
-                  <IconDotsVertical stroke={2} />
+                  <IconEye className="text-default-300" />
                 </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem>View</DropdownItem>
-                <DropdownItem>Edit</DropdownItem>
-                <DropdownItem>Delete</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                <Button isIconOnly size="sm" variant="light">
+                  <IconPencil className="text-default-300" />
+                </Button>
           </div>
         );
       default:
@@ -143,17 +143,6 @@ export default function Tablas() {
     }
   }, []);
 
-  const onNextPage = React.useCallback(() => {
-    if (page < pages) {
-      setPage(page + 1);
-    }
-  }, [page, pages]);
-
-  const onPreviousPage = React.useCallback(() => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  }, [page]);
 
   const onRowsPerPageChange = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
@@ -181,11 +170,13 @@ export default function Tablas() {
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
+            color="secondary"
             placeholder="Search by name..."
             startContent={<IconSearch/>}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
+            
           />
           <div className="flex gap-3">
             <Dropdown>
@@ -230,9 +221,12 @@ export default function Tablas() {
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button color="primary" endContent={<IconPlus stroke={2} />}>
-              Add New
-            </Button>
+            <ButtonAtom
+            type="button"
+            text="Agregar admin"
+            endIcon={<IconPlus stroke={1.5} />}
+            onClick={() => console.log("Add New clicked!")}
+            textColor="text-white"/>
           </div>
         </div>
         <div className="flex justify-between items-center">
@@ -263,51 +257,41 @@ export default function Tablas() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
-        <span className="w-[30%] text-small text-default-400">
-          {selectedKeys === "all"
-            ? "All items selected"
-            : `${selectedKeys.size} of ${filteredItems.length} selected`}
-        </span>
+      <div className="py-2 px-2 mx-auto items-center">
         <Pagination
           isCompact
           showControls
           showShadow
-          color="primary"
+          color="secondary"
           page={page}
           total={pages}
           onChange={setPage}
+          className="[&_.nextui-pagination-item--selected]:bg-blue-500 [&_.nextui-pagination-item--selected]:text-white"
         />
-        <div className="hidden sm:flex w-[30%] justify-end gap-2">
-          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
-            Previous
-          </Button>
-          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
-            Next
-          </Button>
-        </div>
+      
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
+    <div className="w-9/12 mx-auto">
     <Table
       aria-label="Example table with custom cells, pagination and sorting"
       isHeaderSticky
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       classNames={{
-        wrapper: "max-h-[382px]",
+        wrapper: "max-h-[382px] bg-grisFondo2 text-white",
       }}
-      selectedKeys={selectedKeys}
-      selectionMode="multiple"
+    
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement="outside"
       onSelectionChange={setSelectedKeys}
       onSortChange={setSortDescriptor}
     >
-      <TableHeader columns={headerColumns}>
+      <TableHeader columns={headerColumns}
+      className="bg-grisBoton">
         {(column) => (
           <TableColumn
             key={column.uid}
@@ -326,5 +310,6 @@ export default function Tablas() {
         )}
       </TableBody>
     </Table>
+    </div>
   );
 }

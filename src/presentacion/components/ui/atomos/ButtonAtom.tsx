@@ -5,15 +5,37 @@ interface ButtonAtomProps {
   text: string;
   type?: "submit" | "button" | "reset";
   disabled?: boolean;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+  size?: "sm" | "md" | "lg";
+  textColor: string;
+  backgroundColor?: string; // Prop para personalizar el fondo
+  onClick?: () => void;
 }
 
-const ButtonAtom: React.FC<ButtonAtomProps> = ({ text, type = "submit", disabled = false }) => {
+const ButtonAtom: React.FC<ButtonAtomProps> = ({
+  text,
+  type = "submit",
+  disabled = false,
+  startIcon,
+  endIcon,
+  onClick,
+  size = "md",
+  textColor,
+  backgroundColor = "bg-purpleStart", 
+}) => {
   return (
     <Button
       type={type}
       disabled={disabled}
-      className={`w-full ${disabled ? "bg-gray-400" : "bg-purple-500 hover:bg-purple-600"} rounded-lg`} // Añadimos w-full y rounded-lg para el mismo ancho y estilo que los inputs
-      style={{ borderRadius: "12px" }} // Agregamos un border-radius consistente
+      className={`${
+        disabled ? "bg-gray-400" : backgroundColor
+      } ${textColor} rounded-lg`}
+      style={{ borderRadius: "12px" }} 
+      startContent={startIcon}
+      endContent={endIcon}
+      size={size}
+      onPress={onClick}
     >
       {text}
     </Button>
