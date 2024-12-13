@@ -189,7 +189,6 @@ export default function Tablas() {
                 ],
                 base:"bg-pink"
               }}
-            
           />
           <div className="flex gap-3">
             <Dropdown>
