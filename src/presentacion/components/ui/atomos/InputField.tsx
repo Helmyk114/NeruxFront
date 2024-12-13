@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useField } from "formik";
-import { FiEye, FiEyeOff } from "react-icons/fi";
+//import { FiEye, FiEyeOff } from "react-icons/fi";
 
 interface InputFieldProps {
   name: string;
@@ -43,7 +43,7 @@ const InputField: React.FC<InputFieldProps> = ({ name, label, type = "text", onC
             onClick={togglePasswordVisibility}
             className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white"
           >
-            {showPassword ? <FiEyeOff /> : <FiEye />}
+            {/* {showPassword ? <FiEyeOff /> : <FiEye />} */}
           </button>
         ) : (
           icon && (
