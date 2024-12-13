@@ -173,7 +173,7 @@ export default function Tablas() {
             className="w-full sm:max-w-[44%]"
             color="default"
             placeholder="Search by name..."
-            startContent={<IconSearch color=""/>}
+            startContent={<IconSearch color="white"/>}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
