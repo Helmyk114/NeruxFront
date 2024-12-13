@@ -20,13 +20,13 @@ import {
   SortDescriptor
 } from "@nextui-org/react";
 import { IconEye, IconPencil, IconPlus } from '@tabler/icons-react' 
-import { IconDotsVertical } from '@tabler/icons-react' 
+
 import { IconChevronDown } from '@tabler/icons-react' 
 import {IconSearch} from '@tabler/icons-react'
 import {columns, users, statusOptions} from "../data";
 import {capitalize} from "../utils";
 import ButtonAtom from "../../atomos/ButtonAtom";
-import TextoInicio from '../../atomos/paginaPrincipal/textoInicio';
+
 
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
@@ -168,14 +168,27 @@ export default function Tablas() {
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end">
           <Input
+            variant="bordered"
             isClearable
             className="w-full sm:max-w-[44%]"
-            color="secondary"
+            color="default"
             placeholder="Search by name..."
-            startContent={<IconSearch/>}
+            startContent={<IconSearch color=""/>}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
+            classNames={{
+              label: "text-textInput dark:text-white/90",
+              input: [
+                "bg-transparent",
+                "text-textInput dark:text-white/90",
+                "placeholder:text-textInput",], 
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                 "bg-pink"
+                ],
+                base:"bg-pink"
+              }}
             
           />
           <div className="flex gap-3">
@@ -266,13 +279,26 @@ export default function Tablas() {
           page={page}
           total={pages}
           onChange={setPage}
-          className="[&_.nextui-pagination-item--selected]:bg-blue-500 [&_.nextui-pagination-item--selected]:text-white"
+          classNames={{
+            wrapper:"",
+            item:"bg-grisFondo2 text-white hover:bg-pink",
+            next:"bg-grisFondo2 text-white hover:bg-sombraPink ",
+            prev:"bg-grisFondo2 text-white hover:bg-sombraPink",
+            cursor: ""
+          }}
         />
       
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
-
+  const classNames = React.useMemo(
+    () => ({
+      wrapper: ["max-h-[382px] bg-grisFondo2 text-white"],
+      th: ["bg-grisBoton", "text-grisFondo" ],
+      
+    }),
+    [],
+  );
   return (
     <div className="w-9/12 mx-auto">
     <Table
@@ -280,10 +306,8 @@ export default function Tablas() {
       isHeaderSticky
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
-      classNames={{
-        wrapper: "max-h-[382px] bg-grisFondo2 text-white",
-      }}
-    
+   
+      classNames={classNames}
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement="outside"
@@ -291,12 +315,12 @@ export default function Tablas() {
       onSortChange={setSortDescriptor}
     >
       <TableHeader columns={headerColumns}
-      className="bg-grisBoton">
+      >
         {(column) => (
           <TableColumn
             key={column.uid}
             align={column.uid === "actions" ? "center" : "start"}
-            allowsSorting={column.sortable}
+            allowsSorting={column.sortable}   
           >
             {column.name}
           </TableColumn>

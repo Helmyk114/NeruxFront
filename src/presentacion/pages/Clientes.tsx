@@ -1,25 +1,23 @@
 
 import React from 'react';
-import ErrorBoundary from '../../utils/errorBoundary';
 import Background from '../components/ui/atomos/paginaPrincipal/background';
-import { DropdownButton } from '../components/ui/moleculas/tabla/buttonDropdown';
+
 import Tablas from '../components/ui/organismo/tablas/tablaClientes';
-import Table from '../components/ui/organismo/table';
-import { Key } from "@react-types/shared";
-import MigaItem from '../components/ui/atomos/tabla/migaPanItems';
+
+
 import { IconHome } from '@tabler/icons-react';
 import MigaPan from '../components/ui/moleculas/tabla/migaPan';
 import TextoInicio from '../components/ui/atomos/paginaPrincipal/textoInicio';
-const statusOptions = [
-  { uid: "active", name: "Active" },
-  { uid: "paused", name: "Paused" },
-  { uid: "vacation", name: "Vacation" },
-];
+// const statusOptions = [
+//   { uid: "active", name: "Active" },
+//   { uid: "paused", name: "Paused" },
+//   { uid: "vacation", name: "Vacation" },
+// ];
 
 const Clientes: React.FC = () => {
-  const [statusFilter, setStatusFilter] = React.useState<Set<Key>>(new Set());
+  // const [statusFilter, setStatusFilter] = React.useState<Set<Key>>(new Set());
   const migaItem = [
-    { label: "Inicio / Clientes ", href: "/", icon: <IconHome size={16} /> },
+    { label: "Inicio / Clientes ", href: "/clientes", icon: <IconHome size={16} /> },
    
   ];
     return(
@@ -35,6 +33,7 @@ const Clientes: React.FC = () => {
            className="py-2 font-OpenSans text-white"/>
         <MigaPan items={migaItem} />
         </div>
+
         
 
            <Tablas/>

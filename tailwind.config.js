@@ -28,7 +28,9 @@ module.exports = {
           grisFondo: "#F2F2F2",
           grisFondo2: "#1F1F1F",
           grisBoton: "#2C2C2C",
-           text: 'rgba(242, 242, 242, 0.44)',
+          text: 'rgba(242, 242, 242, 0.44)',
+          textInput: "#B0B0B0CC",
+          sombraPink: "#D50891"
         },  
     
     },
