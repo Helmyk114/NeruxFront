@@ -1,7 +1,7 @@
 import React from "react";
 import VentanaModal from "../../organismo/modal";
 
-interface NotificationTemplateProps{
+interface ModalTemplateProps{
   isOpen: boolean;
   onClose: () => void;
   header: React.ReactNode;
@@ -9,7 +9,7 @@ interface NotificationTemplateProps{
   footer: React.ReactNode;
 }
 
-const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onClose, header, body, footer}) => {
+const ModalTemplate: React.FC<ModalTemplateProps> = ({ isOpen, onClose, header, body, footer}) => {
   return (
     <VentanaModal 
       isOpen={isOpen}
@@ -22,4 +22,4 @@ const NotificationTemplate: React.FC<NotificationTemplateProps> = ({ isOpen, onC
   );
 };
 
-export default NotificationTemplate;
+export default ModalTemplate;

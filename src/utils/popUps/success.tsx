@@ -1,5 +1,5 @@
 import React from "react";
-import NotificationTemplate from "../../presentacion/components/ui/template/notificaciones/notificacion";
+import ModalTemplate from "../../presentacion/components/ui/template/notificaciones/notificacion";
 //import ImagenSucces from "../../images/Variant8.png";
 
 interface PopUpSuccessProps {
@@ -10,7 +10,7 @@ interface PopUpSuccessProps {
 const PopUpSuccess: React.FC<PopUpSuccessProps> = ({ isOpen, onClose }) => {
   return (
     <>
-      <NotificationTemplate 
+      <ModalTemplate 
         isOpen={isOpen}
         onClose={onClose}
         header={"Header"}
