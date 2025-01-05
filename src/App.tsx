@@ -3,7 +3,7 @@
 
 import Login  from "./presentacion/pages/Login";
 
-function App() {
+ export default function App(): JSX.Element {
   // const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -13,5 +13,3 @@ function App() {
     </>
   );
 }
-
-export default App;
