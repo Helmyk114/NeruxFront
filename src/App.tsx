@@ -1,14 +1,15 @@
-import { useDisclosure } from "@nextui-org/react";
-import PopUpSuccess from "./utils/popUps/success";
+// import { useDisclosure } from "@nextui-org/react";
+// import PopUpSuccess from "./utils/popUps/success";
 
-function App() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+import Login  from "./presentacion/pages/Login";
+
+ export default function App(): JSX.Element {
+  // const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <button onClick={onOpen}>Open Modal</button>
-      <PopUpSuccess isOpen={isOpen} onClose={onClose} />
+      {/* <button onClick={onOpen}>Open Modal</button>
+      <PopUpSuccess isOpen={isOpen} onClose={onClose} /> */}
+      <Login />
     </>
   );
 }
-
-export default App;
