@@ -1,7 +1,6 @@
 import React from "react";
-import { Background } from "../../atomos/paginaPrincipal/background";
-import { SeccionIzquierda } from "../../organismo/pantallaPrincipal/seccionIzquierda";
-import { SeccionDerecha } from "../../organismo/pantallaPrincipal/seccionDerecha";
+import { Background } from "../../atomos";
+import { SeccionDerecha, SeccionIzquierda } from "../../organismo";
 
 interface PlantillaProps {
   fondo: string;
@@ -9,14 +8,14 @@ interface PlantillaProps {
   texto: React.ReactNode;
   formulario: React.ReactNode;
 }
-export const PlantillaGenerica: React.FC<PlantillaProps> = ({
+export function PlantillaGenerica({
   fondo,
   logotipo,
   texto,
   formulario,
-}) => (
-  <Background>
-    <>
+}: PlantillaProps): JSX.Element {
+  return (
+    <Background>
       <div className="relative flex items-center justify-center h-screen">
         <div className="relative w-5/6 h-5/6 overflow-hidden">
           <div className="absolute inset-0 w-1/2  bg-background2 rounded-l-radius-34 ">
@@ -27,6 +26,6 @@ export const PlantillaGenerica: React.FC<PlantillaProps> = ({
           </div>
         </div>
       </div>
-    </>
-  </Background>
-);
+    </Background>
+  );
+};

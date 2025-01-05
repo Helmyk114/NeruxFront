@@ -1,6 +1,6 @@
 
-import { PlantillaGenerica } from "../components/ui/template/paginaPrincipal/plantillaGenerica";
-import { TextoInicio } from "../components/ui/atomos/paginaPrincipal/textoInicio";
+import { PlantillaGenerica } from "../components/ui/template";
+import { TextoInicio } from "../components/ui/atomos";
 import login from "../../images/Login.png";
 import FondoLogin from "../../images/FondoLogin.png";
 
