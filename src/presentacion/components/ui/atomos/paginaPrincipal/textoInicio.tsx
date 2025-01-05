@@ -1,18 +1,17 @@
-import React from "react";
-
 interface TextoInicioProps {
   spans: SpanItem[];
   className?: string;
 }
+
 interface SpanItem {
   texto: string;
   className?: string;
 }
 
-export const TextoInicio: React.FC<TextoInicioProps> = ({
+export function TextoInicio({
   spans,
   className,
-}) => {
+}: TextoInicioProps): JSX.Element {
   return (
     <p className={className}>
       {spans.map((span, index) => (
@@ -22,4 +21,4 @@ export const TextoInicio: React.FC<TextoInicioProps> = ({
       ))}
     </p>
   );
-};
+}

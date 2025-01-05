@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface LogoProps {
   src: string;
   alt: string;
@@ -8,13 +6,13 @@ export interface LogoProps {
   className?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({
+export function Logo({
   src,
   alt,
   className,
   heigth,
   width,
-}) => {
+}: LogoProps): JSX.Element {
   return (
     <div>
       <img
@@ -26,4 +24,4 @@ export const Logo: React.FC<LogoProps> = ({
       />
     </div>
   );
-};
+}

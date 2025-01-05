@@ -5,6 +5,9 @@ interface BackgroundProps {
   children: React.ReactNode;
 }
 
-export const Background: React.FC<BackgroundProps> = ({ className = "bg-black", children }) => {
+export function Background({
+  className = "bg-black",
+  children,
+}: BackgroundProps): JSX.Element {
   return <div className={`${className} min-h-screen`}>{children}</div>;
-};
+}

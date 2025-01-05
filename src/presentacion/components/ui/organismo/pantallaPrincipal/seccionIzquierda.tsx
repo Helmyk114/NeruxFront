@@ -1,4 +1,3 @@
-import React from "react";
 import { Logo } from "../../atomos/paginaPrincipal/logo";
 
 interface IzquierdaProps {
@@ -7,11 +6,11 @@ interface IzquierdaProps {
   texto: React.ReactNode;
 }
 
-export const SeccionIzquierda: React.FC<IzquierdaProps> = ({
+export function SeccionIzquierda({
   fondo,
   logotipo,
-  texto
-}) => {
+  texto,
+}: IzquierdaProps): JSX.Element {
   return (
     <>
       <Logo
@@ -29,11 +28,9 @@ export const SeccionIzquierda: React.FC<IzquierdaProps> = ({
           />
         </div>
         <div className="mt-64 ml-14">
-          <div className="overflow-visible">
-           {texto}
-          </div>
+          <div className="overflow-visible">{texto}</div>
         </div>
       </div>
     </>
   );
-};
+}
