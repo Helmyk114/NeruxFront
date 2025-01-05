@@ -1,11 +1,11 @@
 import React from "react";
-import { Modal } from "@nextui-org/react";
 import {
-  ContentModal,
-  HeaderModal,
-  FooterModal,
-  BodyModal,
-} from "../moleculas/ventanaModal";
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+} from "@nextui-org/react";
 
 interface VentanaModalProps {
   isOpen: boolean;
@@ -14,11 +14,6 @@ interface VentanaModalProps {
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
-  style?: {
-    header?: string;
-    body?: string;
-    footer?: string;
-  };
 }
 
 const VentanaModal: React.FC<VentanaModalProps> = ({
@@ -28,17 +23,23 @@ const VentanaModal: React.FC<VentanaModalProps> = ({
   header,
   body,
   footer,
-  style,
 }) => {
-
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onClose} size="xl" isDismissable={isDimissable}>
-        <ContentModal
-          header={<HeaderModal className={style?.header}>{header}</HeaderModal>}
-          body={<BodyModal className={style?.body}>{body}</BodyModal>}
-          footer={<FooterModal className={style?.footer}>{footer}</FooterModal>}
-        />
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onClose}
+        isDismissable={isDimissable}
+        backdrop="blur"
+        size="xl"
+      >
+        <ModalContent>
+          <>
+            <ModalHeader>{header}</ModalHeader>
+            <ModalBody>{body}</ModalBody>
+            <ModalFooter>{footer}</ModalFooter>
+          </>
+        </ModalContent>
       </Modal>
     </>
   );
