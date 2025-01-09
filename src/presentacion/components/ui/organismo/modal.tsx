@@ -16,33 +16,27 @@ interface VentanaModalProps {
   footer: React.ReactNode;
 }
 
-const VentanaModal: React.FC<VentanaModalProps> = ({
+export default function VentanaModal ({
   isOpen,
   onClose,
   isDimissable,
   header,
   body,
   footer,
-}) => {
+}: VentanaModalProps): JSX.Element{
   return (
-    <>
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onClose}
-        isDismissable={isDimissable}
-        backdrop="blur"
-        size="xl"
-      >
-        <ModalContent>
-          <>
-            <ModalHeader>{header}</ModalHeader>
-            <ModalBody>{body}</ModalBody>
-            <ModalFooter>{footer}</ModalFooter>
-          </>
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      isDismissable={isDimissable}
+      backdrop="blur"
+      size="xl"
+    >
+      <ModalContent>
+        <ModalHeader>{header}</ModalHeader>
+        <ModalBody>{body}</ModalBody>
+        <ModalFooter>{footer}</ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
-
-export default VentanaModal;

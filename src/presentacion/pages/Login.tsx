@@ -2,6 +2,8 @@ import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
 import login from "../../images/Login.png";
 import FondoLogin from "../../images/FondoLogin.png";
+import LoginForm from "../components/ui/organismo/forms/Login";
+
 
 export default function Login(): JSX.Element {
   return (
@@ -27,7 +29,7 @@ export default function Login(): JSX.Element {
           className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
         />
       }
-      formulario=" Holi"
+      formulario={<LoginForm/>}
     />
   );
 }
