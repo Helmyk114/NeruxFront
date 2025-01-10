@@ -1,10 +1,12 @@
 import { Formik } from "formik";
 import InputPassword from "../../atomos/form/InputPassword";
 import InputFiled from "../../atomos/form/Input";
+import { loginValidationSchema } from "../../../../../utils/validations/loginValidationSchema";
+
 
 export default function LoginForm(): JSX.Element {
   const initialValues = {
-    usuario: "",
+    username: "",
     password: "",
   };
 
@@ -13,7 +15,7 @@ export default function LoginForm(): JSX.Element {
       <h1>Inicio de sesión</h1>
       <Formik
         initialValues={initialValues}
-        validationSchema={""}
+        validationSchema={loginValidationSchema}
         onSubmit={(values, { setSubmitting }) => {
           console.log("Submitting", values);
           setSubmitting(false);
@@ -21,7 +23,7 @@ export default function LoginForm(): JSX.Element {
       >
         {({}) => (
           <form>
-            <InputFiled />
+            <InputFiled name="username" label="Usuario" />
             <InputPassword />
           </form>
         )}
