@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { apiClient } from "../../../infrastructure/http/ApiClient";
+import { apiClient } from "../../../infrastructure";
+
 
 export default function fecthGet<T>(endoPoint: string) {
   const [data, setData] = useState<T | null>(null);
@@ -8,13 +9,15 @@ export default function fecthGet<T>(endoPoint: string) {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
-      setError(null);
+        setLoading(true);
+        //setLoading(false);
+        setError(null);
       try {
         const respuesta = await apiClient.get<T>(endoPoint);
         setData(respuesta);
       } catch (err) {
         setError(err as Error);
+        //setError(null);
       } finally {
         setLoading(false);
       }

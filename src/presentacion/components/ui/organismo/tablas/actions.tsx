@@ -1,0 +1,16 @@
+import React from "react";
+import { Button } from "@nextui-org/react";
+import { IconEye, IconPencil } from "@tabler/icons-react";
+
+export const Actions: React.FC = () => {
+  return (
+    <div className="relative flex justify-center items-center gap-2">
+      <Button isIconOnly size="sm" variant="light">
+        <IconEye className="text-default-300" />
+      </Button>
+      <Button isIconOnly size="sm" variant="light">
+        <IconPencil className="text-default-300" />
+      </Button>
+    </div>
+  );
+};

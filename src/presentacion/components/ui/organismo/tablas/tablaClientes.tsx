@@ -12,38 +12,46 @@ import {
   Dropdown,
   DropdownMenu,
   DropdownItem,
-  Chip,
   User,
   Pagination,
   Selection,
-  ChipProps,
-  SortDescriptor
+  SortDescriptor,
 } from "@nextui-org/react";
-import { IconEye, IconPencil, IconPlus } from '@tabler/icons-react' 
-
-import { IconChevronDown } from '@tabler/icons-react' 
-import {IconSearch} from '@tabler/icons-react'
-import {columns, users, statusOptions} from "../data";
-import {capitalize} from "../utils";
+import { IconChevronDown, IconPlus } from "@tabler/icons-react";
+import { IconSearch } from "@tabler/icons-react";
+import { users, statusOptions } from "../data";
+import { capitalize } from "../utils";
 import ButtonAtom from "../../atomos/ButtonAtom";
-
-
-
-const statusColorMap: Record<string, ChipProps["color"]> = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
-};
-
+import { useRenderCell } from "../../../hook/RenderCell";
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
 
-type User = typeof users[0];
+type User = (typeof users)[0];
 
-export default function Tablas() {
+interface Column {
+  name: string;
+  uid: string;
+  sortable?: boolean;
+}
+
+interface TableProps {
+  columnas: Column[];
+  columnRender: any;
+  data: any[];
+}
+export default function Tablas({
+  columnas,
+  columnRender,
+  data,
+}: TableProps): JSX.Element {
+  console.log(`hola`,data);
   const [filterValue, setFilterValue] = React.useState("");
-  const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]));
-  const [visibleColumns, setVisibleColumns] = React.useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
+  const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
+    new Set([])
+  );
+  const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
+    new Set(INITIAL_VISIBLE_COLUMNS)
+  );
   const [statusFilter, setStatusFilter] = React.useState<Selection>("all");
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
@@ -56,22 +64,27 @@ export default function Tablas() {
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
-    if (visibleColumns === "all") return columns;
+    if (visibleColumns === "all") return columnas;
 
-    return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
+    return columnas.filter((column) =>
+      Array.from(visibleColumns).includes(column.uid)
+    );
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...data];
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+        user.name.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
-    if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+    if (
+      statusFilter !== "all" &&
+      Array.from(statusFilter).length !== statusOptions.length
+    ) {
       filteredUsers = filteredUsers.filter((user) =>
-        Array.from(statusFilter).includes(user.status),
+        Array.from(statusFilter).includes(user.status)
       );
     }
 
@@ -97,57 +110,13 @@ export default function Tablas() {
     });
   }, [sortDescriptor, items]);
 
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User];
-
-    switch (columnKey) {
-      case "name":
-        return (
-          <User
-            avatarProps={{radius: "lg", src: user.avatar}}
-            description={user.email}
-            name={cellValue}
-          >
-            {user.email}
-          </User>
-        );
-      case "role":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
-          </div>
-        );
-      case "status":
-        return (
-          <Chip   
-          className={`capitalize border-none gap-1 text-${statusColorMap[user.status]}`}
-          variant="dot"
-          color={statusColorMap[user.status]}>
-             {cellValue}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="relative flex justify-center items-center gap-2">
-                <Button isIconOnly size="sm" variant="light">
-                  <IconEye className="text-default-300" />
-                </Button>
-                <Button isIconOnly size="sm" variant="light">
-                  <IconPencil className="text-default-300" />
-                </Button>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
-
-
-  const onRowsPerPageChange = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRowsPerPage(Number(e.target.value));
-    setPage(1);
-  }, []);
+  const onRowsPerPageChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setRowsPerPage(Number(e.target.value));
+      setPage(1);
+    },
+    []
+  );
 
   const onSearchChange = React.useCallback((value?: string) => {
     if (value) {
@@ -158,10 +127,10 @@ export default function Tablas() {
     }
   }, []);
 
-  const onClear = React.useCallback(()=>{
-    setFilterValue("")
-    setPage(1)
-  },[])
+  const onClear = React.useCallback(() => {
+    setFilterValue("");
+    setPage(1);
+  }, []);
 
   const topContent = React.useMemo(() => {
     return (
@@ -173,7 +142,7 @@ export default function Tablas() {
             className="w-full sm:max-w-[44%]"
             color="default"
             placeholder="Search by name..."
-            startContent={<IconSearch color="white"/>}
+            startContent={<IconSearch color="white" />}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
@@ -182,18 +151,20 @@ export default function Tablas() {
               input: [
                 "bg-transparent",
                 "text-textInput dark:text-white/90",
-                "placeholder:text-textInput",], 
-                innerWrapper: "bg-transparent",
-                inputWrapper: [
-                 "bg-pink"
-                ],
-                base:"bg-pink"
-              }}
+                "placeholder:text-textInput",
+              ],
+              innerWrapper: "bg-transparent",
+              inputWrapper: ["bg-pink"],
+              base: "bg-pink",
+            }}
           />
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<IconChevronDown stroke={1.25} />} variant="flat">
+                <Button
+                  endContent={<IconChevronDown stroke={1.25} />}
+                  variant="flat"
+                >
                   Status
                 </Button>
               </DropdownTrigger>
@@ -214,7 +185,10 @@ export default function Tablas() {
             </Dropdown>
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<IconChevronDown stroke={1.25} />} variant="flat">
+                <Button
+                  endContent={<IconChevronDown stroke={1.25} />}
+                  variant="flat"
+                >
                   Columns
                 </Button>
               </DropdownTrigger>
@@ -226,7 +200,7 @@ export default function Tablas() {
                 selectionMode="multiple"
                 onSelectionChange={setVisibleColumns}
               >
-                {columns.map((column) => (
+                {columnas.map((column) => (
                   <DropdownItem key={column.uid} className="capitalize">
                     {capitalize(column.name)}
                   </DropdownItem>
@@ -234,17 +208,20 @@ export default function Tablas() {
               </DropdownMenu>
             </Dropdown>
             <ButtonAtom
-            type="button"
-            text="Agregar admin"
-            endIcon={<IconPlus stroke={1.5} />}
-            onClick={() => console.log("Add New clicked!")}
-            textColor="text-white"/>
+              type="button"
+              text="Agregar admin"
+              endIcon={<IconPlus stroke={1.5} />}
+              onClick={() => console.log("Add New clicked!")}
+              textColor="text-white"
+            />
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {users.length} users</span>
+          <span className="text-default-400 text-small">
+            Total {users.length} users
+          </span>
           <label className="flex items-center text-default-400 text-small">
-            Rows per page:
+            Clientes por página:
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
@@ -279,60 +256,62 @@ export default function Tablas() {
           total={pages}
           onChange={setPage}
           classNames={{
-            wrapper:"",
-            item:"bg-grisFondo2 text-white hover:bg-pink",
-            next:"bg-grisFondo2 text-white hover:bg-sombraPink ",
-            prev:"bg-grisFondo2 text-white hover:bg-sombraPink",
-            cursor: ""
+            wrapper: "",
+            item: "bg-grisFondo2 text-white hover:bg-pink",
+            next: "bg-grisFondo2 text-white hover:bg-sombraPink ",
+            prev: "bg-grisFondo2 text-white hover:bg-sombraPink",
+            cursor: "",
           }}
         />
-      
       </div>
     );
   }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
+
   const classNames = React.useMemo(
     () => ({
       wrapper: ["max-h-[382px] bg-grisFondo2 text-white"],
-      th: ["bg-grisBoton", "text-grisFondo" ],
-      
+      th: ["bg-grisBoton", "text-grisFondo"],
     }),
-    [],
+    []
   );
+
+  const { renderCell } = useRenderCell(columnRender);
+
   return (
     <div className="w-9/12 mx-auto">
-    <Table
-      aria-label="Example table with custom cells, pagination and sorting"
-      isHeaderSticky
-      bottomContent={bottomContent}
-      bottomContentPlacement="outside"
-   
-      classNames={classNames}
-      sortDescriptor={sortDescriptor}
-      topContent={topContent}
-      topContentPlacement="outside"
-      onSelectionChange={setSelectedKeys}
-      onSortChange={setSortDescriptor}
-    >
-      <TableHeader columns={headerColumns}
+      <Table
+        aria-label="Example table with custom cells, pagination and sorting"
+        isHeaderSticky
+        bottomContent={bottomContent}
+        bottomContentPlacement="outside"
+        classNames={classNames}
+        sortDescriptor={sortDescriptor}
+        topContent={topContent}
+        topContentPlacement="outside"
+        onSelectionChange={setSelectedKeys}
+        onSortChange={setSortDescriptor}
       >
-        {(column) => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
-            allowsSorting={column.sortable}   
-          >
-            {column.name}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
-        {(item) => (
-          <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
+        <TableHeader columns={headerColumns}>
+          {(column) => (
+            <TableColumn
+              key={column.uid}
+              align={column.uid === "actions" ? "center" : "start"}
+              allowsSorting={column.sortable}
+            >
+              {column.name}
+            </TableColumn>
+          )}
+        </TableHeader>
+        <TableBody emptyContent={"No users found"} items={sortedItems}>
+          {(item) => (
+            <TableRow key={item.id}>
+              {(columnKey) => (
+                <TableCell>{renderCell(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 }
