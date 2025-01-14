@@ -7,10 +7,11 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
   vacation: "warning",
 };
 
-type ColumnRender = {
-  [key: string]: (item: any) => JSX.Element;
+type ColumnRender<T> = {
+  [key: string]: (item: T) => JSX.Element;
 };
-interface User {
+
+export interface Users {
   idUser: string;
   name: string;
   lastName: string;
@@ -26,8 +27,8 @@ interface User {
   bank_id?: string | null | undefined;
 }
 
-export const userColumnRender: ColumnRender = {
-  name: (user: User) => (
+export const userColumnRender: ColumnRender<Users> = {
+  name: (user: Users) => (
     <User
       avatarProps={{ radius: "lg", src: user.photo }}
       description={user.email}
@@ -36,7 +37,7 @@ export const userColumnRender: ColumnRender = {
       {user.username}
     </User>
   ),
-  role: (user: User) => (
+  role: (user: Users) => (
     <div className="flex flex-col">
       <p className="text-bold text-small capitalize">{user.rol_id}</p>
       <p className="text-bold text-tiny capitalize text-default-400">
@@ -44,7 +45,7 @@ export const userColumnRender: ColumnRender = {
       </p>
     </div>
   ),
-  status: (user: User) => (
+  status: (user: Users) => (
     <Chip
       className={`capitalize border-none gap-1 text-${
         statusColorMap[user.email]

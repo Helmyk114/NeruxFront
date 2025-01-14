@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import { apiClient } from "../../../infrastructure";
 
-
-export default function fecthGet<T>(endoPoint: string) {
+export default function UsefecthGet<T>(endoPoint: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
+        console.log("Fetching data...");
         setLoading(true);
-        //setLoading(false);
         setError(null);
       try {
         const respuesta = await apiClient.get<T>(endoPoint);
         setData(respuesta);
       } catch (err) {
         setError(err as Error);
-        //setError(null);
       } finally {
         setLoading(false);
       }
