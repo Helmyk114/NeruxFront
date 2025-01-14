@@ -27,7 +27,7 @@ const Sidebar = () => {
     </div>
    
      <div className='w-10% '>
-     <Button isIconOnly color="default" variant='ligh' className= "hover:bg-hoverPurple w-1"  
+     <Button isIconOnly color="default" variant='light' className= "hover:bg-hoverPurple w-1"  
      startContent={<IconChevronLeft stroke={1.25} 
      onClick={toggleSidebar}/>}>
      </Button>
