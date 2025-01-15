@@ -8,7 +8,6 @@ export default function UsefecthGet<T>(endoPoint: string) {
 
   useEffect(() => {
     const fetchData = async () => {
-        console.log("Fetching data...");
         setLoading(true);
         setError(null);
       try {

@@ -12,14 +12,12 @@ import { columns } from "../components/ui/organismo/data";
 const Clientes: React.FC = () => {
   const { data, loading, error } = UsefecthGet<Users[]>("/user");
 
-  if (loading) return <div>Loading...</div>;
-
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <Background>
       <div className="ml-44 mb-10 lg:text-4xl">
-        <h1 className="font-bold text-3xl">CLientes</h1>
+        <h1 className="font-bold text-3xl">Clientes</h1>
         {/* <TextoInicio
           spans={[
             { texto: "Clientes", className: "font-bold text-3xl lg:text-4xl" },
@@ -35,6 +33,7 @@ const Clientes: React.FC = () => {
         columnRender={userColumnRender}
         data={data || []}
         getKey={(item) => item.idUser}
+        isLoading={loading}
       />
     </Background>
   );
