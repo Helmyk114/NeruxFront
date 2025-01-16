@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { apiClient } from "../../../infrastructure";
 
-export default function UsefecthGet<T>(endoPoint: string) {
+export function UsefecthGet<T>(endoPoint: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
