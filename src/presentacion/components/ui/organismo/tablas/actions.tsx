@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 import { IconEye, IconPencil } from "@tabler/icons-react";
 
 export const Actions: React.FC = () => {

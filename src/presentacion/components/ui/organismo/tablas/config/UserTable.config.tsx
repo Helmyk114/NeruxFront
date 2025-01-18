@@ -1,4 +1,4 @@
-import { Chip, ChipProps, User } from "@nextui-org/react";
+import { Chip, ChipProps, User } from "@heroui/react";
 import { Actions } from "../actions";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {

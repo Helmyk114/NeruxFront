@@ -7,7 +7,7 @@ import {
   TableRow,
   TableCell,
   Spinner,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { useRenderCell } from "../../../hook/UseRenderCell";
 import { Paginacion } from "../../atomos";
 import { usePagination } from "../../../hook/UsePagination";
