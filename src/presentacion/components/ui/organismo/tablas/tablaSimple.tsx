@@ -10,7 +10,6 @@ import {
 } from "@heroui/react";
 import { useRenderCell } from "../../../hook/UseRenderCell";
 import { Paginacion } from "../../atomos";
-import { usePagination } from "../../../hook/UsePagination";
 
 interface Column {
   name: string;
@@ -27,10 +26,12 @@ interface TableProps<T extends object> {
   columnas: Column[];
   columnRender: ColumnRender<T>;
   data: T[];
-  getKey: (item: T) => string;
-  rowsPerPage: number;
+  getRowKey: (item: T) => string | number; 
   isLoading?: boolean;
   error?: string;
+  page: number;
+  totalPages: number;
+  setPage: (page: number) => void;
 }
 
 export function TableSimple<T extends object>({
@@ -38,17 +39,16 @@ export function TableSimple<T extends object>({
   columnas,
   columnRender,
   data,
-  getKey,
-  rowsPerPage,
+  getRowKey,
   isLoading = false,
   error,
+  page,
+  totalPages,
+  setPage,
 }: TableProps<T>): JSX.Element {
-  const { page, totalPages, currentPageItems, goToPage } = usePagination({
-    data,
-    rowsPerPage,
-  });
+ 
   const { renderCell } = useRenderCell(columnRender);
-
+  
   return (
     <Table
       aria-label={`Tabla de ${tabla}`}
@@ -56,7 +56,7 @@ export function TableSimple<T extends object>({
       bottomContent={
         <Paginacion
           page={page}
-          setPage={(page) => goToPage(page)}
+          setPage={setPage}
           total={totalPages}
         />
       }
@@ -67,11 +67,11 @@ export function TableSimple<T extends object>({
       <TableBody
         isLoading={isLoading}
         loadingContent={<Spinner label="Cargando..." />}
-        items={currentPageItems}
+        items={data}
         emptyContent={error || "No hay datos para mostrar."}
       >
         {(item) => (
-          <TableRow key={getKey(item)}>
+          <TableRow key={getRowKey(item)}>
             {(columnKey) => (
               <TableCell>
                 {renderCell(item, columnKey) as React.ReactNode}

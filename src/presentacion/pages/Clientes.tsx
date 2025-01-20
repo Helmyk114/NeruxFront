@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { UsefecthGet } from "../components/hook";
 import { TableSimple } from "../components/ui/organismo";
 import { userColumnRender, Users } from "../components/ui/organismo";
 import { columns } from "../components/ui/organismo";
 
 const Clientes: React.FC = () => {
-  const { data, loading, error } = UsefecthGet<Users[]>("/user");
+  const [currentePage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const { data, metadata, loading, error } = UsefecthGet<Users>(
+    "/user",
+    currentePage,
+    pageSize
+  );
+
+  console.log('cliente',data);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <>
@@ -16,10 +28,12 @@ const Clientes: React.FC = () => {
         columnas={columns}
         columnRender={userColumnRender}
         data={data || []}
-        getKey={(item) => item.idUser}
+        getRowKey={(item) => item.idUser} 
         isLoading={loading}
         error={error?.message}
-        rowsPerPage={7}
+        page={metadata?.currentPage || 1}
+        totalPages={metadata?.totalPages || 1}
+        setPage={handlePageChange}
       />
     </>
   );
