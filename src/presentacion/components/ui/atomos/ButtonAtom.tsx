@@ -9,8 +9,9 @@ interface ButtonAtomProps {
   endIcon?: React.ReactNode;
   size?: "sm" | "md" | "lg";
   textColor: string;
-  backgroundColor?: string; // Prop para personalizar el fondo
+  backgroundColor?: string; 
   onClick?: () => void;
+  className: string;
 }
 
 const ButtonAtom: React.FC<ButtonAtomProps> = ({
@@ -23,6 +24,7 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
   size = "md",
   textColor,
   backgroundColor = "bg-purpleStart", 
+  className= "",
 }) => {
   return (
     <Button
@@ -30,7 +32,7 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
       disabled={disabled}
       className={`${
         disabled ? "bg-gray-400" : backgroundColor
-      } ${textColor} rounded-lg`}
+      } ${className} ${textColor} rounded-lg`}
       style={{ borderRadius: "12px" }} 
       startContent={startIcon}
       endContent={endIcon}
