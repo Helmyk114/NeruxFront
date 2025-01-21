@@ -2,7 +2,11 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import { IconEye, IconEyeClosed } from "@tabler/icons-react";
 
-export default function InputPassword(): JSX.Element {
+interface InputPasswordProps{
+  className: string;
+}
+
+export default function InputPassword({ className }: InputPasswordProps): JSX.Element {
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -10,7 +14,7 @@ export default function InputPassword(): JSX.Element {
   return (
     <Input
       isRequired = {true}
-      className="max-w-xs"
+      className={className}
       endContent={
         <button
           aria-label="toggle password visibility"
