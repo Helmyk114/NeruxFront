@@ -1,35 +1,32 @@
 import {Input} from "@nextui-org/react";
-import { IconError404, IconUser } from "@tabler/icons-react";
+import { IconUser } from "@tabler/icons-react";
 import { useField } from "formik";
 
 interface InputFieldProps {
   label: string;
-  name: string;
+  nombre: string;
   className: string;
+  hasError?: boolean; 
 }
 
-export default function InputFiled({ label, name, className }: InputFieldProps): JSX.Element {
-  const [field, meta] = useField(name);
+export default function InputFiled({ label, nombre, className, hasError }: InputFieldProps): JSX.Element {
+  const [field, meta] = useField(nombre);
   return (
     <>
     <Input
       {...field}
       className={className}
       endContent={
-        <IconUser className="text-2xl text-default-400 pointer-events-none"/>
+      <IconUser className="text-2xl text-default-400 pointer-events-none"/>
       }
       label={label}
       variant="bordered"
       labelPlacement="outside"
+      classNames={{
+        inputWrapper: hasError ? "border-red-500 " : "",
+      }}
     />
     
-    {meta.touched && meta.error ? (
-      <div className="flex text-error ml-1 mt-1">
-        {<IconError404 />}
-        <span className="ml-2 font-OpenSans text-xs">{meta.error}</span>
-        
-      </div>
-    ) : null}
     </>
   );
 }
