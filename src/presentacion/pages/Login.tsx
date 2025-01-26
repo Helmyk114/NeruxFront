@@ -29,7 +29,7 @@ export default function Login(): JSX.Element {
           className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
         />
       }
-      formulario={<LoginForm/>}
+      formulario={<LoginForm />}
     />
   );
 }

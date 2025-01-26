@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { Key } from "@react-types/shared"; // Importa el tipo Key correcto
 
 interface DropdownButtonProps {

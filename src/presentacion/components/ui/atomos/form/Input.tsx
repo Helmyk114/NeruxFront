@@ -1,4 +1,4 @@
-import {Input} from "@nextui-org/react";
+import {Input} from "@heroui/react";
 import { IconUser } from "@tabler/icons-react";
 import { useField } from "formik";
 
