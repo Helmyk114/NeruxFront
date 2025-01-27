@@ -8,6 +8,7 @@ import {
 import ButtonAtom from "../../atomos/ButtonAtom";
 import { IconError404 } from "@tabler/icons-react";
 import { LoginUseCase } from "../../../../../domain/useCase/LoginUseCase";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginForm(): JSX.Element {
   const initialValues = {
@@ -16,6 +17,7 @@ export default function LoginForm(): JSX.Element {
   };
 
   const loginUseCase = new LoginUseCase();
+  const navigate = useNavigate();
 
   return (
     <div className="p-10 mt-10 w-full ">
@@ -24,10 +26,16 @@ export default function LoginForm(): JSX.Element {
         initialValues={initialValues}
         validationSchema={loginValidationSchema}
         onSubmit={async (values, { setSubmitting, setErrors }) => {
-
           //const result = await handleLoginValidation(values);
-          const newUser = await loginUseCase.execute(values.username, values.password);
-          console.log(newUser);
+          const newUser = await loginUseCase.execute(
+            values.username,
+            values.password
+          );
+          if (newUser.user.has_changed_password === 1) {
+            navigate("/nuevaContraseña");
+          } else {
+            navigate("/clientes");
+          }
           // if (result.error) {
           //   setErrors({ username: result.message, password: result.message });
           // }
