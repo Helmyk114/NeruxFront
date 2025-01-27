@@ -32,7 +32,7 @@ export default function LoginForm(): JSX.Element {
             values.password
           );
           if (newUser.user.has_changed_password === 1) {
-            navigate("/nuevaContraseña");
+            navigate("/Nueva/Contraseña");
           } else {
             navigate("/clientes");
           }

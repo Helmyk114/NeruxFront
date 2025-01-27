@@ -1,15 +1,10 @@
 import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
-import login from "../../images/Login.png";
-import FondoLogin from "../../images/FondoLogin.png";
 import LoginForm from "../components/ui/organismo/forms/Login";
-
 
 export default function Login(): JSX.Element {
   return (
     <PlantillaGenerica
-      fondo={FondoLogin}
-      logotipo={login}
       texto={
         <TextoInicio
           spans={[

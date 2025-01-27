@@ -1,13 +1,9 @@
-import { PlantillaGenerica } from "../components/ui/template";
-import { TextoInicio } from "../components/ui/atomos";
-import login from "../../images/Login.png";
-import FondoLogin from "../../images/FondoLogin.png";
+import { PlantillaGenerica } from "../../../components/ui/template";
+import { TextoInicio } from "../../../components/ui/atomos";
 
 export function OlvidarContraseña(): JSX.Element {
   return (
     <PlantillaGenerica
-      fondo={FondoLogin}
-      logotipo={login}
       texto={
         <TextoInicio
           spans={[
@@ -16,7 +12,8 @@ export function OlvidarContraseña(): JSX.Element {
               className: "font-bold text-3xl lg:text-4xl",
             },
             {
-              texto: "Ingresa tu correo electrónico para\n que podamos ayudarte a restablecer\n tu contraseña.",
+              texto:
+                "Ingresa tu correo electrónico para\n que podamos ayudarte a restablecer\n tu contraseña.",
               className: "italic 2xl lg:text-2xl",
             },
           ]}
