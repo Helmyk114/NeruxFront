@@ -1,16 +1,18 @@
 import React from "react";
 import { Background } from "../../atomos";
 import { SeccionDerecha, SeccionIzquierda } from "../../organismo";
+import FondoLogin from "../../../../../images/FondoLogin.png";
+import Logotipo from "../../../../../images/Logotipo.png";
 
 interface PlantillaProps {
-  fondo: string;
-  logotipo: string;
+  fondo?: string;
+  logotipo?: string;
   texto: React.ReactNode;
   formulario: React.ReactNode;
 }
 export function PlantillaGenerica({
-  fondo,
-  logotipo,
+  fondo = FondoLogin,
+  logotipo = Logotipo,
   texto,
   formulario,
 }: PlantillaProps): JSX.Element {
@@ -19,7 +21,7 @@ export function PlantillaGenerica({
       <div className="relative flex items-center justify-center h-screen">
         <div className="relative w-5/6 h-5/6 overflow-hidden">
           <div className="absolute inset-0 w-1/2  bg-background2 rounded-l-radius-34 ">
-            <SeccionIzquierda fondo={fondo} logotipo={logotipo} texto={texto} />
+            <SeccionIzquierda fondo={fondo } logotipo={logotipo} texto={texto} />
           </div>
           <div className="absolute inset-y-0 right-0 w-1/2 h-full bg-background2 rounded-r-radius-34">
             <SeccionDerecha formulario={formulario} />

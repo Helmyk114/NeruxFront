@@ -1,5 +1,5 @@
 // // components/ui/organismos/tabla/Table.tsx
-// import { Table as NextUITable, TableHeader, TableBody, TableCell} from "@nextui-org/react";
+// import { Table as NextUITable, TableHeader, TableBody, TableCell} from "@heroui/react";
 
 // import TableRow from "../moleculas/tabla/tableRow";
 // import TableColumn from "../atomos/tabla/tableColumn";

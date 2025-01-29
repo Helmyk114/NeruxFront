@@ -1,16 +1,18 @@
-import {Input} from "@nextui-org/react";
+import {Input} from "@heroui/react";
 import { IconUser } from "@tabler/icons-react";
 import { useField } from "formik";
+import { useState } from "react";
 
 interface InputFieldProps {
   label: string;
   nombre: string;
   className: string;
-  hasError?: boolean; 
+  
 }
 
-export default function InputFiled({ label, nombre, className, hasError }: InputFieldProps): JSX.Element {
+export default function InputFiled({ label, nombre, className}: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
+  const [isFocused, setIsFocused] = useState(false);
   return (
     <>
     <Input
@@ -23,9 +25,19 @@ export default function InputFiled({ label, nombre, className, hasError }: Input
       variant="bordered"
       labelPlacement="outside"
       classNames={{
-        inputWrapper: hasError ? "border-red-500 " : "",
+        inputWrapper: "dark:focus-within:border-purpleStart ",
+        
       }}
+      
+    
     />
+      {meta.touched && meta.error ? (
+      <div className="flex text-error ml-10">
+        {<IconUser/>}
+        <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
+        
+      </div>
+    ) : null}
     
     </>
   );

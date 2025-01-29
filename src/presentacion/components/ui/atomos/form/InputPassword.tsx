@@ -1,16 +1,16 @@
 import React from "react";
-import {Input} from "@nextui-org/react";
+import {Input} from "@heroui/react";
 import { IconError404, IconEye, IconEyeClosed } from "@tabler/icons-react";
-import { useField } from "formik";
+import { useField} from 'formik';
 
 interface InputPasswordProps{
   nombre: string;
   label: string;
   className: string;
-  hasError?: boolean;
+  
 }
 
-export default function InputPassword({ className, nombre, label, hasError }: InputPasswordProps): JSX.Element {
+export default function InputPassword({ className, nombre, label }: InputPasswordProps): JSX.Element {
   const [isVisible, setIsVisible] = React.useState(false);
   const [field, meta] = useField(nombre);
 
@@ -44,10 +44,19 @@ export default function InputPassword({ className, nombre, label, hasError }: In
       variant="bordered"
       labelPlacement="outside"
       classNames={{
-        inputWrapper: hasError ? "border-red-500 text-red-500" : "",
+        inputWrapper:" dark:focus-within:border-purpleStart",
       }}
+     
       
     />
+
+    {meta.touched && meta.error ? (
+      <div className="flex text-error mb-2 ml-10">
+        {<IconError404/>}
+        <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
+        
+      </div>
+    ) : null}
 
    </>
   );

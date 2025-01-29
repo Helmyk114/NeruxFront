@@ -1,15 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { NextUIProvider } from "@nextui-org/react";
+import { HeroUIProvider } from "@heroui/react";
 import { AppRouter } from "./routes/AppRoutes";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <NextUIProvider>
+    <HeroUIProvider>
       <main className="dark text-foreground bg-background">
         <AppRouter />
       </main>
-    </NextUIProvider>
+    </HeroUIProvider>
   </StrictMode>
 );

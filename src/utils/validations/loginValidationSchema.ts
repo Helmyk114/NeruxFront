@@ -8,7 +8,7 @@ let attempts = 0;
 export const loginValidationSchema = Yup.object().shape({
   username: ValidationRules.campoRequerido("usuario")
     .concat(ValidationRules.minLength("usuario", 5))
-    .concat(ValidationRules.maxLength("usuario", 10))
+    .concat(ValidationRules.maxLength("usuario", 20))
     .test("invalid-username", "Usuario inválido. Por favor, verifica tus datos.", (value) => {
       if (value === "invalidUser") {
         return false;
