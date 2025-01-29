@@ -18,7 +18,7 @@ import {
   Selection,
   ChipProps,
   SortDescriptor
-} from "@nextui-org/react";
+} from "@heroui/react";
 import { IconEye, IconPencil, IconPlus } from '@tabler/icons-react' 
 
 import { IconChevronDown } from '@tabler/icons-react' 
