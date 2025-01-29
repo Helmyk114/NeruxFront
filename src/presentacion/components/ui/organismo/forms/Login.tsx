@@ -6,25 +6,15 @@ import {
   loginValidationSchema,
 } from "../../../../../utils/validations/loginValidationSchema";
 import ButtonAtom from "../../atomos/ButtonAtom";
-<<<<<<< HEAD
-
-
-
-=======
 import { IconError404 } from "@tabler/icons-react";
 import { LoginUseCase } from "../../../../../domain/useCase/LoginUseCase";
 import { useNavigate } from "react-router-dom";
->>>>>>> 9b153e83a353e6dcafb8b8bbe54b79f2644fe4dc
 
 export default function LoginForm(): JSX.Element {
   const initialValues = {
     username: "",
     password: "",
   };
-
-  const loginUseCase = new LoginUseCase();
-  const navigate = useNavigate();
-
 
   const loginUseCase = new LoginUseCase();
   const navigate = useNavigate();
@@ -77,52 +67,6 @@ export default function LoginForm(): JSX.Element {
               />
             </div>
 
-<<<<<<< HEAD
-        if (result.error) {
-          setErrors({ username: result.message, password: result.message });
-        }
-
-        setSubmitting(false);
-      }}
-    >
-      {({ isSubmitting, isValid, values, handleSubmit }) => (
-        <form className="space-y-4 items-center justify-center" onSubmit={handleSubmit}>
-          <div className=" justify-center mb-11 items-center">
-          <Field
-          nombre = "username"
-          label = "Usurio"
-          component = {InputFiled}
-          className="w-9/12 mb-2 ml-14" 
-          
-          />
-          
-          </div>
-         <div className="">
-         <Field
-          nombre = "password"
-          label = "Contraseña"
-          component = {InputPassword}
-          className="w-9/12 mb-1 ml-14 "
-          />
-          
-         </div>
-      
-          <div className="flex justify-end mr-16 items-center">
-            <a href="/olvidarContraseña" className="text-blue-500 text-base underline">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
-          <ButtonAtom text="Iniciar sesión" textColor="white" className="w-9/12 ml-14"
-          disabled={isSubmitting || !isValid || !values.username || !values.password}
-         />
-        
-        </form>
-      )}
-    </Formik>
-  </div>
-  
-  
-=======
             <div className="flex justify-end items-center">
               <a
                 href="/olvidarContraseña"
@@ -143,7 +87,6 @@ export default function LoginForm(): JSX.Element {
             (errors.username || errors.password) ? (
               <div className="flex text-error ml-14 mt-4">
                 <IconError404 color="red" />
-                <IconError404 color="red" />
                 <span className="font-OpenSans text-xs text-red-500 text-center ml-2">
                   {errors.username || errors.password}
                 </span>
@@ -153,6 +96,5 @@ export default function LoginForm(): JSX.Element {
         )}
       </Formik>
     </div>
->>>>>>> 9b153e83a353e6dcafb8b8bbe54b79f2644fe4dc
   );
 }
