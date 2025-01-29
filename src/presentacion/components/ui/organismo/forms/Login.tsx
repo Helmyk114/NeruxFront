@@ -25,6 +25,10 @@ export default function LoginForm(): JSX.Element {
   const loginUseCase = new LoginUseCase();
   const navigate = useNavigate();
 
+
+  const loginUseCase = new LoginUseCase();
+  const navigate = useNavigate();
+
   return (
     <div className="p-10 mt-10 w-full ">
       <h1 className="text-2xl font-bold mb-16 text-center">Iniciar sesión</h1>
@@ -138,6 +142,7 @@ export default function LoginForm(): JSX.Element {
             {(touched.username || touched.password) &&
             (errors.username || errors.password) ? (
               <div className="flex text-error ml-14 mt-4">
+                <IconError404 color="red" />
                 <IconError404 color="red" />
                 <span className="font-OpenSans text-xs text-red-500 text-center ml-2">
                   {errors.username || errors.password}
