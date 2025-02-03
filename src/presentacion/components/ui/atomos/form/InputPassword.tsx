@@ -52,7 +52,7 @@ export default function InputPassword({ className, nombre, label }: InputPasswor
 
     {meta.touched && meta.error ? (
       <div className="flex text-error mb-2 ml-10">
-        {<IconError404/>}
+        {<IconError404 className=""/>}
         <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
         
       </div>
