@@ -14,7 +14,7 @@ interface AuthResponse{
 export const AuthService = {
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
-      const respuesta = await apiClient.post('/login', { username, password });
+      const respuesta = await apiClient.post('/auth/login', { username, password });
       return respuesta as AuthResponse;
     } catch (error) {
       throw new Error(`Error al iniciar sesion, ${error}`);
