@@ -1,11 +1,11 @@
 import Login from '../../../../../images/Login.png';
 
 import { IconCategory, IconChevronLeft, IconHome, IconStack2, IconUsersGroup } from '@tabler/icons-react';
-import { Button } from '@nextui-org/react';
 import SidebarLink from '../../moleculas/sidebar/sidebarLink';
 import { useState } from 'react';
 import { color } from 'framer-motion';
 import { Logo } from '../../atomos';
+import { Button } from '@heroui/react';
 
 
 const Sidebar = () => {
