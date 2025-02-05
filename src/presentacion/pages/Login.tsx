@@ -1,8 +1,6 @@
 import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
 import LoginForm from "../components/ui/organismo/forms/Login";
-import login from "../../images/Login.png";
-import ContainerBg from "../../images/ContainerBg.webp";
 
 export default function Login(): JSX.Element {
   return (

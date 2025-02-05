@@ -8,8 +8,13 @@ interface SidebarLinkProps {
   endIcon?: React.ReactNode;
 }
 
-const SidebarLink: React.FC<SidebarLinkProps> = ({ href, label, onClick, startIcon,
-  endIcon, }) => {
+const SidebarLink: React.FC<SidebarLinkProps> = ({
+  href,
+  label,
+  onClick,
+  startIcon,
+  endIcon,
+}) => {
   return (
     <a
       href={href}
