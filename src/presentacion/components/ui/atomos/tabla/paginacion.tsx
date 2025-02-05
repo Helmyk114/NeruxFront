@@ -3,13 +3,13 @@ import { Pagination } from "@heroui/react";
 interface PaginationProps {
   page: number;
   total: number;
-  onChange: (page: number) => void;
+  setPage: (page: number) => void;
 }
 
-export default function Pagina({
+export function Paginacion({
   page,
   total,
-  onChange,
+  setPage,
 }: PaginationProps): JSX.Element {
   return (
     <div className="flex w-full justify-center">
@@ -20,7 +20,7 @@ export default function Pagina({
         color="secondary"
         page={page}
         total={total}
-        onChange={onChange}
+        onChange={setPage}
       />
     </div>
   );

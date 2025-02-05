@@ -19,7 +19,7 @@ export class HttpClient {
     return respuesta.data;
   }
 
-  public async getWithParams<T>(url: string, params: string): Promise<T> {
+  public async getWithParams<T, P>(url: string, params: P): Promise<T> {
     const respuesta = await this.axiosInstance.get(url, { params });
     return respuesta.data;
   }
