@@ -25,7 +25,7 @@ export default function InputFiled({ label, nombre, className}: InputFieldProps)
       variant="bordered"
       labelPlacement="outside"
       classNames={{
-        inputWrapper: "dark:focus-within:border-purpleStart ",
+      inputWrapper: "dark:focus-within:border-purpleStart ",
         
       }}
       
@@ -35,7 +35,6 @@ export default function InputFiled({ label, nombre, className}: InputFieldProps)
       <div className="flex text-error ml-10">
         {<IconUser/>}
         <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
-        
       </div>
     ) : null}
     
