@@ -48,24 +48,7 @@ export default function InputPassword({ className, nombre, label }: InputPasswor
       }}
      
     />
-        {meta.touched && errorMessages.length > 0 && (
-        <div className="flex text-error mb-2 ml-10">
-          {errorMessages.map((message, index) => (
-            <div key={index} className="flex items-center text-sm">
-              <IconX className="text-red-500 mr-2" />
-              <span style={{ color: "red" }}>{message}</span>
-            </div>
-          ))}
-        </div>
-      )}
-        {meta.touched && !meta.error && (
-        <div className="flex text-error mb-2 ml-10">
-          <div className="flex items-center text-sm">
-            <IconCheck className="text-green-500 mr-2" />
-            <span style={{ color: "green" }}>La contraseña es válida.</span>
-          </div>
-        </div>
-      )}
+       
 
    </>
   );
