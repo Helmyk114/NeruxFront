@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "../App";
-import Clientes from "../presentacion/pages/Clientes";
+import PagePrueba from "../presentacion/pages/PagePrueba";
 import {
   NuevaContraseña,
   OlvidarContraseña,
@@ -18,7 +18,7 @@ export function AppRouter(): JSX.Element {
           path="/Restablecer/Contraseña"
           element={<RestablecerContraseña />}
         />
-        <Route path="/clientes" element={<Clientes />} />
+        <Route path="/clientes" element={<PagePrueba />} />
       </Routes>
     </Router>
   );

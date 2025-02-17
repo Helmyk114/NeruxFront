@@ -8,12 +8,11 @@ const Clientes: React.FC = () => {
   const [currentePage, setCurrentPage] = useState(1);
   const pageSize = 10;
   const { data, metadata, loading, error } = UsefecthGet<Users>(
-    "/user",
+    "/info/business",
     currentePage,
     pageSize
   );
-
-  console.log('cliente',data);
+  
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);

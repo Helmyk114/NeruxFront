@@ -18,6 +18,8 @@ export function UsefecthGet<T>(endoPoint: string, currentPage: number, pageSize:
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
+  console.log(endoPoint)
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);

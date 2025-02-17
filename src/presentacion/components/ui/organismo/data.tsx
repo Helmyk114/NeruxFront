@@ -1,11 +1,8 @@
 export const columns = [
-  {name: "Nombre", uid: "name", sortable: true},
-  {name: "username", uid: "username", sortable: true},
-  {name: "ROLE", uid: "rol_id", sortable: true},
-  {name: "TEAM", uid: "lastName"},
-  {name: "EMAIL", uid: "email"},
-  {name: "STATUS", uid: "status", sortable: true},
-  {name: "ACTIONS", uid: "actions"},
+  {name: "Nombre", uid: "nombre", sortable: true},
+  {name: "Administrador", uid: "administrador"},
+  {name: "Estado", uid: "estado", sortable: true},
+  {name: "Acciones", uid: "acciones"},
 ];
 
 export const statusOptions = [

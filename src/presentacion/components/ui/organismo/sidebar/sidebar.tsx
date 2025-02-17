@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
   return (
     <aside
-      className={`h-screen ${
+      className={`min-h-full ${
         isCollapsed ? "w-16" : "w-64"
       } bg-grisFondo2 text-white flex flex-col transition-all duration-300`}
     >
