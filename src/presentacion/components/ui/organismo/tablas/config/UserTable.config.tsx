@@ -2,7 +2,8 @@ import { Chip, ChipProps, User } from "@heroui/react";
 import { Actions } from "../actions";
 import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
 
-const statusColorMap: Record<string, ChipProps["color"]> = {
+
+const statusColorMap: Record<string, ChipProps['color']> = {
   Activo: "success",
   paused: "danger",
   vacation: "warning",

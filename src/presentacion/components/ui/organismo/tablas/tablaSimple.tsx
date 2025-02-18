@@ -93,6 +93,7 @@ export function TableSimple<T extends object>({
         loadingContent={<Spinner label="Cargando..." />}
         items={data}
         emptyContent={error || "No hay datos para mostrar."}
+        className=" text-center"
       >
         {(item) => (
           <TableRow key={getRowKey(item)}>

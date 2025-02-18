@@ -4,10 +4,10 @@ interface ItemsByPageProps {
 
 export function ItemsByPage({ onRowsPerPageChange}: ItemsByPageProps): JSX.Element {
   return (
-    <label className="flex items-center text-default-400 text-small">
+    <label className="flex items-center text-textInput text-sm font-normal">
       Clientes por página:
       <select
-        className="bg-transparent outline-none text-default-400 text-small"
+        className="bg-transparent outline-none text-textInput text-sm font-normal"
         onChange={onRowsPerPageChange}
       >
         <option value="5">5</option>

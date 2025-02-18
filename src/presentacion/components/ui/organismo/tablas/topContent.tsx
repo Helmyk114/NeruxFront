@@ -1,10 +1,12 @@
-import { ItemsByPage } from "../../atomos/tabla/itemsByPage";
-import { TotalItems } from "../../atomos/tabla/totalItems";
+import { ItemsByPage, TotalItems } from "../../atomos";
+import ButtonAtom from "../../atomos/ButtonAtom";
 
 interface TopContentPorps {
   totalItems: number;
   texto: string;
-  handleRowsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleRowsPerPageChange: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
 }
 
 export function TopContent({
@@ -14,8 +16,14 @@ export function TopContent({
 }: TopContentPorps): JSX.Element {
   return (
     <>
-      <TotalItems valor={totalItems} texto={texto} />
-      <ItemsByPage onRowsPerPageChange={handleRowsPerPageChange} />
+    <div className="flex justify-end">
+      <ButtonAtom className="w-40 " text="Agregar nuevo +"  />
+      </div>
+      <div className="flex justify-between w-full">
+        <TotalItems valor={totalItems} texto={texto} />
+        <ItemsByPage onRowsPerPageChange={handleRowsPerPageChange} />
+      </div>
+
     </>
   );
 }

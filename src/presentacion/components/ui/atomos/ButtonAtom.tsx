@@ -8,10 +8,10 @@ interface ButtonAtomProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   size?: "sm" | "md" | "lg";
-  textColor: string;
+  textColor?: string;
   backgroundColor?: string; 
   onClick?: () => void;
-  className: string;
+  className?: string;
 }
 
 const ButtonAtom: React.FC<ButtonAtomProps> = ({
