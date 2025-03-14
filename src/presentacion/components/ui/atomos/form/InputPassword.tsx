@@ -1,6 +1,6 @@
 import React from "react";
 import {Input} from "@heroui/react";
-import { IconError404, IconEye, IconEyeClosed } from "@tabler/icons-react";
+import { IconCheck, IconError404, IconEye, IconEyeClosed, IconX } from "@tabler/icons-react";
 import { useField} from 'formik';
 
 interface InputPasswordProps{
@@ -16,7 +16,7 @@ export default function InputPassword({ className, nombre, label }: InputPasswor
 
 
   const toggleVisibility = () => setIsVisible(!isVisible);
-
+  const errorMessages = meta.error ? meta.error.split(", ") : [];
   return (
     <>
    
@@ -47,16 +47,8 @@ export default function InputPassword({ className, nombre, label }: InputPasswor
         inputWrapper:" dark:focus-within:border-purpleStart",
       }}
      
-      
     />
-
-    {meta.touched && meta.error ? (
-      <div className="flex text-error mb-2 ml-10">
-        {<IconError404 className=""/>}
-        <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
-        
-      </div>
-    ) : null}
+       
 
    </>
   );
