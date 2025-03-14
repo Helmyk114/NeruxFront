@@ -1,6 +1,6 @@
 import { PlantillaGenerica } from "../../../components/ui/template";
 import { TextoInicio } from "../../../components/ui/atomos";
-import OlvidarContraseñaForm from "../../../components/ui/organismo/forms/OlvidarPassword";
+
 
 export function OlvidarContraseña(): JSX.Element {
   return (
@@ -21,7 +21,7 @@ export function OlvidarContraseña(): JSX.Element {
           className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
         />
       }
-      formulario={<OlvidarContraseñaForm/>}
+      formulario={""}
     />
   );
 }

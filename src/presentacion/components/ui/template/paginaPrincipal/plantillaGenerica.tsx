@@ -23,7 +23,7 @@ export function PlantillaGenerica({
           <div className="absolute inset-0 w-1/2  bg-background2 rounded-l-radius-34 ">
             <SeccionIzquierda fondo={fondo } logotipo={logotipo} texto={texto} />
           </div>
-          <div className="absolute inset-y-0 right-0 w-1/2 h-full bg-background2 rounded-r-radius-34">
+          <div className="absolute inset-y-0 right-0 w-1/2 h-full bg-background2 rounded-r-radius-34 flex justify-center items-center">
             <SeccionDerecha formulario={formulario} />
           </div>
         </div>

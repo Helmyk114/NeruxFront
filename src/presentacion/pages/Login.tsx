@@ -18,7 +18,7 @@ export default function Login(): JSX.Element {
             },
             {
               texto: "sistema de\n gestión!",
-              className: "font-semibold 4xl lg:text-4xl",
+              className: "font-semibold text-4xl lg:text-4xl",
             },
           ]}
           className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
