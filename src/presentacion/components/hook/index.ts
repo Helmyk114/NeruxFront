@@ -1,2 +1,2 @@
 export * from "./UseRenderCell";
-export * from "./UseFecthGet";
+export * from "./UsefecthGet";

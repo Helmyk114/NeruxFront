@@ -2,8 +2,7 @@ import { Chip, ChipProps, User } from "@heroui/react";
 import { Actions } from "../actions";
 import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
 
-
-const statusColorMap: Record<string, ChipProps['color']> = {
+const statusColorMap: Record<string, ChipProps["color"]> = {
   Activo: "success",
   paused: "danger",
   vacation: "warning",
@@ -13,7 +12,11 @@ type ColumnRender<T> = {
   [key: string]: (item: T) => JSX.Element;
 };
 
-export const userColumnRender: ColumnRender<InfoBusiness> = {
+export const userColumnRender = (
+  onEdit: (user: InfoBusiness) => void,
+  onView: (user: InfoBusiness) => void,
+  onDelete: (user: InfoBusiness) => void,
+): ColumnRender<InfoBusiness> => ({
   nombre: (user: InfoBusiness) => (
     <User
       avatarProps={{ radius: "lg", src: user.photoBusiness || undefined }}
@@ -40,5 +43,11 @@ export const userColumnRender: ColumnRender<InfoBusiness> = {
       {user.states}
     </Chip>
   ),
-  acciones: () => <Actions />,
-};
+  acciones: (user: InfoBusiness) => (
+    <Actions
+      onEdit={() => onEdit(user)}
+      onView={() => onView(user)}
+      onDelete={() => onDelete(user)}
+    />
+  ),
+});

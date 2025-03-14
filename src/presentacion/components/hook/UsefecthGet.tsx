@@ -12,13 +12,11 @@ interface PaginatedResponse<T> {
   metadata: PaginationMetadata;
 }
 
-export function UsefecthGet<T>(endoPoint: string, currentPage: number, pageSize: number) {
+export function UsefecthGetPaginatio<T>(endoPoint: string, currentPage: number, pageSize: number) {
   const [data, setData] = useState<T[] | null>(null);
   const [metadata, setMetadata] = useState<PaginationMetadata | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
-
-  console.log(endoPoint)
 
   useEffect(() => {
     const fetchData = async () => {
