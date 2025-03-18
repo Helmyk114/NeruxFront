@@ -20,6 +20,7 @@ export default {
       colors: {
         semantic: { ...colors.semantic },
         button: { ...colors.button },
+        texts: { ...colors.texts},
         background1: "#121212",
         background2: " #8E05C226",
         purpleStart: "#8E05C2",

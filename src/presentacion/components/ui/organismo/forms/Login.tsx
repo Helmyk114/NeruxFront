@@ -7,7 +7,6 @@ import { LoginUseCase } from "../../../../../domain/useCase/LoginUseCase";
 import { useNavigate } from "react-router-dom";
 import ButtonAtom from "../../atomos/ButtonAtom";
 
-
 export default function LoginForm(): JSX.Element {
   const initialValues = {
     username: "",
@@ -42,40 +41,38 @@ export default function LoginForm(): JSX.Element {
         }}
       >
         {({ isSubmitting, isValid, values, handleSubmit }) => (
-          <form
-            className="space-y-4 items-center justify-center"
-            onSubmit={handleSubmit}
-          >
-            <div className=" mb-12 justify-center items-center">
+          <form onSubmit={handleSubmit}>
+            <div>
               <Field
                 nombre="username"
                 label="Usuario"
                 component={InputFiled}
-                className="w-9/12 mx-auto mb-2"
+                isRequired={true}
+                className="w-9/12 mx-auto"
               />
             </div>
-            <div className="">
+            <div className="mt-11">
               <Field
                 nombre="password"
                 label="Contraseña"
                 component={InputPassword}
-                className="w-9/12 mx-auto mb-2"
+                isRequired={true}
+                className="w-9/12 mx-auto"
               />
             </div>
-
             <div className="w-9/12 mx-auto text-end">
               <a
                 href="/Olvide/Contraseña"
-                className="text-semantic-informacion text-sm underline mt-2"
+                className="font-OpenSans text-semantic-informacion text-sm mt-2"
               >
                 ¿Olvidaste tu contraseña?
               </a>
             </div>
-            <div className="">
+            <div className="flex justify-center mt-6">
               <ButtonAtom
                 texto="Iniciar sesión"
                 text="white text-lg"
-                className="w-9/12 ml-16 mt-2"
+                className="w-9/12"
                 disabled={
                   isSubmitting ||
                   !isValid ||

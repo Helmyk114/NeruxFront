@@ -1,44 +1,47 @@
-import {Input} from "@heroui/react";
+import { Input } from "@heroui/react";
 import { IconUser } from "@tabler/icons-react";
 import { useField } from "formik";
-import { useState } from "react";
+import { TextError } from "../textos/textError";
 
 interface InputFieldProps {
   label: string;
   nombre: string;
-  className: string;
-  
+  isRequired?: true | false;
+  className?: string;
 }
 
-export default function InputFiled({ label, nombre, className}: InputFieldProps): JSX.Element {
+export default function InputFiled({
+  label,
+  nombre,
+  isRequired,
+  className,
+}: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
-  const [isFocused, setIsFocused] = useState(false);
+
   return (
     <>
-    <Input
-      {...field}
-      className={className}
-      endContent={
-      <IconUser className="text-2xl text-default-400 pointer-events-none"/>
-      }
-      label={label}
-      variant="bordered"
-      labelPlacement="outside"
-      classNames={{
-      inputWrapper: "dark:focus-within:border-purpleStart ",
-        
-      }}
-      
-    
-    />
+      <Input
+        {...field}
+        classNames={{
+          label: ["font-OpenSans"],
+          inputWrapper: [
+            "dark:focus-within:border-purpleStart",
+            "dark:hover:border-purpleStart",
+          ],
+          errorMessage: ["hidden"],
+        }}
+        className={className}
+        label={label}
+        isRequired={isRequired}
+        variant="bordered"
+        labelPlacement="outside"
+        endContent={
+          <IconUser className="text-2xl text-default-400 pointer-events-none" />
+        }
+      />
       {meta.touched && meta.error ? (
-      <div className="flex text-error ml-10">
-        {<IconUser/>}
-        <span className=" font-OpenSans text-xs text-red-500 text-center ml-2">{meta.error}</span>
-      </div>
-    ) : null}
-    
+        <TextError error={meta.error} classname={className} />
+      ) : null}
     </>
   );
 }
-
