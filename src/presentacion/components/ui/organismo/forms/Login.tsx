@@ -48,7 +48,7 @@ export default function LoginForm(): JSX.Element {
                 label="Usuario"
                 component={InputFiled}
                 isRequired={true}
-                className="w-9/12 mx-auto"
+                className="w-3/5 mx-auto"
               />
             </div>
             <div className="mt-11">
@@ -57,10 +57,10 @@ export default function LoginForm(): JSX.Element {
                 label="Contraseña"
                 component={InputPassword}
                 isRequired={true}
-                className="w-9/12 mx-auto"
+                className="w-3/5 mx-auto"
               />
             </div>
-            <div className="w-9/12 mx-auto text-end">
+            <div className="w-3/5 mx-auto text-end">
               <a
                 href="/Olvide/Contraseña"
                 className="font-OpenSans text-semantic-informacion text-sm mt-2"
@@ -72,7 +72,7 @@ export default function LoginForm(): JSX.Element {
               <ButtonAtom
                 texto="Iniciar sesión"
                 text="white text-lg"
-                className="w-9/12"
+                className="w-3/5"
                 disabled={
                   isSubmitting ||
                   !isValid ||
