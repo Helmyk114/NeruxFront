@@ -13,12 +13,12 @@ export function TextoInicio({
   className,
 }: TextoInicioProps): JSX.Element {
   return (
-    <p className={className}>
+    <div className={className}>
       {spans.map((span, index) => (
         <span key={index} className={span.className}>
           {span.texto}
         </span>
       ))}
-    </p>
+    </div>
   );
 }

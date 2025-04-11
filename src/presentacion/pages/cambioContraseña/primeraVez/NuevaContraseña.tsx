@@ -1,5 +1,6 @@
 import { PlantillaGenerica } from "../../../components/ui/template";
 import { TextoInicio } from "../../../components/ui/atomos";
+import NewPasswordForm from "../../../components/ui/organismo/forms/NewPassword";
 
 export function NuevaContraseña(): JSX.Element {
   return (
@@ -18,7 +19,7 @@ export function NuevaContraseña(): JSX.Element {
           ]}
         />
       }
-      formulario=" Holi"
+      formulario={<NewPasswordForm />}
     />
   );
 }

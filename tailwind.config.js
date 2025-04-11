@@ -15,7 +15,6 @@ export default {
       },
       fontFamily: {
         OpenSans: ['"Open Sans"', "sans-serif"],
-        calligraffitti: ["Calligraffitti", "cursive"],
       },
       colors: {
         semantic: { ...colors.semantic },

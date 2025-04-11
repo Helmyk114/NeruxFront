@@ -1,5 +1,6 @@
 import { PlantillaGenerica } from "../../../components/ui/template";
 import { TextoInicio } from "../../../components/ui/atomos";
+import OlvideContraseñaForm from "../../../components/ui/organismo/forms/OlvidarContrasena";
 
 
 export function OlvidarContraseña(): JSX.Element {
@@ -18,10 +19,10 @@ export function OlvidarContraseña(): JSX.Element {
               className: "italic 2xl lg:text-2xl",
             },
           ]}
-          className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
         />
       }
-      formulario={""}
+      formulario={<OlvideContraseñaForm />}
     />
   );
 }

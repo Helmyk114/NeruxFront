@@ -17,6 +17,7 @@ export default function InputFiled({
   className,
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
+  const hasError = meta.touched && meta.error;
 
   return (
     <>
@@ -27,20 +28,25 @@ export default function InputFiled({
           inputWrapper: [
             "dark:focus-within:border-purpleStart",
             "dark:hover:border-purpleStart",
+            hasError
+            ? "dark:!border-semantic-error dark:hover:!border-semantic-error dark:focus-within:!border-semantic-error"
+            : "!hover:border-purpleStart !focus:border-purpleStart",
           ],
           errorMessage: ["hidden"],
+          
         }}
         className={className}
         label={label}
         isRequired={isRequired}
         variant="bordered"
         labelPlacement="outside"
+        isInvalid={false}
         endContent={
           <IconUser className="text-2xl text-default-400 pointer-events-none" />
         }
       />
-      {meta.touched && meta.error ? (
-        <TextError error={meta.error} classname={className} />
+      {hasError? (
+        <TextError error={meta.error as string} classname={className} />
       ) : null}
     </>
   );

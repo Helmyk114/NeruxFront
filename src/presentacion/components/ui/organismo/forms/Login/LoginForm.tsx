@@ -1,42 +1,47 @@
-import { Title1 } from "../../atomos/textos/titles/level1";
-import InputPassword from "../../atomos/form/InputPassword";
-import InputFiled from "../../atomos/form/Input";
-import { loginValidationSchema } from "../../../../../utils/validations/loginValidationSchema";
 import { Field, Formik } from "formik";
-import { LoginUseCase } from "../../../../../domain/useCase/LoginUseCase";
 import { useNavigate } from "react-router-dom";
-import ButtonAtom from "../../atomos/ButtonAtom";
+import { LoginUseCase } from "../../../../../../domain/usecases/LoginUseCase";
 
-export default function LoginForm(): JSX.Element {
-  const initialValues = {
-    username: "",
-    password: "",
-  };
+import { Title1 } from "../../../atomos/textos/titles/level1";
+import InputFiled from "../../../atomos/form/Input";
+import InputPassword from "../../../atomos/form/InputPassword";
+import ButtonAtom from "../../../atomos/ButtonAtom";
 
-  const loginUseCase = new LoginUseCase();
+import { loginInitialValues } from "./loginInitialValues";
+import { loginValidationSchema } from "./loginValidationSchema";
+import { useState } from "react";
+import { TextError } from "../../../atomos/textos/textError";
+
+interface LoginFormProps {
+  loginUseCase: LoginUseCase;
+}
+
+export default function LoginForm({
+  loginUseCase,
+}: LoginFormProps): JSX.Element {
   const navigate = useNavigate();
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <div className="w-full">
-      <Title1 clasname="mb-16 text-center" titulo="Iniciar sesión" />
+      <Title1 clasname="mb-[58px] text-center" titulo="Iniciar sesión" />
       <Formik
-        initialValues={initialValues}
+        initialValues={loginInitialValues}
         validationSchema={loginValidationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          //const result = await handleLoginValidation(values);
-          const newUser = await loginUseCase.execute(
-            values.username,
-            values.password
-          );
-          if (newUser.user.has_changed_password === 1) {
-            navigate("/Nueva/Contraseña");
-          } else {
-            navigate("/clientes");
+          try {
+            const { token, redirect } = await loginUseCase.execute(
+              values.username,
+              values.password
+            );
+            console.log("Token de autenticación:", token);
+            navigate(redirect);
+          } catch (error) {
+            setError(
+              error instanceof Error ? error.message : "Error desconocido durante el login"
+            );
           }
-          // if (result.error) {
-          //   setErrors({ username: result.message, password: result.message });
-          // }
-
+         
           setSubmitting(false);
         }}
       >
@@ -81,6 +86,11 @@ export default function LoginForm(): JSX.Element {
                 }
               />
             </div>
+            {error && (
+        <div className="w-3/5 mx-auto text-start text-semantic-error">
+          {<TextError error={error} />}
+        </div>
+      )}
           </form>
         )}
       </Formik>

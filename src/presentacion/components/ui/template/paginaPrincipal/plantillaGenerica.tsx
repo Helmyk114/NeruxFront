@@ -20,8 +20,8 @@ export function PlantillaGenerica({
     <Background>
       <div className="relative flex items-center justify-center h-screen">
         <div className="relative w-5/6 h-5/6 overflow-hidden">
-          <div className="absolute inset-0 w-1/2  bg-background2 rounded-l-radius-34 ">
-            <SeccionIzquierda fondo={fondo } logotipo={logotipo} texto={texto} />
+          <div className="absolute inset-0 w-1/2 bg-background2 rounded-l-radius-34 ">
+            <SeccionIzquierda fondo={fondo} logotipo={logotipo} texto={texto} />
           </div>
           <div className="absolute inset-y-0 right-0 w-1/2 h-full bg-background2 rounded-r-radius-34 flex justify-center items-center">
             <SeccionDerecha formulario={formulario} />
@@ -30,4 +30,4 @@ export function PlantillaGenerica({
       </div>
     </Background>
   );
-};
+}

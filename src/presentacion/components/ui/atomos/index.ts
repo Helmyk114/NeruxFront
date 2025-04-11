@@ -1,5 +1,4 @@
 export * from "./ButtonAtom";
-export * from "./InputField";
 export * from "./form/Input";
 export * from "./form/InputPassword";
 export * from "./paginaPrincipal/background";

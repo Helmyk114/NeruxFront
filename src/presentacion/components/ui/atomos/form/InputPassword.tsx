@@ -9,6 +9,7 @@ interface InputPasswordProps {
   label: string;
   isRequired?: true | false;
   className?: string;
+  showError?: boolean;
 }
 
 export default function InputPassword({
@@ -16,12 +17,14 @@ export default function InputPassword({
   label,
   isRequired,
   className,
+  showError = true,
 }: InputPasswordProps): JSX.Element {
   const [isVisible, setIsVisible] = React.useState(false);
   const [field, meta] = useField(nombre);
+  const hasError = meta.touched && meta.error;
 
   const toggleVisibility = () => setIsVisible(!isVisible);
-  //const errorMessages = meta.error ? meta.error.split(", ") : [];
+
   return (
     <>
       <Input
@@ -31,6 +34,9 @@ export default function InputPassword({
           inputWrapper: [
             "dark:focus-within:border-purpleStart",
             "dark:hover:border-purpleStart",
+            hasError
+            ? "dark:!border-semantic-error dark:hover:!border-semantic-error dark:focus-within:!border-semantic-error"
+            : "!hover:border-purpleStart !focus:border-purpleStart",
           ],
           errorMessage: ["hidden"],
         }}
@@ -40,6 +46,7 @@ export default function InputPassword({
         type={isVisible ? "text" : "password"}
         variant="bordered"
         labelPlacement="outside"
+        isInvalid={false}
         endContent={
           <button
             aria-label="toggle password visibility"
@@ -55,8 +62,8 @@ export default function InputPassword({
           </button>
         }
       />
-      {meta.touched && meta.error ? (
-        <TextError error={meta.error} classname={className} />
+      {showError && hasError ? (
+        <TextError error={meta.error as string} classname={className} />
       ) : null}
     </>
   );

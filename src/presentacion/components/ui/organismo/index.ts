@@ -1,5 +1,5 @@
 export * from "./data";
-export * from "./forms/Login";
+export * from "./forms/Login/LoginForm";
 export * from "./modal";
 export * from "./pantallaPrincipal/seccionDerecha";
 export * from "./pantallaPrincipal/seccionIzquierda";

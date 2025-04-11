@@ -18,16 +18,16 @@ export function SeccionIzquierda({
         alt="fondo"
         className="w-[97%] h-[94%] absolute inset-4 z-0 rounded-l-[34px]"
       />
-      <div className="relative z-10">
-        <div className="flex ml-12 mt-12">
+      <div className="flex flex-col h-full justify-between relative z-10 ">
+        <div className="mt-[76px] ml-[73px]">
           <Logo
             src={logotipo}
             alt="logotipo"
             width="250px"
-            className="md:w-48 lg:w-64 sm:w-48 absolute z-20"
+            className="md:w-48 lg:w-64 sm:w-48"
           />
         </div>
-        <div className="mt-64 ml-14">
+        <div className="mb-[73px] ml-[73px]">
           <div className="overflow-visible">{texto}</div>
         </div>
       </div>
