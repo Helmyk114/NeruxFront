@@ -13,5 +13,8 @@ export const colors = {
 
   texts:{
     dislabel: "#B8AFC4",
+    active: "#FCFCFD",
+    negro: "#121212",
+    bodyPopUp: "#5B5B5B"
   }
 };

@@ -1,22 +1,22 @@
-import { Field, Formik } from "formik";
-import InputPassword from "../../atomos/form/InputPassword";
-import {
-  mapRules,
-  NewPasswordValidationSchema,
-} from "../../../../../shared/validations/NewPasswordValidationSchema";
-import ButtonAtom from "../../atomos/ButtonAtom";
-import VentanaModal from "../modal";
 import { useState } from "react";
-import { IconCheck, IconCircleCheck, IconX } from "@tabler/icons-react";
-import { Title1 } from "../../atomos/textos/titles/level1";
+import { useNavigate } from "react-router-dom";
+import { Field, Formik } from "formik";
+import {
+mapRules,
+NewPasswordValidationSchema,
+} from "./NewPasswordValidationSchema";
+import InputPassword from "../../../atomos/form/InputPassword";
+import { Title1 } from "../../../atomos/textos/titles/level1";
+import ButtonAtom from "../../../atomos/ButtonAtom";
+import { IconCheck, IconX } from "@tabler/icons-react";
+import { newPasswordInitialValues } from "./NewPasswordInitialValues";
+import PopUpSuccess from "../../../../../../shared/utils/popUps/success";
+import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
 
 export default function NewPasswordForm(): JSX.Element {
-  const initialValues = {
-    newPassword: "",
-    confirmPassword: "",
-  };
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div className="p-10 mt-1 w-full ml-4 justify-center">
@@ -30,30 +30,10 @@ export default function NewPasswordForm(): JSX.Element {
       </p>
 
       <Formik
-        initialValues={initialValues}
-        validationSchema={NewPasswordValidationSchema}
+        initialValues={newPasswordInitialValues}
         validateOnChange={true}
-        validateOnBlur={true}
-        validate={(values) => {
-          try {
-            NewPasswordValidationSchema.validateSync(values, {
-              abortEarly: false,
-            });
-            return {};
-          } catch (err: any) {
-            const errors: Record<string, string> = {};
-            err.inner.forEach((validationError: any) => {
-              const path = validationError.path;
-              const message = validationError.message;
-              if (path && !errors[path]) {
-                errors[path] = message;
-              } else if (path && errors[path]) {
-                errors[path] += `\n${message}`; // concatenar todos los mensajes
-              }
-            });
-            return errors;
-          }
-        }}
+        validateOnBlur={false}
+        validate={yupValidate(NewPasswordValidationSchema,)}
         onSubmit={(values, { setSubmitting }) => {
           setIsModalOpen(true);
           setSubmitting(false);
@@ -136,37 +116,16 @@ export default function NewPasswordForm(): JSX.Element {
           );
         }}
       </Formik>
-      <VentanaModal
+      <PopUpSuccess
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        isDimissable={true}
-        header={
-          <div className="flex-col m-auto justify-center items-center gap-2">
-            <div>
-              <IconCircleCheck className=" text-green-500 " size={100} />
-            </div>
-            <div className="justity-center m-auto">
-              <h2 className="text-xl font-bold">¡Listo!🎉</h2>
-            </div>
-          </div>
-        }
-        body={
-          <p>
-            Tu contraseña ha sido actualizada exitosamente. Ahora puedes volver
-            a iniciar sesión con tu nueva contraseña. ¡Gracias por tu
-            paciencia!.
-          </p>
-        }
-        footer={
-          <div className="justify-center w-full  m-auto">
-            <ButtonAtom
-              texto="Cerrar"
-              text="white"
-              className=" justify-center items-center w-9/12"
-              onClick={() => setIsModalOpen(false)}
-            />
-          </div>
-        }
+        titulo="Contraseña restablecida con éxito"
+        startText="Tu contraseña ha sido restablecida correctamente.
+        Ahora puedes iniciar sesión con tu nueva contraseña.
+        "
+        endText="¡Gracias por tu paciencia!"
+        textButton="Iniciar sesión"
+        onClick={() => navigate("/")}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import { FormikErrors, FormikTouched } from "formik";
-import { ValidationRules } from "./ValidationRules";
+import { ValidationRules } from "../../../../../../shared/validations/ValidationRules";
 import * as Yup from "yup";
 
 export const NewPasswordValidationSchema = Yup.object().shape({
