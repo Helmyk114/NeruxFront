@@ -17,7 +17,7 @@ export function TopContent({
   return (
     <>
     <div className="flex justify-end">
-      <ButtonAtom className="w-40 " text="Agregar nuevo +"  />
+      <ButtonAtom className="w-40 " texto="Agregar nuevo +"  />
       </div>
       <div className="flex justify-between w-full">
         <TotalItems valor={totalItems} texto={texto} />
