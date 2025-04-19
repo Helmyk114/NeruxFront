@@ -1,14 +1,5 @@
-import { Button } from '@nextui-org/react'
+import Login from "./presentacion/pages/Login";
 
-
-function App() {
-
-
-  return (
-    <>
-      <Button color='primary'>Hola</Button>
-    </>
-  )
+export default function App(): JSX.Element {
+  return <Login />;
 }
-
-export default App
