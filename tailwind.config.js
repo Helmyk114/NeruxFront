@@ -1,4 +1,5 @@
 import { heroui } from "@heroui/react";
+import { colors } from "./src/theme/Colors"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -14,9 +15,11 @@ export default {
       },
       fontFamily: {
         OpenSans: ['"Open Sans"', "sans-serif"],
-        calligraffitti: ["Calligraffitti", "cursive"],
       },
       colors: {
+        semantic: { ...colors.semantic },
+        button: { ...colors.button },
+        texts: { ...colors.texts},
         background1: "#121212",
         background2: " #8E05C226",
         purpleStart: "#8E05C2",

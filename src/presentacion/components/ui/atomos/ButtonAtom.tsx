@@ -2,42 +2,43 @@ import React from "react";
 import { Button } from "@heroui/react";
 
 interface ButtonAtomProps {
-  text: string;
+  texto: string;
   type?: "submit" | "button" | "reset";
   disabled?: boolean;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   size?: "sm" | "md" | "lg";
-  textColor: string;
-  backgroundColor?: string; // Prop para personalizar el fondo
+  text?: string;
+  backgroundColor?: string; 
   onClick?: () => void;
+  className?: string;
 }
 
 const ButtonAtom: React.FC<ButtonAtomProps> = ({
-  text,
+  texto,
   type = "submit",
   disabled = false,
   startIcon,
   endIcon,
   onClick,
   size = "md",
-  textColor,
+  text,
   backgroundColor = "bg-purpleStart", 
+  className= "",
 }) => {
   return (
     <Button
       type={type}
       disabled={disabled}
       className={`${
-        disabled ? "bg-gray-400" : backgroundColor
-      } ${textColor} rounded-lg`}
-      style={{ borderRadius: "12px" }} 
+        disabled ? "bg-button-disable text-texts-dislabel font-OpenSans" : backgroundColor
+      } ${className} ${text} rounded-lg font-OpenSans`}
       startContent={startIcon}
       endContent={endIcon}
       size={size}
       onPress={onClick}
     >
-      {text}
+      {texto}
     </Button>
   );
 };

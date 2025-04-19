@@ -11,38 +11,35 @@ interface VentanaModalProps {
   isOpen: boolean;
   onClose: () => void;
   isDimissable: boolean;
+  hideCloseButton: boolean
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
 }
 
-const VentanaModal: React.FC<VentanaModalProps> = ({
+export default function VentanaModal ({
   isOpen,
   onClose,
   isDimissable,
+  hideCloseButton = false,
   header,
   body,
   footer,
-}) => {
+}: VentanaModalProps): JSX.Element{
   return (
-    <>
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onClose}
-        isDismissable={isDimissable}
-        backdrop="blur"
-        size="xl"
-      >
-        <ModalContent>
-          <>
-            <ModalHeader>{header}</ModalHeader>
-            <ModalBody>{body}</ModalBody>
-            <ModalFooter>{footer}</ModalFooter>
-          </>
-        </ModalContent>
-      </Modal>
-    </>
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      isDismissable={isDimissable}
+      backdrop="blur"
+      size="xl"
+      hideCloseButton={hideCloseButton}
+    >
+      <ModalContent>
+        <ModalHeader className="flex flex-col">{header}</ModalHeader>
+        <ModalBody className="flex flex-col">{body}</ModalBody>
+        <ModalFooter className="flex flex-col">{footer}</ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
-
-export default VentanaModal;

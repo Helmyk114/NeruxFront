@@ -1,33 +1,36 @@
 import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
-import login from "../../images/Login.png";
-import FondoLogin from "../../images/FondoLogin.png";
+import LoginForm from "../components/ui/organismo/forms/Login/LoginForm";
+import { loginTextConfig } from "../../conf/loginTextConfig";
+import { LoginUseCase } from "../../domain/usecases/LoginUseCase";
+import { AuthService } from "../../infrastructure/services/AuthService";
 
 export default function Login(): JSX.Element {
+  const authService = new AuthService();
+  const loginUseCase = new LoginUseCase(authService);
+
   return (
     <PlantillaGenerica
-      fondo={FondoLogin}
-      logotipo={login}
       texto={
         <TextoInicio
           spans={[
             {
-              texto: "BIENVENID@\n",
-              className: "font-bold text-3xl lg:text-5xl",
+              texto: loginTextConfig.welcomeText.text,
+              className: loginTextConfig.welcomeText.className,
             },
             {
-              texto: "¡Empieza tu viaje con\n nuestro ",
-              className: "italic font-light text-2xl lg:text-4xl",
+              texto: loginTextConfig.startText.text,
+              className: loginTextConfig.startText.className,
             },
             {
-              texto: "sistema de\n gestión!",
-              className: "font-semibold 4xl lg:text-4xl",
+              texto: loginTextConfig.systemText.text,
+              className: loginTextConfig.systemText.className,
             },
           ]}
-          className="py-2 font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+          className={loginTextConfig.containerClass}
         />
       }
-      formulario=" Holi"
+      formulario={<LoginForm loginUseCase={loginUseCase} />}
     />
   );
 }
