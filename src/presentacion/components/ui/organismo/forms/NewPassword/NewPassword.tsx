@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Field, Formik } from "formik";
 import {
 mapRules,
@@ -8,15 +6,15 @@ NewPasswordValidationSchema,
 import InputPassword from "../../../atomos/form/InputPassword";
 import { Title1 } from "../../../atomos/textos/titles/level1";
 import ButtonAtom from "../../../atomos/ButtonAtom";
-import { IconCheck, IconX } from "@tabler/icons-react";
 import { newPasswordInitialValues } from "./NewPasswordInitialValues";
-import PopUpSuccess from "../../../../../../shared/utils/popUps/success";
 import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
+import { IconCheck, IconX } from "@tabler/icons-react";
 
-export default function NewPasswordForm(): JSX.Element {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+type NewPasswordFormProps = {
+  onSuccess?: () => void;
+}
 
-  const navigate = useNavigate();
+export default function NewPasswordForm({ onSuccess }: NewPasswordFormProps): JSX.Element {
 
   return (
     <div className="p-10 mt-1 w-full ml-4 justify-center">
@@ -35,8 +33,9 @@ export default function NewPasswordForm(): JSX.Element {
         validateOnBlur={false}
         validate={yupValidate(NewPasswordValidationSchema,)}
         onSubmit={(values, { setSubmitting }) => {
-          setIsModalOpen(true);
+          if(onSuccess) onSuccess();
           setSubmitting(false);
+          console.log("Valores enviados:", values);
         }}
       >
         {({ errors, isSubmitting, isValid, values, touched, handleSubmit }) => {
@@ -116,17 +115,7 @@ export default function NewPasswordForm(): JSX.Element {
           );
         }}
       </Formik>
-      <PopUpSuccess
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        titulo="Contraseña restablecida con éxito"
-        startText="Tu contraseña ha sido restablecida correctamente.
-        Ahora puedes iniciar sesión con tu nueva contraseña.
-        "
-        endText="¡Gracias por tu paciencia!"
-        textButton="Iniciar sesión"
-        onClick={() => navigate("/")}
-      />
+     
     </div>
   );
 }
