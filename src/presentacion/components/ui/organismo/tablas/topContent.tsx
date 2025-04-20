@@ -21,7 +21,7 @@ export function TopContent({
       </div>
       <div className="flex justify-between w-full">
         <TotalItems valor={totalItems} texto={texto} />
-        <ItemsByPage onRowsPerPageChange={handleRowsPerPageChange} />
+        <ItemsByPage tabla={texto} onRowsPerPageChange={handleRowsPerPageChange} />
       </div>
 
     </>

@@ -1,36 +1,34 @@
-import { Chip, ChipProps, User } from "@heroui/react";
-import { Actions } from "../actions";
+import { Chip, ChipProps } from "@heroui/react";
+import { ColumnRender } from "./columRenderType";
 import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
+import { ImgCell } from "../../../atomos/tabla/columnTemplate/ImgCell";
+import { CompactCell } from "../../../atomos/tabla/columnTemplate/CompatCell";
+import { ActionsCell } from "../../../atomos/tabla/columnTemplate/ActionCell";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   Activo: "success",
   paused: "danger",
   vacation: "warning",
-};
-
-type ColumnRender<T> = {
-  [key: string]: (item: T) => JSX.Element;
+  new: "secondary",
 };
 
 export const userColumnRender = (
   onEdit: (user: InfoBusiness) => void,
   onView: (user: InfoBusiness) => void,
-  onDelete: (user: InfoBusiness) => void,
+  onDelete: (user: InfoBusiness) => void
 ): ColumnRender<InfoBusiness> => ({
   nombre: (user: InfoBusiness) => (
-    <User
-      avatarProps={{ radius: "lg", src: user.photoBusiness || undefined }}
-      description={user.emailAdmin}
-      name={user.nameBusiness}
+    <ImgCell
+      avatar={user.photoBusiness || ""}
+      textTop={user.nameBusiness}
+      textBotton={user.emailAdmin}
     />
   ),
   administrador: (user: InfoBusiness) => (
-    <div className="flex flex-col">
-      <p className="text-bold text-small capitalize">{`${user.nameAdmin} ${user.lastNameAdmin}`}</p>
-      <p className="text-bold text-tiny capitalize text-default-400">
-        {user.phoneAdmin}
-      </p>
-    </div>
+    <CompactCell
+      textTop={`${user.nameAdmin} ${user.lastNameAdmin}`}
+      textBotton={user.phoneAdmin}
+    />
   ),
   estado: (user: InfoBusiness) => (
     <Chip
@@ -44,7 +42,7 @@ export const userColumnRender = (
     </Chip>
   ),
   acciones: (user: InfoBusiness) => (
-    <Actions
+    <ActionsCell
       onEdit={() => onEdit(user)}
       onView={() => onView(user)}
       onDelete={() => onDelete(user)}

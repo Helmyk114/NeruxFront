@@ -9,4 +9,5 @@ export interface User {
   has_changed_password: number;
   business: string;
   state: number;
+  role: number;
 }

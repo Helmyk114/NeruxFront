@@ -4,6 +4,14 @@ import { AuthResponse } from "../../shared/types/AuthResponse";
 import { apiClient } from "../http/ApiClient";
 
 export class AuthService implements IAuthRepository {
+  newPassword(newPassword: string, confirmPassword: string): Promise<void> {
+    try {
+      const respuesta = apiClient.post('/auth/new-password', { newPassword, confirmPassword });
+      return respuesta as Promise<void>;
+    } catch (error) {
+      throw new Error(`Error al cambiar la contraseña ${error}`);
+    }
+  }
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
       const respuesta = await apiClient.post('/auth/login', { username, password });

@@ -7,7 +7,7 @@ interface ActionsProps {
   onDelete: () => void;
 }
 
-export function Actions({ onEdit, onView, onDelete }: ActionsProps):JSX.Element {
+export function ActionsCell({ onEdit, onView, onDelete }: ActionsProps):JSX.Element {
   return (
     <div className="relative flex gap-2">
       <Button isIconOnly size="sm" variant="light" onPress={onView}>

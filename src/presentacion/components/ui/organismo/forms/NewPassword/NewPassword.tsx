@@ -1,20 +1,30 @@
+import { useState } from "react";
 import { Field, Formik } from "formik";
 import {
-mapRules,
-NewPasswordValidationSchema,
+  mapRules,
+  NewPasswordValidationSchema,
 } from "./NewPasswordValidationSchema";
+import { newPasswordInitialValues } from "./NewPasswordInitialValues";
+import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
+
 import InputPassword from "../../../atomos/form/InputPassword";
 import { Title1 } from "../../../atomos/textos/titles/level1";
 import ButtonAtom from "../../../atomos/ButtonAtom";
-import { newPasswordInitialValues } from "./NewPasswordInitialValues";
-import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
-import { IconCheck, IconX } from "@tabler/icons-react";
+import { TextError } from "../../../atomos/textos/textError";
 
-type NewPasswordFormProps = {
+import { IconCheck, IconX } from "@tabler/icons-react";
+import { NewPasswordUseCase } from "../../../../../../domain/usecases/NewPasswordUseCase";
+
+interface NewPasswordFormProps {
+  newPasswordUseCase: NewPasswordUseCase;
   onSuccess?: () => void;
 }
 
-export default function NewPasswordForm({ onSuccess }: NewPasswordFormProps): JSX.Element {
+export default function NewPasswordForm({
+  newPasswordUseCase,
+  onSuccess,
+}: NewPasswordFormProps): JSX.Element {
+    const [error, setError] = useState<string | null>(null);
 
   return (
     <div className="p-10 mt-1 w-full ml-4 justify-center">
@@ -31,11 +41,22 @@ export default function NewPasswordForm({ onSuccess }: NewPasswordFormProps): JS
         initialValues={newPasswordInitialValues}
         validateOnChange={true}
         validateOnBlur={false}
-        validate={yupValidate(NewPasswordValidationSchema,)}
-        onSubmit={(values, { setSubmitting }) => {
-          if(onSuccess) onSuccess();
-          setSubmitting(false);
-          console.log("Valores enviados:", values);
+        validate={yupValidate(NewPasswordValidationSchema)}
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            await newPasswordUseCase.execute(
+              values.newPassword,
+              values.confirmPassword
+            );
+            if (onSuccess) onSuccess();
+            setSubmitting(false);
+          } catch (error) {
+            setError(
+              error instanceof Error
+                ? error.message
+                : "Error desconocido al cambiar la contraseña"
+            );
+          }
         }}
       >
         {({ errors, isSubmitting, isValid, values, touched, handleSubmit }) => {
@@ -111,11 +132,15 @@ export default function NewPasswordForm({ onSuccess }: NewPasswordFormProps): JS
                   type="submit"
                 />
               </div>
+              {error && (
+                <div className="w-3/5 mx-auto text-start text-semantic-error">
+                  {<TextError error={error} />}
+                </div>
+              )}
             </form>
           );
         }}
       </Formik>
-     
     </div>
   );
 }

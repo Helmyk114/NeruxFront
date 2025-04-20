@@ -38,10 +38,12 @@ export default function LoginForm({
             navigate(redirect);
           } catch (error) {
             setError(
-              error instanceof Error ? error.message : "Error desconocido durante el login"
+              error instanceof Error
+                ? error.message
+                : "Error desconocido durante el login"
             );
           }
-         
+
           setSubmitting(false);
         }}
       >
@@ -87,10 +89,10 @@ export default function LoginForm({
               />
             </div>
             {error && (
-        <div className="w-3/5 mx-auto text-start text-semantic-error">
-          {<TextError error={error} />}
-        </div>
-      )}
+              <div className="w-3/5 mx-auto text-start text-semantic-error">
+                {<TextError error={error} />}
+              </div>
+            )}
           </form>
         )}
       </Formik>

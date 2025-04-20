@@ -1,11 +1,12 @@
 interface ItemsByPageProps {
+  tabla: string;
   onRowsPerPageChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export function ItemsByPage({ onRowsPerPageChange}: ItemsByPageProps): JSX.Element {
+export function ItemsByPage({ tabla, onRowsPerPageChange}: ItemsByPageProps): JSX.Element {
   return (
     <label className="flex items-center text-textInput text-sm font-normal">
-      Clientes por página:
+      {`${tabla} por página:`}
       <select
         className="bg-transparent outline-none text-textInput text-sm font-normal"
         onChange={onRowsPerPageChange}

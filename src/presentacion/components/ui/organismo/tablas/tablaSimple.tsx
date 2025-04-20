@@ -68,7 +68,7 @@ export function TableSimple<T extends object>({
       topContent={
         <TopContent
           totalItems={totalItems}
-          texto="clientes"
+          texto={tabla}
           handleRowsPerPageChange={handleRowsPerPageChange}
         />
       }
@@ -92,7 +92,7 @@ export function TableSimple<T extends object>({
         isLoading={isLoading}
         loadingContent={<Spinner label="Cargando..." />}
         items={data}
-        emptyContent={error || "No hay datos para mostrar."}
+        emptyContent={error && "No hay datos para mostrar."}
         className=" text-center"
       >
         {(item) => (
