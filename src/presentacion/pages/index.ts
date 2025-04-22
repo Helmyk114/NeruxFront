@@ -8,5 +8,6 @@ export * from "./admin/Productos/table/productType";
 export * from "./cambioContraseña/olvidarContraseña/OlvidarContraseña";
 export * from "./cambioContraseña/olvidarContraseña/RestablecerContraseña";
 export * from "./cambioContraseña/primeraVez/NuevaContraseña";
-export * from "./superAdmin/Clientes";
+export * from "./superAdmin/Client/CreateClient";
+export * from "./superAdmin/Client/table/Clientes";
 export * from "./superAdmin/Home";

@@ -1,4 +1,5 @@
 export * from "./ButtonAtom";
+export * from "./Chip";
 export * from "./form/Input";
 export * from "./form/InputPassword";
 export * from "./paginaPrincipal/background";
@@ -16,3 +17,4 @@ export * from "./tabla/paginacion";
 export * from "./tabla/totalItems";
 export * from "./textos/textError";
 export * from "./textos/titles/level1";
+export * from "./textos/titles/level2";

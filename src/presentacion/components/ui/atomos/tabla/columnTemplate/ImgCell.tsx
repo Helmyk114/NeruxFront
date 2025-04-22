@@ -6,8 +6,11 @@ interface ImgCellProps {
   textTop?: string;
 }
 
-export function ImgCell({ avatar, textBotton, textTop}: ImgCellProps): JSX.Element {
-  
+export function ImgCell({
+  avatar,
+  textBotton,
+  textTop,
+}: ImgCellProps): JSX.Element {
   return (
     <User
       avatarProps={{ radius: "lg", src: avatar || undefined }}

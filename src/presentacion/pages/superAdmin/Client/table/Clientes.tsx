@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { TemplatePageTable } from "../../components/ui/template/plantillaPages";
-import Sidebar from "../../components/ui/organismo/sidebar/sidebar";
-import { UsefecthGetPaginatio } from "../../components/hook";
-import { TableSimple } from "../../components/ui/organismo";
-import { userColumnRender } from "../../components/ui/organismo";
-import { columns } from "../../components/ui/organismo";
-import { InfoBusiness } from "../../../domain/entities/InfoBusiness";
+import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
+import Sidebar from "../../../../components/ui/organismo/sidebar/sidebar";
+import { UsefecthGetPaginatio } from "../../../../components/hook";
+import { TableSimple } from "../../../../components/ui/organismo";
+import { userColumnRender } from "../../../../components/ui/organismo";
+import { columns } from "../../../../components/ui/organismo";
+import { InfoBusiness } from "../../../../../domain/entities/InfoBusiness";
 import { useDisclosure } from "@heroui/react";
-import Drawer1 from "../../components/ui/organismo/tablas/config/drawerPrueba";
+import Drawer1 from "../../../../components/ui/organismo/tablas/config/drawerPrueba";
 
 const Clientes: React.FC = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

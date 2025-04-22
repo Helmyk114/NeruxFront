@@ -5,7 +5,7 @@ export * from "./pantallaPrincipal/seccionDerecha";
 export * from "./pantallaPrincipal/seccionIzquierda";
 export * from "./sidebar/sidebar";
 export * from "./statusColorMap";
-export * from "./tablas/config/UserTable.config";
+export * from "../../../pages/superAdmin/Client/table/UserColumnRender";
 export * from "./tablas/config/drawerPrueba";
 export * from "./tablas/tabla";
 export * from "./tablas/tablaSimple";

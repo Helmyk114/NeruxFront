@@ -6,9 +6,9 @@ import {
   OlvidarContraseña,
   RestablecerContraseña,
   Products,
+  CrearProductos,
 } from "../presentacion/pages";
-import Clientes from "../presentacion/pages/superAdmin/Clientes";
-
+import Clientes from "../presentacion/pages/superAdmin/Client/table/Clientes";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -21,11 +21,10 @@ export function AppRouter(): JSX.Element {
           path="/Restablecer/Contraseña"
           element={<RestablecerContraseña />}
         />
-
-
         //Admin
         <Route path="/Inicio" element={<Inicio />} />
         <Route path="/Productos" element={<Products />} />
+        <Route path="/Crear/Producto" element={<CrearProductos />} />
         <Route path="/Clientes" element={<Clientes />} />
       </Routes>
     </Router>

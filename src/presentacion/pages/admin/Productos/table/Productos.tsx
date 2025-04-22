@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDisclosure } from "@heroui/react";
 import { InfoProduct } from "./productType";
 
-import { UsefecthGetPaginatio } from "../../../../components/hook";
+import { UsefecthGetPaginatio, useRedirect } from "../../../../components/hook";
 import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
 import Sidebar from "../../../../components/ui/organismo/sidebar/sidebar";
 import Drawer1 from "../../../../components/ui/organismo/tablas/config/drawerPrueba";
@@ -12,6 +12,7 @@ import { columnsProductos } from "./columns";
 import { ProductColumnRender } from "./ProductColumnRender";
 
 export function Products (): JSX.Element {
+  const redirect = useRedirect();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [currentePage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
@@ -47,6 +48,7 @@ export function Products (): JSX.Element {
 
           <TableSimple
             tabla="Productos"
+            onclick={() => redirect('/Crear/Producto')}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
               handleEdit,

@@ -1,5 +1,7 @@
+import { statusProductMap } from "../../../../../shared/constants/colors/statusProductMap";
 import {
   ActionsCell,
+  ChipCell,
   ImgCellSimple,
   SimpleCell,
 } from "../../../../components/ui/atomos";
@@ -32,7 +34,10 @@ export const ProductColumnRender = (
     <SimpleCell textTop={product.inventario || ""} />
   ),
   estado: (product: InfoProduct) => (
-    <SimpleCell textTop={product.estado || ""} />
+  <ChipCell
+      colorText={statusProductMap[product.estado].color} 
+      colorDot={statusProductMap[product.estado].dot}
+      texto={product.estado} />
   ),
   registro: (product: InfoProduct) => (
     <SimpleCell textTop={product.registro || ""} />
