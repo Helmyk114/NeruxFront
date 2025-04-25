@@ -14,7 +14,7 @@ export class AuthService implements IAuthRepository {
   }
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
-      const respuesta = await apiClient.post('/auth/login', { username, password });
+      const respuesta = await apiClient.post('/login', { username, password });
       return respuesta as AuthResponse;
     } catch (error: unknown) {
       if (isAxiosError(error)) {

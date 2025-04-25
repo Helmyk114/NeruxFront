@@ -7,6 +7,7 @@ interface InputFieldProps {
   label: string;
   nombre: string;
   isRequired?: true | false;
+  type?: "text" | "email" | "number";
   className?: string;
 }
 
@@ -14,6 +15,7 @@ export default function InputFiled({
   label,
   nombre,
   isRequired,
+  type = "text",
   className,
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
@@ -40,6 +42,7 @@ export default function InputFiled({
         isRequired={isRequired}
         variant="bordered"
         labelPlacement="outside"
+        type={type}
         isInvalid={false}
         endContent={
           <IconUser className="text-2xl text-default-400 pointer-events-none" />
