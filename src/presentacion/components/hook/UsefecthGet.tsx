@@ -23,7 +23,7 @@ export function UsefecthGetPaginatio<T>(endoPoint: string, currentPage: number, 
       setLoading(true);
       setError(null);
       try {
-        const respuesta = await apiClient.getWithParams<
+        const respuesta = await apiClient.get<
           PaginatedResponse<T>,
           { page: number; limit: number }
         >(endoPoint, {

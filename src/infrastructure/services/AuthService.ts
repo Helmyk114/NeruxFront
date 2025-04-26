@@ -2,20 +2,27 @@ import { AxiosError } from "axios";
 import { IAuthRepository } from "../../domain/interface/IAuthRepsository";
 import { AuthResponse } from "../../shared/types/AuthResponse";
 import { apiClient } from "../http/ApiClient";
+import { cookie } from "../../shared/utils/cookies";
 
 export class AuthService implements IAuthRepository {
   newPassword(newPassword: string, confirmPassword: string): Promise<void> {
     try {
-      const respuesta = apiClient.post('/auth/new-password', { newPassword, confirmPassword });
+      const respuesta = apiClient.patch('/first-password', { newPassword, confirmPassword });
+
       return respuesta as Promise<void>;
     } catch (error) {
+      console.log(error);
       throw new Error(`Error al cambiar la contraseña ${error}`);
     }
   }
   async login(username: string, password: string): Promise<AuthResponse> {
     try {
-      const respuesta = await apiClient.post('/login', { username, password });
-      return respuesta as AuthResponse;
+      const respuesta: AuthResponse = await apiClient.post('/login', { username, password });
+      console.log(respuesta);
+      if(respuesta.token) {
+        cookie.set('token', respuesta.token);
+      }
+      return respuesta;
     } catch (error: unknown) {
       if (isAxiosError(error)) {
         if (!error.response) {
