@@ -4,7 +4,7 @@ import NewPasswordForm from "../../../components/ui/organismo/forms/NewPassword/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopUpSuccess from "../../../../shared/utils/popUps/success";
-import { AuthService } from "../../../../infrastructure/services/AuthService";
+import { AuthService } from "../../../../infrastructure/services/auth/Auth.service";
 import { NewPasswordUseCase } from "../../../../domain/usecases/NewPasswordUseCase";
 
 export function NuevaContraseña(): JSX.Element {

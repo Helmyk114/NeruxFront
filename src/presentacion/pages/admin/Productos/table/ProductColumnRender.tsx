@@ -34,10 +34,11 @@ export const ProductColumnRender = (
     <SimpleCell textTop={product.inventario || ""} />
   ),
   estado: (product: InfoProduct) => (
-  <ChipCell
-      colorText={statusProductMap[product.estado].color} 
+    <ChipCell
+      colorText={statusProductMap[product.estado].color}
       colorDot={statusProductMap[product.estado].dot}
-      texto={product.estado} />
+      texto={product.estado}
+    />
   ),
   registro: (product: InfoProduct) => (
     <SimpleCell textTop={product.registro || ""} />

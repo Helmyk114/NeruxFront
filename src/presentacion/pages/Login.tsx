@@ -1,9 +1,9 @@
 import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
 import LoginForm from "../components/ui/organismo/forms/Login/LoginForm";
-import { loginTextConfig } from "../../conf/loginTextConfig";
+import { loginTextConfig } from "../../shared/constants/texts/loginTextConfig";
 import { LoginUseCase } from "../../domain/usecases/LoginUseCase";
-import { AuthService } from "../../infrastructure/services/AuthService";
+import { AuthService } from "../../infrastructure/services/auth/Auth.service";
 
 export default function Login(): JSX.Element {
   const authService = new AuthService();

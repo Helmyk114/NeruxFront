@@ -1,4 +1,5 @@
-import { User } from "../../shared/types/AuthResponse";
+import { RedirectPath } from "../../infrastructure/services/auth/Redirect.service";
+import { User } from "../../shared/types/AuthResponseTypes";
 import { IAuthRepository } from "../interface/IAuthRepsository";
 
 export class LoginUseCase {
@@ -17,24 +18,9 @@ export class LoginUseCase {
 
     const userData = await this.authRepository.login(username, password);
 
-    let redirectPath = "";
-
-    if (userData.user.has_changed_password === 1) {
-      redirectPath = "/Nueva/Contraseña";
-    } else {
-      switch (userData.user.role) {
-        case 1:
-          redirectPath = "/Home";
-          break;
-        case 2:
-          redirectPath = "/Inicio";
-          break;
-      }
-    }
-
     return {
       token: userData.token,
-      redirect: redirectPath,
+      redirect: RedirectPath(userData.user),
       infoUser: {
         idUser: userData.user.idUser,
         username: userData.user.username,
