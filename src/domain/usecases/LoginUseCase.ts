@@ -1,4 +1,5 @@
-import { User } from "../../shared/types/AuthResponse";
+import { RedirectPath } from "../../infrastructure/services/auth/Redirect.service";
+import { User } from "../../shared/types/AuthResponseTypes";
 import { IAuthRepository } from "../interface/IAuthRepsository";
 
 export class LoginUseCase {
@@ -11,20 +12,22 @@ export class LoginUseCase {
     redirect: string;
     infoUser: Omit<User, "has_changed_password">;
   }> {
-    if(!username || !password) {
+    if (!username || !password) {
       throw new Error("El nombre de usuario y la contraseña son obligatorios");
-    };
-    
+    }
+
     const userData = await this.authRepository.login(username, password);
-    return{
+
+    return {
       token: userData.token,
-      redirect: userData.user.has_changed_password === 1 ? "/Nueva/Contraseña" : "/clientes",
+      redirect: RedirectPath(userData.user),
       infoUser: {
         idUser: userData.user.idUser,
         username: userData.user.username,
         business: userData.user.business,
         state: userData.user.state,
-      }
-    }
+        role: userData.user.role,
+      },
+    };
   }
 }

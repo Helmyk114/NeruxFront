@@ -24,6 +24,7 @@ interface ColumnRender<T> {
 
 interface TableProps<T extends object> {
   tabla: string;
+  onclick?: () => void;
   columnas: Column[];
   columnRender: ColumnRender<T>;
   data: T[];
@@ -39,6 +40,7 @@ interface TableProps<T extends object> {
 
 export function TableSimple<T extends object>({
   tabla,
+  onclick,
   columnas,
   columnRender,
   data,
@@ -68,8 +70,9 @@ export function TableSimple<T extends object>({
       topContent={
         <TopContent
           totalItems={totalItems}
-          texto="clientes"
+          texto={tabla}
           handleRowsPerPageChange={handleRowsPerPageChange}
+          onclick={onclick}
         />
       }
       topContentPlacement="outside"
@@ -92,7 +95,7 @@ export function TableSimple<T extends object>({
         isLoading={isLoading}
         loadingContent={<Spinner label="Cargando..." />}
         items={data}
-        emptyContent={error || "No hay datos para mostrar."}
+        emptyContent={error && "No hay datos para mostrar."}
         className=" text-center"
       >
         {(item) => (

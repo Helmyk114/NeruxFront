@@ -6,7 +6,7 @@ interface BackgroundProps {
 }
 
 export function Background({
-  className = "bg-black",
+  className = "bg-background-one",
   children,
 }: BackgroundProps): JSX.Element {
   return <div className={`${className} min-h-screen`}>{children}</div>;

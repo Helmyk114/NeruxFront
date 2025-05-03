@@ -2,6 +2,7 @@ import { ItemsByPage, TotalItems } from "../../atomos";
 import ButtonAtom from "../../atomos/ButtonAtom";
 
 interface TopContentPorps {
+  onclick?: () => void;
   totalItems: number;
   texto: string;
   handleRowsPerPageChange: (
@@ -10,6 +11,7 @@ interface TopContentPorps {
 }
 
 export function TopContent({
+  onclick,
   totalItems,
   texto,
   handleRowsPerPageChange,
@@ -17,13 +19,12 @@ export function TopContent({
   return (
     <>
     <div className="flex justify-end">
-      <ButtonAtom className="w-40 " texto="Agregar nuevo +"  />
+      <ButtonAtom className="w-40 " texto="Agregar nuevo +"  onClick={onclick} />
       </div>
       <div className="flex justify-between w-full">
         <TotalItems valor={totalItems} texto={texto} />
-        <ItemsByPage onRowsPerPageChange={handleRowsPerPageChange} />
+        <ItemsByPage tabla={texto} onRowsPerPageChange={handleRowsPerPageChange} />
       </div>
-
     </>
   );
 }

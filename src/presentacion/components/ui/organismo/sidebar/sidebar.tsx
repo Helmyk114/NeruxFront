@@ -1,4 +1,5 @@
-import Login from "../../../../../images/Logotipo.png";
+import Logotipo from "../../../../../images/Logotipo.png";
+import Logos from "../../../../../images/Logo.png";
 import {
   IconCategory,
   IconChevronLeft,
@@ -25,22 +26,26 @@ const Sidebar = () => {
       <div className="p-4 bg-grisFondo2 flex">
         <div className="w-100%">
           <Logo
-            src={Login}
+            src={isCollapsed ? Logos : Logotipo}
             alt="logo"
-            width=""
-            heigth=""
-            className="w-[100%] "
+            className={`transition-all duration-300 ${
+              isCollapsed ? "w-10 mx-auto" : "w-full"
+            }`}
           />
         </div>
 
-        <div className="w-10% ">
+        <div>
           <Button
             isIconOnly
             color="default"
             variant="light"
-            className="hover:bg-hoverPurple w-1"
+            className="hover:bg-white w-1"
             startContent={
-              <IconChevronLeft stroke={1.25} onClick={toggleSidebar} />
+              <IconChevronLeft 
+                stroke={1.25} 
+                onClick={toggleSidebar} 
+                className={`transition-all duration-300 ${isCollapsed ? "rotate-180" : ""}`}
+              />
             }
           ></Button>
         </div>
@@ -49,7 +54,7 @@ const Sidebar = () => {
         <ul className="space-y-2">
           <li>
             <SidebarLink
-              href="#inicio"
+              href="/inicio"
               label={isCollapsed ? "" : "Inicio"}
               startIcon={<IconHome stroke={1.25} />}
             />
@@ -63,8 +68,8 @@ const Sidebar = () => {
           </li>
           <li>
             <SidebarLink
-              href="#Clientes"
-              label="CLientes"
+              href="/Productos"
+              label="Productos"
               startIcon={<IconUsersGroup stroke={1.25} />}
             />
           </li>

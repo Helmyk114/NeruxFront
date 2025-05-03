@@ -1,10 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "../App";
 import {
+  Inicio,
   NuevaContraseña,
   OlvidarContraseña,
   RestablecerContraseña,
+  Products,
+  CrearProductos,
 } from "../presentacion/pages";
+import Clientes from "../presentacion/pages/superAdmin/Client/table/Clientes";
+import { CrearEmpresa } from "../presentacion/pages/admin/Empresa/CrearEmpresa";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -17,6 +22,12 @@ export function AppRouter(): JSX.Element {
           path="/Restablecer/Contraseña"
           element={<RestablecerContraseña />}
         />
+        //Admin
+        <Route path="/Inicio" element={<Inicio />} />
+        <Route path="/Productos" element={<Products />} />
+        <Route path="/Crear/Producto" element={<CrearProductos />} />
+        <Route path="/Clientes" element={<Clientes />} />
+        <Route path="/Crear/Empresa" element={<CrearEmpresa />} />
       </Routes>
     </Router>
   );

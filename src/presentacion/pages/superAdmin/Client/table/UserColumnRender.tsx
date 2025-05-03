@@ -1,0 +1,43 @@
+import { ColumnRender } from "../../../../components/ui/organismo/tablas/config/columRenderType";
+import { InfoBusiness } from "../../../../../domain/entities/InfoBusiness";
+import {
+  ImgCell,
+  CompactCell,
+  ActionsCell,
+  ChipCell,
+} from "../../../../components/ui/atomos";
+import { statusProductMap } from "../../../../../shared/constants/colors/statusProductMap";
+
+export const userColumnRender = (
+  onEdit: (user: InfoBusiness) => void,
+  onView: (user: InfoBusiness) => void,
+  onDelete: (user: InfoBusiness) => void
+): ColumnRender<InfoBusiness> => ({
+  nombre: (user: InfoBusiness) => (
+    <ImgCell
+      avatar={user.photoBusiness || ""}
+      textTop={user.nameBusiness}
+      textBotton={user.emailAdmin}
+    />
+  ),
+  administrador: (user: InfoBusiness) => (
+    <CompactCell
+      textTop={`${user.nameAdmin} ${user.lastNameAdmin}`}
+      textBotton={user.phoneAdmin}
+    />
+  ),
+  estado: (user: InfoBusiness) => (
+    <ChipCell
+      colorText={statusProductMap[user.states].color}
+      colorDot={statusProductMap[user.states].dot}
+      texto={user.states}
+    />
+  ),
+  acciones: (user: InfoBusiness) => (
+    <ActionsCell
+      onEdit={() => onEdit(user)}
+      onView={() => onView(user)}
+      onDelete={() => onDelete(user)}
+    />
+  ),
+});
