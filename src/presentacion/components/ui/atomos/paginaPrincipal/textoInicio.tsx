@@ -4,7 +4,7 @@ interface TextoInicioProps {
 }
 
 interface SpanItem {
-  texto: string;
+  texto?: string;
   className?: string;
 }
 

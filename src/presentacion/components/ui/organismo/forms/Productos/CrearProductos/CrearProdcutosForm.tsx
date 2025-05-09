@@ -1,18 +1,40 @@
-import { Field, Formik } from "formik";
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+import { Field, Formik, FormikHelpers } from "formik";
 import InputFiled from "../../../../atomos/form/Input";
 import ButtonAtom from "../../../../atomos/button/ButtonAtom";
 import { CrearProductosInitialValues } from "./crearProductoInitialValues";
 import { BackButton } from "../../../../atomos/button/ButtonBack";
+import { CrearProductosValues } from "./crearProductosTypes";
 
-export function CrearProductoForm() {
+export interface CrearProductoFormHandles {
+  resetForm: () => void;
+}
+
+interface CrearProductoFormProps {
+  onSuccess?: () => void;
+}
+export function CrearProductoFormComponent(
+  { onSuccess }: CrearProductoFormProps,
+  ref: React.Ref<CrearProductoFormHandles>
+): JSX.Element {
+  const formikRef = useRef<FormikHelpers<CrearProductosValues> | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    resetForm: () => {
+      formikRef.current?.resetForm();
+    },
+  }));
+
   return (
     <div className="w-full">
       <Formik
         initialValues={CrearProductosInitialValues}
         validationSchema={""}
-        onSubmit={async (values, { setSubmitting }) => {
+        onSubmit={async (values, helpers) => {
+          formikRef.current = helpers;
           console.log(values);
-          setSubmitting(false);
+          if (onSuccess) onSuccess();
+          helpers.setSubmitting(false);
         }}
       >
         {({ isSubmitting, isValid, values, handleSubmit }) => (
@@ -75,11 +97,8 @@ export function CrearProductoForm() {
               </div>
             </div>
             <div className="flex justify-between mt-9 mb-6">
-              <BackButton
-                texto="Atrás"
-                className="w-1/6"
-               />
-              
+              <BackButton texto="Atrás" className="w-1/6" />
+
               <ButtonAtom
                 texto="Crear"
                 text="white text-md"
@@ -103,3 +122,5 @@ export function CrearProductoForm() {
     </div>
   );
 }
+
+export const CrearProductoForm = forwardRef(CrearProductoFormComponent);
