@@ -8,7 +8,7 @@ import {
 } from "../../../../components/ui/atomos";
 import { statusProductMap } from "../../../../../shared/constants/colors/statusProductMap";
 
-export const userColumnRender = (
+export const clientColumnRender = (
   onEdit: (user: InfoBusiness) => void,
   onView: (user: InfoBusiness) => void,
   onDelete: (user: InfoBusiness) => void
@@ -17,13 +17,13 @@ export const userColumnRender = (
     <ImgCell
       avatar={user.photoBusiness || ""}
       textTop={user.nameBusiness}
-      textBotton={user.emailAdmin}
+      textBotton={user.email}
     />
   ),
   administrador: (user: InfoBusiness) => (
     <CompactCell
-      textTop={`${user.nameAdmin} ${user.lastNameAdmin}`}
-      textBotton={user.phoneAdmin}
+      textTop={`${user.name} ${user.lastName}`}
+      textBotton={user.phone}
     />
   ),
   estado: (user: InfoBusiness) => (

@@ -5,12 +5,13 @@ import { LoginUseCase } from "../../../../../../domain/usecases/LoginUseCase";
 import { Title1 } from "../../../atomos/textos/titles/level1";
 import InputFiled from "../../../atomos/form/Input";
 import InputPassword from "../../../atomos/form/InputPassword";
-import ButtonAtom from "../../../atomos/ButtonAtom";
+import ButtonAtom from "../../../atomos/button/ButtonAtom";
 
 import { loginInitialValues } from "./loginInitialValues";
 import { loginValidationSchema } from "./loginValidationSchema";
 import { useState } from "react";
 import { TextError } from "../../../atomos/textos/textError";
+import { useAuth } from "../../../../hook/UseAuth";
 
 interface LoginFormProps {
   loginUseCase: LoginUseCase;
@@ -19,6 +20,7 @@ interface LoginFormProps {
 export default function LoginForm({
   loginUseCase,
 }: LoginFormProps): JSX.Element {
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
@@ -30,10 +32,11 @@ export default function LoginForm({
         validationSchema={loginValidationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const { token, redirect } = await loginUseCase.execute(
+            const { token, infoUser, redirect } = await loginUseCase.execute(
               values.username,
               values.password
             );
+            setUser(infoUser);
             console.log("Token de autenticación:", token);
             navigate(redirect);
           } catch (error) {

@@ -2,21 +2,21 @@ import { useState } from "react";
 import { useDisclosure } from "@heroui/react";
 import { InfoProduct } from "./productType";
 
-import { UsefecthGetPaginatio, useRedirect } from "../../../../components/hook";
+import { UseFetchGetPaginatio, useRedirect } from "../../../../components/hook";
 import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
-import Sidebar from "../../../../components/ui/organismo/sidebar/sidebar";
+
 import Drawer1 from "../../../../components/ui/organismo/tablas/config/drawerPrueba";
 
-import { TableSimple } from "../../../../components/ui/organismo";
-import { columnsProductos } from "./columns";
+import { Sidebar, TableSimple } from "../../../../components/ui/organismo";
+import { columnsProductos } from "./columnsProducts";
 import { ProductColumnRender } from "./ProductColumnRender";
 
-export function Products (): JSX.Element {
+export function Products(): JSX.Element {
   const redirect = useRedirect();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [currentePage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UsefecthGetPaginatio<InfoProduct>(
+  const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoProduct>(
     "/info/products",
     currentePage,
     pageSize
@@ -48,7 +48,7 @@ export function Products (): JSX.Element {
 
           <TableSimple
             tabla="Productos"
-            onclick={() => redirect('/Crear/Producto')}
+            onclick={() => redirect("/Crear/Producto")}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
               handleEdit,
@@ -71,5 +71,4 @@ export function Products (): JSX.Element {
       }
     />
   );
-};
-
+}

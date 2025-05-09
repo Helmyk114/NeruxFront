@@ -3,7 +3,7 @@ export * from "./admin/Inicio";
 export * from "./admin/Productos/CrearProductos";
 export * from "./admin/Productos/table/ProductColumnRender";
 export * from "./admin/Productos/table/Productos";
-export * from "./admin/Productos/table/columns";
+export * from "./admin/Productos/table/columnsProducts";
 export * from "./admin/Productos/table/productType";
 export * from "./cambioContraseña/olvidarContraseña/OlvidarContraseña";
 export * from "./cambioContraseña/olvidarContraseña/RestablecerContraseña";

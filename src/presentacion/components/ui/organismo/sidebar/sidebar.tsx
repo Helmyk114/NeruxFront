@@ -1,89 +1,76 @@
 import Logotipo from "../../../../../images/Logotipo.png";
-import Logos from "../../../../../images/Logo.png";
-import {
-  IconCategory,
-  IconChevronLeft,
-  IconHome,
-  IconStack2,
-  IconUsersGroup,
-} from "@tabler/icons-react";
-import SidebarLink from "../../moleculas/sidebar/sidebarLink";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hook/UseAuth";
+import { sidebarConfig } from "./sidebar.config";
 import { Logo } from "../../atomos";
-import { Button } from "@heroui/react";
 
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const toggleSidebar = () => {
-    setIsCollapsed((prev) => !prev);
+import { FaCogs } from "react-icons/fa";
+export const Sidebar = () => {
+
+  const { user, hasCompany } = useAuth();
+  const navigate = useNavigate();
+
+  if (!user) return null;
+
+  let sidebarItems;
+  if (user.role === 'Admin') {
+    sidebarItems = hasCompany === "adminWithoutBusiness"
+      ? sidebarConfig.adminWithoutBusiness
+      : sidebarConfig.adminWithBusiness;
+  } else {
+    sidebarItems = sidebarConfig[user.role] || [];
+  }
+
+  const handleRedirect = (path: string) => {
+    navigate(path);
   };
+
   return (
-    <aside
-      className={`min-h-full ${
-        isCollapsed ? "w-16" : "w-64"
-      } bg-grisFondo2 text-white flex flex-col transition-all duration-300`}
-    >
-      <div className="p-4 bg-grisFondo2 flex">
+    <aside className="flex flex-col justify-between w-64 h-screen bg-background-four p-4  rounded-r-2xl ">
+
+      <div>
         <div className="w-100%">
-          <Logo
-            src={isCollapsed ? Logos : Logotipo}
-            alt="logo"
-            className={`transition-all duration-300 ${
-              isCollapsed ? "w-10 mx-auto" : "w-full"
-            }`}
-          />
+          <Logo src={Logotipo} alt="logo" />
         </div>
 
-        <div>
-          <Button
-            isIconOnly
-            color="default"
-            variant="light"
-            className="hover:bg-white w-1"
-            startContent={
-              <IconChevronLeft 
-                stroke={1.25} 
-                onClick={toggleSidebar} 
-                className={`transition-all duration-300 ${isCollapsed ? "rotate-180" : ""}`}
-              />
-            }
-          ></Button>
-        </div>
+        <nav className="flex flex-col space-y-2">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.index}
+              onClick={() => handleRedirect(item.path)}
+              className="flex items-center p-2 rounded-lg text-texts-sidebar hover:bg-button-active transition-colors"
+            >
+              <span className="mr-2">
+                <item.icon />
+              </span>
+              {item.label}
+            </button>
+          ))}
+        </nav>
       </div>
-      <nav className="flex-1 mt-4">
-        <ul className="space-y-2">
-          <li>
-            <SidebarLink
-              href="/inicio"
-              label={isCollapsed ? "" : "Inicio"}
-              startIcon={<IconHome stroke={1.25} />}
-            />
-          </li>
-          <li>
-            <SidebarLink
-              href="#dashboard"
-              label="Dashboard"
-              startIcon={<IconCategory stroke={1.25} />}
-            />
-          </li>
-          <li>
-            <SidebarLink
-              href="/Productos"
-              label="Productos"
-              startIcon={<IconUsersGroup stroke={1.25} />}
-            />
-          </li>
-          <li>
-            <SidebarLink
-              href="#Tarea"
-              label="Tarea"
-              startIcon={<IconStack2 stroke={1.25} />}
-            />
-          </li>
-        </ul>
-      </nav>
+
+      {/* Parte inferior: Cerrar sesión y ajustes */}
+      <div className="flex flex-col space-y-2 border-t pt-4">
+        <button
+          onClick={() => {
+            // Aquí tu lógica para cerrar sesión
+            console.log("Cerrar sesión");
+          }}
+          className="flex items-center text-red-600 hover:text-red-800 transition-colors"
+        >
+          <span className="mr-2">🚪</span>
+          Cerrar sesión
+        </button>
+
+        {/* Redirección a Ajustes */}
+        <button
+          onClick={() => handleRedirect("/ajustes")} // Redirección estática o dinámica según necesidad
+          className="flex items-center text-sm hover:underline text-text"
+        >
+          <FaCogs className="mr-2" /> {/* Icono para ajustes */}
+          Ajustes
+        </button>
+      </div>
     </aside>
   );
 };
-
-export default Sidebar;

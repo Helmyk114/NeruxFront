@@ -1,6 +1,7 @@
 import CardSimple from "../../../components/ui/atomos/Card/CardSimple";
+import { Sidebar } from "../../../components/ui/organismo";
 import { CrearProductoForm } from "../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
-import Sidebar from "../../../components/ui/organismo/sidebar/sidebar";
+
 import { TemplatePageForm } from "../../../components/ui/template";
 import { TemplatePageTable } from "../../../components/ui/template/plantillaPages";
 

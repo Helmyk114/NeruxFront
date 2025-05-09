@@ -15,7 +15,6 @@ export class AuthService implements IAuthRepository {
         confirmPassword,
       });
     } catch (error) {
-      console.log(error);
       throw new Error(`Error al cambiar la contraseña ${error}`);
     }
   }

@@ -23,10 +23,10 @@ export class ValidationRules {
 
   static minLength(min: number, option?: ValidatioOption) {
     const { campo = "Este campo", message } = option || {};
-    return Yup.string().test("minLength", message || `El campo ${campo} debe tener al menos ${min} caracteres`, function (value) {
+    return Yup.string().test("minLength", message || `${campo} debe tener al menos ${min} caracteres`, function (value) {
       return value && value.length >= min
         ? true
-        : this.createError({ message: `minLength:${message || `El campo ${campo} debe tener al menos ${min} caracteres`}` });
+        : this.createError({ message: `${message || `${campo} debe tener al menos ${min} caracteres`}` });
     });
   }
 
@@ -35,7 +35,7 @@ export class ValidationRules {
     return Yup.string().test("maxLength", message || `El campo ${campo} debe tener como máximo ${max} caracteres`, function (value) {
       return value && value.length <= max
         ? true
-        : this.createError({ message: `maxLength:${message || `El campo ${campo} debe tener como máximo ${max} caracteres`}` });
+        : this.createError({ message: `${message || `El campo ${campo} debe tener como máximo ${max} caracteres`}` });
     });
   }
 

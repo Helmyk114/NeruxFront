@@ -23,8 +23,8 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
   onClick,
   size = "md",
   text,
-  backgroundColor = "bg-purpleStart", 
-  className= "",
+  backgroundColor = "bg-button-active", 
+  className,
 }) => {
   return (
     <Button
