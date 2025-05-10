@@ -1,7 +1,6 @@
 import { CrearProductosValues } from "./crearProductosTypes";
 
 export const CrearProductosInitialValues: CrearProductosValues = {
-  idProduct: "",
   nameProduct: "",
   sku: "",
   totalAmount: 0,

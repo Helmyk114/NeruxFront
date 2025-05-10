@@ -1,5 +1,4 @@
 export interface CrearProductosValues {
-  idProduct: string;
   nameProduct: string;
   sku: string;
   totalAmount: number;

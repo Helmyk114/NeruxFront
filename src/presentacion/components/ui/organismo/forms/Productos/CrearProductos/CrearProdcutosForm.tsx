@@ -5,6 +5,8 @@ import ButtonAtom from "../../../../atomos/button/ButtonAtom";
 import { CrearProductosInitialValues } from "./crearProductoInitialValues";
 import { BackButton } from "../../../../atomos/button/ButtonBack";
 import { CrearProductosValues } from "./crearProductosTypes";
+import { crearProductoValidation } from "./crearProductoValidationSchema";
+import { productUseCase } from "../../../../../../../domain/usecases/product/productUseCase";
 
 export interface CrearProductoFormHandles {
   resetForm: () => void;
@@ -29,12 +31,16 @@ export function CrearProductoFormComponent(
     <div className="w-full">
       <Formik
         initialValues={CrearProductosInitialValues}
-        validationSchema={""}
+        validationSchema={crearProductoValidation}
         onSubmit={async (values, helpers) => {
-          formikRef.current = helpers;
-          console.log(values);
-          if (onSuccess) onSuccess();
-          helpers.setSubmitting(false);
+          try {
+            await productUseCase.createProduct(values)
+            formikRef.current = helpers;
+            if (onSuccess) onSuccess();
+            helpers.setSubmitting(false);
+          } catch (error) {
+            console.error("Error al crear la empresa:", error);
+          }
         }}
       >
         {({ isSubmitting, isValid, values, handleSubmit }) => (
@@ -75,7 +81,6 @@ export function CrearProductoFormComponent(
                   nombre="productionPrice"
                   label="Precio de producción"
                   component={InputFiled}
-                  isRequired={true}
                   type="number"
                 />
 
@@ -93,6 +98,7 @@ export function CrearProductoFormComponent(
                   label="Categoría"
                   component={InputFiled}
                   isRequired={true}
+                  type="number"
                 />
               </div>
             </div>
@@ -111,7 +117,6 @@ export function CrearProductoFormComponent(
                   !values.sku ||
                   !values.totalAmount ||
                   !values.currentAmount ||
-                  !values.productionPrice ||
                   !values.salePrice
                 }
               />
