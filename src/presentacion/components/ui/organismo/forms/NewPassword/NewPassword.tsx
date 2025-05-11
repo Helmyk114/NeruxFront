@@ -9,7 +9,7 @@ import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
 
 import InputPassword from "../../../atomos/form/InputPassword";
 import { Title1 } from "../../../atomos/textos/titles/level1";
-import ButtonAtom from "../../../atomos/ButtonAtom";
+import ButtonAtom from "../../../atomos/button/ButtonAtom";
 import { TextError } from "../../../atomos/textos/textError";
 
 import { IconCheck, IconX } from "@tabler/icons-react";
@@ -24,7 +24,7 @@ export default function NewPasswordForm({
   newPasswordUseCase,
   onSuccess,
 }: NewPasswordFormProps): JSX.Element {
-    const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <div className="p-10 mt-1 w-full ml-4 justify-center">

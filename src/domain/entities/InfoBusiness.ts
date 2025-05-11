@@ -2,9 +2,9 @@ export interface InfoBusiness {
   idUser: string,
   nameBusiness: string,
   photoBusiness: string | null,
-  emailAdmin: string,
-  nameAdmin: string,
-  lastNameAdmin: string,
-  phoneAdmin: string,
+  email: string,
+  name: string,
+  lastName: string,
+  phone: string,
   states: string,
 }

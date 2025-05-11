@@ -1,5 +1,5 @@
 import { RedirectPath } from "../../infrastructure/services/auth/Redirect.service";
-import { User } from "../../shared/types/AuthResponseTypes";
+import { userAdapter, UserAdapter } from "../adapter/user.adapter";
 import { IAuthRepository } from "../interface/IAuthRepsository";
 
 export class LoginUseCase {
@@ -10,7 +10,7 @@ export class LoginUseCase {
   ): Promise<{
     token: string;
     redirect: string;
-    infoUser: Omit<User, "has_changed_password">;
+    infoUser: UserAdapter;
   }> {
     if (!username || !password) {
       throw new Error("El nombre de usuario y la contraseña son obligatorios");
@@ -21,13 +21,7 @@ export class LoginUseCase {
     return {
       token: userData.token,
       redirect: RedirectPath(userData.user),
-      infoUser: {
-        idUser: userData.user.idUser,
-        username: userData.user.username,
-        business: userData.user.business,
-        state: userData.user.state,
-        role: userData.user.role,
-      },
+      infoUser: userAdapter(userData.user),
     };
   }
 }

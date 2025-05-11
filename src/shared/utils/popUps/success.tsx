@@ -2,16 +2,18 @@ import ModalTemplate from "../../../presentacion/components/ui/template/notifica
 import { Title1 } from "../../../presentacion/components/ui/atomos/textos/titles/level1";
 import { TextoInicio } from "../../../presentacion/components/ui/atomos";
 import { IconCircleCheck } from "@tabler/icons-react";
-import ButtonAtom from "../../../presentacion/components/ui/atomos/ButtonAtom";
+import ButtonAtom from "../../../presentacion/components/ui/atomos/button/ButtonAtom";
 
 interface PopUpSuccessProps {
   isOpen: boolean;
   onClose: () => void;
   titulo: string;
   startText: string;
-  endText: string;
+  endText?: string;
   textButton: string;
   onClick: () => void;
+  secondTextButton?: string;
+  onSecondClick?: () => void;
 }
 
 const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
@@ -21,7 +23,9 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
   startText,
   endText,
   textButton,
-  onClick
+  onClick,
+  secondTextButton,
+  onSecondClick
 }) => {
   return (
     <ModalTemplate
@@ -56,15 +60,28 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
         </div>
       }
       footer={
-        <div className="flex justify-center items-center w-full  m-auto">
-          <ButtonAtom 
-          texto={textButton}
-          className="text-texts-active font-semibold text-lg mb-[33px] mt-[4px] w-2/3 h-[52px]"
-          disabled={false}
-          onClick={onClick}
-          />
-        </div>
-
+        secondTextButton && onSecondClick ? (
+          <div className="flex flex-col items-center gap-4 mb-[33px] mt-[4px]">
+            <ButtonAtom
+              texto={textButton}
+              className="text-texts-active font-semibold text-lg w-2/3 h-[52px]"
+              onClick={onClick}
+            />
+            <ButtonAtom
+              texto={secondTextButton}
+              className="text-texts-active font-semibold text-lg w-2/3 h-[52px]"
+              onClick={onSecondClick}
+            />
+          </div>
+        ) : (
+          <div className="flex justify-center items-center w-full m-auto">
+            <ButtonAtom
+              texto={textButton}
+              className="text-texts-active font-semibold text-lg mb-[33px] mt-[4px] w-2/3 h-[52px]"
+              onClick={onClick}
+            />
+          </div>
+        )
       }
     />
   );

@@ -11,11 +11,11 @@ export function TemplatePageForm({ title1, title2, children }: TemplatePageFormP
     <div className="w-full">
       <div className="ml-[30px]">
         <Title1
-          clasname="mb-[58px] text-star"
+          clasname="mb-[40px] text-star"
           titulo={title1}
         />
         <Title2
-          clasname="mt-[51.51px] mb-[12.67px]"
+          clasname="mb-[12.67px]"
           titulo={title2}
         />
       </div>

@@ -1,4 +1,5 @@
-import Sidebar from "../../components/ui/organismo/sidebar/sidebar";
+
+import { Sidebar } from "../../components/ui/organismo";
 import { TemplatePageTable } from "../../components/ui/template/plantillaPages";
 
 export function Inicio(): JSX.Element {

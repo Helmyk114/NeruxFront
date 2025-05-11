@@ -9,6 +9,8 @@ interface InputFieldProps {
   isRequired?: true | false;
   type?: "text" | "email" | "number";
   className?: string;
+  minLength?: number;
+  maxLength?: number;
 }
 
 export default function InputFiled({
@@ -17,12 +19,14 @@ export default function InputFiled({
   isRequired,
   type = "text",
   className,
+  minLength,
+  maxLength
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
 
   return (
-    <>
+    <div className="flex flex-col w-full">
       <Input
         {...field}
         classNames={{
@@ -38,11 +42,13 @@ export default function InputFiled({
           
         }}
         className={className}
+        type={type}
+        maxLength={maxLength}
+        minLength={minLength}
         label={label}
         isRequired={isRequired}
         variant="bordered"
         labelPlacement="outside"
-        type={type}
         isInvalid={false}
         endContent={
           <IconUser className="text-2xl text-default-400 pointer-events-none" />
@@ -51,6 +57,6 @@ export default function InputFiled({
       {hasError? (
         <TextError error={meta.error as string} classname={className} />
       ) : null}
-    </>
+    </div>
   );
 }

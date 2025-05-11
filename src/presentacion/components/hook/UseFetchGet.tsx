@@ -12,7 +12,7 @@ interface PaginatedResponse<T> {
   metadata: PaginationMetadata;
 }
 
-export function UsefecthGetPaginatio<T>(endoPoint: string, currentPage: number, pageSize: number) {
+export function UseFetchGetPaginatio<T>(endoPoint: string, currentPage: number, pageSize: number) {
   const [data, setData] = useState<T[] | null>(null);
   const [metadata, setMetadata] = useState<PaginationMetadata | null>(null);
   const [loading, setLoading] = useState<boolean>(true);

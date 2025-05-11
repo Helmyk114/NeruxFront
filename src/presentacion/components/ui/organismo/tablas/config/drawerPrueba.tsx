@@ -6,13 +6,15 @@ import {
   DrawerFooter,
   Button,
 } from "@heroui/react";
+import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
 
 interface DrawerPropd {
   isOpen: boolean;
   onClose: () => void;
+  data?: InfoBusiness;
 }
 
-export default function Drawer1({isOpen, onClose}: DrawerPropd): JSX.Element {
+export default function Drawer1({ isOpen, onClose, data }: DrawerPropd): JSX.Element {
 
   return (
     <>
@@ -23,9 +25,7 @@ export default function Drawer1({isOpen, onClose}: DrawerPropd): JSX.Element {
               <DrawerHeader className="flex flex-col gap-1">{'Aún no ha creado su empresa'}</DrawerHeader>
               <DrawerBody>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non
-                  risus hendrerit venenatis. Pellentesque sit amet hendrerit risus, sed porttitor
-                  quam.
+                 {data ? data.name : 'no hay info'}
                 </p>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pulvinar risus non

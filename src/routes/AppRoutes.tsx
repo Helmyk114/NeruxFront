@@ -7,6 +7,7 @@ import {
   RestablecerContraseña,
   Products,
   CrearProductos,
+  Home,
 } from "../presentacion/pages";
 import Clientes from "../presentacion/pages/superAdmin/Client/table/Clientes";
 import { CrearEmpresa } from "../presentacion/pages/admin/Empresa/CrearEmpresa";
@@ -22,11 +23,15 @@ export function AppRouter(): JSX.Element {
           path="/Restablecer/Contraseña"
           element={<RestablecerContraseña />}
         />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Clientes" element={<Clientes />} />
+        
         //Admin
         <Route path="/Inicio" element={<Inicio />} />
         <Route path="/Productos" element={<Products />} />
         <Route path="/Crear/Producto" element={<CrearProductos />} />
-        <Route path="/Clientes" element={<Clientes />} />
+
+        //Onboarding-Admin
         <Route path="/Crear/Empresa" element={<CrearEmpresa />} />
       </Routes>
     </Router>

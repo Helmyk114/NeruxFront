@@ -7,6 +7,8 @@ import {
 } from "../../../../components/ui/atomos";
 import { ColumnRender } from "../../../../components/ui/organismo/tablas/config/columRenderType";
 import { InfoProduct } from "./productType";
+import { numberFormat } from "../../../../../shared/utils/convert/numberFormat";
+import { fechaFormat } from "../../../../../shared/utils/convert/fechaFormat";
 
 export const ProductColumnRender = (
   onEdit: (product: InfoProduct) => void,
@@ -19,12 +21,13 @@ export const ProductColumnRender = (
       textTop={product.nameProduct}
     />
   ),
-  sku: (product: InfoProduct) => <SimpleCell textTop={product.sku || ""} />,
+  sku: (product: InfoProduct) => (<SimpleCell textTop={product.sku || ""} />),
+
   categoria: (product: InfoProduct) => (
     <SimpleCell textTop={product.categoria || ""} />
   ),
-  precio: (product: InfoProduct) => (
-    <SimpleCell textTop={product.precio || ""} />
+  salePrice: (product: InfoProduct) => (
+    <SimpleCell textTop={numberFormat(product.salePrice) || ""} />
   ),
   costoProduccion: (product: InfoProduct) => (
     <SimpleCell textTop={product.costoProduccion || ""} />
@@ -40,8 +43,8 @@ export const ProductColumnRender = (
       texto={product.estado}
     />
   ),
-  registro: (product: InfoProduct) => (
-    <SimpleCell textTop={product.registro || ""} />
+  create_in: (product: InfoProduct) => (
+    <SimpleCell textTop={fechaFormat(product.create_in) || ""} />
   ),
   acciones: (product: InfoProduct) => (
     <ActionsCell

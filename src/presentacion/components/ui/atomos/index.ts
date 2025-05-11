@@ -1,4 +1,4 @@
-export * from "./ButtonAtom";
+export * from "./button/ButtonAtom";
 export * from "./Chip";
 export * from "./form/Input";
 export * from "./form/InputPassword";
