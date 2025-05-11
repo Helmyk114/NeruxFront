@@ -67,6 +67,11 @@ export function TableSimple<T extends object>({
     <Table
       aria-label={`Tabla de ${tabla}`}
       selectionMode="multiple"
+      checkboxesProps={{
+        classNames: {
+          wrapper: "after:bg-button-active",
+        },
+      }}
       topContent={
         <TopContent
           totalItems={totalItems}

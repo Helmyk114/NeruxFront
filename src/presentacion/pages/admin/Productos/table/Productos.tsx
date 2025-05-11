@@ -19,7 +19,7 @@ export function Products(): JSX.Element {
   const [currentePage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoProduct>(
-    "/info/products",
+    "/product",
     currentePage,
     pageSize
   );

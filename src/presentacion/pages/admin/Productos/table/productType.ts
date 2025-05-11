@@ -4,10 +4,10 @@ export interface InfoProduct {
   nameProduct: string,
   sku: string | null,
   categoria: string,
-  precio: string,
+  salePrice: string,
   costoProduccion: string,
   stock: string,
   inventario: string,
   estado: string,
-  registro: string,
+  create_in: string,
 }
