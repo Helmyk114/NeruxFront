@@ -1,22 +1,25 @@
 import Logotipo from "../../../../../images/Logotipo.png";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../hook/UseAuth";
 import { sidebarConfig } from "./sidebar.config";
 import { Logo } from "../../atomos";
 
 import { FaCogs } from "react-icons/fa";
-export const Sidebar = () => {
+import { AuthServices } from "../../../../../infrastructure";
+import { userStore } from "../../../../../store/userStore";
+import { IconLogout } from "@tabler/icons-react";
 
-  const { user, hasCompany } = useAuth();
+export const Sidebar = () => {
+  const user = userStore((state) => state.user);
   const navigate = useNavigate();
 
   if (!user) return null;
 
   let sidebarItems;
-  if (user.role === 'Admin') {
-    sidebarItems = hasCompany === "adminWithoutBusiness"
-      ? sidebarConfig.adminWithoutBusiness
-      : sidebarConfig.adminWithBusiness;
+  if (user.role === "Admin") {
+    sidebarItems =
+      user.business === "" || user.business === null
+        ? sidebarConfig.adminWithoutBusiness
+        : sidebarConfig.adminWithBusiness;
   } else {
     sidebarItems = sidebarConfig[user.role] || [];
   }
@@ -25,44 +28,54 @@ export const Sidebar = () => {
     navigate(path);
   };
 
+  const isActive = (path: string) => {
+    return location.pathname.startsWith(path);
+  };
+
   return (
     <aside className="flex flex-col justify-between w-64 h-screen bg-background-four p-4  rounded-r-2xl ">
-
       <div>
         <div className="w-100%">
           <Logo src={Logotipo} alt="logo" />
         </div>
 
         <nav className="flex flex-col space-y-2">
-          {sidebarItems.map((item) => (
-            <button
-              key={item.index}
-              onClick={() => handleRedirect(item.path)}
-              className="flex items-center p-2 rounded-lg text-texts-sidebar hover:bg-button-active transition-colors"
-            >
-              <span className="mr-2">
-                <item.icon />
-              </span>
-              {item.label}
-            </button>
-          ))}
+          {sidebarItems.map((item) => {
+            const active = isActive(item.path);
+            return (
+              <button
+                key={item.index}
+                onClick={() => handleRedirect(item.path)}
+                className={`flex items-center p-2 rounded-lg
+                  ${
+                    active
+                      ? "bg-button-active text-sidebar-prymary"
+                      : "hover:bg-button-active text-sidebar-prymary"
+                  }`}
+              >
+                <span className="mr-2">
+                  <item.icon />
+                </span>
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
       </div>
 
-      {/* Parte inferior: Cerrar sesión y ajustes */}
       <div className="flex flex-col space-y-2 border-t pt-4">
         <button
           onClick={() => {
-            // Aquí tu lógica para cerrar sesión
-            console.log("Cerrar sesión");
+            AuthServices.logout(navigate);
           }}
-          className="flex items-center text-red-600 hover:text-red-800 transition-colors"
+          className="flex items-centerp-2 rounded-lg text-sidebar-second hover:underline"
         >
-          <span className="mr-2">🚪</span>
-          Cerrar sesión
+          <span className="mr-2">
+            <IconLogout />
+          </span>
+          Cerrar Sesión
         </button>
 
-        {/* Redirección a Ajustes */}
         <button
           onClick={() => handleRedirect("/ajustes")} // Redirección estática o dinámica según necesidad
           className="flex items-center text-sm hover:underline text-text"

@@ -21,6 +21,7 @@ export default {
         button: { ...colors.button },
         texts: { ...colors.texts},
         background: { ...colors.background },
+        sidebar: { ...colors.sidebar },
         background2: " #8E05C226",
         purpleStart: "#8E05C2",
         purpleEnd: "#43025C",

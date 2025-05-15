@@ -13,15 +13,13 @@ import ButtonAtom from "../../../atomos/button/ButtonAtom";
 import { TextError } from "../../../atomos/textos/textError";
 
 import { IconCheck, IconX } from "@tabler/icons-react";
-import { NewPasswordUseCase } from "../../../../../../domain/usecases/NewPasswordUseCase";
+import { authUseCase } from "../../../../../../domain/usecases/auth/authUseCase";
 
 interface NewPasswordFormProps {
-  newPasswordUseCase: NewPasswordUseCase;
   onSuccess?: () => void;
 }
 
 export default function NewPasswordForm({
-  newPasswordUseCase,
   onSuccess,
 }: NewPasswordFormProps): JSX.Element {
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +42,7 @@ export default function NewPasswordForm({
         validate={yupValidate(NewPasswordValidationSchema)}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await newPasswordUseCase.execute(
+            await authUseCase.newPassword(
               values.newPassword,
               values.confirmPassword
             );

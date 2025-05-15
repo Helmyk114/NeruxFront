@@ -29,7 +29,7 @@ export function AppRouter(): JSX.Element {
         //Admin
         <Route path="/Inicio" element={<Inicio />} />
         <Route path="/Productos" element={<Products />} />
-        <Route path="/Crear/Producto" element={<CrearProductos />} />
+        <Route path="/Productos/Crear" element={<CrearProductos />} />
 
         //Onboarding-Admin
         <Route path="/Crear/Empresa" element={<CrearEmpresa />} />

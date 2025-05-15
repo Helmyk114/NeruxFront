@@ -2,12 +2,8 @@ import { PlantillaGenerica } from "../components/ui/template";
 import { TextoInicio } from "../components/ui/atomos";
 import LoginForm from "../components/ui/organismo/forms/Login/LoginForm";
 import { loginTextConfig } from "../../shared/constants/texts/loginTextConfig";
-import { LoginUseCase } from "../../domain/usecases/LoginUseCase";
-import { AuthService } from "../../infrastructure/services/auth/Auth.service";
 
 export default function Login(): JSX.Element {
-  const authService = new AuthService();
-  const loginUseCase = new LoginUseCase(authService);
 
   return (
     <PlantillaGenerica
@@ -30,7 +26,7 @@ export default function Login(): JSX.Element {
           className={loginTextConfig.containerClass}
         />
       }
-      formulario={<LoginForm loginUseCase={loginUseCase} />}
+      formulario={<LoginForm />}
     />
   );
 }

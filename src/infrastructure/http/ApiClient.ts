@@ -1,3 +1,5 @@
 import { HttpClient } from "./HttpClient";
 
-export const apiClient = new HttpClient("https://neruxback.onrender.com/Nerux/v1");
+const api =  import.meta.env.VITE_API_URL;
+
+export const apiClient = new HttpClient(api);

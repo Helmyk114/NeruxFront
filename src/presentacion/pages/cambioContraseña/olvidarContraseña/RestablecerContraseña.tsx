@@ -1,12 +1,10 @@
 import { PlantillaGenerica } from "../../../components/ui/template";
 import { TextoInicio } from "../../../components/ui/atomos";
 import OlvidarContraseñaForm from "../../../components/ui/organismo/forms/NewPassword/NewPassword";
-import { AuthService } from "../../../../infrastructure/services/auth/Auth.service";
-import { NewPasswordUseCase } from "../../../../domain/usecases/NewPasswordUseCase";
+
 
 export function RestablecerContraseña(): JSX.Element {
-  const authService = new AuthService();
-  const newPasswordUseCase = new NewPasswordUseCase(authService);
+
 
   return (
     <PlantillaGenerica
@@ -28,7 +26,7 @@ export function RestablecerContraseña(): JSX.Element {
         />
       }
       formulario={
-        <OlvidarContraseñaForm newPasswordUseCase={newPasswordUseCase} />
+        <OlvidarContraseñaForm />
       }
     />
   );
