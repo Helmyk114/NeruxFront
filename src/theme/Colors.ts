@@ -19,7 +19,11 @@ export const colors = {
     bodyPopUp: "#5B5B5B",
     level1: "#FFFFFF",
     level2: "#B0B0B0",
-    sidebar: "#F2F2F2",
+  },
+
+  sidebar: {
+    prymary: "#F2F2F2",
+    second: "#FF5C5C",
   },
 
   background: {

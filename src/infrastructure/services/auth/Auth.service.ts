@@ -1,63 +1,47 @@
-import { AxiosError } from "axios";
-import { IAuthRepository } from "../../../domain/interface/IAuthRepsository";
 import { AuthResponse } from "../../../shared/types/AuthResponseTypes";
 import { apiClient } from "../../http/ApiClient";
 import { cookie } from "../../../shared/utils/cookies";
+import { NavigateFunction } from "react-router-dom";
+import { mapRol } from "../../../shared/utils/map/mapRol";
+import { userStore } from "../../../store/userStore";
 
-export class AuthService implements IAuthRepository {
-  async newPassword(
+export const AuthServices = {
+  login: async (credential: {
+    username: string;
+    password: string;
+  }): Promise<AuthResponse> => {
+    try {
+      const authData = await apiClient.post<AuthResponse>("/login", credential);
+      cookie.set("token", authData.token);
+      const user = mapRol(authData.user);
+      userStore.getState().setUser(user);
+      return authData;
+    } catch (error: unknown) {
+      if (error && typeof error === "object" && "message" in error) {
+        throw new Error(error.message as string);
+      }
+      throw new Error("Error durante el login");
+    }
+  },
+
+  logout: async (navigate: NavigateFunction): Promise<void> => {
+    cookie.remove("token");
+    userStore.getState().clearUser();
+    navigate("/", { replace: true });
+  },
+
+  newPassword: async (
     newPassword: string,
     confirmPassword: string
-  ): Promise<void> {
+  ): Promise<void> => {
     try {
       await apiClient.patch("/first-password", {
         newPassword,
         confirmPassword,
       });
     } catch (error) {
-      throw new Error(`Error al cambiar la contraseña ${error}`);
+      console.error("Error al cambiarla contraseña", error);
+      throw new Error("Error al cambiar la contraseña");
     }
-  }
-  async login(username: string, password: string): Promise<AuthResponse> {
-    try {
-      const respuesta: AuthResponse = await apiClient.post("/login", {
-        username,
-        password,
-      });
-
-      if (respuesta.token) {
-        cookie.set("token", respuesta.token);
-      }
-
-      return respuesta;
-    } catch (error: unknown) {
-      if (isAxiosError(error)) {
-        if (!error.response) {
-          throw new Error(
-            "Error de conexión: No se pudo contactar al servidor"
-          );
-        }
-
-        const status = error.response.status;
-        const message = (error.response.data as { error?: string })?.error;
-
-        switch (status) {
-          case 401:
-            throw new Error(message || "Credenciales incorrectas");
-          case 400:
-            throw new Error(message || "Datos de solicitud inválidos");
-          case 500:
-            throw new Error(message || "Error interno del servidor");
-          default:
-            throw new Error(message || `Error del servidor (código ${status})`);
-        }
-      }
-      throw new Error("Error desconocido durante el login");
-    }
-  }
-}
-
-// Type guard para AxiosError
-function isAxiosError(error: unknown): error is AxiosError {
-  return (error as AxiosError).isAxiosError !== undefined;
-}
+  },
+};

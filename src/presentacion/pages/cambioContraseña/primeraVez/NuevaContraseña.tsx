@@ -4,13 +4,8 @@ import NewPasswordForm from "../../../components/ui/organismo/forms/NewPassword/
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PopUpSuccess from "../../../../shared/utils/popUps/success";
-import { AuthService } from "../../../../infrastructure/services/auth/Auth.service";
-import { NewPasswordUseCase } from "../../../../domain/usecases/NewPasswordUseCase";
 
 export function NuevaContraseña(): JSX.Element {
-  const authService = new AuthService();
-  const newPasswordUseCase = new NewPasswordUseCase(authService);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -34,12 +29,7 @@ export function NuevaContraseña(): JSX.Element {
             }
           />
         }
-        formulario={
-          <NewPasswordForm
-            newPasswordUseCase={newPasswordUseCase}
-            onSuccess={() => setIsModalOpen(true)}
-          />
-        }
+        formulario={<NewPasswordForm onSuccess={() => setIsModalOpen(true)} />}
       />
 
       <PopUpSuccess
