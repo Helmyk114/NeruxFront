@@ -22,7 +22,7 @@ export const sidebarConfig: Record<string, SidebarItem[]> = {
   adminWithBusiness: [
     {index: 3.1 ,label: 'Inicio', path: '/Inicio', icon: SmartHome},
     {index: 3.2 ,label: 'Productos', path: '/Productos', icon: Box},
-    {index: 3.3 ,label: 'Alertas', path: '',icon: AlertTriangle},
-    {index: 3.4,label: 'Exportar datos', path: '',icon: DeviceAnalytics},
+    {index: 3.3 ,label: 'Alertas', path: '/Alertas',icon: AlertTriangle},
+    {index: 3.4,label: 'Exportar datos', path: '/Data',icon: DeviceAnalytics},
   ],
 }

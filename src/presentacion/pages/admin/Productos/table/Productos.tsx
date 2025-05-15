@@ -46,7 +46,7 @@ export function Products(): JSX.Element {
 
           <TableSimple
             tabla="Productos"
-            onclick={() => redirect("/Crear/Producto")}
+            onclick={() => redirect("/Productos/Crear")}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
               handleEdit,
