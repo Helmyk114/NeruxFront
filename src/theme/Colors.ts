@@ -24,6 +24,7 @@ export const colors = {
   sidebar: {
     prymary: "#F2F2F2",
     second: "#FF5C5C",
+    button: "#700B97",
   },
 
   background: {
