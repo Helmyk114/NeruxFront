@@ -6,6 +6,13 @@ export const colors = {
     informacion: "#007BFF",
   },
 
+  marca: {
+    primary: "#8E05C2",
+    secondary: "#6E5A75",
+    tertiary: "#D50891",
+    quaternary: "#121212",
+  },
+
   button: {
     disable: "#6E5A75",
     active: "#8E05C2",
@@ -28,9 +35,14 @@ export const colors = {
   },
 
   background: {
+    zero: "#8E05C226",
     one: "#121212",
     two: "#1E1E1E",
     three: "#2C2C2C",
     four: "#1F1F1F"
   },
+
+  input: {
+    border: "#B3B3B3"
+  }
 };

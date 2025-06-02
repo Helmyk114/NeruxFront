@@ -19,10 +19,16 @@
       console.log("hola", item);
     };
 
+    const handleCreate = () => {
+      setSelectedItem(null);
+      onOpen();
+    };
+
     return {
       handleEdit,
       handleView,
       handleDelete,
+      handleCreate,
       selectedItem,
       isOpen,
       onOpenChange,

@@ -7,9 +7,7 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HeroUIProvider>
-        <main className="dark text-foreground bg-background-one">
-          <AppRouter />
-        </main>
+        <AppRouter />
     </HeroUIProvider>
   </StrictMode>
 );

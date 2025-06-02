@@ -29,7 +29,7 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
   return (
     <Button
       type={type}
-      disabled={disabled}
+      isDisabled={disabled}
       className={`${
         disabled ? "bg-button-disable text-texts-dislabel font-OpenSans" : backgroundColor
       } ${className} ${text} rounded-lg font-OpenSans`}

@@ -1,4 +1,4 @@
-import ModalTemplate from "../../../presentacion/components/ui/template/notificaciones/notificacion";
+import ModalTemplate from "../../../presentacion/components/ui/template/modal/popUps/notificacion";
 import { Title1 } from "../../../presentacion/components/ui/atomos/textos/titles/level1";
 import { TextoInicio } from "../../../presentacion/components/ui/atomos";
 import { IconCircleCheck } from "@tabler/icons-react";
@@ -25,7 +25,7 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
   textButton,
   onClick,
   secondTextButton,
-  onSecondClick
+  onSecondClick,
 }) => {
   return (
     <ModalTemplate

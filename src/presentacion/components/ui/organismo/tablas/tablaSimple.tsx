@@ -24,6 +24,7 @@ interface ColumnRender<T> {
 
 interface TableProps<T extends object> {
   tabla: string;
+  nameButton: string;
   onclick?: () => void;
   columnas: Column[];
   columnRender: ColumnRender<T>;
@@ -40,6 +41,7 @@ interface TableProps<T extends object> {
 
 export function TableSimple<T extends object>({
   tabla,
+  nameButton,
   onclick,
   columnas,
   columnRender,
@@ -77,6 +79,7 @@ export function TableSimple<T extends object>({
           totalItems={totalItems}
           texto={tabla}
           handleRowsPerPageChange={handleRowsPerPageChange}
+          nameButton={nameButton}
           onclick={onclick}
         />
       }
@@ -90,7 +93,7 @@ export function TableSimple<T extends object>({
         {(column) => (
           <TableColumn
             key={column.uid}
-            className="text-base font-bold text-grisFondo"
+            className="text-base font-bold dark:text-grisFondo"
           >
             {column.name}
           </TableColumn>

@@ -9,8 +9,10 @@ import {
   CrearProductos,
   Home,
 } from "../presentacion/pages";
-import Clientes from "../presentacion/pages/superAdmin/Client/table/Clientes";
-import { CrearEmpresa } from "../presentacion/pages/admin/Empresa/CrearEmpresa";
+
+import { CrearEmpresa } from "../presentacion/pages/users/admin/Empresa/CrearEmpresa";
+import Clientes from "../presentacion/pages/users/superAdmin/Client/table/Clientes";
+import { Category } from "../presentacion/pages/users/admin/Categorias/tabla/Categorias";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -25,12 +27,12 @@ export function AppRouter(): JSX.Element {
         />
         <Route path="/Home" element={<Home />} />
         <Route path="/Clientes" element={<Clientes />} />
-        
         //Admin
         <Route path="/Inicio" element={<Inicio />} />
         <Route path="/Productos" element={<Products />} />
         <Route path="/Productos/Crear" element={<CrearProductos />} />
 
+        <Route path="/Categorias" element={<Category />} />
         //Onboarding-Admin
         <Route path="/Crear/Empresa" element={<CrearEmpresa />} />
       </Routes>

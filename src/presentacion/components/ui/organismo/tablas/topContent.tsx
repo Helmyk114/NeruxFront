@@ -5,6 +5,7 @@ interface TopContentPorps {
   onclick?: () => void;
   totalItems: number;
   texto: string;
+  nameButton: string;
   handleRowsPerPageChange: (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => void;
@@ -14,6 +15,7 @@ export function TopContent({
   onclick,
   totalItems,
   texto,
+  nameButton,
   handleRowsPerPageChange,
 }: TopContentPorps): JSX.Element {
   return (
@@ -21,7 +23,7 @@ export function TopContent({
       <div className="flex justify-end">
         <ButtonAtom
           className="w-40 "
-          texto="Agregar nuevo +"
+          texto={nameButton}
           onClick={onclick}
         />
       </div>

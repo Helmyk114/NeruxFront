@@ -30,13 +30,16 @@ export default function InputPassword({
       <Input
         {...field}
         classNames={{
-          label: ["font-OpenSans"],
+          label: ["font-OpenSans", "focus:text-texts-level1"],
           inputWrapper: [
-            "dark:focus-within:border-purpleStart",
-            "dark:hover:border-purpleStart",
+            "focus-within:!border-button-active",
+            "hover:!border-button-active",
+            "dark:focus-within:border-button-active",
+            "dark:hover:border-button-active",
+            "dark:border-input-border",
             hasError
-            ? "dark:!border-semantic-error dark:hover:!border-semantic-error dark:focus-within:!border-semantic-error"
-            : "!hover:border-purpleStart !focus:border-purpleStart",
+              ? "!border-semantic-error hover:!border-semantic-error focus-within:!border-semantic-error"
+              : "dark:hover:!border-button-active dark:focus:!border-button-active",
           ],
           errorMessage: ["hidden"],
         }}

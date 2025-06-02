@@ -23,7 +23,8 @@ export default function Login(): JSX.Element {
               className: loginTextConfig.systemText.className,
             },
           ]}
-          className={loginTextConfig.containerClass}
+
+          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-sidebar-prymary to-text"
         />
       }
       formulario={<LoginForm />}
