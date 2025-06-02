@@ -9,7 +9,7 @@ export const loginTextConfig = {
   },
   systemText: {
     text: "sistema de\n gestión!",
-    className: "font-semibold text-4xl lg:text-4xl",
+    className: "italic font-semibold text-4xl lg:text-4xl ",
   },
-  containerClass: "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text",
+  containerClass: "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-sidebar-prymary to-text",
 }

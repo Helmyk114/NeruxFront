@@ -7,10 +7,9 @@ import InputFiled from "../../../atomos/form/Input";
 import InputPassword from "../../../atomos/form/InputPassword";
 import ButtonAtom from "../../../atomos/button/ButtonAtom";
 
-import { loginInitialValues } from "./loginInitialValues";
-import { loginValidationSchema } from "./loginValidationSchema";
 import { useState } from "react";
 import { TextError } from "../../../atomos/textos/textError";
+import { loginConfig } from './LoginFormCongif';
 
 export default function LoginForm(): JSX.Element {
   const navigate = useNavigate();
@@ -18,10 +17,10 @@ export default function LoginForm(): JSX.Element {
 
   return (
     <div className="w-full">
-      <Title1 clasname="mb-[58px] text-center" titulo="Iniciar sesión" />
+      <Title1 clasname="mb-[58px] text-center text-texts-level1" titulo="Iniciar sesión" />
       <Formik
-        initialValues={loginInitialValues}
-        validationSchema={loginValidationSchema}
+        initialValues={loginConfig.initialValues}
+        validationSchema={loginConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
             const { token, redirect } = await authUseCase.login(

@@ -9,5 +9,9 @@ export function Background({
   className = "bg-background-one",
   children,
 }: BackgroundProps): JSX.Element {
-  return <div className={`${className} max-h-screen`}>{children}</div>;
+  return (
+    <div className={`${className} min-h-screen w-full overflow-hidden`}>
+      {children}
+    </div>
+  );
 }

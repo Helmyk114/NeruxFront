@@ -2,6 +2,7 @@ import {
   IconAlertTriangle,
   IconBell,
   IconBox,
+  IconCategory,
   IconDeviceAnalytics,
   IconInfoOctagon,
   IconLayoutDashboard,
@@ -15,6 +16,7 @@ export interface SidebarItem {
   label: string;
   icon: React.ComponentType;
   path: string;
+  subItems?: SidebarItem[];
 }
 
 export const sidebarConfigStar: Record<string, SidebarItem[]> = {
@@ -26,13 +28,37 @@ export const sidebarConfigStar: Record<string, SidebarItem[]> = {
     { index: 1.5, label: "Reportes", path: "", icon: IconDeviceAnalytics },
   ],
   adminWithoutBusiness: [
-    { index: 2.1, label: "Inicio", path: "/Crear/Empresa", icon: IconSmartHome },
+    {
+      index: 2.1,
+      label: "Inicio",
+      path: "/Crear/Empresa",
+      icon: IconSmartHome,
+    },
   ],
   adminWithBusiness: [
     { index: 3.1, label: "Inicio", path: "/Inicio", icon: IconSmartHome },
-    { index: 3.2, label: "Productos", path: "/Productos", icon: IconBox },
+    {
+      index: 3.2,
+      label: "Inventario",
+      path: "/Inventario",
+      icon: IconBox,
+      subItems: [
+        { index: 3.21, label: "Productos", path: "/Productos", icon: IconBox },
+        {
+          index: 3.22,
+          label: "Categorías",
+          path: "/Categorias",
+          icon: IconCategory,
+        },
+      ],
+    },
     { index: 3.3, label: "Alertas", path: "/Alertas", icon: IconAlertTriangle },
-    { index: 3.4, label: "Exportar datos", path: "/Data", icon: IconDeviceAnalytics },
+    {
+      index: 3.4,
+      label: "Exportar datos",
+      path: "/Data",
+      icon: IconDeviceAnalytics,
+    },
   ],
 };
 

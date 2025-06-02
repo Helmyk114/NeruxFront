@@ -45,7 +45,7 @@ export class ValidationRules {
       const regex = /[A-Z]/;
       return regex.test(value || "")
         ? true
-        : this.createError({ message: `upperCase:${message || `La ${campo} debe contener al menos una letra mayúscula`}` });
+        : this.createError({ message: `${message || `La ${campo} debe contener al menos una letra mayúscula`}` });
     });
   }
 
@@ -55,7 +55,7 @@ export class ValidationRules {
       const regex = /[a-z]/;
       return regex.test(value || "")
         ? true
-        : this.createError({ message: `lowerCase:${message || `La ${campo} debe contener al menos una letra minúscula`}` });
+        : this.createError({ message: `${message || `La ${campo} debe contener al menos una letra minúscula`}` });
     });
   }
 
@@ -65,7 +65,7 @@ export class ValidationRules {
       const regex = /[0-9]/;
       return regex.test(value || "")
         ? true
-        : this.createError({ message: `number:${message || `${campo} debe contener al menos un número`}` });
+        : this.createError({ message: `${message || `${campo} debe contener al menos un número`}` });
     });
   }
 
@@ -75,7 +75,7 @@ export class ValidationRules {
       const regex = /[!@#$%^&*(),.?":{}|<>]/;
       return regex.test(value || "")
         ? true
-        : this.createError({ message: `specialChar:${message || `La ${campo} debe contener al menos un carácter especial`}` });
+        : this.createError({ message: `${message || `La ${campo} debe contener al menos un carácter especial`}` });
     });
   }
 
@@ -84,7 +84,7 @@ export class ValidationRules {
     return Yup.string().test("passwordMatch", message || `El ${campo} no coincide`, function (value) {
       return value === this.resolve(Yup.ref(ref))
         ? true
-        : this.createError({ message: `passwordMatch:${message || `El ${campo} no coincide`}` });
+        : this.createError({ message: `${message || `El ${campo} no coincide`}` });
     });
   }
 }

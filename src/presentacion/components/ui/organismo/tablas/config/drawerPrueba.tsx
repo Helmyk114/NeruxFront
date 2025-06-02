@@ -17,7 +17,6 @@ interface DrawerPropd {
 export default function Drawer1({ isOpen, onClose, data }: DrawerPropd): JSX.Element {
 
   return (
-    <>
       <Drawer isOpen={isOpen} onOpenChange={onClose}>
         <DrawerContent>
           {(onClose) => (
@@ -49,6 +48,5 @@ export default function Drawer1({ isOpen, onClose, data }: DrawerPropd): JSX.Ele
           )}
         </DrawerContent>
       </Drawer>
-    </>
   );
 }

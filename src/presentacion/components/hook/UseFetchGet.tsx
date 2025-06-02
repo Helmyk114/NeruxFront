@@ -5,6 +5,7 @@ interface PaginationMetadata {
   totalItems: number;
   totalPages: number;
   currentPage: number;
+  reload?: boolean
 }
 
 interface PaginatedResponse<T> {
@@ -12,7 +13,7 @@ interface PaginatedResponse<T> {
   metadata: PaginationMetadata;
 }
 
-export function UseFetchGetPaginatio<T>(endoPoint: string, currentPage: number, pageSize: number) {
+export function UseFetchGetPaginatio<T>(endoPoint: string, currentPage: number, pageSize: number, reload: boolean ) {
   const [data, setData] = useState<T[] | null>(null);
   const [metadata, setMetadata] = useState<PaginationMetadata | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -39,7 +40,7 @@ export function UseFetchGetPaginatio<T>(endoPoint: string, currentPage: number, 
       }
     };
     fetchData();
-  }, [endoPoint, currentPage, pageSize]);
+  }, [endoPoint, currentPage, pageSize, reload]);
   
   return {
     data: data || [],
