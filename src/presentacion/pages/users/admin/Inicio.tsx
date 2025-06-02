@@ -5,6 +5,7 @@ export function Inicio(): JSX.Element {
 
   return (
     <TemplatePageTable
+    
       sideBar={<Sidebar />}
       mainContent={
         <div className="flex flex-col items-center justify-center h-screen">

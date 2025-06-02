@@ -6,8 +6,8 @@ import { BreadcrumbsCustom } from "../organismo/breadcrumb/breadcrumb";
 interface TemplatePageProps {
   sideBar: React.ReactNode;
   mainContent: React.ReactNode;
-  titulo1: string;
-  titulo2: string;
+  titulo1?: string;
+  titulo2?: string;
 }
 
 export function TemplatePageTable({

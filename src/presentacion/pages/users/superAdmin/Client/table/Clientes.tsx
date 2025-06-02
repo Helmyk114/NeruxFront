@@ -15,7 +15,8 @@ const Clientes: React.FC = () => {
   const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoBusiness>(
     "/user-Admin",
     currentePage,
-    pageSize
+    pageSize,
+    false
   );
 
   const handlePageChange = (newPage: number) => {
@@ -40,6 +41,7 @@ const Clientes: React.FC = () => {
 
           <TableSimple
             tabla="Clientes"
+            nameButton="Nuevo cliente +"
             columnas={columnsClient}
             columnRender={clientColumnRender(
               handleEdit,

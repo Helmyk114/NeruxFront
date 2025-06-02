@@ -1,5 +1,3 @@
-
-
 import { Sidebar } from "../../../components/ui/organismo";
 import { TemplatePageTable } from "../../../components/ui/template";
 

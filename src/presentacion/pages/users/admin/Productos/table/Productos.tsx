@@ -18,7 +18,8 @@ export function Products(): JSX.Element {
   const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoProduct>(
     "/product",
     currentePage,
-    pageSize
+    pageSize,
+    false
   );
 
   const handlePageChange = (newPage: number) => {
