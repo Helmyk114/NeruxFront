@@ -1,49 +1,32 @@
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
-import { Field, Formik, FormikHelpers } from "formik";
+import { useState } from "react";
+import { Field, Formik } from "formik";
 import InputFiled from "../../../../atomos/form/Input";
 import ButtonAtom from "../../../../atomos/button/ButtonAtom";
 import { BackButton } from "../../../../atomos/button/ButtonBack";
 
 import { productUseCase } from "../../../../../../../domain/usecases/product/productUseCase";
 import ImageUpload from "../../../../atomos/form/InputFile";
-import { CrearProductosValues, createProductConfig } from './createProductConfig';
-
-export interface CrearProductoFormHandles {
-  resetForm: () => void;
-}
+import { createProductConfig } from "./createProductConfig";
 
 interface CrearProductoFormProps {
   onSuccess?: () => void;
 }
-export function CrearProductoFormComponent(
-  { onSuccess }: CrearProductoFormProps,
-  ref: React.Ref<CrearProductoFormHandles>
-): JSX.Element {
+export function CrearProductoFormComponent({
+  onSuccess,
+}: CrearProductoFormProps): JSX.Element {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const formikRef = useRef<FormikHelpers<CrearProductosValues> | null>(null);
-
-  useImperativeHandle(ref, () => ({
-    resetForm: () => {
-      formikRef.current?.resetForm();
-    },
-  }));
 
   return (
     <div className="w-full">
       <Formik
         initialValues={createProductConfig.initialValues}
         validationSchema={createProductConfig.validationSchema}
-        onSubmit={async (values, helpers) => {
+        onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             await productUseCase.createProduct(values);
-            formikRef.current = helpers;
             if (onSuccess) onSuccess();
-            helpers.setSubmitting(false);
+            resetForm();
+            setSubmitting(false);
           } catch (error) {
             console.error("Error al crear la empresa:", error);
           }
@@ -71,6 +54,7 @@ export function CrearProductoFormComponent(
                   component={InputFiled}
                   isRequired={true}
                   className="row-span-1"
+                  type="number"
                 />
 
                 <Field
@@ -79,6 +63,7 @@ export function CrearProductoFormComponent(
                   component={InputFiled}
                   isRequired={true}
                   className="row-span-1"
+                  type="number"
                 />
 
                 <Field
@@ -86,6 +71,7 @@ export function CrearProductoFormComponent(
                   label="Precio de producción"
                   component={InputFiled}
                   className="row-span-1"
+                  type="number"
                 />
 
                 <Field
@@ -94,6 +80,7 @@ export function CrearProductoFormComponent(
                   component={InputFiled}
                   isRequired={true}
                   className="row-span-1"
+                  type="number"
                 />
               </div>
               <div className="flex flex-col gap-6">
@@ -103,15 +90,14 @@ export function CrearProductoFormComponent(
                   component={InputFiled}
                   isRequired={true}
                   type="number"
-                  
                 />
-                  <Field
-                    name="image"
-                    component={ImageUpload}
-                    setFieldValue={setFieldValue}
-                    previewUrl={previewUrl}
-                    setPreviewUrl={setPreviewUrl}
-                  />
+                <Field
+                  name="image"
+                  component={ImageUpload}
+                  setFieldValue={setFieldValue}
+                  previewUrl={previewUrl}
+                  setPreviewUrl={setPreviewUrl}
+                />
               </div>
             </div>
 
@@ -140,5 +126,3 @@ export function CrearProductoFormComponent(
     </div>
   );
 }
-
-export const CrearProductoForm = forwardRef(CrearProductoFormComponent);

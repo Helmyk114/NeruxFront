@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import PopUpSuccess from "../../../../../shared/utils/popUps/success";
 import CardSimple from "../../../../components/ui/atomos/Card/CardSimple";
-import { Sidebar } from "../../../../components/ui/organismo";
 import {
-  CrearProductoForm,
-  CrearProductoFormHandles,
-} from "../../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
+  CrearProductoFormComponent,
+  Sidebar,
+} from "../../../../components/ui/organismo";
 
 import { TemplatePageForm } from "../../../../components/ui/template";
 import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
@@ -13,7 +12,6 @@ import { useNavigate } from "react-router-dom";
 
 export function CrearProductos(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const formRef = useRef<CrearProductoFormHandles>(null);
   const navigate = useNavigate();
 
   return (
@@ -27,8 +25,7 @@ export function CrearProductos(): JSX.Element {
             <CardSimple
               className="bg-background-three m-[13px]"
               children={
-                <CrearProductoForm
-                  ref={formRef}
+                <CrearProductoFormComponent
                   onSuccess={() => setIsModalOpen(true)}
                 />
               }
@@ -46,7 +43,6 @@ export function CrearProductos(): JSX.Element {
               secondTextButton="Agregar otro"
               onSecondClick={() => {
                 setIsModalOpen(false);
-                formRef.current?.resetForm();
               }}
             />
           </TemplatePageForm>

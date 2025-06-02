@@ -5,27 +5,36 @@ import { DrawerWrapper } from "../Drawer";
 import { Title3 } from "../../../atomos/textos/titles/level3";
 import { CategoriasForm } from "./CategoriasForm";
 import { ButtonCancel } from "../../../atomos/button/ButtonCancel";
+import { categoriasUseCase } from "../../../../../../domain/usecases/inventario/categoria/categoria.useCase";
 
 interface CategoriasFormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
 export function CategoriasFormDrawer({
   isOpen,
   onClose,
+  onSuccess
 }: CategoriasFormDrawerProps): JSX.Element {
   return (
     <Formik
       initialValues={categoriasConfig.initialValues}
       validationSchema={categoriasConfig.validationSchema}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        console.log("Formulario enviado:", values);
-        setTimeout(() => {
-          setSubmitting(false);
-          resetForm();
-          onClose();
-        }, 800);
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        try {
+          await categoriasUseCase.create(values);
+          setTimeout(() => {
+            setSubmitting(false);
+            resetForm();
+            onClose();
+            onSuccess?.();
+          }, 800);
+        } catch (error) {
+          console.error("Error al crear la empresa:", error);
+        }
+     
       }}
     >
       {({ isSubmitting, isValid, handleSubmit, values }) => (

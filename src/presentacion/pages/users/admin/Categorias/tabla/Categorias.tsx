@@ -14,8 +14,9 @@ import { CategoriasFormDrawer } from "../../../../../components/ui/organismo/for
 export function Category(): JSX.Element {
   const [currentePage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
+  const [reload, setReload] = useState(false);
   const { data, metadata, loading, error } =
-    UseFetchGetPaginatio<InfoCategoria>("/categories", currentePage, pageSize);
+    UseFetchGetPaginatio<InfoCategoria>("/categories", currentePage, pageSize, reload);
     
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -70,7 +71,7 @@ export function Category(): JSX.Element {
             />
           )}
 
-          <CategoriasFormDrawer isOpen={isOpen} onClose={onOpenChange} />
+          <CategoriasFormDrawer isOpen={isOpen} onClose={onOpenChange} onSuccess={() => setReload(prev => !prev)}/>
         </>
       }
     />

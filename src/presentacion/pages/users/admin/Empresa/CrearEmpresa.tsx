@@ -2,7 +2,7 @@ import { Title2 } from "../../../../components/ui/atomos";
 import { Acordion } from "../../../../components/ui/atomos/Acordion";
 import { Sidebar } from "../../../../components/ui/organismo";
 import CrearEmpresaForm from "../../../../components/ui/organismo/forms/Business/CrearEmpresa/CrearEmpresa.From";
-import { CrearProductoForm } from "../../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
+import { CrearProductoFormComponent } from "../../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
 
 import { TemplatePageForm } from "../../../../components/ui/template";
 import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
@@ -28,7 +28,7 @@ const accordionItems = [
         color={"text-texts-level1"}
       />
     ),
-    content: <CrearProductoForm />,
+    content: <CrearProductoFormComponent />,
     isDisabled: true,
   },
 ];
@@ -37,12 +37,13 @@ export function CrearEmpresa(): JSX.Element {
   return (
     <TemplatePageTable
       sideBar={<Sidebar />}
+      titulo1="¡Bienvenido a NERUX!"
+      titulo2="Antes de comenzar, configuraremos los datos de tu empresa para que todo funcione a la perfección.
+      Completa la siguiente información y estarás listo para gestionar tu inventario."
       mainContent={
         <>
           <TemplatePageForm
-            title1="¡Bienvenido a NERUX!"
-            title2="Antes de comenzar, configuraremos los datos de tu empresa para que todo funcione a la perfección.
-            Completa la siguiente información y estarás listo para gestionar tu inventario."
+
           >
             <Acordion
               items={accordionItems}
