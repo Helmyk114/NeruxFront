@@ -16,7 +16,6 @@ export * from "./pantallaPrincipal/seccionDerecha";
 export * from "./pantallaPrincipal/seccionIzquierda";
 export * from "./sidebar/sidebar.config";
 export * from "./sidebar/sidebar";
-export * from "./tablas/config/TableDetail";
 export * from "./tablas/config/columRenderType";
 export * from "./tablas/config/drawerPrueba";
 export * from "./tablas/tablaSimple";

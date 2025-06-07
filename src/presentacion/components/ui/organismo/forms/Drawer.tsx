@@ -25,6 +25,9 @@ export function DrawerWrapper({
 }: DrawerPropd): JSX.Element {
   return (
     <Drawer
+    classNames={{
+      base: "dark:bg-base-second",
+    }}
       isOpen={isOpen}
       onOpenChange={onClose}
       isDismissable={isDimissable}

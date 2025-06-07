@@ -9,7 +9,7 @@ interface ThemeStore {
 }
 
 export const themeStore = create<ThemeStore>((set) => ({
-  theme: (localStorage.getItem("theme") as Theme) ?? "dark",
+  theme: (localStorage.getItem("theme") as Theme) ?? "ligth",
   toggleTheme: () =>
     set((state) => {
       const newTheme = state.theme === "dark" ? "light" : "dark";

@@ -1,9 +1,10 @@
 import { AuthResponse } from "../../../shared/types/AuthResponseTypes";
-import { apiClient } from "../../http/ApiClient";
 import { cookie } from "../../../shared/utils/cookies";
 import { NavigateFunction } from "react-router-dom";
 import { mapRol } from "../../../shared/utils/map/mapRol";
 import { userStore } from "../../../store/userStore";
+import { themeStore } from "../../../store/themeSotre";
+import { Axios } from "../../http/Axios";
 
 export const AuthServices = {
   login: async (credential: {
@@ -11,7 +12,7 @@ export const AuthServices = {
     password: string;
   }): Promise<AuthResponse> => {
     try {
-      const authData = await apiClient.post<AuthResponse>("/login", credential);
+      const authData = await Axios.post<AuthResponse>("/login", credential);
       cookie.set("token", authData.token);
       const user = mapRol(authData.user);
       userStore.getState().setUser(user);
@@ -27,6 +28,7 @@ export const AuthServices = {
   logout: async (navigate: NavigateFunction): Promise<void> => {
     cookie.remove("token");
     userStore.getState().clearUser();
+    themeStore.getState().setTheme("dark");
     navigate("/", { replace: true });
   },
 
@@ -35,7 +37,7 @@ export const AuthServices = {
     confirmPassword: string
   ): Promise<void> => {
     try {
-      await apiClient.patch("/first-password", {
+      await Axios.patch("/first-password", {
         newPassword,
         confirmPassword,
       });

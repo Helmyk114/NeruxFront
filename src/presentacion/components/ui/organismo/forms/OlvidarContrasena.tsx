@@ -1,7 +1,7 @@
 import { Title1 } from "../../atomos/textos/titles/level1";
 import InputFiled from "../../atomos/form/Input";
 import { Field, Formik } from "formik";
-import ButtonAtom from "../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../atomos/button/ButtonAtom";
 import { olvideContraseñaValidation } from "../../../../../shared/validations/OlvidarContraseñaValidation";
 
 export default function OlvideContraseñaForm(): JSX.Element {

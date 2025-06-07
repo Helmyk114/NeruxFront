@@ -4,9 +4,9 @@ interface Title1Props {
   color?: string;
 }
 
-export function Title2({ titulo, clasname, color="text-texts-level2" }: Title1Props): JSX.Element {
+export function Title2({ titulo, clasname }: Title1Props): JSX.Element {
   return (
-    <h1 className={`whitespace-pre-line text-lg font-normal font-OpenSans ${color}  ${clasname}`}>
+    <h1 className={`whitespace-pre-line text-base font-normal font-OpenSans dark:text-typography-second ${clasname}`}>
       {titulo}
     </h1>
   );

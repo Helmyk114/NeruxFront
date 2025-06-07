@@ -1,5 +1,5 @@
 import { ItemsByPage, TotalItems } from "../../atomos";
-import ButtonAtom from "../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../atomos/button/ButtonAtom";
 
 interface TopContentPorps {
   onclick?: () => void;
@@ -27,7 +27,7 @@ export function TopContent({
           onClick={onclick}
         />
       </div>
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full mt-8">
         <TotalItems valor={totalItems} texto={texto} />
         <ItemsByPage
           tabla={texto}

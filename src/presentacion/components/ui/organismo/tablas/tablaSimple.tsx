@@ -69,6 +69,10 @@ export function TableSimple<T extends object>({
     <Table
       aria-label={`Tabla de ${tabla}`}
       selectionMode="multiple"
+      classNames={{
+        wrapper: "dark:bg-base-second",
+        th: "dark:bg-base-fourth",
+      }}
       checkboxesProps={{
         classNames: {
           wrapper: "after:bg-button-active",
@@ -93,7 +97,7 @@ export function TableSimple<T extends object>({
         {(column) => (
           <TableColumn
             key={column.uid}
-            className="text-base font-bold dark:text-grisFondo"
+            className="text-base font-bold dark:text-typography-first"
           >
             {column.name}
           </TableColumn>

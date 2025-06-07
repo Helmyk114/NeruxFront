@@ -2,22 +2,35 @@ import { useState } from "react";
 import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
 import { TemplateFormNoData } from "../../../../../components/ui/template/plantillaFormNoData";
 import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
-import {
-  useActionTables,
-  UseFetchGetPaginatio,
-} from "../../../../../components/hook";
+import { useActionTables } from "../../../../../components/hook";
 import { columnsCategoria } from "./columnsCategoria";
 import { CategoriaColumnRender } from "./CategoriaColumnRender";
-import { InfoCategoria } from "./cateroriaType";
-import { CategoriasFormDrawer } from "../../../../../components/ui/organismo/forms/Categorias/CategoriasFormDrawer";
+import { CategoriasFormDrawer } from "../CategoriasFormDrawer";
+import { VerCategorias } from "../verCategorias";
+import { categoriasUseCase } from "../../../../../../domain/usecases/inventario/categoria/categoria.useCase";
+import { useFetchPaginated } from "../../../../../components/hook/api/usefetchPaginado";
+import { Category } from "../../../../../../domain/entities/category";
 
-export function Category(): JSX.Element {
-  const [currentePage, setCurrentPage] = useState(1);
+export function Categories(): JSX.Element {
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const [reload, setReload] = useState(false);
-  const { data, metadata, loading, error } =
-    UseFetchGetPaginatio<InfoCategoria>("/categories", currentePage, pageSize, reload);
-    
+
+  const { data, metadata, loading, error } = useFetchPaginated<Category>(
+    (options) =>
+      categoriasUseCase.getPaginated(
+        "/categories",
+        options.currentPage ?? 1,
+        options.pageSize ?? 5
+      ),
+    {
+      currentPage,
+      pageSize,
+      enable: true,
+      reload
+    }
+  );
+
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
@@ -27,10 +40,11 @@ export function Category(): JSX.Element {
     handleView,
     handleDelete,
     handleCreate,
-    //selectedItem,
+    selectedItem,
+    mode,
     isOpen,
     onOpenChange,
-  } = useActionTables<InfoCategoria>();
+  } = useActionTables<number | string>();
 
   return (
     <TemplatePageTable
@@ -47,9 +61,9 @@ export function Category(): JSX.Element {
                 onclick={handleCreate}
                 columnas={columnsCategoria}
                 columnRender={CategoriaColumnRender(
-                  handleEdit,
-                  handleView,
-                  handleDelete
+                  (item) => handleEdit(item.id),
+                  (item) => handleView(item.id),
+                  (item) => handleDelete(item.id)
                 )}
                 data={data || []}
                 getRowKey={(item) => item.id}
@@ -71,7 +85,22 @@ export function Category(): JSX.Element {
             />
           )}
 
-          <CategoriasFormDrawer isOpen={isOpen} onClose={onOpenChange} onSuccess={() => setReload(prev => !prev)}/>
+          {(mode === "crear" || mode === "editar") && (
+            <CategoriasFormDrawer
+              isOpen={isOpen}
+              onClose={onOpenChange}
+              onSuccess={() => setReload((prev) => !prev)}
+              id={selectedItem}
+              mode={mode}
+            />
+          )}
+          {mode === "ver" && (
+            <VerCategorias
+              isOpen={isOpen}
+              onClose={onOpenChange}
+              id={selectedItem}
+            />
+          )}
         </>
       }
     />

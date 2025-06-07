@@ -1,5 +1,5 @@
 import { Title1, Title2 } from "../atomos";
-import ButtonAtom from "../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../atomos/button/ButtonAtom";
 
 interface TemplateFormNoDataProps {
   descripcion1?: string;

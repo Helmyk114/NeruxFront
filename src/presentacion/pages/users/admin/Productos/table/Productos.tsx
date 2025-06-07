@@ -2,7 +2,7 @@ import { useState } from "react";
 import { InfoProduct } from "./productType";
 import {
   useActionTables,
-  UseFetchGetPaginatio,
+  UseFetchGet,
   useRedirect,
 } from "../../../../../components/hook";
 import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
@@ -13,13 +13,11 @@ import { ProductColumnRender } from "./ProductColumnRender";
 
 export function Products(): JSX.Element {
   const redirect = useRedirect();
-  const [currentePage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoProduct>(
+  const { data, metadata, loading, error } = UseFetchGet<InfoProduct>(
     "/product",
-    currentePage,
-    pageSize,
-    false
+    { paginated: true, currentPage, pageSize, reload: false, enable: true }
   );
 
   const handlePageChange = (newPage: number) => {
@@ -33,13 +31,13 @@ export function Products(): JSX.Element {
     selectedItem,
     isOpen,
     onOpenChange,
-  } = useActionTables<InfoProduct>();
+  } = useActionTables<number | string>();
 
   return (
     <TemplatePageTable
       sideBar={<Sidebar />}
       titulo1="Productos"
-      titulo2="Lista de productos"
+      titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
       mainContent={
         <>
           <TableSimple
@@ -48,9 +46,9 @@ export function Products(): JSX.Element {
             onclick={() => redirect("/Productos/Crear")}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
-              handleEdit,
-              handleView,
-              handleDelete
+              (item) => handleEdit(item.idProduct),
+              (item) => handleView(item.idProduct),
+              (item) => handleDelete(item.idProduct)
             )}
             data={data || []}
             getRowKey={(item) => item.idProduct}

@@ -12,7 +12,7 @@ import {
 
 import { CrearEmpresa } from "../presentacion/pages/users/admin/Empresa/CrearEmpresa";
 import Clientes from "../presentacion/pages/users/superAdmin/Client/table/Clientes";
-import { Category } from "../presentacion/pages/users/admin/Categorias/tabla/Categorias";
+import { Categories } from "../presentacion/pages/users/admin/Categorias/tabla/Categorias";
 
 export function AppRouter(): JSX.Element {
   return (
@@ -32,7 +32,7 @@ export function AppRouter(): JSX.Element {
         <Route path="/Productos" element={<Products />} />
         <Route path="/Productos/Crear" element={<CrearProductos />} />
 
-        <Route path="/Categorias" element={<Category />} />
+        <Route path="/Categorias" element={<Categories />} />
         //Onboarding-Admin
         <Route path="/Crear/Empresa" element={<CrearEmpresa />} />
       </Routes>

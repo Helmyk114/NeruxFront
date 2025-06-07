@@ -1,9 +1,17 @@
 import { Category, CategoryForm } from "../entities/category";
 
 export interface CategoryRepository {
-  getAll: () => Promise<Category[]>;
-  getById: (id: number) => Promise<Category>;
-  create: (category: CategoryForm) => Promise<void>;
-  update: (id: number, category: CategoryForm) => Promise<Category>;
-  delete: (id: number) => Promise<void>; 
+  getAll: (endpoint: string) => Promise<Category[]>;
+  getById: (endpoint: string, id: number | string) => Promise<Category>;
+  getPaginated: (
+    endpoint: string,
+    currentPage: number,
+    pageSize: number
+  ) => Promise<{
+    data: Category[];
+    metadata: { totalItems: number; totalPages: number; currentPage: number };
+  }>;
+  create: (endpoint: string, category: CategoryForm) => Promise<void>;
+  update: (endpoint: string, id: number, category: CategoryForm) => Promise<Category>;
+  delete: (endpoint: string, id: number) => Promise<void>;
 }

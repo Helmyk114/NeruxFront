@@ -13,11 +13,7 @@ export const colors = {
     quaternary: "#121212",
   },
 
-  button: {
-    disable: "#6E5A75",
-    active: "#8E05C2",
-    back: "#4F4F4F"
-  },
+
 
   texts: {
     dislabel: "#B8AFC4",
@@ -44,5 +40,31 @@ export const colors = {
 
   input: {
     border: "#B3B3B3"
-  }
+  },
+
+  base: {
+    first: "#121212",
+    second: "#1E1E1E",
+    thrith: "#121212",
+    fourth: "#333333",
+    sidebar: "#1F1F1F",
+    home: "#000000"
+  },
+
+  typography: {
+    first: "#F2F2F2",
+    second: "#CCCCCC",
+    thrith: "#999999",
+  },
+
+  brand: {
+    first: "#8E05C2",
+    second: "#B832E8",
+  },
+
+  button: {
+    active: "#8E05C2",
+    disable: "#6E5A75",
+    back: "#4F4F4F"
+  },
 };

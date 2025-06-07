@@ -4,7 +4,7 @@ interface TotalItemsProps {
 }
 export function TotalItems({ valor, texto }: TotalItemsProps): JSX.Element {
   return (
-    <p className="text-textInput text-sm font-normal">
+    <p className="text-typography-thrith text-sm font-light">
       Total {valor} {texto}
     </p>
   );

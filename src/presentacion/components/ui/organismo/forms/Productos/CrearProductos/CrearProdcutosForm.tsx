@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Field, Formik } from "formik";
 import InputFiled from "../../../../atomos/form/Input";
-import ButtonAtom from "../../../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
 import { BackButton } from "../../../../atomos/button/ButtonBack";
 
 import { productUseCase } from "../../../../../../../domain/usecases/product/productUseCase";

@@ -36,7 +36,10 @@ export default function InputPassword({
             "hover:!border-button-active",
             "dark:focus-within:border-button-active",
             "dark:hover:border-button-active",
-            "dark:border-input-border",
+            "dark:border-base-fourth",
+            "dark:bg-base-thrith",
+            "border-base-fourth",
+            "bg-base-thrith",
             hasError
               ? "!border-semantic-error hover:!border-semantic-error focus-within:!border-semantic-error"
               : "dark:hover:!border-button-active dark:focus:!border-button-active",

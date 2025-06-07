@@ -6,7 +6,7 @@ interface Title1Props {
 export function Title1({ titulo, clasname }: Title1Props): JSX.Element {
   return (
     <h1
-      className={`text-3xl font-bold dark:text-texts-level1 font-OpenSans ${clasname}`}
+      className={`text-2xl font-bold dark:text-typography-first font-OpenSans ${clasname}`}
     >
       {titulo}
     </h1>

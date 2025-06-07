@@ -14,10 +14,12 @@ export function Paginacion({
   return (
     <div className="flex w-full justify-center">
       <Pagination
+        classNames={{
+          item: "text-white",
+          cursor: "bg-brand-first text-white",
+        }}
         isCompact
         showControls
-        showShadow
-        color="secondary"
         page={page}
         total={total}
         onChange={setPage}
