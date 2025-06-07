@@ -9,7 +9,7 @@ import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
 
 import InputPassword from "../../../atomos/form/InputPassword";
 import { Title1 } from "../../../atomos/textos/titles/level1";
-import ButtonAtom from "../../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 import { TextError } from "../../../atomos/textos/textError";
 
 import { IconCheck, IconX } from "@tabler/icons-react";

@@ -1,36 +1,43 @@
-  import { useDisclosure } from "@heroui/react";
-  import { useState } from "react";
+import { useDisclosure } from "@heroui/react";
+import { useState } from "react";
 
-  export const useActionTables = <T extends object> () => {
-    const { isOpen, onOpen, onOpenChange} = useDisclosure();
-    const [selectedItem, setSelectedItem] = useState<T | null>(null);
+type Mode = "ver" | "editar" | "crear";
 
-    const handleEdit = (item: T) => {
-      console.log("Editando:", item);
-      // Lógica para editar
-    };
+export const useActionTables = <ID extends string | number>() => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedItem, setSelectedItem] = useState<ID | null>(null);
+  const [mode, setMode] = useState<Mode>("ver");
 
-    const handleView = (item: T) => {
-      setSelectedItem(item);
-      onOpen();
-    };
-
-    const handleDelete = (item: T) => {
-      console.log("hola", item);
-    };
-
-    const handleCreate = () => {
-      setSelectedItem(null);
-      onOpen();
-    };
-
-    return {
-      handleEdit,
-      handleView,
-      handleDelete,
-      handleCreate,
-      selectedItem,
-      isOpen,
-      onOpenChange,
-    };
+  const handleEdit = (item: ID) => {
+    setSelectedItem(item);
+    setMode("editar");
+    onOpen();
   };
+
+  const handleView = (item: ID) => {
+    setSelectedItem(item);
+    setMode("ver");
+    onOpen();
+  };
+
+  const handleDelete = (item: ID) => {
+    console.log("hola", item);
+  };
+
+  const handleCreate = () => {
+    setSelectedItem(null);
+    setMode("crear");
+    onOpen();
+  };
+
+  return {
+    handleEdit,
+    handleView,
+    handleDelete,
+    handleCreate,
+    selectedItem,
+    mode,
+    isOpen,
+    onOpenChange,
+  };
+};

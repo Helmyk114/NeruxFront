@@ -9,12 +9,12 @@ interface ButtonAtomProps {
   endIcon?: React.ReactNode;
   size?: "sm" | "md" | "lg";
   text?: string;
-  backgroundColor?: string; 
+  backgroundColor?: string;
   onClick?: () => void;
   className?: string;
 }
 
-const ButtonAtom: React.FC<ButtonAtomProps> = ({
+export function ButtonAtom({
   texto,
   type = "submit",
   disabled = false,
@@ -23,15 +23,17 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
   onClick,
   size = "md",
   text,
-  backgroundColor = "bg-button-active", 
+  backgroundColor = "bg-button-active",
   className,
-}) => {
+}: ButtonAtomProps): JSX.Element {
   return (
     <Button
       type={type}
       isDisabled={disabled}
       className={`${
-        disabled ? "bg-button-disable text-texts-dislabel font-OpenSans" : backgroundColor
+        disabled
+          ? "bg-button-disable text-typography-thrith font-OpenSans"
+          : backgroundColor
       } ${className} ${text} rounded-lg font-OpenSans`}
       startContent={startIcon}
       endContent={endIcon}
@@ -41,6 +43,4 @@ const ButtonAtom: React.FC<ButtonAtomProps> = ({
       {texto}
     </Button>
   );
-};
-
-export default ButtonAtom;
+}

@@ -31,7 +31,8 @@ export default function InputTextArea({
           inputWrapper: [
             "dark:focus-within:border-button-active",
             "dark:hover:border-button-active",
-            "dark:border-input-border",
+            "dark:border-base-fourth",
+            "dark:bg-base-thrith",
             hasError
               ? "dark:!border-semantic-error dark:hover:!border-semantic-error dark:focus-within:!border-semantic-error"
               : "!hover:border-button-active !focus:border-button-active",

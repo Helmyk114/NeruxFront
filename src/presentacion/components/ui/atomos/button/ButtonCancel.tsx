@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import ButtonAtom from "./ButtonAtom";
+import { ButtonAtom } from "./ButtonAtom";
 
 interface ButtonCancelProps {
   onClose: () => void;

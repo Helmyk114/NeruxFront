@@ -5,7 +5,6 @@ import { themeStore } from "../../../../../store/themeSotre";
 export default function ThemeSwitcher() {
   const { theme, toggleTheme } = themeStore();
 
-  // Al montar, aplicamos la clase
   useEffect(() => {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
@@ -13,7 +12,7 @@ export default function ThemeSwitcher() {
 
   return (
     <button onClick={toggleTheme}>
-      Cambiar a modo {theme === "dark" ? "oscuro" : "claro"}
+      Cambiar a modo {theme === "dark" ? "claro" : "oscuro"}
     </button>
   );
 }

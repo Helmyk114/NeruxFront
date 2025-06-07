@@ -17,7 +17,7 @@ export function CrearProductos(): JSX.Element {
   return (
     <TemplatePageTable
       titulo1="Agrega un nuevo producto"
-      titulo2="Completa los siguientes datos para registrar un nuevo producto en tu inventario."
+      titulo2="Completa los datos para registrar un nuevo producto en tu inventario."
       sideBar={<Sidebar />}
       mainContent={
         <>

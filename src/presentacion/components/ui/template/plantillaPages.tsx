@@ -1,7 +1,6 @@
 import React from "react";
 import { sidebarStore } from "../../../../store/sidebarStore";
 import { Title1, Title2 } from "../atomos";
-import { BreadcrumbsCustom } from "../organismo/breadcrumb/breadcrumb";
 
 interface TemplatePageProps {
   sideBar: React.ReactNode;
@@ -25,9 +24,8 @@ export function TemplatePageTable({
           isCollapsed ? "p-12" : "p-12"
         }  overflow-auto h-screen`}
       >
-        <BreadcrumbsCustom />
-        <Title1 clasname="mt-4 mb-2 text-start" titulo={titulo1 || ""} />
-        <Title2 clasname="mb-[12.67px]" titulo={titulo2 || ""} />
+        <Title1 clasname=" mb-1.5 text-start" titulo={titulo1 || ""} />
+        <Title2 clasname="mb-6" titulo={titulo2 || ""} />
         {mainContent}
       </div>
     </div>

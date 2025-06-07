@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useActionTables, UseFetchGetPaginatio } from "../../../../../components/hook";
+import { useActionTables, UseFetchGet } from "../../../../../components/hook";
 import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
 import { TemplatePageTable } from "../../../../../components/ui/template";
 import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
@@ -10,13 +10,11 @@ import Drawer1 from "../../../../../components/ui/organismo/tablas/config/drawer
 
 
 const Clientes: React.FC = () => {
-  const [currentePage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGetPaginatio<InfoBusiness>(
+  const { data, metadata, loading, error } = UseFetchGet<InfoBusiness>(
     "/user-Admin",
-    currentePage,
-    pageSize,
-    false
+    {paginated: true, currentPage, pageSize, reload: false}
   );
 
   const handlePageChange = (newPage: number) => {
@@ -30,7 +28,7 @@ const Clientes: React.FC = () => {
     selectedItem,
     isOpen,
     onOpenChange,
-  } = useActionTables<InfoBusiness>();
+  } = useActionTables<number | string>();
 
   return (
     <TemplatePageTable
@@ -44,9 +42,9 @@ const Clientes: React.FC = () => {
             nameButton="Nuevo cliente +"
             columnas={columnsClient}
             columnRender={clientColumnRender(
-              handleEdit,
-              handleView,
-              handleDelete
+              (item) => handleEdit(item.idUser),
+              (item) => handleView(item.idUser),
+              (item) => handleDelete(item.idUser)
             )}
             data={data || []}
             getRowKey={(item) => item.idUser}

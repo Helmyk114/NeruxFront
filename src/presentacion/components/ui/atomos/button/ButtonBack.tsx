@@ -1,5 +1,5 @@
-import ButtonAtom from "./ButtonAtom";
 import { useNavigate } from "react-router-dom";
+import { ButtonAtom } from "./ButtonAtom";
 
 interface ButtonBackProps {
   texto: string;

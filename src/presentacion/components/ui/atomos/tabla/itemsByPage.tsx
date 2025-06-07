@@ -8,7 +8,7 @@ export function ItemsByPage({ tabla, onRowsPerPageChange}: ItemsByPageProps): JS
     <label className="flex items-center text-textInput text-sm font-normal">
       {`${tabla} por página:`}
       <select
-        className="bg-transparent outline-none text-textInput text-sm font-normal"
+        className="bg-transparent outline-none text-typography-second text-sm font-light"
         onChange={onRowsPerPageChange}
       >
         <option value="5">5</option>

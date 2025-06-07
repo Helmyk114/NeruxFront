@@ -2,7 +2,7 @@ import ModalTemplate from "../../../presentacion/components/ui/template/modal/po
 import { Title1 } from "../../../presentacion/components/ui/atomos/textos/titles/level1";
 import { TextoInicio } from "../../../presentacion/components/ui/atomos";
 import { IconCircleCheck } from "@tabler/icons-react";
-import ButtonAtom from "../../../presentacion/components/ui/atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../../presentacion/components/ui/atomos/button/ButtonAtom";
 
 interface PopUpSuccessProps {
   isOpen: boolean;

@@ -2,7 +2,7 @@ import { Field, Formik } from "formik";
 import { crearEmpresaInitialValues } from "./crearEmpresaInitialValues";
 import { crearEmpresaValidationSchema } from "./crearEmpresaValidationShema";
 import InputFiled from "../../../../atomos/form/Input";
-import ButtonAtom from "../../../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
 import { createBusinessUseCase } from "../../../../../../../domain/usecases/business/createBusinessUseCase";
 import { useNavigate } from "react-router-dom";
 

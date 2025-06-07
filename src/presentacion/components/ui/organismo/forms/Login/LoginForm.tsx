@@ -5,7 +5,7 @@ import { authUseCase } from "../../../../../../domain/usecases/auth/authUseCase"
 import { Title1 } from "../../../atomos/textos/titles/level1";
 import InputFiled from "../../../atomos/form/Input";
 import InputPassword from "../../../atomos/form/InputPassword";
-import ButtonAtom from "../../../atomos/button/ButtonAtom";
+import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 
 import { useState } from "react";
 import { TextError } from "../../../atomos/textos/textError";
