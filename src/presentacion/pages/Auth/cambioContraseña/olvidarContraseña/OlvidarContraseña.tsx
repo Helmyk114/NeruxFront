@@ -1,6 +1,7 @@
-import { PlantillaGenerica } from "../../../components/ui/template";
-import { TextoInicio } from "../../../components/ui/atomos";
-import OlvideContraseñaForm from "../../../components/ui/organismo/forms/OlvidarContrasena";
+import { TextoInicio } from "../../../../components/ui/atomos";
+import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvidarContrasena";
+import { PlantillaGenerica } from "../../../../components/ui/template";
+
 
 
 export function OlvidarContraseña(): JSX.Element {

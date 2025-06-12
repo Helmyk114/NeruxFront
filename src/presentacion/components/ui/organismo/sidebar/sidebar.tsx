@@ -14,6 +14,7 @@ import {
 import { Logo } from "../../atomos/paginaPrincipal/logo";
 import { sidebarStore } from "../../../../../store/sidebarStore";
 import ThemeSwitcher from "../forms/switcherTheme";
+import { UserRole } from "../../../../../shared/types/loginTypes";
 
 export const Sidebar = () => {
   const { isCollapsed, toggle } = sidebarStore();
@@ -26,7 +27,7 @@ export const Sidebar = () => {
   let startItems;
   let endItes;
 
-  if (user.role === "Admin") {
+  if (user.role === UserRole.ADMIN) {
     const key =
       user.business === "" || user.business === null
         ? "adminWithoutBusiness"

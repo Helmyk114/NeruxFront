@@ -41,7 +41,9 @@ export function Categories(): JSX.Element {
     handleDelete,
     handleCreate,
     selectedItem,
+    setMode,
     mode,
+    onOpen,
     isOpen,
     onOpenChange,
   } = useActionTables<number | string>();
@@ -99,6 +101,8 @@ export function Categories(): JSX.Element {
               isOpen={isOpen}
               onClose={onOpenChange}
               id={selectedItem}
+              setMode={setMode}
+              onOpen={onOpen}
             />
           )}
         </>

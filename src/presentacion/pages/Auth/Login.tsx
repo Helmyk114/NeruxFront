@@ -1,10 +1,9 @@
-import { PlantillaGenerica } from "../components/ui/template";
-import { TextoInicio } from "../components/ui/atomos";
-import LoginForm from "../components/ui/organismo/forms/Login/LoginForm";
-import { loginTextConfig } from "../../shared/constants/texts/loginTextConfig";
+import { PlantillaGenerica } from "../../components/ui/template";
+import { TextoInicio } from "../../components/ui/atomos";
+import LoginForm from "../../components/ui/organismo/forms/Login/LoginForm";
+import { loginTextConfig } from "../../../shared/constants/texts/loginTextConfig";
 
 export default function Login(): JSX.Element {
-
   return (
     <PlantillaGenerica
       texto={
@@ -23,7 +22,6 @@ export default function Login(): JSX.Element {
               className: loginTextConfig.systemText.className,
             },
           ]}
-
           className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-sidebar-prymary to-text"
         />
       }

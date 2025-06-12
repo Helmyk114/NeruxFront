@@ -1,40 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import App from "../App";
-import {
-  Inicio,
-  NuevaContraseña,
-  OlvidarContraseña,
-  RestablecerContraseña,
-  Products,
-  CrearProductos,
-  Home,
-} from "../presentacion/pages";
-
-import { CrearEmpresa } from "../presentacion/pages/users/admin/Empresa/CrearEmpresa";
-import Clientes from "../presentacion/pages/users/superAdmin/Client/table/Clientes";
-import { Categories } from "../presentacion/pages/users/admin/Categorias/tabla/Categorias";
+import { BrowserRouter as Router, Routes } from "react-router-dom";
+import { AdminRoutes } from "./module/AdminRoutes";
+import { SuperAdminRoutes } from "./module/SuperAdminRoutes";
+import { AuthRoutes } from "./module/AuthRoutes";
 
 export function AppRouter(): JSX.Element {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/Olvide/Contraseña" element={<OlvidarContraseña />} />
-        <Route path="/Nueva/Contraseña" element={<NuevaContraseña />} />
-        <Route
-          path="/Restablecer/Contraseña"
-          element={<RestablecerContraseña />}
-        />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Clientes" element={<Clientes />} />
-        //Admin
-        <Route path="/Inicio" element={<Inicio />} />
-        <Route path="/Productos" element={<Products />} />
-        <Route path="/Productos/Crear" element={<CrearProductos />} />
-
-        <Route path="/Categorias" element={<Categories />} />
-        //Onboarding-Admin
-        <Route path="/Crear/Empresa" element={<CrearEmpresa />} />
+        {AuthRoutes() }
+        {SuperAdminRoutes()}
+        {AdminRoutes()}
       </Routes>
     </Router>
   );

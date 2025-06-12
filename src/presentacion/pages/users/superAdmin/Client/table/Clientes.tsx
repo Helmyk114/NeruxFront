@@ -9,7 +9,7 @@ import { clientColumnRender } from "./clientColumnRender";
 import Drawer1 from "../../../../../components/ui/organismo/tablas/config/drawerPrueba";
 
 
-const Clientes: React.FC = () => {
+export const Clientes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const { data, metadata, loading, error } = UseFetchGet<InfoBusiness>(
@@ -69,5 +69,3 @@ const Clientes: React.FC = () => {
     />
   );
 };
-
-export default Clientes;

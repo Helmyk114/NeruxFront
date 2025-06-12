@@ -36,7 +36,9 @@ export const useActionTables = <ID extends string | number>() => {
     handleDelete,
     handleCreate,
     selectedItem,
+    setMode,
     mode,
+    onOpen,
     isOpen,
     onOpenChange,
   };

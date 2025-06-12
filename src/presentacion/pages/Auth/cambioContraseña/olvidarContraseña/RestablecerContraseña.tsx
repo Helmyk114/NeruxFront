@@ -1,7 +1,6 @@
-import { PlantillaGenerica } from "../../../components/ui/template";
-import { TextoInicio } from "../../../components/ui/atomos";
-import OlvidarContraseñaForm from "../../../components/ui/organismo/forms/NewPassword/NewPassword";
-
+import { TextoInicio } from "../../../../components/ui/atomos";
+import { PlantillaGenerica } from "../../../../components/ui/template";
+import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvidarContrasena";
 
 export function RestablecerContraseña(): JSX.Element {
 
@@ -26,7 +25,7 @@ export function RestablecerContraseña(): JSX.Element {
         />
       }
       formulario={
-        <OlvidarContraseñaForm />
+        <OlvideContraseñaForm/>
       }
     />
   );
