@@ -1,18 +1,18 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { Category } from "@/domain/entities";
-import { categoriasUseCase } from "@/domain/usecases";
+import { Proveedor } from "@/domain/entities";
+import { proveedoresUseCase } from "@/domain/usecases/inventario/categoria/proveedor.useCase";
 import { useItemFetch } from "@/presentacion/components/hook";
-import { categoriasConfig } from "@/presentacion/config";
+import { proveedorConfig } from "@/presentacion/config";
 import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
 import {
   ButtonAtom,
   ButtonCancel,
   Title3,
 } from "@/presentacion/components/ui/atomos";
-import { CategoriasFormFields } from "@/presentacion/components/ui/moleculas";
+import { ProveedorFormFields } from "@/presentacion/components/ui/moleculas";
 
-interface CategoriasFormDrawerProps {
+interface ProveedorFormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
@@ -20,22 +20,22 @@ interface CategoriasFormDrawerProps {
   mode: "crear" | "editar";
 }
 
-export function CategoriasFormDrawer({
+export function ProveedorFormDrawer({
   isOpen,
   onClose,
   onSuccess,
   id,
   mode,
-}: CategoriasFormDrawerProps): JSX.Element | null {
+}: ProveedorFormDrawerProps): JSX.Element | null {
   const shouldFetchData = mode === "editar" && !!id && isOpen;
 
   const {
-    data: categoria,
+    data: proveedor,
     loading,
     error,
-  } = useItemFetch<Category>(
+  } = useItemFetch<Proveedor>(
     async (id) => {
-      const data = await categoriasUseCase.getById("/category", id);
+      const data = await proveedoresUseCase.getById("/", id);
       return { data };
     },
     {
@@ -46,16 +46,19 @@ export function CategoriasFormDrawer({
   );
 
   const initialValue = useMemo(() => {
-    if (mode === "editar" && categoria) {
+    if (mode === "editar" && proveedor) {
       return {
-        name: categoria.name,
-        description: categoria.description,
+        name: proveedor.name,
+        business: proveedor.business,
+        email: proveedor.email,
+        phone: proveedor.phone,
+        note: proveedor.note,
       };
     }
-    return categoriasConfig.initialValues;
-  }, [mode, categoria]);
+    return proveedorConfig.intiatialValues;
+  }, [mode, proveedor]);
 
-  const isReady = mode === "crear" || (mode === "editar" && categoria);
+  const isReady = mode === "crear" || (mode === "editar" && proveedor);
 
   if (loading && mode === "editar") return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -65,13 +68,13 @@ export function CategoriasFormDrawer({
     <Formik
       initialValues={initialValue}
       enableReinitialize={true}
-      validationSchema={categoriasConfig.validationSchema}
+      validationSchema={proveedorConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
-            await categoriasUseCase.create("/create-category", values);
+            await proveedoresUseCase.create("/create-category", values);
           } else {
-            await categoriasUseCase.update("/category", Number(id), values);
+            await proveedoresUseCase.update("/category", Number(id), values);
           }
           setTimeout(() => {
             setSubmitting(false);
@@ -99,13 +102,13 @@ export function CategoriasFormDrawer({
               <Title3
                 titulo={
                   mode === "crear"
-                    ? "Crear nueva categoría"
-                    : "Editar categoría"
+                    ? "Crear un nuevo proveedor"
+                    : "Editar proveedor"
                 }
                 classname="mt-6"
               />
             }
-            body={<CategoriasFormFields />}
+            body={<ProveedorFormFields />}
             footer={
               <div className="flex justify-between gap-5">
                 <ButtonCancel onClose={onClose} className="w-[190px]" />
@@ -113,15 +116,15 @@ export function CategoriasFormDrawer({
                   onClick={() => handleSubmit()}
                   texto={
                     mode === "crear"
-                      ? "Guardar categoría"
-                      : "Actualizar categoría"
+                      ? "Guardar proveedor"
+                      : "Actualizar proveedor"
                   }
                   className="w-[190px]"
                   disabled={
                     isSubmitting ||
                     !isValid ||
                     !values.name ||
-                    !values.description
+                    !values.phone
                   }
                 />
               </div>

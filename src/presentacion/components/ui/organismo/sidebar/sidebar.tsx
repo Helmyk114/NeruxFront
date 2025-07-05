@@ -1,26 +1,32 @@
 import { useState } from "react";
-import Logotipo from "../../../../../images/Logotipo.png";
+import { Logo } from "../../atomos";
+import Logito from "@/images/Logito.png";
+import Logotipo from "@/images/Logotipo.png";
+import { UserRole } from "@/shared/types/loginTypes";
+import { sidebarStore } from "@/store/sidebarStore";
+import { userStore } from "@/store/userStore";
 import { useNavigate } from "react-router-dom";
-import { sidebarConfigEnd, sidebarConfigStar, SidebarItem } from "./sidebar.config";
-import Logito from "../../../../../images/Logito.png";
-import { AuthServices } from "../../../../../infrastructure";
-import { userStore } from "../../../../../store/userStore";
+import { AuthServices } from "@/infrastructure";
+import ThemeSwitcher from "../forms/switcherTheme";
+import {
+  sidebarConfigEnd,
+  sidebarConfigStar,
+  SidebarItem,
+} from "./sidebar.config";
 import {
   IconChevronDown,
   IconChevronLeft,
   IconChevronRight,
   IconLogout,
 } from "@tabler/icons-react";
-import { Logo } from "../../atomos/paginaPrincipal/logo";
-import { sidebarStore } from "../../../../../store/sidebarStore";
-import ThemeSwitcher from "../forms/switcherTheme";
-import { UserRole } from "../../../../../shared/types/loginTypes";
 
 export const Sidebar = () => {
   const { isCollapsed, toggle } = sidebarStore();
   const user = userStore((state) => state.user);
   const navigate = useNavigate();
-  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
+  const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
+    {}
+  );
 
   if (!user) return null;
 
@@ -50,9 +56,9 @@ export const Sidebar = () => {
   };
 
   const toggleSubMenu = (index: number) => {
-    setExpandedItems(prev => ({
+    setExpandedItems((prev) => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !prev[index],
     }));
   };
 
@@ -60,9 +66,9 @@ export const Sidebar = () => {
     const active = isActive(item.path);
     const hasSubItems = item.subItems && item.subItems.length > 0;
     const isExpanded = expandedItems[item.index];
-    
+
     return (
-      <div key={item.index} className={`${isSubItem ? 'ml-6' : ''}`}>
+      <div key={item.index} className={`${isSubItem ? "ml-6" : ""}`}>
         <button
           onClick={() => {
             if (hasSubItems) {
@@ -74,8 +80,8 @@ export const Sidebar = () => {
           className={`flex items-center justify-between w-full p-2 rounded-lg font-OpenSans transition-all duration-1000 overflow-hidden
             ${
               active
-                ? "bg-button-active text-sidebar-prymary"
-                : "hover:bg-button-active text-sidebar-prymary"
+                ? "bg-button-active text-typography-first"
+                : "hover:bg-button-active text-typography-first"
             }`}
         >
           <div className="flex items-center">
@@ -93,17 +99,21 @@ export const Sidebar = () => {
               {item.label}
             </span>
           </div>
-          
+
           {hasSubItems && !isCollapsed && (
             <span className="ml-2">
-              {isExpanded ? <IconChevronDown size={16} /> : <IconChevronRight size={16} />}
+              {isExpanded ? (
+                <IconChevronDown size={16} />
+              ) : (
+                <IconChevronRight size={16} />
+              )}
             </span>
           )}
         </button>
-        
+
         {hasSubItems && isExpanded && !isCollapsed && (
           <div className="mt-1 space-y-1">
-            {item.subItems?.map(subItem => renderItem(subItem, true))}
+            {item.subItems?.map((subItem) => renderItem(subItem, true))}
           </div>
         )}
       </div>
@@ -114,7 +124,7 @@ export const Sidebar = () => {
     <aside
       className={`flex flex-col justify-between transition-all duration-300 ${
         isCollapsed ? "w-20" : "w-64"
-      } h-screen bg-background-four p-4 rounded-r-2xl`}
+      } h-screen bg-base-sidebar p-4 rounded-r-2xl`}
     >
       <div
         className={`flex items-center mb-4 ${
@@ -132,7 +142,7 @@ export const Sidebar = () => {
         {!isCollapsed && (
           <button
             onClick={toggle}
-            className="ml-2 p-2 text-white rounded hover:bg-sidebar-button"
+            className="ml-2 p-2 text-typography-first rounded hover:bg-sidebar-button"
           >
             <IconChevronLeft />
           </button>
@@ -142,7 +152,7 @@ export const Sidebar = () => {
       {isCollapsed && (
         <button
           onClick={toggle}
-          className="fixed top-5 ml-12 p-2 text-white rounded hover:bg-sidebar-button"
+          className="fixed top-5 ml-12 p-2 text-typography-first rounded hover:bg-sidebar-button"
         >
           <IconChevronRight />
         </button>
@@ -150,13 +160,13 @@ export const Sidebar = () => {
 
       <div>
         <nav className="flex flex-col space-y-2 -mt-32">
-          {startItems.map(item => renderItem(item))}
+          {startItems.map((item) => renderItem(item))}
         </nav>
       </div>
 
       <div className="flex flex-col space-y-2 pt-4 mb-5">
         <nav className="flex flex-col space-y-2">
-          {endItes.map(item => renderItem(item))}
+          {endItes.map((item) => renderItem(item))}
         </nav>
         <button
           onClick={() => {
@@ -176,9 +186,9 @@ export const Sidebar = () => {
             Cerrar Sesión
           </span>
         </button>
-          <span>
+        <span>
           <ThemeSwitcher />
-          </span>
+        </span>
       </div>
     </aside>
   );

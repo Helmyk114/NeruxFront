@@ -5,9 +5,9 @@ import { ButtonAtom } from "../../atomos/button/ButtonAtom";
 import { olvideContraseñaValidation } from "../../../../../shared/validations/OlvidarContraseñaValidation";
 
 export default function OlvideContraseñaForm(): JSX.Element {
-  const initialValues = {
+ const initialValues = {
     email: "",
-  };
+  }; 
 
   return (
     <div className="w-full">

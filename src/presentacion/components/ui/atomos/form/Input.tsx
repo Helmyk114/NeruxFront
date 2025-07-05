@@ -1,5 +1,4 @@
 import { Input } from "@heroui/react";
-import { IconUser } from "@tabler/icons-react";
 import { useField } from "formik";
 import { TextError } from "../textos/textError";
 
@@ -7,11 +6,12 @@ interface InputFieldProps {
   label: string;
   nombre: string;
   isRequired?: true | false;
-  placerholder?: string;
+  placeholder?: string;
   type?: "text" | "email" | "number";
   className?: string;
   minLength?: number;
   maxLength?: number;
+  icono?: JSX.Element; 
 }
 
 export default function InputFiled({
@@ -22,7 +22,8 @@ export default function InputFiled({
   className,
   minLength,
   maxLength,
-  placerholder,
+  placeholder,
+  icono
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
@@ -52,12 +53,13 @@ export default function InputFiled({
         minLength={minLength}
         label={label}
         isRequired={isRequired}
-        placeholder={placerholder}
+        placeholder={placeholder}
         variant="bordered"
         labelPlacement="outside"
         isInvalid={false}
         endContent={
-          <IconUser className="text-2xl text-default-400 pointer-events-none" />
+          icono
+          //<IconUser className="text-2xl text-default-400 pointer-events-none" />
         }
       />
       {hasError && typeof meta.error === "string" ? (
