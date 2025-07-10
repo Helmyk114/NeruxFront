@@ -8,7 +8,7 @@ export * from "./forms/NewPassword/NewPassword";
 export * from "./forms/NewPassword/NewPasswordInitialValues";
 export * from "./forms/NewPassword/NewPasswordTypes";
 export * from "./forms/NewPassword/NewPasswordValidationSchema";
-export * from "./forms/OlvidarContrasena";
+export * from "./forms/OlvideContraseña/OlvidarContrasena";
 export * from "./forms/Productos/CrearProductos/CrearProdcutosForm";
 export * from "./forms/Productos/CrearProductos/createProductConfig";
 export * from "./modal";

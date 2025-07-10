@@ -1,14 +1,12 @@
-import { Title1 } from "../../atomos/textos/titles/level1";
-import InputFiled from "../../atomos/form/Input";
+import { Title1 } from "../../../atomos/textos/titles/level1";
+import InputFiled from "../../../atomos/form/Input";
 import { Field, Formik } from "formik";
-import { ButtonAtom } from "../../atomos/button/ButtonAtom";
-import { olvideContraseñaValidation } from "../../../../../shared/validations/OlvidarContraseñaValidation";
+import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
+
+import { olvideContraseñaConfig } from "./OlvideContraseñaConfig";
 
 export default function OlvideContraseñaForm(): JSX.Element {
-  const initialValues = {
-    email: "",
-  };
-
+  
   return (
     <div className="w-full">
       <Title1
@@ -16,8 +14,8 @@ export default function OlvideContraseñaForm(): JSX.Element {
         titulo="Recupera tu contraseña"
       />
       <Formik
-        initialValues={initialValues}
-        validationSchema={olvideContraseñaValidation}
+        initialValues={olvideContraseñaConfig.initialValues}
+        validationSchema={olvideContraseñaConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           //const result = await handleLoginValidation(values);
           const email = values.email;

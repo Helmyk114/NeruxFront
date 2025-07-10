@@ -1,6 +1,6 @@
 import { TextoInicio } from "../../../../components/ui/atomos";
 import { PlantillaGenerica } from "../../../../components/ui/template";
-import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvidarContrasena";
+import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvideContraseña/OlvidarContrasena";
 
 export function RestablecerContraseña(): JSX.Element {
 
