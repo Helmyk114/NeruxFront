@@ -12,7 +12,7 @@ export const ProveedorColumnRender = (
     <SimpleCell textTop={proveedor.name || ""} />
   ),
   business: (proveedor: Proveedor) => (
-    <SimpleCell textTop={proveedor.business || "-"} />
+    <SimpleCell textTop={proveedor.supplier || "-"} />
   ),
   phone: (proveedor: Proveedor) => (
     <SimpleCell textTop={proveedor.phone || ""} />
