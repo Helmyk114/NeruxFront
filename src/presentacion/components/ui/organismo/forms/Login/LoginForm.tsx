@@ -1,15 +1,10 @@
-import { Field, Formik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { authUseCase } from "../../../../../../domain/usecases/auth/authUseCase";
-
-import { Title1 } from "../../../atomos/textos/titles/level1";
-import InputFiled from "../../../atomos/form/Input";
-import InputPassword from "../../../atomos/form/InputPassword";
-import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
-
+import { Formik } from "formik";
 import { useState } from "react";
-import { TextError } from "../../../atomos/textos/textError";
-import { loginConfig } from './LoginFormCongif';
+import { useNavigate } from "react-router-dom";
+import { loginConfig } from "@/presentacion/config/forms/loginConfig";
+import { LoginFormfields } from "../../../moleculas";
+import { authUseCase } from "@/domain/usecases";
+import { ButtonAtom, TextError, Title1 } from "../../../atomos";
 
 export default function LoginForm(): JSX.Element {
   const navigate = useNavigate();
@@ -17,15 +12,16 @@ export default function LoginForm(): JSX.Element {
 
   return (
     <div className="w-full">
-      <Title1 clasname="mb-[58px] text-center text-texts-level1" titulo="Iniciar sesión" />
+      <Title1
+        clasname="mb-[58px] text-center text-typography-first"
+        titulo="Iniciar sesión"
+      />
       <Formik
         initialValues={loginConfig.initialValues}
         validationSchema={loginConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const { token, redirect } = await authUseCase.login(
-              values
-            );
+            const { token, redirect } = await authUseCase.login(values);
             console.log("Token de autenticación:", token);
             navigate(redirect);
           } catch (error) {
@@ -41,32 +37,7 @@ export default function LoginForm(): JSX.Element {
       >
         {({ isSubmitting, isValid, values, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <div>
-              <Field
-                nombre="username"
-                label="Usuario"
-                component={InputFiled}
-                isRequired={true}
-                className="w-3/5 mx-auto"
-              />
-            </div>
-            <div className="mt-11">
-              <Field
-                nombre="password"
-                label="Contraseña"
-                component={InputPassword}
-                isRequired={true}
-                className="w-3/5 mx-auto"
-              />
-            </div>
-            <div className="w-3/5 mx-auto text-end">
-              <a
-                href="/Olvide/Contraseña"
-                className="font-OpenSans text-semantic-informacion text-sm mt-2"
-              >
-                ¿Olvidaste tu contraseña?
-              </a>
-            </div>
+            <LoginFormfields />
             <div className="flex justify-center mt-6">
               <ButtonAtom
                 texto="Iniciar sesión"

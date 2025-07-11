@@ -5,7 +5,6 @@ export * from "./forms/Business/CrearEmpresa/crearEmpresaTypes";
 export * from "./forms/Business/CrearEmpresa/crearEmpresaValidationShema";
 export * from "./forms/Drawer";
 export * from "./forms/Login/LoginForm";
-export * from "./forms/Login/LoginFormCongif";
 export * from "./forms/NewPassword/NewPassword";
 export * from "./forms/NewPassword/NewPasswordInitialValues";
 export * from "./forms/NewPassword/NewPasswordTypes";

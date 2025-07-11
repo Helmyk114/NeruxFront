@@ -10,14 +10,14 @@ interface ProveedorConfig {
 export const  proveedorConfig: ProveedorConfig = {
   intiatialValues: {
     name: "",
-    business: "",
+    supplier: "",
     email: "",
     phone: "",
     note: "",
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().concat(ValidationRules.campoRequerido()),
-    business: Yup.string().optional(),
+    supplier: Yup.string().optional(),
     email: Yup.string().optional().concat(ValidationRules.email()),
     phone: Yup.string().concat(ValidationRules.campoRequerido()),
     note: Yup.string().optional(),

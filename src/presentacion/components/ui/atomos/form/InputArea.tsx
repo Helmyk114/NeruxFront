@@ -27,7 +27,7 @@ export default function InputTextArea({
       <Textarea
         {...field}
         classNames={{
-          label: ["font-OpenSans"],
+          label: ["font-OpenSans focus:text-texts-level1"],
           inputWrapper: [
             "dark:focus-within:border-button-active",
             "dark:hover:border-button-active",

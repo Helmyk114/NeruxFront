@@ -14,7 +14,7 @@ export function ProveedorFormFields(): JSX.Element {
       />
 
       <Field 
-        nombre="business"
+        nombre="supplier"
         label="Empresa (opcional)"
         component={InputFiled}
         isRequired={false}

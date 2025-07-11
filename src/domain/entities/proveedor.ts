@@ -1,7 +1,7 @@
 export interface Proveedor {
   id: number | string;
   name: string;
-  business: string;
+  supplier: string;
   email: string;
   phone: string;
   note: string;

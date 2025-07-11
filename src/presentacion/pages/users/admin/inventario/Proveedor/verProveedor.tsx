@@ -23,7 +23,7 @@ export function VerProveedores({
 }: VerProveedorProps): JSX.Element {
   const { data: proveedor, loading, error } = useItemFetch<Proveedor>(
     async (id) => {
-      const data = await proveedoresUseCase.getById("/", id);
+      const data = await proveedoresUseCase.getById("/supplier", id);
       return { data };
     },
     {
@@ -54,7 +54,7 @@ export function VerProveedores({
           <div className="-mb-3">Nombre</div>
           <Title2 titulo={proveedor?.name}/>
           <div className="-mb-3">Empresa</div>
-          <Title2 titulo={proveedor?.business || "-"}/>
+          <Title2 titulo={proveedor?.supplier || "-"}/>
           <div className="-mb-3">Correo</div>
           <Title2 titulo={proveedor?.email || "-"}/>
           

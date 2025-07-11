@@ -11,7 +11,7 @@ interface InputFieldProps {
   className?: string;
   minLength?: number;
   maxLength?: number;
-  icono?: JSX.Element; 
+  icono?: JSX.Element;
 }
 
 export default function InputFiled({
@@ -23,7 +23,7 @@ export default function InputFiled({
   minLength,
   maxLength,
   placeholder,
-  icono
+  icono,
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
@@ -35,12 +35,16 @@ export default function InputFiled({
         classNames={{
           label: ["font-OpenSans", "focus:text-texts-level1"],
           inputWrapper: [
+            "!text-texts-level1",
+            "dark:!text-texts-level1", 
             "focus-within:!border-button-active",
-            "hover:!border-button-active",
             "dark:focus-within:border-button-active",
+            "hover:!border-button-active",
             "dark:hover:border-button-active",
             "dark:border-base-fourth",
+            "border-base-fourth",
             "dark:bg-base-thrith",
+            "bg-base-thrith",
             hasError
               ? "!border-semantic-error hover:!border-semantic-error focus-within:!border-semantic-error"
               : "dark:hover:!border-button-active dark:focus:!border-button-active",
@@ -57,10 +61,7 @@ export default function InputFiled({
         variant="bordered"
         labelPlacement="outside"
         isInvalid={false}
-        endContent={
-          icono
-          //<IconUser className="text-2xl text-default-400 pointer-events-none" />
-        }
+        endContent={icono}
       />
       {hasError && typeof meta.error === "string" ? (
         <TextError error={meta.error} classname={className} />

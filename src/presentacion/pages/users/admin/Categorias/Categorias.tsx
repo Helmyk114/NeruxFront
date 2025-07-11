@@ -55,7 +55,7 @@ export function Categories(): JSX.Element {
       sideBar={<Sidebar />}
       mainContent={
         <>
-          {data && data.length > 0 ? (
+          {data && data.length > 1 ? (
             <>
               <TableSimple
                 tabla="Categorías"

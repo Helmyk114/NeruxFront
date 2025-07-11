@@ -23,7 +23,7 @@ export function Proveedores(): JSX.Element {
   const { data, metadata, loading, error } = useFetchPaginated<Proveedor>(
     (options) =>
       proveedoresUseCase.getPaginated(
-        "/",
+        "/suppliers",
         options.currentPage ?? 1,
         options.pageSize ?? 5
       ),
@@ -49,7 +49,12 @@ export function Proveedores(): JSX.Element {
     onOpen,
     isOpen,
     onOpenChange,
-  } = useActionTables<number | string>();
+  } = useActionTables<number | string>(
+    async (id) => {
+      await proveedoresUseCase.delete("/supplier", id);
+      setReload((prev) => !prev);
+    }
+  );
 
   return (
     <TemplatePageTable

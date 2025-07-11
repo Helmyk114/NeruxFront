@@ -1,7 +1,7 @@
-import { PlantillaGenerica } from "../../components/ui/template";
-import { TextoInicio } from "../../components/ui/atomos";
-import LoginForm from "../../components/ui/organismo/forms/Login/LoginForm";
-import { loginTextConfig } from "../../../shared/constants/texts/loginTextConfig";
+import LoginForm from "@/presentacion/components/ui/organismo/forms/Login/LoginForm";
+import { TextoInicio } from "@/presentacion/components/ui/atomos";
+import { PlantillaGenerica } from "@/presentacion/components/ui/template";
+import { loginTextConfig } from "@/shared/constants/texts/loginTextConfig";
 
 export default function Login(): JSX.Element {
   return (

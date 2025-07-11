@@ -23,10 +23,10 @@ export const categoriaService: CategoryRepository = {
 
   getById: async (endpoint: string, id: number | string): Promise<Category> => {
     try {
-      const respeusta = await Axios.get<ResponseApi<Category>>(
+      const respuesta = await Axios.get<ResponseApi<Category>>(
         `${endpoint}/${id}`
       );
-      return respeusta.data;
+      return respuesta.data;
     } catch (error) {
       throw new Error(`Error al obtener la categoria por ID: ${error}`);
     }

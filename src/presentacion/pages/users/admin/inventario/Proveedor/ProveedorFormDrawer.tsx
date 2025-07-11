@@ -11,6 +11,8 @@ import {
   Title3,
 } from "@/presentacion/components/ui/atomos";
 import { ProveedorFormFields } from "@/presentacion/components/ui/moleculas";
+import { toastStore } from "@/store/toastStore";
+
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;
@@ -28,6 +30,7 @@ export function ProveedorFormDrawer({
   mode,
 }: ProveedorFormDrawerProps): JSX.Element | null {
   const shouldFetchData = mode === "editar" && !!id && isOpen;
+  const newToast = toastStore((state) => state.newToast);
 
   const {
     data: proveedor,
@@ -35,7 +38,7 @@ export function ProveedorFormDrawer({
     error,
   } = useItemFetch<Proveedor>(
     async (id) => {
-      const data = await proveedoresUseCase.getById("/", id);
+      const data = await proveedoresUseCase.getById("/supplier", id);
       return { data };
     },
     {
@@ -49,7 +52,7 @@ export function ProveedorFormDrawer({
     if (mode === "editar" && proveedor) {
       return {
         name: proveedor.name,
-        business: proveedor.business,
+        supplier: proveedor.supplier,
         email: proveedor.email,
         phone: proveedor.phone,
         note: proveedor.note,
@@ -72,9 +75,17 @@ export function ProveedorFormDrawer({
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
-            await proveedoresUseCase.create("/create-category", values);
+            await proveedoresUseCase.create("/create-supplier", values);
+            newToast({
+              mensaje: "Proveedor creado exitosamente",
+              tipo: "success",
+            });
           } else {
-            await proveedoresUseCase.update("/category", Number(id), values);
+            await proveedoresUseCase.update("", Number(id), values);
+            newToast({
+              mensaje: "Proveedor actualizado correctamente",
+              tipo: "success",
+            });
           }
           setTimeout(() => {
             setSubmitting(false);
@@ -84,11 +95,19 @@ export function ProveedorFormDrawer({
           }, 800);
         } catch (error) {
           if (mode === "crear") {
-            console.error("Error al crear la categoría:", error);
+            newToast({
+              mensaje: mode == "crear"
+              ? "Error al crear el proveedor"
+              : "Error al actualizar el proveedor",
+              tipo: "error",
+            });
           } else {
-            console.error("Error al actualizar la categoría:", error);
+            newToast({
+              mensaje: "Ocurrio un error",
+              tipo: "error",
+            });
           }
-          throw error;
+          console.error(error);
         }
       }}
     >
@@ -121,10 +140,7 @@ export function ProveedorFormDrawer({
                   }
                   className="w-[190px]"
                   disabled={
-                    isSubmitting ||
-                    !isValid ||
-                    !values.name ||
-                    !values.phone
+                    isSubmitting || !isValid || !values.name || !values.phone
                   }
                 />
               </div>

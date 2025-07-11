@@ -3,7 +3,9 @@ import { useState } from "react";
 
 type Mode = "ver" | "editar" | "crear";
 
-export const useActionTables = <ID extends string | number>() => {
+export const useActionTables = <ID extends string | number>(
+  onDelteItem?: (item: ID) => void,
+) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedItem, setSelectedItem] = useState<ID | null>(null);
   const [mode, setMode] = useState<Mode>("ver");
@@ -20,8 +22,19 @@ export const useActionTables = <ID extends string | number>() => {
     onOpen();
   };
 
-  const handleDelete = (item: ID) => {
-    console.log("hola", item);
+  const handleDelete = async (item: ID) => {
+    setSelectedItem(item);
+
+    if (!onDelteItem) {
+      console.warn("No se pasó función de eliminación");
+      return;
+    }
+     try {
+      onDelteItem(item);
+     } catch (error) {
+      throw new Error(`Error al eliminar el proveedor: ${error}`);
+     }
+
   };
 
   const handleCreate = () => {
