@@ -46,7 +46,12 @@ export function Categories(): JSX.Element {
     onOpen,
     isOpen,
     onOpenChange,
-  } = useActionTables<number | string>();
+  } = useActionTables<number | string>(
+    async (id) => {
+      await categoriasUseCase.delete("/category", id);
+      setReload((prev) => !prev);
+    }
+  );
 
   return (
     <TemplatePageTable

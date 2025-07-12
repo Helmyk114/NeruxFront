@@ -1,6 +1,6 @@
-import { categoriaService } from "../../../../infrastructure/services/Inventario/categorias/categoria.service";
-import { CategoryForm, Category } from "../../../entities/category";
-import { PaginatedResponse } from "../../../../shared/types/ResponsePaginada";
+import { Category, CategoryForm } from "@/domain/entities";
+import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
+import { categoriaService } from "@/infrastructure";
 
 export const categoriasUseCase = {
   create: async (endpoint: string, categoria: CategoryForm) => {
@@ -21,7 +21,22 @@ export const categoriasUseCase = {
     currentPage: number = 1,
     pageSize: number = 5
   ): Promise<PaginatedResponse<Category>> => {
-    return await categoriaService.getPaginated(endpoint, currentPage, pageSize);
+    const categoria = await categoriaService.getPaginated(
+      endpoint,
+      currentPage,
+      pageSize
+    );
+    if (categoria.data.length > 1) {
+      return categoria;
+    }
+    return {
+      data: [],
+      metadata: {
+        currentPage,
+        totalPages: 0,
+        totalItems: 0,
+      },
+    };
   },
 
   update: function (
@@ -32,8 +47,7 @@ export const categoriasUseCase = {
     return categoriaService.update(endpotin, id, category);
   },
 
-  delete: function (id: number): Promise<void> {
-    console.log("getById called with id:", id);
-    throw new Error("Function not implemented.");
+  delete: function (endpoint: string, id: number | string): Promise<void> {
+    return categoriaService.delete(endpoint, id);
   },
 };

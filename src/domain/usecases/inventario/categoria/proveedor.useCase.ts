@@ -1,14 +1,16 @@
 import { Proveedor, ProveedorForm } from "@/domain/entities";
-import { proveedorService } from "@/infrastructure";
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
-
+import { proveedorService } from "@/infrastructure";
 
 export const proveedoresUseCase = {
   create: async (endpoint: string, proveedor: ProveedorForm) => {
     await proveedorService.create(endpoint, proveedor);
   },
 
-  getById: async (endpoint: string, id: number | string): Promise<Proveedor> => {
+  getById: async (
+    endpoint: string,
+    id: number | string
+  ): Promise<Proveedor> => {
     const respuesta = await proveedorService.getById(endpoint, id);
     return respuesta;
   },
@@ -22,7 +24,22 @@ export const proveedoresUseCase = {
     currentPage: number = 1,
     pageSize: number = 5
   ): Promise<PaginatedResponse<Proveedor>> => {
-    return await proveedorService.getPaginated(endpoint, currentPage, pageSize);
+    const proveedor = await proveedorService.getPaginated(
+      endpoint,
+      currentPage,
+      pageSize
+    );
+    if (proveedor.data.length > 1) {
+      return proveedor;
+    }
+    return {
+      data: [],
+      metadata: {
+        currentPage,
+        totalPages: 0,
+        totalItems: 0,
+      },
+    };
   },
 
   update: function (
@@ -33,7 +50,7 @@ export const proveedoresUseCase = {
     return proveedorService.update(endpotin, id, category);
   },
 
-  delete: function (endpoint:string, id: number | string): Promise<void> {
+  delete: function (endpoint: string, id: number | string): Promise<void> {
     return proveedorService.delete(endpoint, id);
   },
 };
