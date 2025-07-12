@@ -1,26 +1,27 @@
-import { Rol, User } from "../../types/AuthResponseTypes";
+import { User, UserApi } from "../../types/AuthResponseTypes";
+import { UserRole } from "../../types/loginTypes";
 
-export const mapRol = (user: User): User => {
-  let rol: Rol;
-  switch (user.role) {
-    case 1:
-      rol = "SuperAdmin";
-      break;
-    case 2:
-      rol = "Admin";
-      break;
-    case 3:
-      rol = "empleado";
-      break;
-    default:
-      rol = "empleado";
-  }
+const mapRol: Record<number, UserRole> = {
+  1: UserRole.SUPERADMIN,
+  2: UserRole.ADMIN,
+  3: UserRole.WORKER,
+}
+
+const mapState: Record<number, string> = {
+  1: "Activo",
+  2: "Inactivo",
+  3: "Suspendido",
+}
+
+export const mapUser = (user: UserApi): User => {
+  const rol = mapRol[user.role] || "Unknown";
+  const state = mapState[user.state] || "Unknown";
 
   return {
     idUser: user.idUser,
     role: rol,
     has_changed_password: user.has_changed_password,
     business: user.business || null,
-    state: user.state,
+    state: state,
   };
 };

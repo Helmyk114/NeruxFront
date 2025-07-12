@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
-import { TemplateFormNoData } from "../../../../../components/ui/template/plantillaFormNoData";
-import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
-import { useActionTables } from "../../../../../components/hook";
-import { columnsCategoria } from "./columnsCategoria";
-import { CategoriaColumnRender } from "./CategoriaColumnRender";
-import { CategoriasFormDrawer } from "../CategoriasFormDrawer";
-import { VerCategorias } from "../verCategorias";
-import { categoriasUseCase } from "../../../../../../domain/usecases/inventario/categoria/categoria.useCase";
-import { useFetchPaginated } from "../../../../../components/hook/api/usefetchPaginado";
-import { Category } from "../../../../../../domain/entities/category";
+import { TemplateFormNoData } from "../../../../components/ui/template/plantillaFormNoData";
+import { Sidebar, TableSimple } from "../../../../components/ui/organismo";
+import { useActionTables } from "../../../../components/hook";
+import { columnsCategoria } from "../../../../config/table/columns/columnsCategoria";
+import { CategoriaColumnRender } from "../../../../config/table/columnRender/CategoriaColumnRender";
+import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
+import { VerCategorias } from "./verCategorias";
+import { categoriasUseCase } from "../../../../../domain/usecases/inventario/categoria/categoria.useCase";
+import { useFetchPaginated } from "../../../../components/hook/api/usefetchPaginado";
+import { Category } from "../../../../../domain/entities/category";
+import { TemplatePageTable } from "@/presentacion/components/ui/template";
 
 export function Categories(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +27,7 @@ export function Categories(): JSX.Element {
       currentPage,
       pageSize,
       enable: true,
-      reload
+      reload,
     }
   );
 
@@ -41,10 +41,17 @@ export function Categories(): JSX.Element {
     handleDelete,
     handleCreate,
     selectedItem,
+    setMode,
     mode,
+    onOpen,
     isOpen,
     onOpenChange,
-  } = useActionTables<number | string>();
+  } = useActionTables<number | string>(
+    async (id) => {
+      await categoriasUseCase.delete("/category", id);
+      setReload((prev) => !prev);
+    }
+  );
 
   return (
     <TemplatePageTable
@@ -53,7 +60,7 @@ export function Categories(): JSX.Element {
       sideBar={<Sidebar />}
       mainContent={
         <>
-          {data && data.length > 0 ? (
+          {data && data.length > 1 ? (
             <>
               <TableSimple
                 tabla="Categorías"
@@ -81,6 +88,7 @@ export function Categories(): JSX.Element {
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"
               descripcion2="Usarlas te ayudará a mantener tus productos organizados por tipo o uso. 
               ¡Puedes crear una nueva ahora mismo desde el botón “Nueva categoría”!"
+              textButton="Nueva categoría +"
               onClick={handleCreate}
             />
           )}
@@ -99,6 +107,8 @@ export function Categories(): JSX.Element {
               isOpen={isOpen}
               onClose={onOpenChange}
               id={selectedItem}
+              setMode={setMode}
+              onOpen={onOpen}
             />
           )}
         </>

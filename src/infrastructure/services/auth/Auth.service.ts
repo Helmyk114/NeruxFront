@@ -1,7 +1,6 @@
 import { AuthResponse } from "../../../shared/types/AuthResponseTypes";
 import { cookie } from "../../../shared/utils/cookies";
 import { NavigateFunction } from "react-router-dom";
-import { mapRol } from "../../../shared/utils/map/mapRol";
 import { userStore } from "../../../store/userStore";
 import { themeStore } from "../../../store/themeSotre";
 import { Axios } from "../../http/Axios";
@@ -13,9 +12,6 @@ export const AuthServices = {
   }): Promise<AuthResponse> => {
     try {
       const authData = await Axios.post<AuthResponse>("/login", credential);
-      cookie.set("token", authData.token);
-      const user = mapRol(authData.user);
-      userStore.getState().setUser(user);
       return authData;
     } catch (error: unknown) {
       if (error && typeof error === "object" && "message" in error) {

@@ -12,12 +12,12 @@ export class ValidationRules {
   }
 
   static email(option?: ValidatioOption) {
-    const { campo = "Este campo", message } = option || {};
+    const { campo = "este campo", message } = option || {};
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return Yup.string().test(
       "email",
-      message || `El formato del ${campo} no es válido`,
-      (value) => (value ? emailRegex.test(value) : false)
+      message || `El formato de ${campo} no es válido`,
+      (value) => (value ? emailRegex.test(value) : true)
     );
   }
 

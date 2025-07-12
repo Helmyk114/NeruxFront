@@ -1,8 +1,8 @@
-import { Category, CategoryForm } from "../../../../domain/entities/category";
-import { CategoryRepository } from "../../../../domain/repository/category";
-import { ResponseApi } from "../../../../shared/types/ResponseApi";
-import { PaginatedResponse } from "../../../../shared/types/ResponsePaginada";
-import { Axios } from "../../../http/Axios";
+import { Category, CategoryForm } from "../../../domain/entities/category";
+import { CategoryRepository } from "../../../domain/repository/category";
+import { ResponseApi } from "../../../shared/types/ResponseApi";
+import { PaginatedResponse } from "../../../shared/types/ResponsePaginada";
+import { Axios } from "../../http/Axios";
 
 export const categoriaService: CategoryRepository = {
   create: async (endpoint: string, categoria: CategoryForm) => {
@@ -23,10 +23,10 @@ export const categoriaService: CategoryRepository = {
 
   getById: async (endpoint: string, id: number | string): Promise<Category> => {
     try {
-      const respeusta = await Axios.get<ResponseApi<Category>>(
+      const respuesta = await Axios.get<ResponseApi<Category>>(
         `${endpoint}/${id}`
       );
-      return respeusta.data;
+      return respuesta.data;
     } catch (error) {
       throw new Error(`Error al obtener la categoria por ID: ${error}`);
     }
@@ -51,7 +51,7 @@ export const categoriaService: CategoryRepository = {
 
   update: async (
     endpoint: string,
-    id: number,
+    id: number | string,
     category: CategoryForm
   ): Promise<Category> => {
     try {
@@ -65,8 +65,11 @@ export const categoriaService: CategoryRepository = {
     }
   },
 
-  delete: function (endpoint: string, id: number): Promise<void> {
-    console.log("getById called with id:", id, endpoint);
-    throw new Error("Function not implemented.");
+  delete: async (endpoint: string, id: number | string): Promise<void> => {
+    try {
+      await Axios.delete(`${endpoint}/${id}`);
+    } catch (error) {
+      throw new Error(`Error al eliminar la categoria: ${error}`);
+    }
   },
 };

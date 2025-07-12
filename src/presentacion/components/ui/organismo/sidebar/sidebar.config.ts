@@ -11,6 +11,7 @@ import {
   IconSmartHome,
   IconUsers,
 } from "@tabler/icons-react";
+
 export interface SidebarItem {
   index: number;
   label: string;
@@ -49,6 +50,12 @@ export const sidebarConfigStar: Record<string, SidebarItem[]> = {
           label: "Categorías",
           path: "/Categorias",
           icon: IconCategory,
+        },
+        {
+          index: 3.23,
+          label: "Proveedores",
+          path: "/Proveedores",
+          icon: IconUsers,
         },
       ],
     },

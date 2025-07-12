@@ -5,7 +5,7 @@ import {
   ImgCellSimple,
   SimpleCell,
 } from "../../../../../components/ui/atomos";
-import { ColumnRender } from "../../../../../components/ui/organismo/tablas/config/columRenderType";
+import { ColumnRender } from "../../../../../../shared/types/columRenderType";
 import { InfoProduct } from "./productType";
 import { numberFormat } from "../../../../../../shared/utils/convert/numberFormat";
 import { fechaFormat } from "../../../../../../shared/utils/convert/fechaFormat";

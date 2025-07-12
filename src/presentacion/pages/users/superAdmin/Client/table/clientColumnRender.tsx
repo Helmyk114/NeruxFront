@@ -1,8 +1,7 @@
+import { ColumnRender } from "@/shared/types/columRenderType";
 import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
 import { statusProductMap } from "../../../../../../shared/constants/colors/statusProductMap";
 import { ActionsCell, ChipCell, CompactCell, ImgCell } from "../../../../../components/ui/atomos";
-import { ColumnRender } from "../../../../../components/ui/organismo";
-
 
 export const clientColumnRender = (
   onEdit: (user: InfoBusiness) => void,

@@ -1,14 +1,16 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { DrawerWrapper } from "../../../../components/ui/organismo/forms/Drawer";
-import { Category } from "../../../../../domain/entities/category";
-import { categoriasConfig } from "../../../../components/ui/organismo/forms/Categorias/categoriasConfig";
-import { CategoriasForm } from "../../../../components/ui/organismo/forms/Categorias/CategoriasForm";
-import { Title3 } from "../../../../components/ui/atomos/textos/titles/level3";
-import { ButtonCancel } from "../../../../components/ui/atomos/button/ButtonCancel";
-import { categoriasUseCase } from "../../../../../domain/usecases/inventario/categoria/categoria.useCase";
-import { useItemFetch } from "../../../../components/hook";
-import { ButtonAtom } from "../../../../components/ui/atomos/button/ButtonAtom";
+import { Category } from "@/domain/entities";
+import { categoriasUseCase } from "@/domain/usecases";
+import { useItemFetch } from "@/presentacion/components/hook";
+import { categoriasConfig } from "@/presentacion/config";
+import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
+import {
+  ButtonAtom,
+  ButtonCancel,
+  Title3,
+} from "@/presentacion/components/ui/atomos";
+import { CategoriasFormFields } from "@/presentacion/components/ui/moleculas";
 
 interface CategoriasFormDrawerProps {
   isOpen: boolean;
@@ -25,7 +27,6 @@ export function CategoriasFormDrawer({
   id,
   mode,
 }: CategoriasFormDrawerProps): JSX.Element | null {
-
   const shouldFetchData = mode === "editar" && !!id && isOpen;
 
   const {
@@ -67,10 +68,10 @@ export function CategoriasFormDrawer({
       validationSchema={categoriasConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
-          if(mode === "crear"){
+          if (mode === "crear") {
             await categoriasUseCase.create("/create-category", values);
           } else {
-            await categoriasUseCase.update("/category", Number(id), values)
+            await categoriasUseCase.update("/category", Number(id), values);
           }
           setTimeout(() => {
             setSubmitting(false);
@@ -79,7 +80,7 @@ export function CategoriasFormDrawer({
             onSuccess?.();
           }, 800);
         } catch (error) {
-          if(mode === "crear") {
+          if (mode === "crear") {
             console.error("Error al crear la categoría:", error);
           } else {
             console.error("Error al actualizar la categoría:", error);
@@ -101,10 +102,10 @@ export function CategoriasFormDrawer({
                     ? "Crear nueva categoría"
                     : "Editar categoría"
                 }
-                clasname="mt-6"
+                classname="mt-6"
               />
             }
-            body={<CategoriasForm />}
+            body={<CategoriasFormFields />}
             footer={
               <div className="flex justify-between gap-5">
                 <ButtonCancel onClose={onClose} className="w-[190px]" />

@@ -6,10 +6,10 @@ import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
 import { Title1 } from "../../../../../components/ui/atomos";
 import { columnsClient } from "./columnsClient";
 import { clientColumnRender } from "./clientColumnRender";
-import Drawer1 from "../../../../../components/ui/organismo/tablas/config/drawerPrueba";
 
 
-const Clientes: React.FC = () => {
+
+export const Clientes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const { data, metadata, loading, error } = UseFetchGet<InfoBusiness>(
@@ -25,9 +25,6 @@ const Clientes: React.FC = () => {
     handleEdit,
     handleView,
     handleDelete,
-    selectedItem,
-    isOpen,
-    onOpenChange,
   } = useActionTables<number | string>();
 
   return (
@@ -57,17 +54,9 @@ const Clientes: React.FC = () => {
             setPageSize={setPageSize}
           />
 
-          {selectedItem && (
-            <Drawer1
-              isOpen={isOpen}
-              onClose={() => onOpenChange()}
-              data={selectedItem}
-            />
-          )}
+
         </>
       }
     />
   );
 };
-
-export default Clientes;

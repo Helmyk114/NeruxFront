@@ -1,9 +1,11 @@
-import { PlantillaGenerica } from "../../../components/ui/template";
-import { TextoInicio } from "../../../components/ui/atomos";
-import NewPasswordForm from "../../../components/ui/organismo/forms/NewPassword/NewPassword";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PopUpSuccess from "../../../../shared/utils/popUps/success";
+import { PlantillaGenerica } from "../../../../components/ui/template";
+import { TextoInicio } from "../../../../components/ui/atomos";
+import NewPasswordForm from "../../../../components/ui/organismo/forms/NewPassword/NewPassword";
+import PopUpSuccess from "../../../../../shared/utils/popUps/success";
+
 
 export function NuevaContraseña(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,5 +1,5 @@
 interface Title1Props {
-  titulo: string;
+  titulo?: string | number;
   clasname?: string;
   color?: string;
 }

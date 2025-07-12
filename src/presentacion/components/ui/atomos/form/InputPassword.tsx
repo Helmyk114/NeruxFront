@@ -33,12 +33,12 @@ export default function InputPassword({
           label: ["font-OpenSans", "focus:text-texts-level1"],
           inputWrapper: [
             "focus-within:!border-button-active",
-            "hover:!border-button-active",
             "dark:focus-within:border-button-active",
+            "hover:!border-button-active",
             "dark:hover:border-button-active",
             "dark:border-base-fourth",
-            "dark:bg-base-thrith",
             "border-base-fourth",
+            "dark:bg-base-thrith",
             "bg-base-thrith",
             hasError
               ? "!border-semantic-error hover:!border-semantic-error focus-within:!border-semantic-error"
