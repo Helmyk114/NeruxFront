@@ -6,7 +6,6 @@ import {
   useRedirect,
 } from "../../../../../components/hook";
 import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
-import Drawer1 from "../../../../../components/ui/organismo/tablas/config/drawerPrueba";
 import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
 import { columnsProductos } from "./columnsProducts";
 import { ProductColumnRender } from "./ProductColumnRender";
@@ -28,9 +27,6 @@ export function Products(): JSX.Element {
     handleEdit,
     handleView,
     handleDelete,
-    selectedItem,
-    isOpen,
-    onOpenChange,
   } = useActionTables<number | string>();
 
   return (
@@ -61,9 +57,6 @@ export function Products(): JSX.Element {
             setPageSize={setPageSize}
           />
 
-          {selectedItem && (
-            <Drawer1 isOpen={isOpen} onClose={() => onOpenChange()} />
-          )}
         </>
       }
     />

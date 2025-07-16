@@ -3,12 +3,15 @@ import { ButtonAtom, TextoInicio } from "../../../../components/ui/atomos";
 import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvideContraseña/OlvidarContrasena";
 import { PlantillaGenerica } from "../../../../components/ui/template";
 
+<<<<<<< HEAD
 import { InputOtp } from "@heroui/react";
 import ModalTemplate from "../../../../components/ui/template/modal/popUps/notificacion";
 import VentanaModal from "../../../../components/ui/organismo/modal";
 
 
 
+=======
+>>>>>>> origin/main
 export function OlvidarContraseña(): JSX.Element {
 
 

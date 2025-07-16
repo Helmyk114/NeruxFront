@@ -1,14 +1,14 @@
 import { Route } from "react-router-dom";
+import { Proveedores } from "@/presentacion/pages/users/admin/inventario/Proveedor/Proveedores";
 import { PrivateRoute } from "../ProtectRoutes";
-import { UserRole } from "../../shared/types/loginTypes";
-
+import { UserRole } from "@/shared/types/loginTypes";
 import {
   Categories,
   CrearEmpresa,
   CrearProductos,
   Inicio,
   Products,
-} from "../../presentacion/pages";
+} from "@/presentacion/pages";
 
 export function AdminRoutes(): JSX.Element {
   return (
@@ -19,6 +19,7 @@ export function AdminRoutes(): JSX.Element {
       <Route path="/Productos" element={<Products />} />
       <Route path="/Productos/Crear" element={<CrearProductos />} />
       <Route path="/Categorias" element={<Categories />} />
+      <Route path="/Proveedores" element={<Proveedores />} />
     </Route>
   );
 }

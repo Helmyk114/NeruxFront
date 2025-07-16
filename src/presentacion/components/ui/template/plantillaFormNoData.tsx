@@ -4,12 +4,14 @@ import { ButtonAtom } from "../atomos/button/ButtonAtom";
 interface TemplateFormNoDataProps {
   descripcion1?: string;
   descripcion2?: string;
+  textButton: string;
   onClick?: () => void;
 }
 
 export function TemplateFormNoData({
   descripcion1,
   descripcion2,
+  textButton,
   onClick,
 }: TemplateFormNoDataProps): JSX.Element {
   return (
@@ -17,7 +19,7 @@ export function TemplateFormNoData({
         <div className="text-center">
           <Title1 titulo={descripcion1 || ""} />
           <Title2 titulo={descripcion2 || ""} />
-          <ButtonAtom className="mt-4" texto="Nueva categoría +" onClick={onClick} />
+          <ButtonAtom className="mt-4" texto={textButton} onClick={onClick} />
         </div>
       </div>
   );

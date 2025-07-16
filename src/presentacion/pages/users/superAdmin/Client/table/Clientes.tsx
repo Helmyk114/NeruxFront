@@ -6,7 +6,7 @@ import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
 import { Title1 } from "../../../../../components/ui/atomos";
 import { columnsClient } from "./columnsClient";
 import { clientColumnRender } from "./clientColumnRender";
-import Drawer1 from "../../../../../components/ui/organismo/tablas/config/drawerPrueba";
+
 
 
 export const Clientes: React.FC = () => {
@@ -25,9 +25,6 @@ export const Clientes: React.FC = () => {
     handleEdit,
     handleView,
     handleDelete,
-    selectedItem,
-    isOpen,
-    onOpenChange,
   } = useActionTables<number | string>();
 
   return (
@@ -57,13 +54,7 @@ export const Clientes: React.FC = () => {
             setPageSize={setPageSize}
           />
 
-          {selectedItem && (
-            <Drawer1
-              isOpen={isOpen}
-              onClose={() => onOpenChange()}
-              data={selectedItem}
-            />
-          )}
+
         </>
       }
     />

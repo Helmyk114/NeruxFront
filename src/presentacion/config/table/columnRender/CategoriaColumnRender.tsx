@@ -1,6 +1,6 @@
-import { Category } from "../../../../../../domain/entities/category"
-import { ActionsCell, SimpleCell } from "../../../../../components/ui/atomos"
-import { ColumnRender } from "../../../../../components/ui/organismo"
+import { ColumnRender } from "@/shared/types/columRenderType";
+import { Category } from "../../../../domain/entities/category";
+import { ActionsCell, SimpleCell } from "../../../components/ui/atomos";
 
 export const CategoriaColumnRender = (
   onEdit: (categoria: Category) => void,
@@ -8,7 +8,9 @@ export const CategoriaColumnRender = (
   onDelete: (categoria: Category) => void
 ): ColumnRender<Category> => ({
   name: (categoria: Category) => <SimpleCell textTop={categoria.name || ""} />,
-  description: (categoria: Category) => <SimpleCell textTop={categoria.description || ""} />,
+  description: (categoria: Category) => (
+    <SimpleCell textTop={categoria.description || ""} />
+  ),
   acciones: (categoria: Category) => (
     <ActionsCell
       onEdit={() => onEdit(categoria)}
@@ -16,4 +18,4 @@ export const CategoriaColumnRender = (
       onDelete={() => onDelete(categoria)}
     />
   ),
-})
+});

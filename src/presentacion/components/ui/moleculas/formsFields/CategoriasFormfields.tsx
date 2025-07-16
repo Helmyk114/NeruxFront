@@ -1,9 +1,8 @@
 import { Field } from "formik";
-import InputFiled from "../../../atomos/form/Input";
+import InputFiled from "../../atomos/form/Input";
+import InputTextArea from "../../atomos/form/InputArea";
 
-import InputTextArea from "../../../atomos/form/InputArea";
-
-export function CategoriasForm(): JSX.Element {
+export function CategoriasFormFields(): JSX.Element {
   return (
     <div className="flex flex-col gap-6 mt-10">
       <Field

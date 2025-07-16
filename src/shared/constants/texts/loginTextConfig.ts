@@ -11,5 +11,5 @@ export const loginTextConfig = {
     text: "sistema de\n gestión!",
     className: "italic font-semibold text-4xl lg:text-4xl ",
   },
-  containerClass: "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-sidebar-prymary to-text",
+  containerClass: "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-typography-first to-text",
 }

@@ -6,7 +6,7 @@ interface BackgroundProps {
 }
 
 export function Background({
-  className = "bg-background-one",
+  className = "bg-base-home",
   children,
 }: BackgroundProps): JSX.Element {
   return (
