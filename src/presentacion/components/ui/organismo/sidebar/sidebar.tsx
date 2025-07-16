@@ -122,9 +122,9 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`flex flex-col justify-between transition-all duration-300 ${
+      className={`flex flex-col transition-all duration-300 ${
         isCollapsed ? "w-20" : "w-64"
-      } h-screen bg-base-sidebar p-4 rounded-r-2xl`}
+      } h-screen bg-base-sidebar p-4 rounded-r-2xl overflow-y-auto`}
     >
       <div
         className={`flex items-center mb-4 ${
@@ -158,8 +158,8 @@ export const Sidebar = () => {
         </button>
       )}
 
-      <div>
-        <nav className="flex flex-col space-y-2 -mt-32">
+      <div  className="flex-1 flex flex-col justify-between">
+        <nav className="flex flex-col space-y-2">
           {startItems.map((item) => renderItem(item))}
         </nav>
       </div>

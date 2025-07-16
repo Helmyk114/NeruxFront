@@ -1,4 +1,4 @@
-import { Input } from "@heroui/react";
+import { NumberInput } from "@heroui/react";
 import { useField } from "formik";
 import { TextError } from "../textos/textError";
 
@@ -9,59 +9,50 @@ interface InputNumberProps {
   className?: string;
 }
 
-export default function NumberInput({
+export default function InputNumber({
   label,
   nombre,
   isRequired,
   className,
 }: InputNumberProps): JSX.Element {
-  const [field, meta, helpers] = useField(nombre); // Usamos helpers.setValue
+  const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
 
-  const formatNumber = (numStr: string) => {
-    if (!numStr) return "";
-    const cleanNumStr = numStr.replace(/\./g, "");
-    return cleanNumStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
-
-  const handleValueChange = (value: string) => {
-    // Eliminar todos los caracteres no numéricos
-    const numericString = value.replace(/[^\d]/g, "");
-    
-    // Actualizar el valor de Formik (sin puntos)
-    helpers.setValue(numericString ? Number(numericString) : null);
-    
-    // Actualizar el valor visual (con puntos)
-    helpers.setTouched(true);
-    return formatNumber(numericString);
-  };
-
   return (
-    <>
-      <Input
+    <div className="flex flex-col w-full">
+      <NumberInput
         {...field}
         classNames={{
           label: ["font-OpenSans"],
           inputWrapper: [
-            "dark:focus-within:border-purpleStart",
-            "dark:hover:border-purpleStart",
+            "!text-texts-level1",
+            "dark:!text-texts-level1", 
+            "focus-within:!border-button-active",
+            "dark:focus-within:border-button-active",
+            "hover:!border-button-active",
+            "dark:hover:border-button-active",
+            "dark:border-base-fourth",
+            "border-base-fourth",
+            "dark:bg-base-thrith",
+            "bg-base-thrith",
             hasError
-              ? "dark:!border-semantic-error dark:hover:!border-semantic-error dark:focus-within:!border-semantic-error"
-              : "!hover:border-purpleStart !focus:border-purpleStart",
+              ? "!border-semantic-error hover:!border-semantic-error focus-within:!border-semantic-error"
+              : "dark:hover:!border-button-active dark:focus:!border-button-active",
           ],
           errorMessage: ["hidden"],
-          input: "text-right",
         }}
         className={className}
         label={label}
         isRequired={isRequired}
-        value={formatNumber(field.value?.toString() || "")} // Mostrar con puntos
-        onValueChange={handleValueChange}
         variant="bordered"
         labelPlacement="outside"
+        placeholder=""
         isInvalid={false}
+        hideStepper
       />
-      {hasError && <TextError error={meta.error as string} classname={className} />}
-    </>
+      {hasError && (
+        <TextError error={meta.error as string} classname={className} />
+      )}
+    </div>
   );
 }
