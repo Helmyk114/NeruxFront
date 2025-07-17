@@ -1,12 +1,12 @@
 import { Title1 } from "../../../atomos/textos/titles/level1";
-import InputFiled from "../../../atomos/form/Input";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 
 import { olvideContraseñaConfig } from "./OlvideContraseñaConfig";
 import { InputOtp } from "@heroui/react";
 import React from "react";
 import VentanaModal from "../../modal";
+import { OlvideContraseñaFormfields } from "../../../moleculas/formsFields/OlvideContraseñaFormfields";
 
 export default function OlvideContraseñaForm(): JSX.Element {
      const [value, setValue] = React.useState("");
@@ -30,15 +30,8 @@ export default function OlvideContraseñaForm(): JSX.Element {
       >
         {({ isSubmitting, isValid, values, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
-            <div>
-              <Field
-                nombre="email"
-                label="Correo electrónico"
-                component={InputFiled}
-                isRequired={true}
-                className="w-3/5 mx-auto"
-              />
-            </div>
+              <OlvideContraseñaFormfields/>
+            
             <div className="flex justify-center mt-6">
               <ButtonAtom
                 texto="Enviar"
