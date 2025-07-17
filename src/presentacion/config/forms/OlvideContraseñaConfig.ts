@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { ValidationRules } from '../../../../../../shared/validations/ValidationRules';
+import { ValidationRules } from '../../../shared/validations/ValidationRules';
 
 type OlvideContraseñaFormValues ={
   email: string;

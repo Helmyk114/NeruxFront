@@ -2,7 +2,7 @@ import { Title1 } from "../../../atomos/textos/titles/level1";
 import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 
-import { olvideContraseñaConfig } from "./OlvideContraseñaConfig";
+import { olvideContraseñaConfig } from "../../../../../config/forms/OlvideContraseñaConfig";
 import { InputOtp } from "@heroui/react";
 import React from "react";
 import VentanaModal from "../../modal";
