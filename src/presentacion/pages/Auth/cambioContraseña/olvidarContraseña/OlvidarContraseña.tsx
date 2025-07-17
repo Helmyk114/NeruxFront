@@ -1,13 +1,14 @@
 
-import { TextoInicio } from "@/presentacion/components/ui/atomos";
+import { PlantillaGenerica } from "@/presentacion/components/ui/template";
 import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvideContraseña/OlvidarContrasena";
-import { PlantillaGenerica } from "../../../../components/ui/template";
+import { TextoInicio } from "@/presentacion/components/ui/atomos";
+import React from "react";
+import InputsOtp from "@/presentacion/components/ui/atomos/form/InputOtp";
 
 
 
 export function OlvidarContraseña(): JSX.Element {
-
-  
+  const [value, setValue] = React.useState("");
   return (
       <>
 
@@ -27,15 +28,12 @@ export function OlvidarContraseña(): JSX.Element {
           ]}
           className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
         />
-        
       }
-         
       formulario={<OlvideContraseñaForm />}
-      
-    /> 
-  
-   
-   </>
+ 
+    />
+     <InputsOtp value={value} length={6}  size="lg" color="default" variant="bordered" onValueChange={setValue}/>
+  </>
   );
  
 }
