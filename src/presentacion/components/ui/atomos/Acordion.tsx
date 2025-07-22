@@ -1,6 +1,6 @@
 import type { Selection } from "@heroui/react";
-import React from "react";
 import { Accordion, AccordionItem } from "@heroui/react";
+import { useState } from "react";
 
 interface AccordionItemProps {
   key: string;
@@ -21,7 +21,7 @@ export const Acordion = ({
   defaultSelectedKeys = new Set(["1"]),
   className,
 }: CustomAccordionProps) => {
-  const [selectedKeys, setSelectedKeys] = React.useState<Selection>(defaultSelectedKeys);
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(defaultSelectedKeys);
 
   return (
     <Accordion

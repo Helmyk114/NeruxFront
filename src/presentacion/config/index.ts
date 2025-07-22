@@ -1,4 +1,6 @@
 export * from "./forms/categoriasConfig";
+export * from "./forms/loginConfig";
+export * from "./forms/newsPassword.Config";
 export * from "./forms/proveedorConfig";
 export * from "./table/columnRender/CategoriaColumnRender";
 export * from "./table/columnRender/ProveedorColumnRender";

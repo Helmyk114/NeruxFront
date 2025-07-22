@@ -1,8 +1,7 @@
-import ModalTemplate from "../../../presentacion/components/ui/template/modal/popUps/notificacion";
-import { Title1 } from "../../../presentacion/components/ui/atomos/textos/titles/level1";
-import { TextoInicio } from "../../../presentacion/components/ui/atomos";
+import { ModalTemplate } from "@/presentacion/components/ui";
+import { ButtonAtom, RichText, Title1 } from "@/presentacion/components/ui/atomos";
+
 import { IconCircleCheck } from "@tabler/icons-react";
-import { ButtonAtom } from "../../../presentacion/components/ui/atomos/button/ButtonAtom";
 
 interface PopUpSuccessProps {
   isOpen: boolean;
@@ -16,7 +15,7 @@ interface PopUpSuccessProps {
   onSecondClick?: () => void;
 }
 
-const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
+export const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
   isOpen,
   onClose,
   titulo,
@@ -42,14 +41,14 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
       }
       body={
         <div className="flex flex-col items-center justify-center">
-          <TextoInicio
-            spans={[
+          <RichText
+            segments={[
               {
-                texto: startText,
+                text: startText,
                 className: "font-normal text-base",
               },
               {
-                texto: endText,
+                text: endText,
                 className: "font-semibold text-base",
               },
             ]}
@@ -86,5 +85,3 @@ const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
     />
   );
 };
-
-export default PopUpSuccess;

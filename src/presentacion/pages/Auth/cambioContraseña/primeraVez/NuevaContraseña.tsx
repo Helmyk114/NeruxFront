@@ -1,11 +1,11 @@
-
+import {
+  NewPasswordForm,
+  PlantillaGenerica,
+  RichText,
+} from "@/presentacion/components/ui";
+import { PopUpSuccess } from "@/shared";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlantillaGenerica } from "../../../../components/ui/template";
-import { TextoInicio } from "../../../../components/ui/atomos";
-import NewPasswordForm from "../../../../components/ui/organismo/forms/NewPassword/NewPassword";
-import PopUpSuccess from "../../../../../shared/utils/popUps/success";
-
 
 export function NuevaContraseña(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,14 +15,14 @@ export function NuevaContraseña(): JSX.Element {
     <>
       <PlantillaGenerica
         texto={
-          <TextoInicio
-            spans={[
+          <RichText
+            segments={[
               {
-                texto: "¡VAMOS A CREAR TU\n NUEVA CONTRASEÑA!\n",
+                text: "¡VAMOS A CREAR TU\n NUEVA CONTRASEÑA!\n",
                 className: "font-bold text-3xl lg:text-4xl",
               },
               {
-                texto: "Solo queda un paso más para\n completar el proceso.",
+                text: "Solo queda un paso más para\n completar el proceso.",
                 className: "italic 2xl lg:text-2xl",
               },
             ]}

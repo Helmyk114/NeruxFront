@@ -1,5 +1,5 @@
 import { ColumnRender } from "@/shared/types/columRenderType";
-import { Category } from "../../../../domain/entities/category";
+import { Category } from "../../../../domain/inventario/categoria/category.entity";
 import { ActionsCell, SimpleCell } from "../../../components/ui/atomos";
 
 export const CategoriaColumnRender = (

@@ -1,20 +1,20 @@
-import { Proveedor } from "@/domain/entities";
 import {
   useActionTables,
   useFetchPaginated,
   usePageState,
 } from "@/presentacion/components/hook";
-import { Sidebar, TableSimple } from "@/presentacion/components/ui/organismo";
-import {
-  TemplateFormNoData,
-  TemplatePageTable,
-} from "@/presentacion/components/ui/template";
 import { columnsProveedor, ProveedorColumnRender } from "@/presentacion/config";
 import { useState } from "react";
-import { proveedoresUseCase } from "@/domain/usecases/inventario/categoria/proveedor.useCase";
 import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
 import { VerProveedores } from "./verProveedor";
-
+import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
+import { Proveedor, proveedoresUseCase } from "@/domain";
+import {
+  Sidebar,
+  TableSimple,
+  TemplateFormNoData,
+  TemplatePageTable,
+} from "@/presentacion/components/ui";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
@@ -42,19 +42,17 @@ export function Proveedores(): JSX.Element {
     handleEdit,
     handleView,
     handleDelete,
+    handleDeleteConfirm,
     handleCreate,
     selectedItem,
     setMode,
     mode,
-    onOpen,
-    isOpen,
-    onOpenChange,
-  } = useActionTables<number | string>(
-    async (id) => {
-      await proveedoresUseCase.delete("/supplier", id);
-      setReload((prev) => !prev);
-    }
-  );
+    drawer,
+    popUp,
+  } = useActionTables<number | string>(async (id) => {
+    await proveedoresUseCase.delete("/supplier", id);
+    setReload((prev) => !prev);
+  });
 
   return (
     <TemplatePageTable
@@ -98,8 +96,8 @@ export function Proveedores(): JSX.Element {
 
           {(mode === "crear" || mode === "editar") && (
             <ProveedorFormDrawer
-              isOpen={isOpen}
-              onClose={onOpenChange}
+              isOpen={drawer.isOpen}
+              onClose={drawer.onOpenChange}
               onSuccess={() => setReload((prev) => !prev)}
               id={selectedItem}
               mode={mode}
@@ -107,13 +105,25 @@ export function Proveedores(): JSX.Element {
           )}
           {mode === "ver" && (
             <VerProveedores
-              isOpen={isOpen}
-              onClose={onOpenChange}
+              isOpen={drawer.isOpen}
+              onClose={drawer.onOpenChange}
               id={selectedItem}
               setMode={setMode}
-              onOpen={onOpen}
+              onOpen={drawer.onOpen}
             />
           )}
+          <DeleteConfirmPopUp
+            isOpen={popUp.isOpen}
+            onClose={popUp.onClose}
+            titulo="Eliminar categoría"
+            startText="¿Estás seguro de que querés eliminar esta categoría?
+            Los productos asociados quedarán como "
+            endText="Sin categoría"
+            textButton="Cancelar"
+            onClick={popUp.onClose}
+            secondTextButton="Eliminar"
+            onSecondClick={handleDeleteConfirm }
+          />
         </>
       }
     />

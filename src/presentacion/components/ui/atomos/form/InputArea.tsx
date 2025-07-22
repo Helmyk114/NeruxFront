@@ -11,7 +11,7 @@ interface InputTextAreaProps {
   className?: string;
 }
 
-export default function InputTextArea({
+export function InputTextArea({
   nombre,
   className,
   label,

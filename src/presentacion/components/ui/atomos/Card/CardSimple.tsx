@@ -5,7 +5,7 @@ interface CardSimpleProps {
   children?: React.ReactNode;
 }
 
-export default function CardSimple({
+export function CardSimple({
   className,
   children,
 }: CardSimpleProps): JSX.Element {

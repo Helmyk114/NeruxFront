@@ -9,7 +9,7 @@ interface InputNumberProps {
   className?: string;
 }
 
-export default function InputNumber({
+export function InputNumber({
   label,
   nombre,
   isRequired,

@@ -1,6 +1,6 @@
-import { Category, CategoryForm } from "@/domain/entities";
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
 import { categoriaService } from "@/infrastructure";
+import { Category, CategoryForm } from "@/domain";
 
 export const categoriasUseCase = {
   create: async (endpoint: string, categoria: CategoryForm) => {
@@ -18,8 +18,8 @@ export const categoriasUseCase = {
 
   getPaginated: async (
     endpoint: string,
-    currentPage: number = 1,
-    pageSize: number = 5
+    currentPage = 1,
+    pageSize = 5
   ): Promise<PaginatedResponse<Category>> => {
     const categoria = await categoriaService.getPaginated(
       endpoint,
@@ -39,15 +39,15 @@ export const categoriasUseCase = {
     };
   },
 
-  update: function (
+  update: async (
     endpotin: string,
     id: number,
     category: CategoryForm
-  ): Promise<Category> {
+  ): Promise<Category> => {
     return categoriaService.update(endpotin, id, category);
   },
 
-  delete: function (endpoint: string, id: number | string): Promise<void> {
+  delete: async (endpoint: string, id: number | string): Promise<void> => {
     return categoriaService.delete(endpoint, id);
   },
 };

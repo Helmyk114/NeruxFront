@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Field, Formik } from "formik";
-import InputFiled from "../../../../atomos/form/Input";
-import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
-import { BackButton } from "../../../../atomos/button/ButtonBack";
-
-import { productUseCase } from "../../../../../../../domain/usecases/product/productUseCase";
-import ImageUpload from "../../../../atomos/form/InputFile";
 import { createProductConfig } from "./createProductConfig";
+import { productUseCase } from "@/domain";
+import {
+  BackButton,
+  ButtonAtom,
+  ImageUpload,
+  InputFiled,
+} from "@/presentacion/components/ui/atomos";
 
 interface CrearProductoFormProps {
   onSuccess?: () => void;
@@ -40,19 +41,19 @@ export function CrearProductoFormComponent({
                   nombre="nameProduct"
                   label="Nombre del producto"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                 />
                 <Field
                   nombre="sku"
                   label="SKU o código de referencia"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                 />
                 <Field
                   nombre="totalAmount"
                   label="Cantidad total"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                   className="row-span-1"
                   type="number"
                 />
@@ -61,7 +62,7 @@ export function CrearProductoFormComponent({
                   nombre="currentAmount"
                   label="Cantidad actual"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                   className="row-span-1"
                   type="number"
                 />
@@ -78,7 +79,7 @@ export function CrearProductoFormComponent({
                   nombre="salePrice"
                   label="Precio de venta"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                   className="row-span-1"
                   type="number"
                 />
@@ -88,7 +89,7 @@ export function CrearProductoFormComponent({
                   nombre="category"
                   label="Categoría"
                   component={InputFiled}
-                  isRequired={true}
+                  isRequired
                   type="number"
                 />
                 <Field

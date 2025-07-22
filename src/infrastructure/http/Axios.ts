@@ -1,5 +1,5 @@
+import { cookie } from "@/shared";
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { cookie } from "../../shared/utils/cookies";
 
 const baseURL = import.meta.env.VITE_API_URL;
 

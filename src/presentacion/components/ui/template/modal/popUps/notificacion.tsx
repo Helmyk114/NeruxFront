@@ -1,19 +1,18 @@
-import React from "react";
-import VentanaModal from "../../../organismo/modal";
+import { VentanaModal } from "@/presentacion/components/ui/organismo";
 
 interface ModalTemplateProps {
   isOpen: boolean;
   onClose: () => void;
-  hideCloseButton: boolean;
+  hideCloseButton?: boolean;
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
 }
 
-const ModalTemplate: React.FC<ModalTemplateProps> = ({
+export const ModalTemplate: React.FC<ModalTemplateProps> = ({
   isOpen,
   onClose,
-  hideCloseButton,
+  hideCloseButton = false,
   header,
   body,
   footer,
@@ -30,5 +29,3 @@ const ModalTemplate: React.FC<ModalTemplateProps> = ({
     />
   );
 };
-
-export default ModalTemplate;

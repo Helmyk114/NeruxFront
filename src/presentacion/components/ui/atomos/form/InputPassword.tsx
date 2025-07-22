@@ -1,8 +1,8 @@
-import React from "react";
 import { Input } from "@heroui/react";
 import { IconEye, IconEyeClosed } from "@tabler/icons-react";
 import { useField } from "formik";
 import { TextError } from "../textos/textError";
+import { useState } from "react";
 
 interface InputPasswordProps {
   nombre: string;
@@ -12,14 +12,14 @@ interface InputPasswordProps {
   showError?: boolean;
 }
 
-export default function InputPassword({
+export function InputPassword({
   nombre,
   label,
   isRequired,
   className,
   showError = true,
 }: InputPasswordProps): JSX.Element {
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
 

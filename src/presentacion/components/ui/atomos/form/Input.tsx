@@ -14,7 +14,7 @@ interface InputFieldProps {
   icono?: JSX.Element;
 }
 
-export default function InputFiled({
+export function InputFiled({
   label,
   nombre,
   isRequired,

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Modal,
   ModalBody,
@@ -11,13 +10,13 @@ interface VentanaModalProps {
   isOpen: boolean;
   onClose: () => void;
   isDimissable: boolean;
-  hideCloseButton: boolean
+  hideCloseButton: boolean;
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
 }
 
-export default function VentanaModal ({
+export function VentanaModal({
   isOpen,
   onClose,
   isDimissable,
@@ -25,9 +24,13 @@ export default function VentanaModal ({
   header,
   body,
   footer,
-}: VentanaModalProps): JSX.Element{
+}: VentanaModalProps): JSX.Element {
   return (
     <Modal
+      classNames={{
+        base: "dark:bg-base-sidebar",
+        header: "border-b-[1px] border-base-fourth w-[90%] mx-auto",
+      }}
       isOpen={isOpen}
       onOpenChange={onClose}
       isDismissable={isDimissable}
@@ -38,8 +41,8 @@ export default function VentanaModal ({
       <ModalContent>
         <ModalHeader className="flex flex-col">{header}</ModalHeader>
         <ModalBody className="flex flex-col">{body}</ModalBody>
-        <ModalFooter className="flex flex-col">{footer}</ModalFooter>
+        <ModalFooter className="flex flex-col ml-auto">{footer}</ModalFooter>
       </ModalContent>
     </Modal>
   );
-};
+}

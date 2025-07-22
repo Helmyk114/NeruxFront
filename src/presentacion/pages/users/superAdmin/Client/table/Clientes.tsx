@@ -1,31 +1,27 @@
 import { useState } from "react";
 import { useActionTables, UseFetchGet } from "../../../../../components/hook";
-import { InfoBusiness } from "../../../../../../domain/entities/InfoBusiness";
+import { InfoBusiness } from "../../../../../../domain/business/InfoBusiness";
 import { TemplatePageTable } from "../../../../../components/ui/template";
 import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
 import { Title1 } from "../../../../../components/ui/atomos";
 import { columnsClient } from "./columnsClient";
 import { clientColumnRender } from "./clientColumnRender";
 
-
-
 export const Clientes: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   const { data, metadata, loading, error } = UseFetchGet<InfoBusiness>(
     "/user-Admin",
-    {paginated: true, currentPage, pageSize, reload: false}
+    { paginated: true, currentPage, pageSize, reload: false }
   );
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
 
-  const {
-    handleEdit,
-    handleView,
-    handleDelete,
-  } = useActionTables<number | string>();
+  const { handleEdit, handleView, handleDelete } = useActionTables<
+    number | string
+  >();
 
   return (
     <TemplatePageTable
@@ -53,8 +49,6 @@ export const Clientes: React.FC = () => {
             totalItems={metadata.totalItems}
             setPageSize={setPageSize}
           />
-
-
         </>
       }
     />

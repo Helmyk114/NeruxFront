@@ -1,6 +1,5 @@
 import { Field } from "formik";
-import InputFiled from "../../atomos/form/Input";
-import InputTextArea from "../../atomos/form/InputArea";
+import { InputFiled, InputTextArea } from "@/presentacion/components/ui/atomos";
 
 export function CategoriasFormFields(): JSX.Element {
   return (
@@ -9,7 +8,7 @@ export function CategoriasFormFields(): JSX.Element {
         nombre="name"
         label="Nombre de la categoría"
         component={InputFiled}
-        isRequired={true}
+        isRequired
         placerholder={"Ej. Bebidas"}
       />
 
@@ -17,7 +16,7 @@ export function CategoriasFormFields(): JSX.Element {
         nombre="description"
         label="Descripción"
         component={InputTextArea}
-        isRequired={true}
+        isRequired
         placeholder={"Describe brevemente tu categoría..."}
         maxLength={250}
       />

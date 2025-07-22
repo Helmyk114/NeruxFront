@@ -1,11 +1,8 @@
 import { Title2 } from "../../../../components/ui/atomos";
 import { Acordion } from "../../../../components/ui/atomos/Acordion";
-import { Sidebar } from "../../../../components/ui/organismo";
-import CrearEmpresaForm from "../../../../components/ui/organismo/forms/Business/CrearEmpresa/CrearEmpresa.From";
+import { CrearEmpresaForm, Sidebar } from "../../../../components/ui/organismo";
 import { CrearProductoFormComponent } from "../../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
-
-import { TemplatePageForm } from "../../../../components/ui/template";
-import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
+import { TemplatePageForm, TemplatePageTable } from "@/presentacion/components/ui/template";
 
 const accordionItems = [
   {

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Table,
   TableHeader,
@@ -8,9 +7,9 @@ import {
   TableCell,
   Spinner,
 } from "@heroui/react";
-import { useRenderCell } from "../../../hook/UseRenderCell";
-import { Paginacion } from "../../atomos";
-import { TopContent } from "./topContent";
+import { useRenderCell } from "@/presentacion/components/hook";
+import { TopContent } from "@/presentacion/components/ui/organismo";
+import { Paginacion } from "@/presentacion/components/ui/atomos";
 
 interface Column {
   name: string;

@@ -1,11 +1,8 @@
-import { Sidebar } from "../../../components/ui/organismo";
-import { TemplatePageTable } from "../../../components/ui/template/plantillaPages";
+import { Sidebar, TemplatePageTable } from "@/presentacion/components/ui";
 
 export function Inicio(): JSX.Element {
-
   return (
     <TemplatePageTable
-    
       sideBar={<Sidebar />}
       mainContent={
         <div className="flex flex-col items-center justify-center h-screen">
@@ -15,7 +12,6 @@ export function Inicio(): JSX.Element {
           <p className="mt-4 text-lg">
             Esta es la página de inicio de tu aplicación.
           </p>
-       
         </div>
       }
     />

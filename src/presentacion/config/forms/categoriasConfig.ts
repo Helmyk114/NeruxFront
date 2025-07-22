@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { CategoryForm } from "@/domain/entities/category";
+import { CategoryForm } from "@/domain";
 import { ValidationRules } from "@/shared/validations/ValidationRules";
 
 interface CategoriasConfig {

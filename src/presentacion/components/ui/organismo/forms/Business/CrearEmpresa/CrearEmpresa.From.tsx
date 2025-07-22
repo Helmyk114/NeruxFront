@@ -1,12 +1,13 @@
 import { Field, Formik } from "formik";
 import { crearEmpresaInitialValues } from "./crearEmpresaInitialValues";
 import { crearEmpresaValidationSchema } from "./crearEmpresaValidationShema";
-import InputFiled from "../../../../atomos/form/Input";
 import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
-import { createBusinessUseCase } from "../../../../../../../domain/usecases/business/createBusinessUseCase";
-import { useNavigate } from "react-router-dom";
 
-export default function CrearEmpresaForm(): JSX.Element {
+import { useNavigate } from "react-router-dom";
+import { InputFiled } from "@/presentacion/components/ui/atomos";
+import { createBusinessUseCase } from "@/domain";
+
+export function CrearEmpresaForm(): JSX.Element {
   const navigate = useNavigate();
   return (
     <div className="w-full">
@@ -32,7 +33,7 @@ export default function CrearEmpresaForm(): JSX.Element {
                 nombre="nameBusiness"
                 label="Nombre de la empresa"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={50}
                 minLength={3}
               />
@@ -40,7 +41,7 @@ export default function CrearEmpresaForm(): JSX.Element {
                 nombre="nit"
                 label="NIT o identificación fiscal"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={12}
               />
             </div>
@@ -49,14 +50,14 @@ export default function CrearEmpresaForm(): JSX.Element {
                 nombre="phoneBusiness"
                 label="Télefono de contacto"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={10}
               />
               <Field
                 nombre="addressBusiness"
                 label="Dirección principal"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={100}
               />
             </div>
@@ -65,14 +66,14 @@ export default function CrearEmpresaForm(): JSX.Element {
                 nombre="emailBusiness"
                 label="Correo electrónico de la empresa"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={50}
               />
               <Field
                 nombre="category"
                 label="Cagtegoría"
                 component={InputFiled}
-                isRequired={true}
+                isRequired
                 maxLength={3}
                 minLength={1}
               />

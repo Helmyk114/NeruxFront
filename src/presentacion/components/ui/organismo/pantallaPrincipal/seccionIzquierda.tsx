@@ -1,4 +1,4 @@
-import { Logo } from "../../atomos/paginaPrincipal/logo";
+import { Logo } from "@/presentacion/components/ui/atomos";
 
 interface IzquierdaProps {
   fondo: string;

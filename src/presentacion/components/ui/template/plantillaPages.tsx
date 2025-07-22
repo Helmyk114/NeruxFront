@@ -1,6 +1,5 @@
-import React from "react";
-import { sidebarStore } from "../../../../store/sidebarStore";
-import { Title1, Title2 } from "../atomos";
+import { sidebarStore } from "@/store";
+import { Title1, Title2 } from "@/presentacion/components/ui/atomos"
 
 interface TemplatePageProps {
   sideBar: React.ReactNode;

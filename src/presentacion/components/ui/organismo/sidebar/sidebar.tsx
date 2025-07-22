@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { Logo } from "../../atomos";
 import Logito from "@/images/Logito.png";
 import Logotipo from "@/images/Logotipo.png";
 import { UserRole } from "@/shared/types/loginTypes";
-import { sidebarStore } from "@/store/sidebarStore";
-import { userStore } from "@/store/userStore";
+import { sidebarStore, userStore } from "@/store";
 import { useNavigate } from "react-router-dom";
 import { AuthServices } from "@/infrastructure";
-import ThemeSwitcher from "../forms/switcherTheme";
+import { ThemeSwitcher } from "@/presentacion/components/ui/organismo";
 import {
   sidebarConfigEnd,
   sidebarConfigStar,
@@ -19,6 +17,7 @@ import {
   IconChevronRight,
   IconLogout,
 } from "@tabler/icons-react";
+import { Logo } from "@/presentacion/components/ui/atomos";
 
 export const Sidebar = () => {
   const { isCollapsed, toggle } = sidebarStore();

@@ -1,5 +1,8 @@
-import { Category, CategoryForm } from "../../../domain/entities/category";
-import { CategoryRepository } from "../../../domain/repository/category";
+import {
+  Category,
+  CategoryForm,
+} from "../../../domain/inventario/categoria/category.entity";
+import { CategoryRepository } from "../../../domain/inventario/categoria/category.repository";
 import { ResponseApi } from "../../../shared/types/ResponseApi";
 import { PaginatedResponse } from "../../../shared/types/ResponsePaginada";
 import { Axios } from "../../http/Axios";
