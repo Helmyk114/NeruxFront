@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { ProveedorForm } from "@/domain/entities";
+import { ProveedorForm } from '@/domain';
 import { ValidationRules } from '@/shared/validations/ValidationRules';
 
 interface ProveedorConfig {

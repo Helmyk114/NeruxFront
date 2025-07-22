@@ -1,4 +1,4 @@
-import { Proveedor } from "@/domain/entities";
+import { Proveedor } from "@/domain";
 import { ActionsCell, SimpleCell } from "@/presentacion/components/ui/atomos";
 import { ColumnRender } from "@/shared/types/columRenderType";
 

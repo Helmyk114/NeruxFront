@@ -1,6 +1,6 @@
 import { ColumnRender } from "@/shared/types/columRenderType";
-import { Category } from "../../../../domain/inventario/categoria/category.entity";
-import { ActionsCell, SimpleCell } from "../../../components/ui/atomos";
+import { Category } from "@/domain";
+import { ActionsCell, SimpleCell } from "@/presentacion/components/ui/atomos";
 
 export const CategoriaColumnRender = (
   onEdit: (categoria: Category) => void,
