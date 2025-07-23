@@ -1,7 +1,6 @@
 import { businessService } from "@/infrastructure";
-import { CrearEmpresaFormValues } from "@/presentacion/components/ui";
+import { BusinessForm } from "./business.entity";
 
-
-export const createBusinessUseCase = async (business: CrearEmpresaFormValues) => {
+export const createBusinessUseCase = async (business: BusinessForm) => {
   await businessService.createBusiness(business);
 }

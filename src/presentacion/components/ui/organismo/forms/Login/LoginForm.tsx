@@ -1,7 +1,7 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginConfig } from "@/presentacion/config/forms/loginConfig";
+import { loginConfig } from "@/presentacion/config/forms/login.config";
 import {
   ButtonAtom,
   TextError,

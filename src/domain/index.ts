@@ -1,6 +1,7 @@
 export * from "./auth/auth.entity";
 export * from "./auth/authUseCase";
 export * from "./business/InfoBusiness";
+export * from "./business/business.entity";
 export * from "./business/createBusinessUseCase";
 export * from "./inventario/categoria/categoria.useCase";
 export * from "./inventario/categoria/category.entity";

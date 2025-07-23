@@ -11,7 +11,7 @@ const accordionItems = [
     title: (
       <Title2
         titulo="Paso 1: Configura tu empresa"
-        color={"text-texts-level1"}
+        color={"text-typography-first"}
       />
     ),
     content: <CrearEmpresaForm />,
@@ -21,8 +21,8 @@ const accordionItems = [
     ariaLabel: "Sección 2",
     title: (
       <Title2
-        titulo="Paso 2: Personaliza tu empresa ¡Proximamente"
-        color={"text-texts-level1"}
+        titulo="Paso 2: Personaliza tu empresa ¡Proximamente!"
+        color={"text-typography-first"}
       />
     ),
     content: <CrearProductoFormComponent />,

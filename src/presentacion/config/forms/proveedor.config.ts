@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import { ProveedorForm } from '@/domain';
-import { ValidationRules } from '@/shared/validations/ValidationRules';
+import { ValidationRules } from '@/shared';
 
 interface ProveedorConfig {
   intiatialValues: ProveedorForm;
