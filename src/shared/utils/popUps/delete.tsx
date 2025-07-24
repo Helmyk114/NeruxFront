@@ -35,10 +35,10 @@ export function DeleteConfirmPopUp({
     <ModalTemplate
       isOpen={isOpen}
       onClose={onClose} 
-
+      size="md"
       header={
         <div className="flex flex-col items-center justify-center mt-[33px]">
-          <SemanticIcons.warning className="text-semantic-advertencia" size={32} />
+          <SemanticIcons.warning className="text-semantic-advertencia" size={40} />
           <div className="mt-[19px]">
             <Title1 titulo={titulo} clasname="text-texts-negro" />
           </div>

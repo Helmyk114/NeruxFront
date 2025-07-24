@@ -12,7 +12,7 @@ export interface Business {
 
 export type BusinessForm = Omit<
   Business,
-  "idBusiness" | "create_at" | "state_id" | "id"
+  "id" | "create_at" | "state_id"
 >;
 
 

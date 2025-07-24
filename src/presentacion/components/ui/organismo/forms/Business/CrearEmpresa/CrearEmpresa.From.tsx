@@ -2,8 +2,9 @@ import { Formik } from "formik";
 import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
 import { useNavigate } from "react-router-dom";
 import { createBusinessUseCase } from "@/domain";
-import { crearEmpresaConfig } from "@/presentacion/config/forms/crearEmpresa.Config";
+import { crearEmpresaConfig } from "@/presentacion/config";
 import { CrearEmpresaFormFields } from "@/presentacion/components/ui/moleculas";
+
 
 export function CrearEmpresaForm(): JSX.Element {
   const navigate = useNavigate();

@@ -68,7 +68,7 @@ export function ProveedorFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize={true}
+      enableReinitialize
       validationSchema={proveedorConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
@@ -79,7 +79,7 @@ export function ProveedorFormDrawer({
               tipo: "success",
             });
           } else {
-            await proveedoresUseCase.update("", Number(id), values);
+            await proveedoresUseCase.update("/supplier", Number(id), values);
             newToast({
               mensaje: "Proveedor actualizado correctamente",
               tipo: "success",
@@ -95,7 +95,7 @@ export function ProveedorFormDrawer({
           if (mode === "crear") {
             newToast({
               mensaje:
-                mode == "crear"
+                mode === "crear"
                   ? "Error al crear el proveedor"
                   : "Error al actualizar el proveedor",
               tipo: "error",

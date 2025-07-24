@@ -6,7 +6,7 @@ export function CrearEmpresaFormFields(): JSX.Element {
     <>
       <div className="flex flex-row gap-12">
         <Field
-          nombre="nameBusiness"
+          nombre="name"
           label="Nombre de la empresa"
           component={InputFiled}
           isRequired
@@ -23,14 +23,14 @@ export function CrearEmpresaFormFields(): JSX.Element {
       </div>
       <div className="flex flex-row gap-12">
         <Field
-          nombre="phoneBusiness"
+          nombre="phone"
           label="Télefono de contacto"
           component={InputFiled}
           isRequired
           maxLength={10}
         />
         <Field
-          nombre="addressBusiness"
+          nombre="address"
           label="Dirección principal"
           component={InputFiled}
           isRequired
@@ -39,7 +39,7 @@ export function CrearEmpresaFormFields(): JSX.Element {
       </div>
       <div className="flex flex-row gap-12">
         <Field
-          nombre="emailBusiness"
+          nombre="email"
           label="Correo electrónico de la empresa"
           component={InputFiled}
           isRequired

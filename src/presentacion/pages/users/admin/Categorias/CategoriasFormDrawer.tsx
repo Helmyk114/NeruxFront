@@ -64,7 +64,7 @@ export function CategoriasFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize={true}
+      enableReinitialize
       validationSchema={categoriasConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {

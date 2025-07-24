@@ -62,7 +62,6 @@ export function Proveedores(): JSX.Element {
       mainContent={
         <>
           {data && data.length > 0 ? (
-            <>
               <TableSimple
                 tabla="Proveedores"
                 nameButton="Nuevo proveedor +"
@@ -83,7 +82,6 @@ export function Proveedores(): JSX.Element {
                 totalItems={metadata?.totalItems}
                 setPageSize={setPageSize}
               />
-            </>
           ) : (
             <TemplateFormNoData
               descripcion1="¡AÚN NO HAY PROVEEDORES!"
@@ -115,10 +113,11 @@ export function Proveedores(): JSX.Element {
           <DeleteConfirmPopUp
             isOpen={popUp.isOpen}
             onClose={popUp.onClose}
-            titulo="Eliminar categoría"
-            startText="¿Estás seguro de que querés eliminar esta categoría?
-            Los productos asociados quedarán como "
-            endText="Sin categoría"
+            titulo="Eliminar proveedor"
+            startText="¿Estás seguro de que quieres eliminar este proveedor? 
+            Los productos asociados no se eliminarán y 
+            quedarán como "
+            endText="Sin proveedor."
             textButton="Cancelar"
             onClick={popUp.onClose}
             secondTextButton="Eliminar"

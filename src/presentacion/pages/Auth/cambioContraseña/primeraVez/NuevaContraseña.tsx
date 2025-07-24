@@ -27,7 +27,7 @@ export function NuevaContraseña(): JSX.Element {
               },
             ]}
             className={
-              "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+              "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-typography-first to-text"
             }
           />
         }
@@ -37,7 +37,7 @@ export function NuevaContraseña(): JSX.Element {
       <PopUpSuccess
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        titulo="Contraseña restablecida con éxito"
+        titulo="¡Listo! 🎉"
         startText="Tu contraseña ha sido restablecida correctamente.
                   Ahora puedes iniciar sesión con tu nueva contraseña.
                   "

@@ -10,6 +10,7 @@ interface VentanaModalProps {
   isOpen: boolean;
   onClose: () => void;
   isDimissable: boolean;
+  size: "sm" | "md" | "lg" | "xl";
   hideCloseButton: boolean;
   header: React.ReactNode;
   body: React.ReactNode;
@@ -20,6 +21,7 @@ export function VentanaModal({
   isOpen,
   onClose,
   isDimissable,
+  size,
   hideCloseButton = false,
   header,
   body,
@@ -35,13 +37,13 @@ export function VentanaModal({
       onOpenChange={onClose}
       isDismissable={isDimissable}
       backdrop="blur"
-      size="xl"
+      size={size}
       hideCloseButton={hideCloseButton}
     >
       <ModalContent>
         <ModalHeader className="flex flex-col">{header}</ModalHeader>
         <ModalBody className="flex flex-col">{body}</ModalBody>
-        <ModalFooter className="flex flex-col ml-auto">{footer}</ModalFooter>
+        <ModalFooter className="flex flex-col">{footer}</ModalFooter>
       </ModalContent>
     </Modal>
   );

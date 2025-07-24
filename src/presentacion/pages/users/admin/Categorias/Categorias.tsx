@@ -9,6 +9,7 @@ import { categoriasUseCase } from "../../../../../domain/inventario/categoria/ca
 import { useFetchPaginated } from "../../../../components/hook/api/usefetchPaginado";
 import { Category } from "../../../../../domain/inventario/categoria/category.entity";
 import { TemplatePageTable, TemplateFormNoData  } from "@/presentacion/components/ui/template";
+import { DeleteConfirmPopUp } from "@/shared";
 
 export function Categories(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,11 +39,13 @@ export function Categories(): JSX.Element {
     handleEdit,
     handleView,
     handleDelete,
+    handleDeleteConfirm,
     handleCreate,
     selectedItem,
     setMode,
     mode,
-    drawer
+    drawer,
+    popUp
   } = useActionTables<number | string>(async (id) => {
     await categoriasUseCase.delete("/category", id);
     setReload((prev) => !prev);
@@ -56,7 +59,6 @@ export function Categories(): JSX.Element {
       mainContent={
         <>
           {data && data.length > 1 ? (
-            <>
               <TableSimple
                 tabla="Categorías"
                 nameButton="Nueva categoría +"
@@ -77,7 +79,6 @@ export function Categories(): JSX.Element {
                 totalItems={metadata.totalItems}
                 setPageSize={setPageSize}
               />
-            </>
           ) : (
             <TemplateFormNoData
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"
@@ -106,6 +107,18 @@ export function Categories(): JSX.Element {
               onOpen={drawer.onOpen}
             />
           )}
+          <DeleteConfirmPopUp
+            isOpen={popUp.isOpen}
+            onClose={popUp.onClose}
+            titulo="Eliminar categoría"
+            startText="¿Estás seguro de que querés eliminar esta categoría?
+            Los productos asociados quedarán como "
+            endText="Sin categoría."
+            textButton="Cancelar"
+            onClick={popUp.onClose}
+            secondTextButton="Eliminar"
+            onSecondClick={handleDeleteConfirm}
+          />
         </>
       }
     />
