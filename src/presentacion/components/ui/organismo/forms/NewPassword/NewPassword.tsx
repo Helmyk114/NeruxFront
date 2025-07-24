@@ -1,25 +1,25 @@
 import { useState } from "react";
 import { Field, Formik } from "formik";
+import { IconCheck, IconX } from "@tabler/icons-react";
 import {
   mapRules,
   NewPasswordValidationSchema,
 } from "./NewPasswordValidationSchema";
-import { newPasswordInitialValues } from "./NewPasswordInitialValues";
-import { yupValidate } from "../../../../../../shared/utils/formik/yupValidate";
-
-import InputPassword from "../../../atomos/form/InputPassword";
-import { Title1 } from "../../../atomos/textos/titles/level1";
-import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
-import { TextError } from "../../../atomos/textos/textError";
-
-import { IconCheck, IconX } from "@tabler/icons-react";
-import { authUseCase } from "../../../../../../domain/usecases/auth/authUseCase";
+import { yupValidate } from "@/shared";
+import { authUseCase } from "@/domain";
+import { newPasswordConfig } from "@/presentacion/config";
+import {
+  InputPassword,
+  TextError,
+  Title1,
+  ButtonAtom,
+} from "@/presentacion/components/ui/atomos";
 
 interface NewPasswordFormProps {
   onSuccess?: () => void;
 }
 
-export default function NewPasswordForm({
+export function NewPasswordForm({
   onSuccess,
 }: NewPasswordFormProps): JSX.Element {
   const [error, setError] = useState<string | null>(null);
@@ -36,8 +36,8 @@ export default function NewPasswordForm({
       </p>
 
       <Formik
-        initialValues={newPasswordInitialValues}
-        validateOnChange={true}
+        initialValues={newPasswordConfig.initialValues}
+        validateOnChange
         validateOnBlur={false}
         validate={yupValidate(NewPasswordValidationSchema)}
         onSubmit={async (values, { setSubmitting }) => {
@@ -101,7 +101,7 @@ export default function NewPasswordForm({
                     component={InputPassword}
                     className="w-9/12 mx-auto mb-2"
                     showError={false}
-                    isRequired={true}
+                    isRequired
                   />
                 </div>
                 <div className="mt-10">
@@ -111,7 +111,7 @@ export default function NewPasswordForm({
                     component={InputPassword}
                     className="w-9/12 mx-auto mb-2 mt-10"
                     showError={false}
-                    isRequired={true}
+                    isRequired
                   />
                 </div>
               </div>

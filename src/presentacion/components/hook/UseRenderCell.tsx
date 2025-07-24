@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback } from "react";
 
 type ColumnRenderMap<DataType> = {
   [key: string]: (item: DataType, columnKey: React.Key) => React.ReactNode;
@@ -7,7 +7,7 @@ type ColumnRenderMap<DataType> = {
 export const useRenderCell = <DataType,>(
   columnRenderMap: ColumnRenderMap<DataType>
 ) => {
-  const renderCell = React.useCallback(
+  const renderCell = useCallback(
     (item: DataType, columnKey: React.Key) => {
       const renderFunction = columnRenderMap[columnKey as string];
       if (renderFunction) {

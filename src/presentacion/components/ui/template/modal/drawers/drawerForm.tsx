@@ -1,4 +1,4 @@
-import { DrawerWrapper } from "../../../organismo/forms/Drawer";
+import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
 
 export interface DrawerFormProps {
   isOpen: boolean;

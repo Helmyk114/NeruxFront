@@ -1,11 +1,11 @@
-
+import {
+  NewPasswordForm,
+  PlantillaGenerica,
+  RichText,
+} from "@/presentacion/components/ui";
+import { PopUpSuccess } from "@/shared";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlantillaGenerica } from "../../../../components/ui/template";
-import { TextoInicio } from "../../../../components/ui/atomos";
-import NewPasswordForm from "../../../../components/ui/organismo/forms/NewPassword/NewPassword";
-import PopUpSuccess from "../../../../../shared/utils/popUps/success";
-
 
 export function NuevaContraseña(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,19 +15,19 @@ export function NuevaContraseña(): JSX.Element {
     <>
       <PlantillaGenerica
         texto={
-          <TextoInicio
-            spans={[
+          <RichText
+            segments={[
               {
-                texto: "¡VAMOS A CREAR TU\n NUEVA CONTRASEÑA!\n",
+                text: "¡VAMOS A CREAR TU\n NUEVA CONTRASEÑA!\n",
                 className: "font-bold text-3xl lg:text-4xl",
               },
               {
-                texto: "Solo queda un paso más para\n completar el proceso.",
+                text: "Solo queda un paso más para\n completar el proceso.",
                 className: "italic 2xl lg:text-2xl",
               },
             ]}
             className={
-              "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+              "font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-typography-first to-text"
             }
           />
         }
@@ -37,7 +37,7 @@ export function NuevaContraseña(): JSX.Element {
       <PopUpSuccess
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        titulo="Contraseña restablecida con éxito"
+        titulo="¡Listo! 🎉"
         startText="Tu contraseña ha sido restablecida correctamente.
                   Ahora puedes iniciar sesión con tu nueva contraseña.
                   "

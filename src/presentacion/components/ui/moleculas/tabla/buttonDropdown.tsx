@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Dropdown,
   DropdownTrigger,
@@ -6,7 +5,7 @@ import {
   DropdownItem,
   Button,
 } from "@heroui/react";
-import { Key } from "@react-types/shared"; // Importa el tipo Key correcto
+import { Key } from "@react-types/shared";
 
 interface DropdownButtonProps {
   label: string;

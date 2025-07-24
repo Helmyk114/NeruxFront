@@ -1,4 +1,4 @@
-import { Proveedor, ProveedorForm } from "@/domain/entities";
+import { Proveedor, ProveedorForm } from "@/domain";
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
 import { proveedorService } from "@/infrastructure";
 
@@ -21,8 +21,8 @@ export const proveedoresUseCase = {
 
   getPaginated: async (
     endpoint: string,
-    currentPage: number = 1,
-    pageSize: number = 5
+    currentPage = 1,
+    pageSize = 5
   ): Promise<PaginatedResponse<Proveedor>> => {
     const proveedor = await proveedorService.getPaginated(
       endpoint,
@@ -42,15 +42,15 @@ export const proveedoresUseCase = {
     };
   },
 
-  update: function (
+  update: async (
     endpotin: string,
     id: number,
     category: ProveedorForm
-  ): Promise<Proveedor> {
+  ): Promise<Proveedor> => {
     return proveedorService.update(endpotin, id, category);
   },
 
-  delete: function (endpoint: string, id: number | string): Promise<void> {
+  delete: async (endpoint: string, id: number | string): Promise<void> => {
     return proveedorService.delete(endpoint, id);
   },
 };

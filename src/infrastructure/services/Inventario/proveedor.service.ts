@@ -1,5 +1,4 @@
-import { Proveedor, ProveedorForm } from "@/domain/entities";
-import { ProveedorRepository } from "@/domain/repository";
+import { Proveedor, ProveedorForm, ProveedorRepository } from "@/domain";
 import { Axios } from "@/infrastructure/http/Axios";
 import { ResponseApi } from "../../../shared/types/ResponseApi";
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";

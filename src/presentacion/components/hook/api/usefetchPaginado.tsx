@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PaginatedResponse, PaginationMetadata } from "../../../../shared/types/ResponsePaginada";
+import { PaginatedResponse, PaginationMetadata } from "@/shared/types/ResponsePaginada";
 
 interface UseFetchPaginatedOptions {
   currentPage?: number;

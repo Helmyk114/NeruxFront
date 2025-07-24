@@ -1,8 +1,7 @@
-import React from "react";
-import { Background } from "../../atomos";
-import { SeccionDerecha, SeccionIzquierda } from "../../organismo";
 import FondoLogin from "../../../../../images/ContainerBg.webp";
 import Logotipo from "../../../../../images/Logotipo.png";
+import { Background } from "@/presentacion/components/ui/atomos";
+import { SeccionIzquierda, SeccionDerecha } from "@/presentacion/components/ui/organismo";
 
 interface PlantillaProps {
   fondo?: string;

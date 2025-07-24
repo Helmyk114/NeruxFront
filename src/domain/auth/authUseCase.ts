@@ -1,9 +1,6 @@
-import { AuthServices } from "../../../infrastructure/services/auth/Auth.service";
-import { RedirectPath } from "../../../infrastructure/services/auth/Redirect.service";
-import { User } from "../../../shared/types/AuthResponseTypes";
-import { cookie } from "../../../shared/utils/cookies";
-import { mapUser } from "../../../shared/utils/map/mapRol";
-import { userStore } from "../../../store/userStore";
+import { AuthServices, RedirectPath } from "@/infrastructure";
+import { cookie, mapUser, User } from "@/shared";
+import { userStore } from "@/store";
 
 export const authUseCase = {
   login: async (credential: {

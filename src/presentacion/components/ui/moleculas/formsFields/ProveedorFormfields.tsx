@@ -1,19 +1,22 @@
 import { Field } from "formik";
-import InputFiled from "../../atomos/form/Input";
-import InputTextArea from "../../atomos/form/InputArea";
+import {
+  InputFiled,
+  InputNumber,
+  InputTextArea,
+} from "@/presentacion/components/ui/atomos";
 
 export function ProveedorFormFields(): JSX.Element {
   return (
     <div className="flex flex-col gap-6 mt-10">
-      <Field 
+      <Field
         nombre="name"
         label="Nombre del proveedor"
         component={InputFiled}
-        isRequired={true}
+        isRequired
         placeholder={"Chechillow"}
       />
 
-      <Field 
+      <Field
         nombre="supplier"
         label="Empresa (opcional)"
         component={InputFiled}
@@ -21,15 +24,15 @@ export function ProveedorFormFields(): JSX.Element {
         placeholder={"Chechillo factory"}
       />
 
-      <Field 
+      <Field
         nombre="phone"
         label="Teléfono"
-        component={InputFiled}
-        isRequired={true}
+        component={InputNumber}
+        isRequired
         placeholder={"3214567889"}
       />
 
-      <Field 
+      <Field
         nombre="email"
         label="Correo electrónico (opcional)"
         component={InputFiled}
@@ -37,7 +40,7 @@ export function ProveedorFormFields(): JSX.Element {
         placeholder={"ejemplo@gmail.com"}
       />
 
-      <Field 
+      <Field
         nombre="note"
         label="Notas (opcional)"
         component={InputTextArea}
@@ -45,5 +48,5 @@ export function ProveedorFormFields(): JSX.Element {
         maxLength={500}
       />
     </div>
-  )
+  );
 }

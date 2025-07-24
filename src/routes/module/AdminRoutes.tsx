@@ -1,5 +1,4 @@
 import { Route } from "react-router-dom";
-import { Proveedores } from "@/presentacion/pages/users/admin/inventario/Proveedor/Proveedores";
 import { PrivateRoute } from "../ProtectRoutes";
 import { UserRole } from "@/shared/types/loginTypes";
 import {
@@ -8,6 +7,7 @@ import {
   CrearProductos,
   Inicio,
   Products,
+  Proveedores,
 } from "@/presentacion/pages";
 
 export function AdminRoutes(): JSX.Element {

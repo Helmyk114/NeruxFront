@@ -4,55 +4,53 @@ import { useState } from "react";
 type Mode = "ver" | "editar" | "crear";
 
 export const useActionTables = <ID extends string | number>(
-  onDelteItem?: (item: ID) => void,
+  onDeleteItem?: (item: ID) => void
 ) => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const drawer = useDisclosure();
+  const popUp = useDisclosure();
   const [selectedItem, setSelectedItem] = useState<ID | null>(null);
   const [mode, setMode] = useState<Mode>("ver");
 
   const handleEdit = (item: ID) => {
     setSelectedItem(item);
     setMode("editar");
-    onOpen();
+    drawer.onOpen();
   };
 
   const handleView = (item: ID) => {
     setSelectedItem(item);
     setMode("ver");
-    onOpen();
+    drawer.onOpen();
   };
 
   const handleDelete = async (item: ID) => {
     setSelectedItem(item);
-
-    if (!onDelteItem) {
-      console.warn("No se pasó función de eliminación");
-      return;
-    }
-     try {
-      onDelteItem(item);
-     } catch (error) {
-      throw new Error(`Error al eliminar el proveedor: ${error}`);
-     }
-
+    popUp.onOpen();
   };
+
+  const handleDeleteConfirm = async () => {
+    if(!onDeleteItem || selectedItem === null) return;
+    onDeleteItem(selectedItem);
+    popUp.onClose();
+
+  }
 
   const handleCreate = () => {
     setSelectedItem(null);
     setMode("crear");
-    onOpen();
+    drawer.onOpen();
   };
 
   return {
     handleEdit,
     handleView,
     handleDelete,
+    handleDeleteConfirm,
     handleCreate,
     selectedItem,
     setMode,
     mode,
-    onOpen,
-    isOpen,
-    onOpenChange,
+    drawer,
+    popUp
   };
 };

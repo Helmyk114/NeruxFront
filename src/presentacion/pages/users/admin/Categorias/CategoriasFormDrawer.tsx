@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { Category } from "@/domain/entities";
-import { categoriasUseCase } from "@/domain/usecases";
+
 import { useItemFetch } from "@/presentacion/components/hook";
 import { categoriasConfig } from "@/presentacion/config";
 import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
@@ -11,6 +10,7 @@ import {
   Title3,
 } from "@/presentacion/components/ui/atomos";
 import { CategoriasFormFields } from "@/presentacion/components/ui/moleculas";
+import { categoriasUseCase, Category } from "@/domain";
 
 interface CategoriasFormDrawerProps {
   isOpen: boolean;
@@ -64,7 +64,7 @@ export function CategoriasFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize={true}
+      enableReinitialize
       validationSchema={categoriasConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {

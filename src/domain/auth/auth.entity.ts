@@ -1,4 +1,6 @@
-export interface NewPasswordFormValues {
+export interface NewPasswordForm {
   newPassword: string;
   confirmPassword: string;
-}
+};
+
+

@@ -7,7 +7,7 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HeroUIProvider>
-      <ToastProvider />
+      <ToastProvider placement="top-right" />
       <AppRouter />
     </HeroUIProvider>
   </StrictMode>

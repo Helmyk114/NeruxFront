@@ -1,7 +1,6 @@
 import { Field } from "formik";
-import InputFiled from "../../atomos/form/Input";
-import InputPassword from '../../atomos/form/InputPassword';
 import { IconUser } from "@tabler/icons-react";
+import { InputFiled, InputPassword } from "@/presentacion/components/ui/atomos";
 
 export function LoginFormfields(): JSX.Element {
   return (
@@ -11,7 +10,7 @@ export function LoginFormfields(): JSX.Element {
           nombre="username"
           label="Usuario"
           component={InputFiled}
-          isRequired={true}
+          isRequired
           icono={<IconUser className="text-2xl text-default-400 pointer-events-none" />}
           className="w-3/5 mx-auto"
         />
@@ -21,7 +20,7 @@ export function LoginFormfields(): JSX.Element {
           nombre="password"
           label="Contraseña"
           component={InputPassword}
-          isRequired={true}
+          isRequired
           className="w-3/5 mx-auto"
         />
       </div>

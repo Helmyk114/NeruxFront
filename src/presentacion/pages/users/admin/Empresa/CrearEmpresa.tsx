@@ -1,11 +1,13 @@
-import { Title2 } from "../../../../components/ui/atomos";
-import { Acordion } from "../../../../components/ui/atomos/Acordion";
-import { Sidebar } from "../../../../components/ui/organismo";
-import CrearEmpresaForm from "../../../../components/ui/organismo/forms/Business/CrearEmpresa/CrearEmpresa.From";
-import { CrearProductoFormComponent } from "../../../../components/ui/organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
-
-import { TemplatePageForm } from "../../../../components/ui/template";
-import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
+import { Title2, Acordion } from "@/presentacion/components/ui/atomos";
+import {
+  CrearEmpresaForm,
+  Sidebar,
+  CrearProductoFormComponent,
+} from "@/presentacion/components/ui/organismo";
+import {
+  TemplatePageForm,
+  TemplatePageTable,
+} from "@/presentacion/components/ui/template";
 
 const accordionItems = [
   {
@@ -14,7 +16,7 @@ const accordionItems = [
     title: (
       <Title2
         titulo="Paso 1: Configura tu empresa"
-        color={"text-texts-level1"}
+        color={"text-typography-first"}
       />
     ),
     content: <CrearEmpresaForm />,
@@ -24,8 +26,8 @@ const accordionItems = [
     ariaLabel: "Sección 2",
     title: (
       <Title2
-        titulo="Paso 2: Personaliza tu empresa ¡Proximamente"
-        color={"text-texts-level1"}
+        titulo="Paso 2: Personaliza tu empresa ¡Proximamente!"
+        color={"text-typography-first"}
       />
     ),
     content: <CrearProductoFormComponent />,
@@ -41,16 +43,12 @@ export function CrearEmpresa(): JSX.Element {
       titulo2="Antes de comenzar, configuraremos los datos de tu empresa para que todo funcione a la perfección.
       Completa la siguiente información y estarás listo para gestionar tu inventario."
       mainContent={
-        <>
-          <TemplatePageForm
-
-          >
-            <Acordion
-              items={accordionItems}
-              defaultSelectedKeys={new Set(["1"])}
-            />
-          </TemplatePageForm>
-        </>
+        <TemplatePageForm>
+          <Acordion
+            items={accordionItems}
+            defaultSelectedKeys={new Set(["1"])}
+          />
+        </TemplatePageForm>
       }
     />
   );

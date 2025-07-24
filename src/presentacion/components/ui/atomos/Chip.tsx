@@ -5,7 +5,7 @@ interface ChipAtomProps {
   colorDot: string;
   texto: string;
 }
-export default function ChipAtom({ colorText, colorDot, texto }: ChipAtomProps): JSX.Element {
+export function ChipAtom({ colorText, colorDot, texto }: ChipAtomProps): JSX.Element {
   return (
     <Chip
       classNames={{

@@ -1,4 +1,4 @@
-import { Proveedor, ProveedorForm } from "../entities";
+import { Proveedor, ProveedorForm } from "@/domain";
 
 export interface ProveedorRepository {
   getAll: (endpoint: string) => Promise<Proveedor[]>;
@@ -12,6 +12,10 @@ export interface ProveedorRepository {
     metadata: { totalItems: number; totalPages: number; currentPage: number };
   }>;
   create: (endpoint: string, category: ProveedorForm) => Promise<void>;
-  update: (endpoint: string, id: number, category: ProveedorForm) => Promise<Proveedor>;
+  update: (
+    endpoint: string,
+    id: number,
+    category: ProveedorForm
+  ) => Promise<Proveedor>;
   delete: (endpoint: string, id: number | string) => Promise<void>;
 }
