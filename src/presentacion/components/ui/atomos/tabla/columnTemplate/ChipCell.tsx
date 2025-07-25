@@ -1,4 +1,4 @@
-import ChipAtom from "../../Chip";
+import { ChipAtom } from "../../Chip";
 
 interface ChipCellProps {
   texto: string;

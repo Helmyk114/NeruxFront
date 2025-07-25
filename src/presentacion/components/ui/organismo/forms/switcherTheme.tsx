@@ -1,8 +1,7 @@
+import { themeStore } from "@/store/themeSotre";
 import { useEffect } from "react";
-import { themeStore } from "../../../../../store/themeSotre";
 
-
-export default function ThemeSwitcher() {
+export function ThemeSwitcher() {
   const { theme, toggleTheme } = themeStore();
 
   useEffect(() => {

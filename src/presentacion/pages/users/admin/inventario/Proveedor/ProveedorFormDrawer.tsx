@@ -1,18 +1,16 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { Proveedor } from "@/domain/entities";
-import { proveedoresUseCase } from "@/domain/usecases/inventario/categoria/proveedor.useCase";
 import { useItemFetch } from "@/presentacion/components/hook";
 import { proveedorConfig } from "@/presentacion/config";
-import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
+import { toastStore } from "@/store/toastStore";
+import { Proveedor, proveedoresUseCase } from "@/domain";
 import {
   ButtonAtom,
   ButtonCancel,
+  DrawerWrapper,
+  ProveedorFormFields,
   Title3,
-} from "@/presentacion/components/ui/atomos";
-import { ProveedorFormFields } from "@/presentacion/components/ui/moleculas";
-import { toastStore } from "@/store/toastStore";
-
+} from "@/presentacion/components/ui";
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;
@@ -70,7 +68,7 @@ export function ProveedorFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize={true}
+      enableReinitialize
       validationSchema={proveedorConfig.validationSchema}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
@@ -81,7 +79,7 @@ export function ProveedorFormDrawer({
               tipo: "success",
             });
           } else {
-            await proveedoresUseCase.update("", Number(id), values);
+            await proveedoresUseCase.update("/supplier", Number(id), values);
             newToast({
               mensaje: "Proveedor actualizado correctamente",
               tipo: "success",
@@ -96,9 +94,10 @@ export function ProveedorFormDrawer({
         } catch (error) {
           if (mode === "crear") {
             newToast({
-              mensaje: mode == "crear"
-              ? "Error al crear el proveedor"
-              : "Error al actualizar el proveedor",
+              mensaje:
+                mode === "crear"
+                  ? "Error al crear el proveedor"
+                  : "Error al actualizar el proveedor",
               tipo: "error",
             });
           } else {

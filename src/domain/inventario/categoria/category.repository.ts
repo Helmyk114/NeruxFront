@@ -1,4 +1,4 @@
-import { Category, CategoryForm } from "../entities/category";
+import { Category, CategoryForm } from "@/domain";
 
 export interface CategoryRepository {
   getAll: (endpoint: string) => Promise<Category[]>;
@@ -12,6 +12,10 @@ export interface CategoryRepository {
     metadata: { totalItems: number; totalPages: number; currentPage: number };
   }>;
   create: (endpoint: string, category: CategoryForm) => Promise<void>;
-  update: (endpoint: string, id: number | string, category: CategoryForm) => Promise<Category>;
+  update: (
+    endpoint: string,
+    id: number | string,
+    category: CategoryForm
+  ) => Promise<Category>;
   delete: (endpoint: string, id: number | string) => Promise<void>;
 }

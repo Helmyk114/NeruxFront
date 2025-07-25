@@ -1,5 +1,4 @@
-import { Title1, Title2 } from "../atomos";
-import { ButtonAtom } from "../atomos/button/ButtonAtom";
+import { ButtonAtom, Title1, Title2 } from "@/presentacion/components/ui/atomos"
 
 interface TemplateFormNoDataProps {
   descripcion1?: string;

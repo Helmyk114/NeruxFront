@@ -5,13 +5,13 @@ const mapRol: Record<number, UserRole> = {
   1: UserRole.SUPERADMIN,
   2: UserRole.ADMIN,
   3: UserRole.WORKER,
-}
+};
 
 const mapState: Record<number, string> = {
   1: "Activo",
   2: "Inactivo",
   3: "Suspendido",
-}
+};
 
 export const mapUser = (user: UserApi): User => {
   const rol = mapRol[user.role] || "Unknown";
@@ -22,6 +22,6 @@ export const mapUser = (user: UserApi): User => {
     role: rol,
     has_changed_password: user.has_changed_password,
     business: user.business || null,
-    state: state,
+    state,
   };
 };

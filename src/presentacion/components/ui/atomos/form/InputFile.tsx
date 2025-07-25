@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { FiTrash, FiUpload } from "react-icons/fi";
-import CardSimple from "../Card/CardSimple";
+import { CardSimple } from "../Card/CardSimple";
+
 
 interface Props {
   name: string;
@@ -10,7 +11,7 @@ interface Props {
   error?: string;
 }
 
-const ImageUpload = ({
+export const ImageUpload = ({
   name,
   setFieldValue,
   previewUrl,
@@ -110,5 +111,3 @@ const ImageUpload = ({
     />
   );
 };
-
-export default ImageUpload;

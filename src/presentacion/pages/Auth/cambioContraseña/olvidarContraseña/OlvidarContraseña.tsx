@@ -1,12 +1,8 @@
-
-import { PlantillaGenerica } from "@/presentacion/components/ui/template";
-import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/OlvideContraseña/OlvidarContrasena";
-import { TextoInicio } from "@/presentacion/components/ui/atomos";
-import React from "react";
-import InputsOtp from "@/presentacion/components/ui/atomos/form/InputOtp";
-import { InputOtp } from "@heroui/react";
-
-
+import {
+  OlvideContraseñaForm,
+  PlantillaGenerica,
+  RichText,
+} from "@/presentacion/components/ui";
 
 export function OlvidarContraseña(): JSX.Element {
   const [value, setValue] = React.useState("");
@@ -15,15 +11,14 @@ export function OlvidarContraseña(): JSX.Element {
 
     <PlantillaGenerica
       texto={
-        <TextoInicio
-          spans={[
+        <RichText
+          segments={[
             {
-              texto: "¡NO TE PREOCUPES\n A TODOS NOS PASA!\n",
+              text: "¡NO TE PREOCUPES\n A TODOS NOS PASA!\n",
               className: "font-bold text-3xl lg:text-4xl",
             },
             {
-              texto:
-                "Ingresa tu correo electrónico para\n que podamos ayudarte a restablecer\n tu contraseña.",
+              text: "Ingresa tu correo electrónico para\n que podamos ayudarte a restablecer\n tu contraseña.",
               className: "italic 2xl lg:text-2xl",
             },
           ]}

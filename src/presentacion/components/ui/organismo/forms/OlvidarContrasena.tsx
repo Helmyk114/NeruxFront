@@ -1,10 +1,11 @@
-import { Title1 } from "../../atomos/textos/titles/level1";
-import InputFiled from "../../atomos/form/Input";
 import { Field, Formik } from "formik";
-import { ButtonAtom } from "../../atomos/button/ButtonAtom";
+import { Title1 } from "../../atomos/textos/titles/level1";
 import { olvideContraseñaValidation } from "../../../../../shared/validations/OlvidarContraseñaValidation";
+import { InputFiled } from "../../atomos/form/Input";
+import { ButtonAtom } from "../../atomos/button/ButtonAtom";
 
-export default function OlvideContraseñaForm(): JSX.Element {
+
+export function OlvideContraseñaForm(): JSX.Element {
  const initialValues = {
     email: "",
   }; 

@@ -1,22 +1,23 @@
-interface TextoInicioProps {
-  spans: SpanItem[];
+interface TextSegment {
+  text?: string;
+  className?: string;
+}
+interface RichTextoProps {
+  segments: TextSegment[];
   className?: string;
 }
 
-interface SpanItem {
-  texto?: string;
-  className?: string;
-}
+export function RichText({
+  segments,
+  className = "",
+}: RichTextoProps): JSX.Element | null {
+  if (!segments || segments.length === 0) return null;
 
-export function TextoInicio({
-  spans,
-  className,
-}: TextoInicioProps): JSX.Element {
   return (
     <div className={className}>
-      {spans.map((span, index) => (
-        <span key={index} className={span.className}>
-          {span.texto}
+      {segments.map(({ text = "", className: segmentClass = "" }) => (
+        <span key={`${segmentClass}-${text}`} className={segmentClass}>
+          {text}
         </span>
       ))}
     </div>
