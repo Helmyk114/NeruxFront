@@ -17,6 +17,7 @@ export function BackButton({ texto, className }: ButtonBackProps): JSX.Element{
       text="text-texts-sidebar text-md"
       type="button"
       className={className}
+      
     />
   );
 };

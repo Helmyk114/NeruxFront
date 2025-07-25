@@ -3,14 +3,15 @@ import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 
 import { olvideContraseñaConfig } from "../../../../../config/forms/OlvideContraseñaConfig";
-import { InputOtp } from "@heroui/react";
 import React from "react";
 import VentanaModal from "../../modal";
 import { OlvideContraseñaFormfields } from "../../../moleculas/formsFields/OlvideContraseñaFormfields";
+import InputsOtp from "../../../atomos/form/InputOtp";
 
 export default function OlvideContraseñaForm(): JSX.Element {
      const [value, setValue] = React.useState("");
      const [isOpen, setIsOpen] = React.useState(false);
+     const cerrarModal = () => setIsOpen(false);
   return (
     <div className="w-full">
       <Title1
@@ -48,16 +49,17 @@ export default function OlvideContraseñaForm(): JSX.Element {
    {
     isOpen &&(
         <VentanaModal
-      isOpen={true}
+    onClose={cerrarModal}
+    isOpen={true}
     isDimissable={false}
     hideCloseButton={false}
     header={<h2 className="felx justify-center m-auto">Img</h2>}
     body={
       <div className="flex flex-col items-center">
          <h1 className="text-center font-bold text-4xl mb-5">Revisa tu correo</h1>
-           <p className="text-lg text-center">Hemos enviado un código de verificación a tu correo electrónico. Por favor, ingresa el código, para continuar con el proceso de recuperación de tu contraseña.</p>
+           <p className="text-base text-center">Hemos enviado un código de verificación a tu correo electrónico. Por favor, ingresa el código, para continuar con el proceso de recuperación de tu contraseña.</p>
            <div className="flex-row gap-5 mt-3 mb-5">
-              <InputOtp value={value} length={6} onValueChange={setValue} size="lg" color="default" variant="bordered"
+              <InputsOtp className="flex gap-x-5" value={value} length={6} onValueChange={setValue} size="md" color="default" variant="bordered"
                />
            </div>
       </div>
@@ -67,7 +69,6 @@ export default function OlvideContraseñaForm(): JSX.Element {
     type="submit"
     size="lg"
         className="text-white mb-5 w-96 mx-auto"></ButtonAtom>}
-      onClose={() => {}}
    />
     )
    }

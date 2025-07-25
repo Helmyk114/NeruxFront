@@ -4,6 +4,7 @@ import OlvideContraseñaForm from "../../../../components/ui/organismo/forms/Olv
 import { TextoInicio } from "@/presentacion/components/ui/atomos";
 import React from "react";
 import InputsOtp from "@/presentacion/components/ui/atomos/form/InputOtp";
+import { InputOtp } from "@heroui/react";
 
 
 
@@ -32,7 +33,7 @@ export function OlvidarContraseña(): JSX.Element {
       formulario={<OlvideContraseñaForm />}
  
     />
-     <InputsOtp value={value} length={6}  size="lg" color="default" variant="bordered" onValueChange={setValue}/>
+   
   </>
   );
  

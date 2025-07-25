@@ -2,7 +2,7 @@ import { InputOtp } from "@heroui/react";
 interface InputOtpProps{
     length: number;
     size: "sm" | "md" | "lg";
-    color: "default" ;
+    color?: "default" | "primary" | "secondary" ;
     variant: "bordered" | "filled" | "underlined" | "faded";
     className?: string;
     value: string;
