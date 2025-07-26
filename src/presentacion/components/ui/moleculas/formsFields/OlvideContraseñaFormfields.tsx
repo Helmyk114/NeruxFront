@@ -1,6 +1,7 @@
 import { Field } from "formik";
-import InputFiled from "../../atomos/form/Input";
+
 import { IconUser } from "@tabler/icons-react";
+import { InputFiled } from "../../atomos";
 
 
 export function OlvideContraseñaFormfields(): JSX.Element{

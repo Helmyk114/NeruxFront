@@ -5,6 +5,7 @@ import {
   PlantillaGenerica,
   RichText,
 } from "@/presentacion/components/ui";
+import InputsOtp from "@/presentacion/components/ui/atomos/form/InputOtp";
 
 export function OlvidarContraseña(): JSX.Element {
   const [value, setValue] = React.useState("");
@@ -30,7 +31,7 @@ export function OlvidarContraseña(): JSX.Element {
       formulario={<OlvideContraseñaForm />}
  
     />
-   
+ 
   </>
   );
  

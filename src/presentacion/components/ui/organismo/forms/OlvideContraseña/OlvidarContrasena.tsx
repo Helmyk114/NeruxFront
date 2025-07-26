@@ -1,12 +1,11 @@
 import { Title1 } from "../../../atomos/textos/titles/level1";
 import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
-
 import { olvideContraseñaConfig } from "../../../../../config/forms/OlvideContraseñaConfig";
 import React from "react";
-import VentanaModal from "../../modal";
 import { OlvideContraseñaFormfields } from "../../../moleculas/formsFields/OlvideContraseñaFormfields";
 import InputsOtp from "../../../atomos/form/InputOtp";
+import { VentanaModal } from "../../modal";
 
 export default function OlvideContraseñaForm(): JSX.Element {
      const [value, setValue] = React.useState("");
@@ -50,6 +49,7 @@ export default function OlvideContraseñaForm(): JSX.Element {
     isOpen &&(
         <VentanaModal
     onClose={cerrarModal}
+    size="md"
     isOpen={true}
     isDimissable={false}
     hideCloseButton={false}
@@ -72,8 +72,10 @@ export default function OlvideContraseñaForm(): JSX.Element {
    />
     )
    }
+
     </div>
     
   );
+ 
 
 }
