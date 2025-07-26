@@ -1,16 +1,24 @@
 import { businessService } from "@/infrastructure";
 import { BusinessForm } from "./business.entity";
 import { userStore } from "@/store";
+import { cookie } from "@/shared";
 
-export const createBusinessUseCase = async (business: BusinessForm) => {
-  try {
-    const businessId = await businessService.createBusiness(business);
+export const BusinessUseCase = {
+  createBusiness: async (business: BusinessForm) => {
+    try {
+      const { idBusiness, token } = await businessService.createBusiness(
+        business
+      );
+      cookie.remove("token");
+      cookie.set("token", token);
 
-    const { user, setUser } = userStore.getState();
-    if (user) {
-      setUser({ ...user, business: businessId });
+      const { user, setUser } = userStore.getState();
+      if (user) {
+        setUser({ ...user, business: idBusiness });
+      }
+
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
+  },
 };

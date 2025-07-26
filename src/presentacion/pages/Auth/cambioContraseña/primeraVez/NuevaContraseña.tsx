@@ -1,3 +1,4 @@
+import { AuthServices } from "@/infrastructure";
 import {
   NewPasswordForm,
   PlantillaGenerica,
@@ -43,7 +44,7 @@ export function NuevaContraseña(): JSX.Element {
                   "
         endText="¡Gracias por tu paciencia!"
         textButton="Iniciar sesión"
-        onClick={() => navigate("/")}
+        onClick={() => AuthServices.logout(navigate)}
       />
     </>
   );

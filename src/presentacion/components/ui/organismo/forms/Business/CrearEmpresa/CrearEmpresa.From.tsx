@@ -1,10 +1,10 @@
 import { Formik } from "formik";
 import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
 import { useNavigate } from "react-router-dom";
-import { createBusinessUseCase } from "@/domain";
+
 import { crearEmpresaConfig } from "@/presentacion/config";
 import { CrearEmpresaFormFields } from "@/presentacion/components/ui/moleculas";
-
+import { BusinessUseCase } from "@/domain";
 
 export function CrearEmpresaForm(): JSX.Element {
   const navigate = useNavigate();
@@ -13,11 +13,12 @@ export function CrearEmpresaForm(): JSX.Element {
       <Formik
         initialValues={crearEmpresaConfig.initialValues}
         validationSchema={crearEmpresaConfig.validationSchema}
+        // skipcq: JS-0417
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await createBusinessUseCase(values);
+            await BusinessUseCase.createBusiness(values);
             navigate("/Inicio");
-            console.log("Valores del formulario:", values);
+            window.location.reload();
           } catch (error) {
             console.error("Error al crear la empresa:", error);
           }

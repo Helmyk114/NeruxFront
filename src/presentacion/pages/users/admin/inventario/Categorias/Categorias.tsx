@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Sidebar, TableSimple } from "../../../../components/ui/organismo";
-import { useActionTables } from "../../../../components/hook";
-import { columnsCategoria } from "../../../../config/table/columns/columnsCategoria";
-import { CategoriaColumnRender } from "../../../../config/table/columnRender/CategoriaColumnRender";
+import {
+  TemplatePageTable,
+  TemplateFormNoData,
+} from "@/presentacion/components/ui/template";
+import { DeleteConfirmPopUp } from "@/shared";
+import { useActionTables, useFetchPaginated } from "@/presentacion/components/hook";
+import { categoriasUseCase, Category } from "@/domain";
+import { Sidebar, TableSimple } from "@/presentacion/components/ui";
+import { CategoriaColumnRender, columnsCategoria } from "@/presentacion/config";
 import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
 import { VerCategorias } from "./verCategorias";
-import { categoriasUseCase } from "../../../../../domain/inventario/categoria/categoria.useCase";
-import { useFetchPaginated } from "../../../../components/hook/api/usefetchPaginado";
-import { Category } from "../../../../../domain/inventario/categoria/category.entity";
-import { TemplatePageTable, TemplateFormNoData  } from "@/presentacion/components/ui/template";
-import { DeleteConfirmPopUp } from "@/shared";
 
 export function Categories(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
@@ -45,7 +45,7 @@ export function Categories(): JSX.Element {
     setMode,
     mode,
     drawer,
-    popUp
+    popUp,
   } = useActionTables<number | string>(async (id) => {
     await categoriasUseCase.delete("/category", id);
     setReload((prev) => !prev);
@@ -59,26 +59,26 @@ export function Categories(): JSX.Element {
       mainContent={
         <>
           {data && data.length > 1 ? (
-              <TableSimple
-                tabla="Categorías"
-                nameButton="Nueva categoría +"
-                onclick={handleCreate}
-                columnas={columnsCategoria}
-                columnRender={CategoriaColumnRender(
-                  (item) => handleEdit(item.id),
-                  (item) => handleView(item.id),
-                  (item) => handleDelete(item.id)
-                )}
-                data={data || []}
-                getRowKey={(item) => item.id}
-                isLoading={loading}
-                error={error?.message}
-                page={metadata?.currentPage || 1}
-                totalPages={metadata?.totalPages || 1}
-                setPage={handlePageChange}
-                totalItems={metadata.totalItems}
-                setPageSize={setPageSize}
-              />
+            <TableSimple
+              tabla="Categorías"
+              nameButton="Nueva categoría +"
+              onclick={handleCreate}
+              columnas={columnsCategoria}
+              columnRender={CategoriaColumnRender(
+                (item) => handleEdit(item.id),
+                (item) => handleView(item.id),
+                (item) => handleDelete(item.id)
+              )}
+              data={data || []}
+              getRowKey={(item) => item.id}
+              isLoading={loading}
+              error={error?.message}
+              page={metadata?.currentPage || 1}
+              totalPages={metadata?.totalPages || 1}
+              setPage={handlePageChange}
+              totalItems={metadata.totalItems}
+              setPageSize={setPageSize}
+            />
           ) : (
             <TemplateFormNoData
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"

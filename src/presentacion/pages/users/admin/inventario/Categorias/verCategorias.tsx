@@ -1,10 +1,10 @@
 import { Spinner } from "@heroui/react";
-import { Category } from "../../../../../domain/inventario/categoria/category.entity";
-import { categoriasUseCase } from "../../../../../domain/inventario/categoria/categoria.useCase";
-import { useItemFetch } from "../../../../components/hook/api/useItemFetch";
-import { DrawerWrapper } from "../../../../components/ui/organismo/forms/Drawer";
-import { ButtonAtom, Title2 } from "../../../../components/ui/atomos";
-import { Title3 } from "../../../../components/ui/atomos/textos/titles/level3";
+import { Category } from "../../../../../../domain/inventario/categoria/category.entity";
+import { categoriasUseCase } from "../../../../../../domain/inventario/categoria/categoria.useCase";
+import { useItemFetch } from "../../../../../components/hook/api/useItemFetch";
+import { DrawerWrapper } from "../../../../../components/ui/organismo/forms/Drawer";
+import { ButtonAtom, Title2 } from "../../../../../components/ui/atomos";
+import { Title3 } from "../../../../../components/ui/atomos/textos/titles/level3";
 
 interface VerCategorias {
   isOpen: boolean;
@@ -32,7 +32,7 @@ export function VerCategorias({
     },
     {
       byId: id,
-      enable: !!id,
+      enable: Boolean(id),
       reload: isOpen,
     }
   );
@@ -46,12 +46,12 @@ export function VerCategorias({
     <DrawerWrapper
       isOpen={isOpen}
       onClose={onClose}
-      isDimissable={true}
+      isDimissable
       header={<Title3 classname="mt-6" titulo="Ver categoría" />}
       body={
         loading ? (
           <div>
-            <Spinner title="Loading..." />
+            <Spinner title="Cargando..." />
           </div>
         ) : error ? (
           <div>Error: {"No se encontró la categoria"}</div>

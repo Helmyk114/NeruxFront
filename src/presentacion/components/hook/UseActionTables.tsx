@@ -29,11 +29,10 @@ export const useActionTables = <ID extends string | number>(
   };
 
   const handleDeleteConfirm = async () => {
-    if(!onDeleteItem || selectedItem === null) return;
+    if (!onDeleteItem || selectedItem === null) return;
     onDeleteItem(selectedItem);
     popUp.onClose();
-
-  }
+  };
 
   const handleCreate = () => {
     setSelectedItem(null);
@@ -51,6 +50,6 @@ export const useActionTables = <ID extends string | number>(
     setMode,
     mode,
     drawer,
-    popUp
+    popUp,
   };
 };

@@ -11,6 +11,7 @@ import {
   ProveedorFormFields,
   Title3,
 } from "@/presentacion/components/ui";
+import { Spinner } from "@heroui/react";
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;
@@ -27,7 +28,7 @@ export function ProveedorFormDrawer({
   id,
   mode,
 }: ProveedorFormDrawerProps): JSX.Element | null {
-  const shouldFetchData = mode === "editar" && !!id && isOpen;
+  const shouldFetchData = mode === "editar" && Boolean(id) && isOpen;
   const newToast = toastStore((state) => state.newToast);
 
   const {
@@ -61,8 +62,6 @@ export function ProveedorFormDrawer({
 
   const isReady = mode === "crear" || (mode === "editar" && proveedor);
 
-  if (loading && mode === "editar") return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
   if (!isReady) return null;
 
   return (
@@ -70,6 +69,7 @@ export function ProveedorFormDrawer({
       initialValues={initialValue}
       enableReinitialize
       validationSchema={proveedorConfig.validationSchema}
+      // skipcq: JS-0417
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
@@ -106,7 +106,7 @@ export function ProveedorFormDrawer({
               tipo: "error",
             });
           }
-          console.error(error);
+          throw error;
         }
       }}
     >
@@ -126,7 +126,17 @@ export function ProveedorFormDrawer({
                 classname="mt-6"
               />
             }
-            body={<ProveedorFormFields />}
+            body={
+              mode === 'editar' && loading ? (
+                <div>
+                  <Spinner title="Cargando..." />
+                </div>
+              ) : error ? (
+                <div>Error: {"No se encontró la categoría"}</div>
+              ) : (
+                <ProveedorFormFields />
+              )
+            }
             footer={
               <div className="flex justify-between gap-5">
                 <ButtonCancel onClose={onClose} className="w-[190px]" />
