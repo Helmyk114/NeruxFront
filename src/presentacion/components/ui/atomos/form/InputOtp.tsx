@@ -3,13 +3,13 @@ interface InputOtpProps{
     length: number;
     size: "sm" | "md" | "lg";
     color?: "default" | "primary" | "secondary" ;
-    variant: "bordered" | "filled" | "underlined" | "faded";
+    variant: "bordered" | "underlined" | "faded";
     className?: string;
     value: string;
     onValueChange: (value: string) => void;
 }
 
-export default function InputsOtp({
+export function InputsOtp({
     length,
     size,
     color,
@@ -25,7 +25,7 @@ export default function InputsOtp({
       length={length}
       size={size}
       color={color}
-      variant="faded"
+      variant={variant}
       className={className}
       value={value}
       onValueChange={onValueChange}

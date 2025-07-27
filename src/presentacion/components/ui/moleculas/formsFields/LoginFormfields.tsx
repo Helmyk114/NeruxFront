@@ -1,6 +1,7 @@
 import { Field } from "formik";
 import { IconUser } from "@tabler/icons-react";
 import { InputFiled, InputPassword } from "@/presentacion/components/ui/atomos";
+import { Link } from "react-router-dom";
 
 export function LoginFormfields(): JSX.Element {
   return (
@@ -25,12 +26,12 @@ export function LoginFormfields(): JSX.Element {
         />
       </div>
       <div className="w-3/5 mx-auto text-end">
-        <a
-          href="/Olvide/Contraseña"
+        <Link
+          to="/Olvide/Contraseña"
           className="font-OpenSans text-semantic-informacion text-sm mt-2"
         >
           ¿Olvidaste tu contraseña?
-        </a>
+        </Link>
       </div>
     </>
   );

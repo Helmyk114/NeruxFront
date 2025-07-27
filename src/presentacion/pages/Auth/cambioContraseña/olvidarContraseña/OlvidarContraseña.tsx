@@ -1,16 +1,13 @@
 
-import React from "react";
 import {
-  OlvideContraseñaForm,
+  OlvideContraseñaForm, 
   PlantillaGenerica,
   RichText,
 } from "@/presentacion/components/ui";
-import InputsOtp from "@/presentacion/components/ui/atomos/form/InputOtp";
+
 
 export function OlvidarContraseña(): JSX.Element {
-  const [value, setValue] = React.useState("");
   return (
-      <>
 
     <PlantillaGenerica
       texto={
@@ -25,14 +22,12 @@ export function OlvidarContraseña(): JSX.Element {
               className: "italic 2xl lg:text-2xl",
             },
           ]}
-          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-typography-first to-text"
         />
       }
       formulario={<OlvideContraseñaForm />}
  
     />
- 
-  </>
   );
  
 }
