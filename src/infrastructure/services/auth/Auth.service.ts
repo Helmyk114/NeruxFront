@@ -4,6 +4,7 @@ import { NavigateFunction } from "react-router-dom";
 import { userStore } from "../../../store/userStore";
 import { themeStore } from "../../../store/themeSotre";
 import { Axios } from "../../http/Axios";
+import { getSocket } from "@/socket/SocketClient";
 
 export const AuthServices = {
   login: async (credential: {
@@ -22,6 +23,10 @@ export const AuthServices = {
   },
 
   logout: async (navigate: NavigateFunction): Promise<void> => {
+    const socket = getSocket();
+    if (socket?.connected) {
+      socket.disconnect();
+    }
     cookie.remove("token");
     userStore.getState().clearUser();
     themeStore.getState().setTheme("dark");

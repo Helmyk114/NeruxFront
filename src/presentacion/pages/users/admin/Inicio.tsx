@@ -1,4 +1,5 @@
 import { Sidebar, TemplatePageTable } from "@/presentacion/components/ui";
+import { NotificationTester } from "@/socket/notificationtester";
 
 export function Inicio(): JSX.Element {
   return (
@@ -12,6 +13,7 @@ export function Inicio(): JSX.Element {
           <p className="mt-4 text-lg">
             Esta es la página de inicio de tu aplicación.
           </p>
+          <NotificationTester />
         </div>
       }
     />

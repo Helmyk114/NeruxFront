@@ -1,5 +1,6 @@
 import { AuthServices, RedirectPath } from "@/infrastructure";
 import { cookie, mapUser, User } from "@/shared";
+import { coneectionSocket } from "@/socket/SocketClient";
 import { userStore } from "@/store";
 
 export const authUseCase = {
@@ -20,6 +21,7 @@ export const authUseCase = {
     cookie.set("token", userData.token);
     const user = mapUser(userData.user);
     userStore.getState().setUser(user);
+    coneectionSocket(userData.token);
 
     return {
       token: userData.token,
