@@ -1,10 +1,11 @@
 import { InputOtp } from "@heroui/react";
+import { Input } from "postcss";
 interface InputOtpProps{
     length: number;
     size: "sm" | "md" | "lg";
     color?: "default" | "primary" | "secondary" ;
     variant: "bordered" | "underlined" | "faded";
-    className?: string;
+    className?: {segmentWrapper: string, segment: string};
     value: string;
     onValueChange: (value: string) => void;
 }
@@ -26,7 +27,7 @@ export function InputsOtp({
       size={size}
       color={color}
       variant={variant}
-      className={className}
+      className={className?.segmentWrapper}
       value={value}
       onValueChange={onValueChange}
     />

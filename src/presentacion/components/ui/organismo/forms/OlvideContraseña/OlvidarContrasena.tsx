@@ -63,9 +63,11 @@ export function OlvideContraseñaForm(): JSX.Element {
                 Por favor, ingresa el código, para continuar con el proceso de
                 recuperación de tu contraseña.
               </p>
-              <div className="flex-row gap-5 mt-3 mb-5">
+              <div className=" mt-3 mb-5">
                 <InputsOtp
-                  className="flex gap-x-5"
+                  className={{segmentWrapper:"gap-x-24",
+                    segment: ""
+                  }}
                   value={values}
                   length={6}
                   onValueChange={setValues}
