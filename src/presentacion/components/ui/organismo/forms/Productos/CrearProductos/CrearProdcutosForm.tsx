@@ -1,27 +1,25 @@
-import { useState } from "react";
-import { Field, Formik } from "formik";
-import { createProductConfig } from "./createProductConfig";
+import { Formik } from "formik";
 import { productUseCase } from "@/domain";
-import {
-  BackButton,
-  ButtonAtom,
-  ImageUpload,
-  InputFiled,
-} from "@/presentacion/components/ui/atomos";
+import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
+import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
+import { productoConfig } from "@/presentacion/config";
 
 interface CrearProductoFormProps {
+  createCategoria?: () => void;
+  createProveedor?: () => void;
   onSuccess?: () => void;
 }
 export function CrearProductoFormComponent({
   onSuccess,
+  createCategoria,
+  createProveedor,
 }: CrearProductoFormProps): JSX.Element {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
   return (
     <div className="w-full">
       <Formik
-        initialValues={createProductConfig.initialValues}
-        validationSchema={createProductConfig.validationSchema}
+        initialValues={productoConfig.initialValues}
+        validationSchema={productoConfig.validationSchema}
+        validateOnMount
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             await productUseCase.createProduct(values);
@@ -33,93 +31,23 @@ export function CrearProductoFormComponent({
           }
         }}
       >
-        {({ isSubmitting, setFieldValue, isValid, values, handleSubmit }) => (
-          <form onSubmit={handleSubmit} className="mt-2 px-4 lg:px-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="flex flex-col gap-6">
-                <Field
-                  nombre="nameProduct"
-                  label="Nombre del producto"
-                  component={InputFiled}
-                  isRequired
-                />
-                <Field
-                  nombre="sku"
-                  label="SKU o código de referencia"
-                  component={InputFiled}
-                  isRequired
-                />
-                <Field
-                  nombre="totalAmount"
-                  label="Cantidad total"
-                  component={InputFiled}
-                  isRequired
-                  className="row-span-1"
-                  type="number"
-                />
-
-                <Field
-                  nombre="currentAmount"
-                  label="Cantidad actual"
-                  component={InputFiled}
-                  isRequired
-                  className="row-span-1"
-                  type="number"
-                />
-
-                <Field
-                  nombre="productionPrice"
-                  label="Precio de producción"
-                  component={InputFiled}
-                  className="row-span-1"
-                  type="number"
-                />
-
-                <Field
-                  nombre="salePrice"
-                  label="Precio de venta"
-                  component={InputFiled}
-                  isRequired
-                  className="row-span-1"
-                  type="number"
-                />
-              </div>
-              <div className="flex flex-col gap-6">
-                <Field
-                  nombre="category"
-                  label="Categoría"
-                  component={InputFiled}
-                  isRequired
-                  type="number"
-                />
-                <Field
-                  name="image"
-                  component={ImageUpload}
-                  setFieldValue={setFieldValue}
-                  previewUrl={previewUrl}
-                  setPreviewUrl={setPreviewUrl}
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-between mt-9 mb-6">
-              <BackButton texto="Atrás" className="w-1/6" />
-
-              <ButtonAtom
-                texto="Crear"
-                text="white text-md"
-                className="w-1/6"
-                disabled={
-                  isSubmitting ||
-                  !isValid ||
-                  !values.category ||
-                  !values.nameProduct ||
-                  !values.sku ||
-                  !values.totalAmount ||
-                  !values.currentAmount ||
-                  !values.salePrice
-                }
+        {({ isValid, handleSubmit, dirty }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 p-4 gap-4">
+              <ProductosFormfields
+                crearCategoria={createCategoria}
+                crearProveedor={createProveedor}
               />
+
+              <div className="flex flex-row justify-end gap-9 ">
+                <BackButton texto="Atrás" className="w-1/6" />
+                <ButtonAtom
+                  texto="Crear"
+                  text="text-md"
+                  className="w-1/6"
+                  disabled={!isValid || !dirty}
+                />
+              </div>
             </div>
           </form>
         )}

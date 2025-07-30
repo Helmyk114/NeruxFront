@@ -8,44 +8,60 @@ import { TemplatePageTable } from "../../../../components/ui/template/plantillaP
 import { useNavigate } from "react-router-dom";
 import { CardSimple, TemplatePageForm } from "@/presentacion/components/ui";
 import { PopUpSuccess } from "@/shared";
+import { CategoriasFormDrawer } from "../inventario/Categorias/CategoriasFormDrawer";
+import { useDisclosure } from "@heroui/react";
+import { ProveedorFormDrawer } from "../inventario/Proveedor/ProveedorFormDrawer";
 
 export function CrearProductos(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const categoriaDrawer = useDisclosure();
+  const proveedorDrawer = useDisclosure();
   const navigate = useNavigate();
 
   return (
     <TemplatePageTable
       titulo1="Agrega un nuevo producto"
-      titulo2="Completa los datos para registrar un nuevo producto en tu inventario."
+      titulo2="Completa los siguientes datos para registrar un nuevo producto en tu inventario."
       sideBar={<Sidebar />}
       mainContent={
-        <>
-          <TemplatePageForm>
-            <CardSimple
-              className="bg-background-three m-[13px]"
-              children={
-                <CrearProductoFormComponent
-                  onSuccess={() => setIsModalOpen(true)}
-                />
-              }
+        <TemplatePageForm>
+          <CardSimple className="bg-base-second m-[13px]">
+            <CrearProductoFormComponent
+              createCategoria={categoriaDrawer.onOpen}
+              createProveedor={proveedorDrawer.onOpen}
+              onSuccess={() => setIsModalOpen(true)}
             />
+          </CardSimple>
 
-            <PopUpSuccess
-              isOpen={isModalOpen}
-              onClose={() => setIsModalOpen(false)}
-              titulo="¡Producto creado con éxito!"
-              startText="Tu producto ha sido añadido al inventario 
+          <CategoriasFormDrawer
+            isOpen={categoriaDrawer.isOpen}
+            onClose={categoriaDrawer.onOpenChange}
+            id={null}
+            mode={"crear"}
+          />
+
+          <ProveedorFormDrawer
+            isOpen={proveedorDrawer.isOpen}
+            onClose={proveedorDrawer.onOpenChange}
+            id={null}
+            mode={"crear"}
+          />
+
+          <PopUpSuccess
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            titulo="¡Producto creado con éxito!"
+            startText="Tu producto ha sido añadido al inventario 
               correctamente. Puedes gestionarlo desde la lista de 
               productos o agregar uno nuevo."
-              textButton="Ver productos"
-              onClick={() => navigate("/Productos")}
-              secondTextButton="Agregar otro"
-              onSecondClick={() => {
-                setIsModalOpen(false);
-              }}
-            />
-          </TemplatePageForm>
-        </>
+            textButton="Ver productos"
+            onClick={() => navigate("/Productos")}
+            secondTextButton="Agregar otro"
+            onSecondClick={() => {
+              setIsModalOpen(false);
+            }}
+          />
+        </TemplatePageForm>
       }
     />
   );

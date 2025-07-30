@@ -11,6 +11,11 @@ export class ValidationRules {
     return Yup.string().required(message || `${campo} es requerido`);
   }
 
+  static campoRequeridoNumber(option?: ValidatioOption) {
+    const { campo = "Este campo", message } = option || {};
+    return Yup.number().required(message || `${campo} es requerido`);
+  }
+
   static email(option?: ValidatioOption) {
     const { campo = "este campo", message } = option || {};
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

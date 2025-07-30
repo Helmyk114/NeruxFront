@@ -2,6 +2,7 @@ export * from "./forms/categorias.config";
 export * from "./forms/crearEmpresa.config";
 export * from "./forms/login.config";
 export * from "./forms/newsPassword.Config";
+export * from "./forms/productos.config";
 export * from "./forms/proveedor.config";
 export * from "./table/columnRender/CategoriaColumnRender";
 export * from "./table/columnRender/ProveedorColumnRender";

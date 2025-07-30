@@ -22,18 +22,18 @@ export function ButtonAtom({
   onClick,
   size = "md",
   text,
-  backgroundColor = "bg-button-active",
+  backgroundColor = "bg-button-active text-typography-first",
   className,
 }: ButtonAtomProps): JSX.Element {
   return (
     <Button
       type={type}
       isDisabled={disabled}
-      className={`${
+      className={`font-OpenSans ${
         disabled
-          ? "bg-button-disable text-typography-thrith font-OpenSans"
+          ? "bg-button-disable text-typography-thrith "
           : backgroundColor
-      } ${className} ${text} rounded-lg font-OpenSans`}
+      } ${className} ${text} rounded-lg`}
       startContent={startIcon}
       endContent={endIcon}
       size={size}

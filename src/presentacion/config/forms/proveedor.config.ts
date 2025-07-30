@@ -1,13 +1,14 @@
-import * as Yup from 'yup';
-import { ProveedorForm } from '@/domain';
-import { ValidationRules } from '@/shared';
+// skipcq: JS-C1003
+import * as Yup from "yup";
+import { ProveedorForm } from "@/domain";
+import { ValidationRules } from "@/shared";
 
 interface ProveedorConfig {
   intiatialValues: ProveedorForm;
   validationSchema: Yup.ObjectSchema<ProveedorForm>;
 }
 
-export const  proveedorConfig: ProveedorConfig = {
+export const proveedorConfig: ProveedorConfig = {
   intiatialValues: {
     name: "",
     supplier: "",
@@ -22,4 +23,4 @@ export const  proveedorConfig: ProveedorConfig = {
     phone: Yup.string().concat(ValidationRules.campoRequerido()),
     note: Yup.string().optional(),
   }) as Yup.ObjectSchema<ProveedorForm>,
-}
+};

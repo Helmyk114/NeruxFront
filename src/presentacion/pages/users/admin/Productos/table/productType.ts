@@ -1,13 +1,15 @@
 export interface InfoProduct {
   idProduct: string,
-  photoProduct: string,
-  nameProduct: string,
-  sku: string | null,
-  categoria: string,
-  salePrice: string,
-  costoProduccion: string,
-  stock: string,
-  inventario: string,
-  estado: string,
+  nameProduct: string;
+  category: number;
+  salePrice: number;
+  supplierPrice: number;
+  stock: number;
+  alert: boolean;
+  minStock: number;
+  unit: number;
+  supplier: number;
+  description: string;
+  state: string,
   create_in: string,
 }

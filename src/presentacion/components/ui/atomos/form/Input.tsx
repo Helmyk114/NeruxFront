@@ -12,6 +12,7 @@ interface InputFieldProps {
   minLength?: number;
   maxLength?: number;
   icono?: JSX.Element;
+  disabled?: boolean;
 }
 
 export function InputFiled({
@@ -24,6 +25,7 @@ export function InputFiled({
   maxLength,
   placeholder,
   icono,
+  disabled
 }: InputFieldProps): JSX.Element {
   const [field, meta] = useField(nombre);
   const hasError = meta.touched && meta.error;
@@ -62,6 +64,7 @@ export function InputFiled({
         labelPlacement="outside"
         isInvalid={false}
         endContent={icono}
+        isDisabled={disabled} 
       />
       {hasError && typeof meta.error === "string" ? (
         <TextError error={meta.error} classname={className} />

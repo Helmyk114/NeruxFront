@@ -1,3 +1,4 @@
+// skipcq: JS-C1003
 import * as Yup from "yup";
 import { CategoryForm } from "@/domain";
 import { ValidationRules } from "@/shared/validations/ValidationRules";

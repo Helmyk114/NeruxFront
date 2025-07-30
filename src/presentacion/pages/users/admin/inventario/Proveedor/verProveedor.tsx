@@ -48,7 +48,7 @@ export function VerProveedores({
     <DrawerWrapper
       isOpen={isOpen}
       onClose={onClose}
-      isDimissable={true}
+      isDimissable
       header={<Title3 classname="mt-6" titulo="Información del proveedor" />}
       body={
         loading ? (

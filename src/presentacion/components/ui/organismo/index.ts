@@ -5,7 +5,6 @@ export * from "./forms/NewPassword/NewPassword";
 export * from "./forms/NewPassword/NewPasswordValidationSchema";
 export * from "./forms/OlvidarContrasena";
 export * from "./forms/Productos/CrearProductos/CrearProdcutosForm";
-export * from "./forms/Productos/CrearProductos/createProductConfig";
 export * from "./forms/switcherTheme";
 export * from "./modal";
 export * from "./pantallaPrincipal/seccionDerecha";

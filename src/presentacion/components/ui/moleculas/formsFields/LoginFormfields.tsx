@@ -1,6 +1,10 @@
 import { Field } from "formik";
 import { IconUser } from "@tabler/icons-react";
-import { InputFiled, InputPassword } from "@/presentacion/components/ui/atomos";
+import {
+  InputFiled,
+  InputPassword,
+  LinkAtom,
+} from "@/presentacion/components/ui/atomos";
 
 export function LoginFormfields(): JSX.Element {
   return (
@@ -11,7 +15,9 @@ export function LoginFormfields(): JSX.Element {
           label="Usuario"
           component={InputFiled}
           isRequired
-          icono={<IconUser className="text-2xl text-default-400 pointer-events-none" />}
+          icono={
+            <IconUser className="text-2xl text-default-400 pointer-events-none" />
+          }
           className="w-3/5 mx-auto"
         />
       </div>
@@ -25,12 +31,11 @@ export function LoginFormfields(): JSX.Element {
         />
       </div>
       <div className="w-3/5 mx-auto text-end">
-        <a
-          href="/Olvide/Contraseña"
-          className="font-OpenSans text-semantic-informacion text-sm mt-2"
-        >
-          ¿Olvidaste tu contraseña?
-        </a>
+        <LinkAtom
+          to="/Olvide/Contraseña"
+          texto="¿Olvidaste tu contraseña?"
+          className="text-semantic-informacion text-sm mt-2"
+        />
       </div>
     </>
   );
