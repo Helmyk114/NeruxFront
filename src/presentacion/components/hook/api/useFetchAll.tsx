@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 
-interface NonPaginatedResponse<T> {
-  data: T[];
-}
-
 interface UseFetchAllOptions {
   reload?: boolean;
-  enable?: boolean;
+  enable?: boolean; 
 }
 
-type FetchAllFunction<T> = () => Promise<NonPaginatedResponse<T>>;
+type FetchAllFunction<T> = () => Promise<T[]>;
 
 export function useFetchAll<T>(
   fetchFn: FetchAllFunction<T>,
@@ -27,7 +23,7 @@ export function useFetchAll<T>(
       setError(null);
       try {
         const response = await fetchFn();
-        setData(response.data);
+        setData(response);
       } catch (err) {
         setError(err as Error);
       } finally {

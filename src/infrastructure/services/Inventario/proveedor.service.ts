@@ -1,6 +1,7 @@
 import { Proveedor, ProveedorForm, ProveedorRepository } from "@/domain";
 import { Axios } from "@/infrastructure/http/Axios";
-import { ResponseApi } from "../../../shared/types/ResponseApi";
+import { ResponseApi } from "@/shared";
+
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
 
 export const proveedorService: ProveedorRepository = {
@@ -14,7 +15,8 @@ export const proveedorService: ProveedorRepository = {
 
   getAll: async (endpoint: string): Promise<Proveedor[]> => {
     try {
-      return await Axios.get<Proveedor[]>(endpoint);
+      const response = await Axios.get<ResponseApi<Proveedor[]>>(endpoint);
+      return response.data
     } catch (error) {
       throw new Error(`Error al obtener los proveedores: ${error}`);
     }
@@ -24,7 +26,6 @@ export const proveedorService: ProveedorRepository = {
     endpoint: string,
     id: number | string
   ): Promise<Proveedor> => {
-    console.log("getById", endpoint, id);
     try {
       const response = await Axios.get<ResponseApi<Proveedor>>(
         `${endpoint}/${id}`

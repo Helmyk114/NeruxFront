@@ -31,7 +31,6 @@ export function CategoriasFormDrawer({
   const shouldFetchData = mode === "editar" && Boolean(id) && isOpen;
   const newToast = toastStore((state) => state.newToast);
 
-
   const {
     data: categoria,
     loading,

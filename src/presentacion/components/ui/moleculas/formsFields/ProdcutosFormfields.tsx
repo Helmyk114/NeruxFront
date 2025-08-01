@@ -12,11 +12,15 @@ import { InfoProduct } from "@/presentacion/pages";
 interface ProductosFormfieldsProps {
   crearCategoria?: () => void;
   crearProveedor?: () => void;
+  supplierOptions: { key: string | number; label: string }[];
+  categoryOptions: { key: string | number; label: string }[];
 }
 
 export function ProductosFormfields({
   crearCategoria,
   crearProveedor,
+  supplierOptions,
+  categoryOptions,
 }: ProductosFormfieldsProps): JSX.Element {
   const { values } = useFormikContext<InfoProduct>();
 
@@ -37,6 +41,7 @@ export function ProductosFormfields({
             label="Categoría"
             isRequired
             component={SelectAtom}
+            options={categoryOptions}
           />
           <LinkAtom
             onClick={crearCategoria}
@@ -115,6 +120,7 @@ export function ProductosFormfields({
             label="Proveedor"
             isRequired
             component={SelectAtom}
+            options={supplierOptions}
           />
           <LinkAtom
             onClick={crearProveedor}

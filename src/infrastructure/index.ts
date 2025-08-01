@@ -1,4 +1,7 @@
+export * from "./http/ApiClient";
 export * from "./http/Axios";
+export * from "./http/axiosInstanse";
+export * from "./http/interceptors";
 export * from "./services/Inventario/categoria.service";
 export * from "./services/Inventario/products/product.service";
 export * from "./services/Inventario/proveedor.service";

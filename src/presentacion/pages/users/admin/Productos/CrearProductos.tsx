@@ -14,6 +14,7 @@ import { ProveedorFormDrawer } from "../inventario/Proveedor/ProveedorFormDrawer
 
 export function CrearProductos(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reload, setReload] = useState(false);
   const categoriaDrawer = useDisclosure();
   const proveedorDrawer = useDisclosure();
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export function CrearProductos(): JSX.Element {
         <TemplatePageForm>
           <CardSimple className="bg-base-second m-[13px]">
             <CrearProductoFormComponent
+              reload={reload}
               createCategoria={categoriaDrawer.onOpen}
               createProveedor={proveedorDrawer.onOpen}
               onSuccess={() => setIsModalOpen(true)}
@@ -36,6 +38,7 @@ export function CrearProductos(): JSX.Element {
           <CategoriasFormDrawer
             isOpen={categoriaDrawer.isOpen}
             onClose={categoriaDrawer.onOpenChange}
+            onSuccess={() => setReload((prev) => !prev)}
             id={null}
             mode={"crear"}
           />
@@ -43,6 +46,7 @@ export function CrearProductos(): JSX.Element {
           <ProveedorFormDrawer
             isOpen={proveedorDrawer.isOpen}
             onClose={proveedorDrawer.onOpenChange}
+            onSuccess={() => setReload((prev) => !prev)}
             id={null}
             mode={"crear"}
           />

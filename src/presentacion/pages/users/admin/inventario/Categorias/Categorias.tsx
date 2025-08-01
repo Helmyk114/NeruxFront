@@ -25,7 +25,7 @@ export function Categories(): JSX.Element {
       ),
     {
       currentPage,
-      pageSize,
+      pageSize, 
       enable: true,
       reload,
     }

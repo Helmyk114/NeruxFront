@@ -1,16 +1,11 @@
-import {
-  Category,
-  CategoryForm,
-} from "../../../domain/inventario/categoria/category.entity";
-import { CategoryRepository } from "../../../domain/inventario/categoria/category.repository";
-import { ResponseApi } from "../../../shared/types/ResponseApi";
-import { PaginatedResponse } from "../../../shared/types/ResponsePaginada";
-import { Axios } from "../../http/Axios";
+import { Category, CategoryForm, CategoryRepository } from "@/domain";
+import { apiClient } from "@/infrastructure/http/ApiClient";
+import { PaginatedResponse } from "@/shared";
 
 export const categoriaService: CategoryRepository = {
   create: async (endpoint: string, categoria: CategoryForm) => {
     try {
-      await Axios.post(endpoint, categoria);
+      await apiClient.post(endpoint, categoria);
     } catch (error) {
       throw new Error(`Error al crear la categoria: ${error}`);
     }
@@ -18,7 +13,7 @@ export const categoriaService: CategoryRepository = {
 
   getAll: async (endpoint: string): Promise<Category[]> => {
     try {
-      return await Axios.get<Category[]>(endpoint);
+      return await apiClient.get<Category[]>(endpoint);
     } catch (error) {
       throw new Error(`Error al obtener las categorias: ${error}`);
     }
@@ -26,10 +21,7 @@ export const categoriaService: CategoryRepository = {
 
   getById: async (endpoint: string, id: number | string): Promise<Category> => {
     try {
-      const respuesta = await Axios.get<ResponseApi<Category>>(
-        `${endpoint}/${id}`
-      );
-      return respuesta.data;
+      return await apiClient.get<Category>(`${endpoint}/${id}`);
     } catch (error) {
       throw new Error(`Error al obtener la categoria por ID: ${error}`);
     }
@@ -41,7 +33,7 @@ export const categoriaService: CategoryRepository = {
     pageSize: number
   ): Promise<PaginatedResponse<Category>> => {
     try {
-      return await Axios.get<PaginatedResponse<Category>>(endpoint, {
+      return await apiClient.get<PaginatedResponse<Category>>(endpoint, {
         params: {
           page: currentPage,
           size: pageSize,
@@ -58,11 +50,7 @@ export const categoriaService: CategoryRepository = {
     category: CategoryForm
   ): Promise<Category> => {
     try {
-      const respuesta = await Axios.put<Category>(
-        `${endpoint}/${id}`,
-        category
-      );
-      return respuesta;
+      return await apiClient.put<Category>(`${endpoint}/${id}`, category);
     } catch (error) {
       throw new Error(`Error al actualizar la categoria: ${error}`);
     }
@@ -70,7 +58,7 @@ export const categoriaService: CategoryRepository = {
 
   delete: async (endpoint: string, id: number | string): Promise<void> => {
     try {
-      await Axios.delete(`${endpoint}/${id}`);
+      await apiClient.delete(`${endpoint}/${id}`);
     } catch (error) {
       throw new Error(`Error al eliminar la categoria: ${error}`);
     }
