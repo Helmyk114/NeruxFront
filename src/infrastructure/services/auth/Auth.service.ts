@@ -3,7 +3,7 @@ import { cookie } from "../../../shared/utils/cookies";
 import { NavigateFunction } from "react-router-dom";
 import { userStore } from "../../../store/userStore";
 import { themeStore } from "../../../store/themeSotre";
-import { Axios } from "../../http/Axios";
+import { apiClient } from "@/infrastructure/http/ApiClient";
 
 export const AuthServices = {
   login: async (credential: {
@@ -11,7 +11,8 @@ export const AuthServices = {
     password: string;
   }): Promise<AuthResponse> => {
     try {
-      const authData = await Axios.post<AuthResponse>("/login", credential);
+      const authData = await apiClient.post<AuthResponse>("/login", credential);
+      console.log("authDatads", authData);
       return authData;
     } catch (error: unknown) {
       if (error && typeof error === "object" && "message" in error) {
@@ -33,7 +34,7 @@ export const AuthServices = {
     confirmPassword: string
   ): Promise<void> => {
     try {
-      await Axios.patch("/first-password", {
+      await apiClient.patch("/first-password", {
         newPassword,
         confirmPassword,
       });

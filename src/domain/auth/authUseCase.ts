@@ -16,6 +16,7 @@ export const authUseCase = {
     }
 
     const userData = await AuthServices.login(credential);
+    console.log("userData", userData);
 
     cookie.set("token", userData.token);
     const user = mapUser(userData.user);

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { productUseCase, Proveedor, proveedoresUseCase } from "@/domain";
+import { categoriasUseCase, Category, productUseCase, Proveedor, proveedoresUseCase } from "@/domain";
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
@@ -21,8 +21,8 @@ export function CrearProductoFormComponent({
     () => proveedoresUseCase.getAll("/supplier"),
     { enable: true, reload }
   );
-  const { data: category } = useFetchAll<Proveedor>(
-    () => proveedoresUseCase.getAll("/supplier"),
+  const { data: category } = useFetchAll<Category>(
+    () => categoriasUseCase.getAll("/category"),
     { enable: true, reload }
   );
 

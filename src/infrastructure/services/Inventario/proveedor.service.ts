@@ -1,5 +1,5 @@
 import { Proveedor, ProveedorForm, ProveedorRepository } from "@/domain";
-import { Axios } from "@/infrastructure/http/Axios";
+import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from "@/shared";
 
 import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
@@ -7,7 +7,7 @@ import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
 export const proveedorService: ProveedorRepository = {
   create: async (endpoint: string, proveedor: ProveedorForm) => {
     try {
-      await Axios.post(endpoint, proveedor);
+      await apiClient.post(endpoint, proveedor);
     } catch (error) {
       throw new Error(`Error al crear el proveedor: ${error}`);
     }
@@ -15,7 +15,7 @@ export const proveedorService: ProveedorRepository = {
 
   getAll: async (endpoint: string): Promise<Proveedor[]> => {
     try {
-      const response = await Axios.get<ResponseApi<Proveedor[]>>(endpoint);
+      const response = await apiClient.get<ResponseApi<Proveedor[]>>(endpoint);
       return response.data
     } catch (error) {
       throw new Error(`Error al obtener los proveedores: ${error}`);
@@ -27,7 +27,7 @@ export const proveedorService: ProveedorRepository = {
     id: number | string
   ): Promise<Proveedor> => {
     try {
-      const response = await Axios.get<ResponseApi<Proveedor>>(
+      const response = await apiClient.get<ResponseApi<Proveedor>>(
         `${endpoint}/${id}`
       );
       return response.data;
@@ -42,7 +42,7 @@ export const proveedorService: ProveedorRepository = {
     pageSize: number
   ): Promise<PaginatedResponse<Proveedor>> => {
     try {
-      return await Axios.get<PaginatedResponse<Proveedor>>(endpoint, {
+      return await apiClient.get<PaginatedResponse<Proveedor>>(endpoint, {
         params: {
           page: currentPage,
           size: pageSize,
@@ -59,7 +59,7 @@ export const proveedorService: ProveedorRepository = {
     proveedor: ProveedorForm
   ): Promise<Proveedor> => {
     try {
-      const response = await Axios.put<Proveedor>(
+      const response = await apiClient.put<Proveedor>(
         `${endpoint}/${id}`,
         proveedor
       );
@@ -71,7 +71,7 @@ export const proveedorService: ProveedorRepository = {
 
   delete: async (endpoint: string, id: number | string) => {
     try {
-      await Axios.delete(`${endpoint}/${id}`);
+      await apiClient.delete(`${endpoint}/${id}`);
     } catch (error) {
       throw new Error(`Error al eliminar el proveedor: ${error}`);
     }

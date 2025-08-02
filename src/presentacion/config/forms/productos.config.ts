@@ -3,7 +3,7 @@
   import { ValidationRules } from "@/shared";
 
   export type ProductosValues = {
-    nameProduct: string;
+    name: string;
     category: number;
     salePrice: number;
     supplierPrice: number;
@@ -22,7 +22,7 @@
 
   export const productoConfig: ProductoConfigProps = {
     initialValues: {
-      nameProduct: "",
+      name: "",
       category: 0,
       salePrice: 0,
       supplierPrice: 0,
@@ -35,7 +35,7 @@
     },
 
     validationSchema: Yup.object().shape({
-      nameProduct: Yup.string().concat(ValidationRules.campoRequerido()),
+      name: Yup.string().concat(ValidationRules.campoRequerido()),
       category: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
       salePrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
       supplierPrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()),

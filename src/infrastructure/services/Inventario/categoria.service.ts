@@ -1,6 +1,7 @@
 import { Category, CategoryForm, CategoryRepository } from "@/domain";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { PaginatedResponse } from "@/shared";
+import { ResponseApi } from '../../../shared/types/ResponseApi';
 
 export const categoriaService: CategoryRepository = {
   create: async (endpoint: string, categoria: CategoryForm) => {
@@ -13,7 +14,9 @@ export const categoriaService: CategoryRepository = {
 
   getAll: async (endpoint: string): Promise<Category[]> => {
     try {
-      return await apiClient.get<Category[]>(endpoint);
+      const response =await apiClient.get<ResponseApi<Category[]>>(endpoint);
+      return response.data
+
     } catch (error) {
       throw new Error(`Error al obtener las categorias: ${error}`);
     }
