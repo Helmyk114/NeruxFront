@@ -5,6 +5,8 @@ export * from "./forms/newsPassword.Config";
 export * from "./forms/productos.config";
 export * from "./forms/proveedor.config";
 export * from "./table/columnRender/CategoriaColumnRender";
+export * from "./table/columnRender/ProductColumnRender";
 export * from "./table/columnRender/ProveedorColumnRender";
 export * from "./table/columns/columnsCategoria";
+export * from "./table/columns/columnsProducts";
 export * from "./table/columns/columnsProveedor";

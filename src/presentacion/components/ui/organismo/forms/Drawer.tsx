@@ -27,6 +27,8 @@ export function DrawerWrapper({
     <Drawer
     classNames={{
       base: "dark:bg-base-second",
+      header: "border-b-[1px] border-base-fourth w-[90%] mx-auto",
+      footer: "border-t-[1px] border-base-fourth w-[90%] mx-auto",
     }}
       isOpen={isOpen}
       onOpenChange={onClose}

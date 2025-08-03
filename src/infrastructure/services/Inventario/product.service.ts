@@ -1,5 +1,6 @@
 import { ProductoCreate } from "@/domain";
-import { apiClient } from '../../../http/ApiClient';
+import { apiClient } from "@/infrastructure";
+
 
 export const productService = {
   createProduct: async (product: ProductoCreate) => {

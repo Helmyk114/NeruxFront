@@ -1,4 +1,4 @@
-import { productService } from "../../../infrastructure/services/Inventario/products/product.service";
+import { productService } from "@/infrastructure";
 import { ProductoCreate } from "./producto.entity";
 
 export const productUseCase = {

@@ -3,7 +3,7 @@ export * from "./http/Axios";
 export * from "./http/axiosInstanse";
 export * from "./http/interceptors";
 export * from "./services/Inventario/categoria.service";
-export * from "./services/Inventario/products/product.service";
+export * from "./services/Inventario/product.service";
 export * from "./services/Inventario/proveedor.service";
 export * from "./services/auth/Auth.service";
 export * from "./services/auth/Redirect.service";

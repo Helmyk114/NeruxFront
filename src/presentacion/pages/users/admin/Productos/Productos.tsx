@@ -1,20 +1,14 @@
 import { useState } from "react";
-import { InfoProduct } from "./productType";
-import {
-  useActionTables,
-  UseFetchGet,
-  useRedirect,
-} from "../../../../../components/hook";
-import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
-import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
-import { columnsProductos } from "./columnsProducts";
-import { ProductColumnRender } from "./ProductColumnRender";
+import { Producto } from "@/domain";
+import { useActionTables, UseFetchGet, useRedirect } from "@/presentacion/components/hook";
+import { Sidebar, TableSimple, TemplatePageTable } from "@/presentacion/components/ui";
+import { ProductColumnRender, columnsProductos } from "@/presentacion/config";
 
 export function Products(): JSX.Element {
   const redirect = useRedirect();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGet<InfoProduct>(
+  const { data, metadata, loading, error } = UseFetchGet<Producto>(
     "/product",
     { paginated: true, currentPage, pageSize, reload: false, enable: true }
   );
@@ -23,11 +17,9 @@ export function Products(): JSX.Element {
     setCurrentPage(newPage);
   };
 
-  const {
-    handleEdit,
-    handleView,
-    handleDelete,
-  } = useActionTables<number | string>();
+  const { handleEdit, handleView, handleDelete } = useActionTables<
+    number | string
+  >();
 
   return (
     <TemplatePageTable
@@ -35,19 +27,18 @@ export function Products(): JSX.Element {
       titulo1="Productos"
       titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
       mainContent={
-        <>
           <TableSimple
             tabla="Productos"
             nameButton="Nuevo producto +"
             onclick={() => redirect("/Productos/Crear")}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
-              (item) => handleEdit(item.idProduct),
-              (item) => handleView(item.idProduct),
-              (item) => handleDelete(item.idProduct)
+              (item) => handleEdit(item.id),
+              (item) => handleView(item.id),
+              (item) => handleDelete(item.id)
             )}
             data={data || []}
-            getRowKey={(item) => item.idProduct}
+            getRowKey={(item) => item.id}
             isLoading={loading}
             error={error?.message}
             page={metadata?.currentPage || 1}
@@ -56,8 +47,6 @@ export function Products(): JSX.Element {
             totalItems={metadata.totalItems}
             setPageSize={setPageSize}
           />
-
-        </>
       }
     />
   );
