@@ -1,8 +1,8 @@
 import { productService } from "../../../infrastructure/services/Inventario/products/product.service";
-import { CrearProductosValues } from "../../../presentacion/components/ui/organismo/forms/Productos/CrearProductos/createProductConfig";
+import { ProductoCreate } from "./producto.entity";
 
 export const productUseCase = {
-  createProduct: async (product: CrearProductosValues) => {
+  createProduct: async (product: ProductoCreate) => {
     await productService.createProduct(product);
   },
 };

@@ -14,6 +14,7 @@ interface ProductosFormfieldsProps {
   crearProveedor?: () => void;
   supplierOptions: { key: string | number; label: string }[];
   categoryOptions: { key: string | number; label: string }[];
+  unitOptions: { key: string | number; label: string }[];
 }
 
 export function ProductosFormfields({
@@ -21,6 +22,7 @@ export function ProductosFormfields({
   crearProveedor,
   supplierOptions,
   categoryOptions,
+  unitOptions,
 }: ProductosFormfieldsProps): JSX.Element {
   const { values } = useFormikContext<InfoProduct>();
 
@@ -28,7 +30,7 @@ export function ProductosFormfields({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="flex flex-col">
         <Field
-          nombre="nameProduct"
+          nombre="name"
           label="Nombre del producto"
           component={InputFiled}
           isRequired
@@ -110,6 +112,7 @@ export function ProductosFormfields({
           label="Unidad de medida"
           isRequired
           component={SelectAtom}
+          options={unitOptions}
         />
       </div>
 

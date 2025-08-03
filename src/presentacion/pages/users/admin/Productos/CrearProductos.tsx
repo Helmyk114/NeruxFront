@@ -1,11 +1,10 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import {
   CrearProductoFormComponent,
   Sidebar,
 } from "../../../../components/ui/organismo";
 import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
-import { useNavigate } from "react-router-dom";
 import { CardSimple, TemplatePageForm } from "@/presentacion/components/ui";
 import { PopUpSuccess } from "@/shared";
 import { CategoriasFormDrawer } from "../inventario/Categorias/CategoriasFormDrawer";

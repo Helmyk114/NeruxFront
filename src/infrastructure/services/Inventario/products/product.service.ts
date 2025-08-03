@@ -1,10 +1,10 @@
-import { CrearProductosValues } from "../../../../presentacion/components/ui/organismo";
-import { Axios } from "../../../http/Axios";
+import { ProductoCreate } from "@/domain";
+import { apiClient } from '../../../http/ApiClient';
 
 export const productService = {
-  createProduct: async (product: CrearProductosValues) => {
+  createProduct: async (product: ProductoCreate) => {
     try {
-      await Axios.post("/create-product", product);
+      await apiClient.post("/create-product", product);
     } catch (error) {
       throw new Error(`Error al crear el producto: ${error}`);
     }
