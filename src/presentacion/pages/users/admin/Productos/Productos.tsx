@@ -1,32 +1,57 @@
 import { useState } from "react";
 import { Producto } from "@/domain";
-import { useActionTables, UseFetchGet, useRedirect } from "@/presentacion/components/hook";
-import { Sidebar, TableSimple, TemplatePageTable } from "@/presentacion/components/ui";
+import {
+  useActionTables,
+  UseFetchGet,
+  useRedirect,
+} from "@/presentacion/components/hook";
+import {
+  Sidebar,
+  TableSimple,
+  TemplatePageTable,
+} from "@/presentacion/components/ui";
 import { ProductColumnRender, columnsProductos } from "@/presentacion/config";
+import { VerProducto } from "./VerProducto";
 
 export function Products(): JSX.Element {
   const redirect = useRedirect();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGet<Producto>(
-    "/product",
-    { paginated: true, currentPage, pageSize, reload: false, enable: true }
-  );
+  const { data, metadata, loading, error } = UseFetchGet<Producto>("/product", {
+    paginated: true,
+    currentPage,
+    pageSize,
+    reload: false,
+    enable: true,
+  });
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
 
-  const { handleEdit, handleView, handleDelete } = useActionTables<
-    number | string
-  >();
+  const {
+    handleEdit,
+    handleView,
+    handleDelete,
+    drawer,
+    selectedItem,
+    mode,
+    setMode,
+  } = useActionTables<number | string>(
+    undefined,
+    // async (id) => {
+    //   await productUseCase.deleteProduct("/product", id);
+    // },
+    (id) => redirect(`/Producto/${id}`)
+  );
 
   return (
-    <TemplatePageTable
-      sideBar={<Sidebar />}
-      titulo1="Productos"
-      titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
-      mainContent={
+    <>
+      <TemplatePageTable
+        sideBar={<Sidebar />}
+        titulo1="Productos"
+        titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
+        mainContent={
           <TableSimple
             tabla="Productos"
             nameButton="Nuevo producto +"
@@ -47,7 +72,17 @@ export function Products(): JSX.Element {
             totalItems={metadata.totalItems}
             setPageSize={setPageSize}
           />
-      }
-    />
+        }
+      />
+      {mode === "ver" && (
+        <VerProducto
+          isOpen={drawer.isOpen}
+          onClose={drawer.onOpenChange}
+          id={selectedItem}
+          setMode={setMode}
+          onOpen={drawer.onOpen}
+        />
+      )}
+    </>
   );
 }

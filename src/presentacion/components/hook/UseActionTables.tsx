@@ -4,7 +4,8 @@ import { useState } from "react";
 type Mode = "ver" | "editar" | "crear";
 
 export const useActionTables = <ID extends string | number>(
-  onDeleteItem?: (item: ID) => void
+  onDeleteItem?: (item: ID) => void,
+  onEditNavigate?: (item: ID) => void
 ) => {
   const drawer = useDisclosure();
   const popUp = useDisclosure();
@@ -14,7 +15,11 @@ export const useActionTables = <ID extends string | number>(
   const handleEdit = (item: ID) => {
     setSelectedItem(item);
     setMode("editar");
-    drawer.onOpen();
+    if(onEditNavigate) {
+      onEditNavigate(item);
+    } else {
+      drawer.onOpen();
+    }
   };
 
   const handleView = (item: ID) => {
