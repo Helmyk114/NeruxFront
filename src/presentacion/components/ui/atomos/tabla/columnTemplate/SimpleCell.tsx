@@ -1,5 +1,5 @@
 interface CompactCellProps {
-  textTop: string;
+  textTop: string | number;
 }
 export function SimpleCell({
   textTop,

@@ -3,7 +3,7 @@ export const colors = {
   semantic: {
     exito: "#32CD32",
     advertencia: "#FFD700",
-    error: "#FF0303",
+    error: "#FF4D4D",
     informacion: "#007BFF",
   },
 

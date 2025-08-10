@@ -13,6 +13,7 @@ interface DrawerPropd {
   header: React.ReactNode;
   body: React.ReactNode;
   footer: React.ReactNode;
+  footerClassName?: string;
 }
 
 export function DrawerWrapper({
@@ -22,6 +23,7 @@ export function DrawerWrapper({
   header,
   body,
   footer,
+  footerClassName,
 }: DrawerPropd): JSX.Element {
   return (
     <Drawer
@@ -38,7 +40,7 @@ export function DrawerWrapper({
       <DrawerContent>
         <DrawerHeader>{header}</DrawerHeader>
         <DrawerBody>{body}</DrawerBody>
-        <DrawerFooter>{footer}</DrawerFooter>
+        <DrawerFooter className={footerClassName}>{footer}</DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

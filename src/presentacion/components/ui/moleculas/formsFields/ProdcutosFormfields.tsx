@@ -7,7 +7,8 @@ import {
   SelectAtom,
   TooltipAtom,
 } from "../../atomos";
-import { InfoProduct } from "@/presentacion/pages";
+import { ProductoDto } from "@/domain";
+
 
 interface ProductosFormfieldsProps {
   crearCategoria?: () => void;
@@ -24,7 +25,7 @@ export function ProductosFormfields({
   categoryOptions,
   unitOptions,
 }: ProductosFormfieldsProps): JSX.Element {
-  const { values } = useFormikContext<InfoProduct>();
+  const { values } = useFormikContext<ProductoDto>();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -60,7 +61,6 @@ export function ProductosFormfields({
           component={InputFiled}
           isRequired
           className="row-span-1"
-          type="number"
         />
       </div>
 

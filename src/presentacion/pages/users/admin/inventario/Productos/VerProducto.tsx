@@ -1,4 +1,6 @@
-import { Producto, productUseCase } from "@/domain";
+import { adapterProducto } from "@/adapter/inventario/producto.adapter";
+import { ProductoUi } from "@/adapter/inventario/productoUi";
+import { productUseCase } from "@/domain";
 import { useItemFetch } from "@/presentacion/components/hook";
 import {
   ButtonAtom,
@@ -27,10 +29,10 @@ export function VerProducto({
     data: producto,
     loading,
     error,
-  } = useItemFetch<Producto>(
+  } = useItemFetch<ProductoUi>(
     async (id) => {
       const data = await productUseCase.getById("/product", id);
-      return { data };
+      return { data: adapterProducto.sidemodal(data) };
     },
     {
       byId: id,
@@ -38,6 +40,8 @@ export function VerProducto({
       reload: isOpen,
     }
   );
+
+
 
   const handleEditClick = () => {
     setMode("editar");

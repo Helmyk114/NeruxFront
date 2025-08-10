@@ -18,7 +18,7 @@ export function CategoriasFormFields(): JSX.Element {
         component={InputTextArea}
         isRequired
         placeholder={"Describe brevemente tu categoría..."}
-        maxLength={250}
+        maxLength={300}
       />
     </div>
   );

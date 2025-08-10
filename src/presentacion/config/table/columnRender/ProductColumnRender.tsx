@@ -6,44 +6,45 @@ import {
   SimpleCell,
 } from "../../../components/ui/atomos";
 import { ColumnRender } from "../../../../shared/types/columRenderType";
-import { numberFormat } from "../../../../shared/utils/convert/numberFormat";
-import { fechaFormat } from "../../../../shared/utils/convert/fechaFormat";
-import { Producto } from "@/domain";
+import { ProductoFront } from "@/adapter/inventario/productoUi";
+import { formatDate, formatPrice } from "@/shared";
 
 export const ProductColumnRender = (
-  onEdit: (product: Producto) => void,
-  onView: (product: Producto) => void,
-  onDelete: (product: Producto) => void
-): ColumnRender<Producto> => ({
-  producto: (product: Producto) => (
-    <ImgCellSimple avatar={product.photoProduct || ""} textTop={product.name} />
+  onEdit: (product: ProductoFront) => void,
+  onView: (product: ProductoFront) => void,
+  onDelete: (product: ProductoFront) => void
+): ColumnRender<ProductoFront> => ({
+  producto: (product: ProductoFront) => (
+    <ImgCellSimple textTop={product.name} />
   ),
-  sku: (product: Producto) => <SimpleCell textTop={product.sku || ""} />,
+  sku: (product: ProductoFront) => <SimpleCell textTop={product.id || ""} />,
 
-  categoria: (product: Producto) => (
+  categoria: (product: ProductoFront) => (
     <SimpleCell textTop={product.category || ""} />
   ),
-  salePrice: (product: Producto) => (
-    <SimpleCell textTop={numberFormat(product.salePrice) || ""} />
+  salePrice: (product: ProductoFront) => (
+    <SimpleCell textTop={formatPrice(product.salePrice) || ""} />
   ),
-  costoProduccion: (product: Producto) => (
-    <SimpleCell textTop={product.costoProduccion || ""} />
+  costoProduccion: (product: ProductoFront) => (
+    <SimpleCell textTop={product.salePrice || ""} />
   ),
-  stock: (product: Producto) => <SimpleCell textTop={product.stock || ""} />,
-  inventario: (product: Producto) => (
-    <SimpleCell textTop={product.inventario || ""} />
+  stock: (product: ProductoFront) => (
+    <SimpleCell textTop={product.stock || ""} />
   ),
-  estado: (product: Producto) => (
+  inventario: (product: ProductoFront) => (
+    <SimpleCell textTop={product.stock || ""} />
+  ),
+  estado: (product: ProductoFront) => (
     <ChipCell
       colorText={statusProductMap[product.estado].color}
       colorDot={statusProductMap[product.estado].dot}
       texto={product.estado}
     />
   ),
-  create_in: (product: Producto) => (
-    <SimpleCell textTop={fechaFormat(product.create_in) || ""} />
+  create_in: (product: ProductoFront) => (
+    <SimpleCell textTop={formatDate(product.create_in) || ""} />
   ),
-  acciones: (product: Producto) => (
+  acciones: (product: ProductoFront) => (
     <ActionsCell
       onEdit={() => onEdit(product)}
       onView={() => onView(product)}

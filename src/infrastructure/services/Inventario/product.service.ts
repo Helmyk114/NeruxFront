@@ -1,4 +1,4 @@
-import { Producto, ProductoCreate } from "@/domain";
+import { ProductoDto, ProductoCreate } from "@/domain";
 import { apiClient } from "@/infrastructure";
 import { ResponseApi } from "@/shared";
 
@@ -12,9 +12,9 @@ export const productService = {
     }
   },
 
-  getById: async (endpoint: string, id: string | number): Promise<Producto> => {
+  getById: async (endpoint: string, id: string | number): Promise<ProductoDto> => {
     try {
-      const response = await apiClient.get<ResponseApi<Producto>>(`${endpoint}/${id}`);
+      const response = await apiClient.get<ResponseApi<ProductoDto>>(`${endpoint}/${id}`);
       return response.data;
     } catch (error) {
       throw new Error(`Error al obtener el producto con ID ${id}: ${error}`);

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Producto } from "@/domain";
+import { ProductoDto } from "@/domain";
 import {
   useActionTables,
   UseFetchGet,
@@ -17,7 +17,7 @@ export function Products(): JSX.Element {
   const redirect = useRedirect();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGet<Producto>("/product", {
+  const { data, metadata, loading, error } = UseFetchGet<ProductoDto>("/product", {
     paginated: true,
     currentPage,
     pageSize,

@@ -4,8 +4,8 @@ export * from "./Auth/cambioContraseña/olvidarContraseña/RestablecerContraseñ
 export * from "./Auth/cambioContraseña/primeraVez/NuevaContraseña";
 export * from "./users/admin/Empresa/CrearEmpresa";
 export * from "./users/admin/Inicio";
-export * from "./users/admin/Productos/CrearProductos";
-export * from "./users/admin/Productos/Productos";
+export * from "./users/admin/inventario/Productos/CrearProductos";
+export * from "./users/admin/inventario/Productos/Productos";
 export * from "./users/admin/inventario/Categorias/Categorias";
 export * from "./users/admin/inventario/Categorias/CategoriasFormDrawer";
 export * from "./users/admin/inventario/Categorias/verCategorias";

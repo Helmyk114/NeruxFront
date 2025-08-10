@@ -7,7 +7,7 @@ export * from "./inventario/categoria/categoria.useCase";
 export * from "./inventario/categoria/category.entity";
 export * from "./inventario/categoria/category.repository";
 export * from "./inventario/producto/productUseCase";
-export * from "./inventario/producto/producto.entity";
+export * from "./inventario/producto/producto.dto";
 export * from "./inventario/proveedor/proveedor.entity";
 export * from "./inventario/proveedor/proveedor.repository";
 export * from "./inventario/proveedor/proveedor.useCase";

@@ -1,17 +1,8 @@
-export const numberFormat = (
-  value: string | number,
-  locale: string = 'es-CO',
-  currency: string = 'COP'
-): string => {
-  if (value === null || value === undefined || value === '') return '$0';
+export function formatPrice(value: number | string): string {
+  const number = typeof value === "string" ? parseFloat(value) : value;
 
-  const numberValue = typeof value === 'string' ? parseFloat(value) : value;
-
-  if (isNaN(numberValue)) return '$0';
-
-  return new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency,
+  return number.toLocaleString("es-CO", {
     minimumFractionDigits: 0,
-  }).format(numberValue);
-};
+    maximumFractionDigits: 0,
+  });
+}

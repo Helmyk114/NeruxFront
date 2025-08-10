@@ -1,7 +1,6 @@
 import { Field } from "formik";
 import {
   InputFiled,
-  InputNumber,
   InputTextArea,
 } from "@/presentacion/components/ui/atomos";
 
@@ -27,7 +26,7 @@ export function ProveedorFormFields(): JSX.Element {
       <Field
         nombre="phone"
         label="Teléfono"
-        component={InputNumber}
+        component={InputFiled}
         isRequired
         placeholder={"3214567889"}
       />

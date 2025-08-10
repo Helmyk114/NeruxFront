@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import {
   CrearProductoFormComponent,
   Sidebar,
-} from "../../../../components/ui/organismo";
-import { TemplatePageTable } from "../../../../components/ui/template/plantillaPages";
+} from "../../../../../components/ui/organismo";
+import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
 import { CardSimple, TemplatePageForm } from "@/presentacion/components/ui";
 import { PopUpSuccess } from "@/shared";
-import { CategoriasFormDrawer } from "../inventario/Categorias/CategoriasFormDrawer";
+import { CategoriasFormDrawer } from "../Categorias/CategoriasFormDrawer";
 import { useDisclosure } from "@heroui/react";
-import { ProveedorFormDrawer } from "../inventario/Proveedor/ProveedorFormDrawer";
+import { ProveedorFormDrawer } from "../Proveedor/ProveedorFormDrawer";
 
 export function CrearProductos(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);

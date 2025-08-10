@@ -24,7 +24,8 @@ export const categoriaService: CategoryRepository = {
 
   getById: async (endpoint: string, id: number | string): Promise<Category> => {
     try {
-      return await apiClient.get<Category>(`${endpoint}/${id}`);
+      const response = await apiClient.get<ResponseApi<Category>>(`${endpoint}/${id}`);
+      return  response.data
     } catch (error) {
       throw new Error(`Error al obtener la categoria por ID: ${error}`);
     }

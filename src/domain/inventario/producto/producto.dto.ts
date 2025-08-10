@@ -1,4 +1,4 @@
-  export interface Producto{
+  export interface ProductoDto{
     id: string | number;
     name: string;
     category: number;
@@ -14,4 +14,4 @@
     update_at: string;
   };
 
-export type ProductoCreate = Omit<Producto, "id" | "create_in" | "update_in">;
+export type ProductoCreate = Omit<ProductoDto, "id" | "create_in" | "update_at">;

@@ -67,8 +67,9 @@ export function ProveedorFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize
       validationSchema={proveedorConfig.validationSchema}
+      enableReinitialize
+      validateOnMount
       // skipcq: JS-0417
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
@@ -110,12 +111,13 @@ export function ProveedorFormDrawer({
         }
       }}
     >
-      {({ isSubmitting, isValid, handleSubmit, values }) => (
+      {({ isValid, handleSubmit, dirty }) => (
         <form onSubmit={handleSubmit}>
           <DrawerWrapper
             isOpen={isOpen}
             onClose={onClose}
             isDimissable={false}
+            footerClassName="flex justify-center items-center"
             header={
               <Title3
                 titulo={
@@ -127,18 +129,20 @@ export function ProveedorFormDrawer({
               />
             }
             body={
-              mode === 'editar' && loading ? (
+              mode === "editar" && loading ? (
+                //Crear componente reutilizable para el spinner
                 <div>
                   <Spinner title="Cargando..." />
                 </div>
               ) : error ? (
-                <div>Error: {"No se encontró la categoría"}</div>
+                //Crear componente reutilizable para el error
+                <div>Error: {"No se encontró el proveedor"}</div>
               ) : (
                 <ProveedorFormFields />
               )
             }
             footer={
-              <div className="flex justify-between gap-5">
+              <div className="flex items-center justify-between gap-5">
                 <ButtonCancel onClose={onClose} className="w-[190px]" />
                 <ButtonAtom
                   onClick={() => handleSubmit()}
@@ -148,9 +152,7 @@ export function ProveedorFormDrawer({
                       : "Actualizar proveedor"
                   }
                   className="w-[190px]"
-                  disabled={
-                    isSubmitting || !isValid || !values.name || !values.phone
-                  }
+                  disabled={!isValid || !dirty}
                 />
               </div>
             }

@@ -28,7 +28,7 @@ export const productoConfig: ProductoConfigProps = {
       .transform((_, val) => (val === "" ? undefined : Number(val)))
       .concat(ValidationRules.campoRequeridoNumber()),
     salePrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
-    supplierPrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
+    supplierPrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()).positive(),
     stock: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
     alert: Yup.boolean(),
     minStock: Yup.number().when("alert", {

@@ -64,8 +64,9 @@ export function CategoriasFormDrawer({
   return (
     <Formik
       initialValues={initialValue}
-      enableReinitialize
       validationSchema={categoriasConfig.validationSchema}
+      enableReinitialize
+      validateOnMount
       // skipcq: JS-0417
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
@@ -107,12 +108,13 @@ export function CategoriasFormDrawer({
         }
       }}
     >
-      {({ isSubmitting, isValid, handleSubmit, values }) => (
+      {({ isValid, handleSubmit, dirty }) => (
         <form onSubmit={handleSubmit}>
           <DrawerWrapper
             isOpen={isOpen}
             onClose={onClose}
             isDimissable={false}
+            footerClassName="flex justify-center items-center"
             header={
               <Title3
                 titulo={
@@ -135,7 +137,7 @@ export function CategoriasFormDrawer({
               )
             }
             footer={
-              <div className="flex justify-between gap-5">
+              <div className="flex gap-5">
                 <ButtonCancel onClose={onClose} className="w-[190px]" />
                 <ButtonAtom
                   onClick={() => handleSubmit()}
@@ -146,10 +148,7 @@ export function CategoriasFormDrawer({
                   }
                   className="w-[190px]"
                   disabled={
-                    isSubmitting ||
-                    !isValid ||
-                    !values.name ||
-                    !values.description
+                    !isValid || !dirty
                   }
                 />
               </div>
