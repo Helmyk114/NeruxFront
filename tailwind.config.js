@@ -17,12 +17,6 @@ export default {
         OpenSans: ['"Open Sans"', "sans-serif"],
       },
       colors: {
-        texts: { ...colors.texts},
-        background: { ...colors.background },
-        sidebar: { ...colors.sidebar },
-        input: { ...colors.input },
-        marca: { ...colors.marca },
-        
         semantic: { ...colors.semantic },
         base: { ...colors.base },
         typography: { ...colors.typography },

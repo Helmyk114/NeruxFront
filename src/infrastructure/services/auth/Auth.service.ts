@@ -29,15 +29,12 @@ export const AuthServices = {
     navigate("/", { replace: true });
   },
 
-  newPassword: async (
+  newPassword: async (password: {
     newPassword: string,
     confirmPassword: string
-  ): Promise<void> => {
+  }): Promise<void> => {
     try {
-      await apiClient.patch("/first-password", {
-        newPassword,
-        confirmPassword,
-      });
+      await apiClient.patch("/first-password", password);
     } catch (error) {
       console.error("Error al cambiarla contraseña", error);
       throw new Error("Error al cambiar la contraseña");

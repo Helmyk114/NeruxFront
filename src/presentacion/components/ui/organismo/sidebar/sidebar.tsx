@@ -141,7 +141,7 @@ export const Sidebar = () => {
         {!isCollapsed && (
           <button
             onClick={toggle}
-            className="ml-2 p-2 text-typography-first rounded hover:bg-sidebar-button"
+            className="ml-2 text-typography-first rounded hover:bg-button-active"
           >
             <IconChevronLeft />
           </button>
@@ -151,7 +151,7 @@ export const Sidebar = () => {
       {isCollapsed && (
         <button
           onClick={toggle}
-          className="fixed top-5 ml-12 p-2 text-typography-first rounded hover:bg-sidebar-button"
+          className="fixed top-5 ml-12 text-typography-first rounded hover:bg-button-active"
         >
           <IconChevronRight />
         </button>

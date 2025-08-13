@@ -16,7 +16,6 @@ export const authUseCase = {
     }
 
     const userData = await AuthServices.login(credential);
-    console.log("userData", userData);
 
     cookie.set("token", userData.token);
     const user = mapUser(userData.user);
@@ -29,15 +28,15 @@ export const authUseCase = {
     };
   },
 
-  newPassword: async (
+  newPassword: async (password:{
     newPassword: string,
     confirmPassword: string
-  ): Promise<void> => {
-    if (!newPassword || !confirmPassword) {
+  }): Promise<void> => {
+    if (!password.newPassword || !password.confirmPassword) {
       throw new Error("La contraseña y la confirmación son obligatorias");
     }
     try {
-      await AuthServices.newPassword(newPassword, confirmPassword);
+      await AuthServices.newPassword(password);
     } catch (error) {
       throw new Error(`Error al cambiar la contraseña ${error}`);
     }

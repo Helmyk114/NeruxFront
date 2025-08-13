@@ -25,8 +25,7 @@ export function LoginForm(): JSX.Element {
         validationSchema={loginConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            const { token, redirect } = await authUseCase.login(values);
-            console.log("Token de autenticación:", token);
+            const { redirect } = await authUseCase.login(values);
             navigate(redirect);
           } catch (error) {
             setError(
@@ -39,7 +38,7 @@ export function LoginForm(): JSX.Element {
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting, isValid, values, handleSubmit }) => (
+        {({ isValid, handleSubmit, dirty }) => (
           <form onSubmit={handleSubmit}>
             <LoginFormfields />
             <div className="flex justify-center mt-6">
@@ -47,12 +46,7 @@ export function LoginForm(): JSX.Element {
                 texto="Iniciar sesión"
                 text="white text-lg"
                 className="w-3/5"
-                disabled={
-                  isSubmitting ||
-                  !isValid ||
-                  !values.username ||
-                  !values.password
-                }
+                disabled={!isValid || !dirty}
               />
             </div>
             {error && (

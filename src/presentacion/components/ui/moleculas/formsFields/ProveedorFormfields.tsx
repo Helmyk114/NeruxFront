@@ -6,13 +6,12 @@ import {
 
 export function ProveedorFormFields(): JSX.Element {
   return (
-    <div className="flex flex-col gap-6 mt-10">
+    <div className="flex flex-col gap-4 mt-10">
       <Field
         nombre="name"
         label="Nombre del proveedor"
         component={InputFiled}
         isRequired
-        placeholder={"Chechillow"}
       />
 
       <Field
@@ -20,7 +19,6 @@ export function ProveedorFormFields(): JSX.Element {
         label="Empresa (opcional)"
         component={InputFiled}
         isRequired={false}
-        placeholder={"Chechillo factory"}
       />
 
       <Field
@@ -28,7 +26,6 @@ export function ProveedorFormFields(): JSX.Element {
         label="Teléfono"
         component={InputFiled}
         isRequired
-        placeholder={"3214567889"}
       />
 
       <Field
@@ -36,7 +33,6 @@ export function ProveedorFormFields(): JSX.Element {
         label="Correo electrónico (opcional)"
         component={InputFiled}
         isRequired={false}
-        placeholder={"ejemplo@gmail.com"}
       />
 
       <Field

@@ -4,11 +4,12 @@ export * from "./Auth/cambioContraseña/olvidarContraseña/RestablecerContraseñ
 export * from "./Auth/cambioContraseña/primeraVez/NuevaContraseña";
 export * from "./users/admin/Empresa/CrearEmpresa";
 export * from "./users/admin/Inicio";
-export * from "./users/admin/inventario/Productos/CrearProductos";
-export * from "./users/admin/inventario/Productos/Productos";
 export * from "./users/admin/inventario/Categorias/Categorias";
 export * from "./users/admin/inventario/Categorias/CategoriasFormDrawer";
 export * from "./users/admin/inventario/Categorias/verCategorias";
+export * from "./users/admin/inventario/Productos/CrearProductos";
+export * from "./users/admin/inventario/Productos/Productos";
+export * from "./users/admin/inventario/Productos/VerProducto";
 export * from "./users/admin/inventario/Proveedor/ProveedorFormDrawer";
 export * from "./users/admin/inventario/Proveedor/Proveedores";
 export * from "./users/admin/inventario/Proveedor/verProveedor";

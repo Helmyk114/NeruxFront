@@ -40,7 +40,7 @@ export * from "./organismo/forms/Business/CrearEmpresa/CrearEmpresa.From";
 export * from "./organismo/forms/Drawer";
 export * from "./organismo/forms/Login/LoginForm";
 export * from "./organismo/forms/NewPassword/NewPassword";
-export * from "./organismo/forms/NewPassword/NewPasswordValidationSchema";
+export * from "./organismo/forms/NewPassword/mapRulePassword";
 export * from "./organismo/forms/OlvidarContrasena";
 export * from "./organismo/forms/Productos/CrearProductos/CrearProdcutosForm";
 export * from "./organismo/forms/switcherTheme";

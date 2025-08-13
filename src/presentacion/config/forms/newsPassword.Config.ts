@@ -1,10 +1,11 @@
-//import * as Yup from 'yup';
+// skipcq: JS-C1003
+import * as Yup from "yup";
 import { NewPasswordForm } from "@/domain";
-
+import { authValidations } from "@/shared";
 
 interface NewPasswordConfig {
   initialValues: NewPasswordForm;
-  //validationSchema: Yup.ObjectSchema<NewPasswordForm>;
+  validationSchema: Yup.ObjectSchema<NewPasswordForm>;
 }
 
 export const newPasswordConfig: NewPasswordConfig = {
@@ -12,12 +13,19 @@ export const newPasswordConfig: NewPasswordConfig = {
     newPassword: "",
     confirmPassword: "",
   },
-  // validationSchema: Yup.object().shape({
-  //   newPassword: Yup.string()
-  //     .min(8, "La contraseña debe tener al menos 8 caracteres")
-  //     .required("La contraseña es requerida"),
-  //   confirmPassword: Yup.string()
-  //     .oneOf([Yup.ref("newPassword"), null], "Las contraseñas deben coincidir")
-  //     .required("Confirmar contraseña es requerido"),
-  // }) as Yup.ObjectSchema<NewPasswordForm>,
-}
+  validationSchema: Yup.object().shape({
+    newPassword: authValidations(Yup.string(), [
+      { type: "required" },
+      { type: "minLength", value: 8 },
+      { type: "maxLength", value: 16 },
+      { type: "upperCase" },
+      { type: "lowerCase" },
+      { type: "number" },
+      { type: "specialCharacter" },
+    ]),
+    confirmPassword: authValidations(Yup.string(), [
+      { type: "required" },
+      { type: "passwordMatch", refField: "newPassword" },
+    ]),
+  }) as Yup.ObjectSchema<NewPasswordForm>,
+};

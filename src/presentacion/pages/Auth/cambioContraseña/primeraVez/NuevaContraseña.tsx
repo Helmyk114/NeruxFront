@@ -5,11 +5,11 @@ import {
   RichText,
 } from "@/presentacion/components/ui";
 import { PopUpSuccess } from "@/shared";
-import { useState } from "react";
+import { useDisclosure } from "@heroui/react";
 import { useNavigate } from "react-router-dom";
 
 export function NuevaContraseña(): JSX.Element {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const modal = useDisclosure();
   const navigate = useNavigate();
 
   return (
@@ -32,16 +32,15 @@ export function NuevaContraseña(): JSX.Element {
             }
           />
         }
-        formulario={<NewPasswordForm onSuccess={() => setIsModalOpen(true)} />}
+        formulario={<NewPasswordForm onSuccess={modal.onOpen} />}
       />
 
       <PopUpSuccess
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={modal.isOpen}
+        onClose={modal.onClose}
         titulo="¡Listo! 🎉"
         startText="Tu contraseña ha sido restablecida correctamente.
-                  Ahora puedes iniciar sesión con tu nueva contraseña.
-                  "
+                  Ahora puedes iniciar sesión con tu nueva contraseña."
         endText="¡Gracias por tu paciencia!"
         textButton="Iniciar sesión"
         onClick={() => AuthServices.logout(navigate)}
