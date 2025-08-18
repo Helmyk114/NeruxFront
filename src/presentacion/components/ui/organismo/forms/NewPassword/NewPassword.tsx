@@ -37,17 +37,18 @@ export function NewPasswordForm({
           try {
             await authUseCase.newPassword(values);
             if (onSuccess) onSuccess();
-            setSubmitting(false);
           } catch (error) {
             setError(
               error instanceof Error
                 ? error.message
                 : "Error desconocido al cambiar la contraseña"
             );
+          } finally {
+            setSubmitting(false);
           }
         }}
       >
-        {({ values, isValid, handleSubmit, dirty }) => {
+        {({ values, isValid, handleSubmit, dirty, isSubmitting }) => {
           const validationRules = mapRules(values);
 
           return (
@@ -58,7 +59,7 @@ export function NewPasswordForm({
                 texto="Enviar"
                 text="white"
                 className="w-9/12 mx-auto"
-                disabled={!isValid || !dirty}
+                disabled={!isValid || !dirty || isSubmitting}
               />
               {error && (
                 <div className="w-3/5 mx-auto text-start text-semantic-error">

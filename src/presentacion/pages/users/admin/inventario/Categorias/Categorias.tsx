@@ -4,12 +4,16 @@ import {
   TemplateFormNoData,
 } from "@/presentacion/components/ui/template";
 import { DeleteConfirmPopUp } from "@/shared";
-import { useActionTables, useFetchPaginated } from "@/presentacion/components/hook";
+import {
+  useActionTables,
+  useFetchPaginated,
+} from "@/presentacion/components/hook";
 import { categoriasUseCase, Category } from "@/domain";
-import { Sidebar, TableSimple } from "@/presentacion/components/ui";
+import { TableSimple } from "@/presentacion/components/ui";
 import { CategoriaColumnRender, columnsCategoria } from "@/presentacion/config";
 import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
 import { VerCategorias } from "./verCategorias";
+import { IconFolderOpen } from "@tabler/icons-react";
 
 export function Categories(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +29,7 @@ export function Categories(): JSX.Element {
       ),
     {
       currentPage,
-      pageSize, 
+      pageSize,
       enable: true,
       reload,
     }
@@ -55,7 +59,6 @@ export function Categories(): JSX.Element {
     <TemplatePageTable
       titulo1="Categorías de productos"
       titulo2="Organiza tus productos agrupándolos por tipo o uso."
-      sideBar={<Sidebar />}
       mainContent={
         <>
           {data && data.length > 1 ? (
@@ -81,6 +84,7 @@ export function Categories(): JSX.Element {
             />
           ) : (
             <TemplateFormNoData
+              icon={<IconFolderOpen className="text-brand-first" size={100}/>}
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"
               descripcion2="Usarlas te ayudará a mantener tus productos organizados por tipo o uso. 
               ¡Puedes crear una nueva ahora mismo desde el botón “Nueva categoría”!"

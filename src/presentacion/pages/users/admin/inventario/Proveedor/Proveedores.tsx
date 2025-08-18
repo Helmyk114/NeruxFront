@@ -10,11 +10,11 @@ import { VerProveedores } from "./verProveedor";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
 import { Proveedor, proveedoresUseCase } from "@/domain";
 import {
-  Sidebar,
   TableSimple,
   TemplateFormNoData,
   TemplatePageTable,
 } from "@/presentacion/components/ui";
+import { IconPackage } from "@tabler/icons-react";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
@@ -58,7 +58,6 @@ export function Proveedores(): JSX.Element {
     <TemplatePageTable
       titulo1="Proveedores"
       titulo2="Gestioná fácilmente la información de tus proveedores."
-      sideBar={<Sidebar />}
       mainContent={
         <>
           {data && data.length > 0 ? (
@@ -84,6 +83,7 @@ export function Proveedores(): JSX.Element {
               />
           ) : (
             <TemplateFormNoData
+              icon={<IconPackage className="text-brand-first" size={100} />}
               descripcion1="¡AÚN NO HAY PROVEEDORES!"
               descripcion2=" Agregarlos te permitirá llevar un mejor control de quién te surte tus productos. 
               ¡Puedes crear uno ahora mismo desde el botón “Nuevo proveedor”!"

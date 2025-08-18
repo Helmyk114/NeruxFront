@@ -1,15 +1,14 @@
 import { sidebarStore } from "@/store";
 import { Title1, Title2 } from "@/presentacion/components/ui/atomos"
+import { Sidebar } from "../organismo";
 
 interface TemplatePageProps {
-  sideBar: React.ReactNode;
   mainContent: React.ReactNode;
   titulo1?: string;
   titulo2?: string;
 }
 
 export function TemplatePageTable({
-  sideBar,
   mainContent,
   titulo1,
   titulo2,
@@ -17,7 +16,7 @@ export function TemplatePageTable({
   const { isCollapsed } = sidebarStore();
   return (
     <div className="flex h-screen overflow-hidden">
-      {sideBar}
+      <Sidebar />
       <div
         className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${
           isCollapsed ? "p-12" : "p-12"

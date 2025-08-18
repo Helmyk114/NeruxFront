@@ -33,12 +33,12 @@ export function LoginForm(): JSX.Element {
                 ? error.message
                 : "Error desconocido durante el login"
             );
+          } finally {
+            setSubmitting(false);
           }
-
-          setSubmitting(false);
         }}
       >
-        {({ isValid, handleSubmit, dirty }) => (
+        {({ isValid, handleSubmit, dirty, isSubmitting }) => (
           <form onSubmit={handleSubmit}>
             <LoginFormfields />
             <div className="flex justify-center mt-6">
@@ -46,7 +46,7 @@ export function LoginForm(): JSX.Element {
                 texto="Iniciar sesión"
                 text="white text-lg"
                 className="w-3/5"
-                disabled={!isValid || !dirty}
+                disabled={!isValid || !dirty || isSubmitting}
               />
             </div>
             {error && (

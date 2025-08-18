@@ -1,7 +1,6 @@
 import { Title2, Acordion } from "@/presentacion/components/ui/atomos";
 import {
   CrearEmpresaForm,
-  Sidebar,
   CrearProductoFormComponent,
 } from "@/presentacion/components/ui/organismo";
 import {
@@ -38,7 +37,6 @@ const accordionItems = [
 export function CrearEmpresa(): JSX.Element {
   return (
     <TemplatePageTable
-      sideBar={<Sidebar />}
       titulo1="¡Bienvenido a NERUX!"
       titulo2="Antes de comenzar, configuraremos los datos de tu empresa para que todo funcione a la perfección.
       Completa la siguiente información y estarás listo para gestionar tu inventario."

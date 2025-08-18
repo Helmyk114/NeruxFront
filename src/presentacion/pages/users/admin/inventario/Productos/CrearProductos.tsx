@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  CrearProductoFormComponent,
-  Sidebar,
+  CrearProductoFormComponent
 } from "../../../../../components/ui/organismo";
 import { TemplatePageTable } from "../../../../../components/ui/template/plantillaPages";
 import { CardSimple, TemplatePageForm } from "@/presentacion/components/ui";
@@ -22,7 +21,6 @@ export function CrearProductos(): JSX.Element {
     <TemplatePageTable
       titulo1="Agrega un nuevo producto"
       titulo2="Completa los siguientes datos para registrar un nuevo producto en tu inventario."
-      sideBar={<Sidebar />}
       mainContent={
         <TemplatePageForm>
           <CardSimple className="bg-base-second m-[13px]">

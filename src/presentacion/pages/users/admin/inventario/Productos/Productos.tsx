@@ -6,7 +6,6 @@ import {
   useRedirect,
 } from "@/presentacion/components/hook";
 import {
-  Sidebar,
   TableSimple,
   TemplatePageTable,
 } from "@/presentacion/components/ui";
@@ -48,7 +47,6 @@ export function Products(): JSX.Element {
   return (
     <>
       <TemplatePageTable
-        sideBar={<Sidebar />}
         titulo1="Productos"
         titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
         mainContent={

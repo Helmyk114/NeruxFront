@@ -34,7 +34,7 @@ export function VerProveedores({
     },
     {
       byId: id,
-      enable: !!id,
+      enable: Boolean(id),
       reload: isOpen,
     }
   );

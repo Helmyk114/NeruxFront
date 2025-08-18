@@ -88,7 +88,7 @@ export function SelectAtom({
         onSelectionChange={(keys) => {
           const selectedKey = Array.from(keys)[0] as string;
           helpers.setTouched(true);
-          helpers.setValue(selectedKey);
+          helpers.setValue(selectedKey);  
         }}
       >
         {options.map((option) => (

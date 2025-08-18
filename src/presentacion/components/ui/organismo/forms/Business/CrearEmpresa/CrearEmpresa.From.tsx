@@ -1,10 +1,11 @@
 import { Formik } from "formik";
-import { ButtonAtom } from "../../../../atomos/button/ButtonAtom";
+
 import { useNavigate } from "react-router-dom";
 
 import { crearEmpresaConfig } from "@/presentacion/config";
 import { CrearEmpresaFormFields } from "@/presentacion/components/ui/moleculas";
 import { BusinessUseCase } from "@/domain";
+import { ButtonAtom } from "@/presentacion/components/ui/atomos";
 
 export function CrearEmpresaForm(): JSX.Element {
   const navigate = useNavigate();
@@ -21,11 +22,12 @@ export function CrearEmpresaForm(): JSX.Element {
             window.location.reload();
           } catch (error) {
             console.error("Error al crear la empresa:", error);
+          } finally {
+            setSubmitting(false);
           }
-          setSubmitting(false);
         }}
       >
-        {({ isSubmitting, isValid, values, handleSubmit }) => (
+        {({ isValid, handleSubmit, dirty, isSubmitting }) => (
           <form onSubmit={handleSubmit} className="space-y-6 px-4 lg:px-12">
             <CrearEmpresaFormFields />
             <div className="flex justify-end py-7">
@@ -33,15 +35,7 @@ export function CrearEmpresaForm(): JSX.Element {
                 texto="Guardar"
                 text=" text-lg"
                 className="w-1/6"
-                disabled={
-                  isSubmitting ||
-                  !isValid ||
-                  !values.name ||
-                  !values.nit ||
-                  !values.phone ||
-                  !values.address ||
-                  !values.email
-                }
+                disabled={!isValid || !dirty || isSubmitting}
               />
             </div>
           </form>

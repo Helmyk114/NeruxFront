@@ -6,7 +6,7 @@ import {
   Proveedor,
   proveedoresUseCase,
   Unit,
-  masterUseCase
+  masterUseCase,
 } from "@/domain";
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
@@ -70,17 +70,18 @@ export function CrearProductoFormComponent({
               unit: Number(values.unit),
               supplier: Number(values.supplier),
               minStock: values.alert ? Number(values.minStock) : 1,
-            }
+            };
             await productUseCase.createProduct(newValues);
             if (onSuccess) onSuccess();
             resetForm();
-            setSubmitting(false);
           } catch (error) {
             console.error("Error al crear la empresa:", error);
+          } finally {
+            setSubmitting(false);
           }
         }}
       >
-        {({ isValid, handleSubmit, dirty }) => (
+        {({ isValid, handleSubmit, dirty, isSubmitting }) => (
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 p-4 gap-4">
               <ProductosFormfields
@@ -97,7 +98,7 @@ export function CrearProductoFormComponent({
                   texto="Crear"
                   text="text-md"
                   className="w-1/6"
-                  disabled={!isValid || !dirty}
+                  disabled={!isValid || !dirty || isSubmitting}
                 />
               </div>
             </div>
