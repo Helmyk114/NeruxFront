@@ -1,11 +1,14 @@
+
 import {
-  OlvideContraseñaForm,
+  OlvideContraseñaForm, 
   PlantillaGenerica,
   RichText,
 } from "@/presentacion/components/ui";
 
+
 export function OlvidarContraseña(): JSX.Element {
   return (
+
     <PlantillaGenerica
       texto={
         <RichText
@@ -19,10 +22,12 @@ export function OlvidarContraseña(): JSX.Element {
               className: "italic 2xl lg:text-2xl",
             },
           ]}
-          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-b from-grisFondo to-text"
+          className="font-OpenSans whitespace-pre-line text-transparent bg-clip-text bg-gradient-to-br from-typography-first to-text"
         />
       }
       formulario={<OlvideContraseñaForm />}
+ 
     />
   );
+ 
 }
