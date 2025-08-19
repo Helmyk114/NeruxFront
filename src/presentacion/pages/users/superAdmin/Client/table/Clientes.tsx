@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useActionTables, UseFetchGet } from "../../../../../components/hook";
 import { InfoBusiness } from "../../../../../../domain/business/InfoBusiness";
 import { TemplatePageTable } from "../../../../../components/ui/template";
-import { Sidebar, TableSimple } from "../../../../../components/ui/organismo";
+import { TableSimple } from "../../../../../components/ui/organismo";
 import { Title1 } from "../../../../../components/ui/atomos";
 import { columnsClient } from "./columnsClient";
 import { clientColumnRender } from "./clientColumnRender";
@@ -25,7 +25,6 @@ export const Clientes: React.FC = () => {
 
   return (
     <TemplatePageTable
-      sideBar={<Sidebar />}
       mainContent={
         <>
           <Title1 clasname="text-start" titulo="Clientes" />

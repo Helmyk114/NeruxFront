@@ -1,9 +1,8 @@
-import { Sidebar, TemplatePageTable } from "@/presentacion/components/ui";
+import { TemplatePageTable } from "@/presentacion/components/ui";
 
 export function Inicio(): JSX.Element {
   return (
     <TemplatePageTable
-      sideBar={<Sidebar />}
       mainContent={
         <div className="flex flex-col items-center justify-center h-screen">
           <h1 className="text-4xl font-bold dark:text-semantic-error">
