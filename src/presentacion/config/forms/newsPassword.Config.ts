@@ -1,11 +1,10 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
+import { object, ObjectSchema, string } from "yup";
 import { NewPasswordForm } from "@/domain";
 import { authValidations } from "@/shared";
 
 interface NewPasswordConfig {
   initialValues: NewPasswordForm;
-  validationSchema: Yup.ObjectSchema<NewPasswordForm>;
+  validationSchema: ObjectSchema<NewPasswordForm>;
 }
 
 export const newPasswordConfig: NewPasswordConfig = {
@@ -13,8 +12,8 @@ export const newPasswordConfig: NewPasswordConfig = {
     newPassword: "",
     confirmPassword: "",
   },
-  validationSchema: Yup.object().shape({
-    newPassword: authValidations(Yup.string(), [
+  validationSchema: object().shape({
+    newPassword: authValidations(string(), [
       { type: "required" },
       { type: "minLength", value: 8 },
       { type: "maxLength", value: 16 },
@@ -23,9 +22,9 @@ export const newPasswordConfig: NewPasswordConfig = {
       { type: "number" },
       { type: "specialCharacter" },
     ]),
-    confirmPassword: authValidations(Yup.string(), [
+    confirmPassword: authValidations(string(), [
       { type: "required" },
       { type: "passwordMatch", refField: "newPassword" },
     ]),
-  }) as Yup.ObjectSchema<NewPasswordForm>,
+  }) as ObjectSchema<NewPasswordForm>,
 };

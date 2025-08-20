@@ -1,4 +1,4 @@
-export * from "./auth/auth.entity";
+export * from "./auth/auth.dto";
 export * from "./auth/authUseCase";
 export * from "./business/InfoBusiness";
 export * from "./business/business.entity";

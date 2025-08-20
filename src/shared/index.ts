@@ -13,7 +13,6 @@ export * from "./utils/map/mapRol";
 export * from "./utils/map/toastMap";
 export * from "./utils/popUps/delete";
 export * from "./utils/popUps/success";
-export * from "./validations/OlvidarContraseñaValidation";
 export * from "./validations/ValidationRules";
 export * from "./validations/authValidations";
 export * from "./validations/stringValidations";

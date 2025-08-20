@@ -30,7 +30,7 @@ export function OlvideContraseñaForm(): JSX.Element {
           setSubmitting(false);
         }}
       >
-        {({ isSubmitting, isValid, values, handleSubmit }) => (
+        {({ isSubmitting, isValid, handleSubmit, dirty }) => (
           <form onSubmit={handleSubmit}>
             <OlvideContraseñaFormfields />
 
@@ -39,7 +39,7 @@ export function OlvideContraseñaForm(): JSX.Element {
                 texto="Enviar"
                 text="white text-lg"
                 className="w-3/5"
-                disabled={isSubmitting || !isValid || !values.email}
+                disabled={isSubmitting || !isValid || !dirty}
               />
             </div>
           </form>

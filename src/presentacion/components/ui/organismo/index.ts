@@ -4,7 +4,7 @@ export * from "./forms/Login/LoginForm";
 export * from "./forms/NewPassword/FeedBackPassword";
 export * from "./forms/NewPassword/NewPassword";
 export * from "./forms/NewPassword/mapRulePassword";
-export * from "./forms/OlvidarContrasena";
+export * from "./forms/OlvideContraseña/OlvidarContrasena";
 export * from "./forms/Productos/CrearProductos/CrearProdcutosForm";
 export * from "./forms/switcherTheme";
 export * from "./modal";

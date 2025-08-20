@@ -24,7 +24,8 @@ export function authValidations(
       case "required":
         return acc.required(rule.message || "Este campo es requerido");
       case "email":
-        return acc.email(
+        return acc.matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
           rule.message || "Ingrese un correo electrónico válido"
         );
       case "minLength":

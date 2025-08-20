@@ -1,24 +1,19 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
-import { ValidationRules } from "@/shared/validations/ValidationRules";
-
-type LoginValues = {
-  username: string;
-  password: string;
-}
+import { object, ObjectSchema, string } from "yup";
+import { LoginForm } from "@/domain";
+import { authValidations } from "@/shared";
 
 interface LoginConfig {
-  initialValues: LoginValues;
-  validationSchema: Yup.ObjectSchema<LoginValues>;
-}
+  initialValues: LoginForm;
+  validationSchema: ObjectSchema<LoginForm>;
+};
 
 export const loginConfig: LoginConfig = {
   initialValues: {
     username: "",
     password: "",
   },
-  validationSchema: Yup.object().shape({
-    username: Yup.string().concat(ValidationRules.campoRequerido({campo: "El usuario"})),
-    password: Yup.string().concat(ValidationRules.campoRequerido({campo: "La contraseña"})),
-  }) as Yup.ObjectSchema<LoginValues>,
+  validationSchema: object().shape({
+    username: authValidations(string(), [{ type: "required" }]),
+    password: authValidations(string(), [{ type: "required" }]),
+  }) as ObjectSchema<LoginForm>,
 };

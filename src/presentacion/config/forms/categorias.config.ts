@@ -1,11 +1,10 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
+import { object, ObjectSchema, string } from "yup";
 import { CategoryForm } from "@/domain";
 import { stringValidations } from "@/shared/validations/stringValidations";
 
 interface CategoriasConfig {
   initialValues: CategoryForm;
-  validationSchema: Yup.ObjectSchema<CategoryForm>;
+  validationSchema: ObjectSchema<CategoryForm>;
 }
 
 export const categoriasConfig: CategoriasConfig = {
@@ -13,15 +12,15 @@ export const categoriasConfig: CategoriasConfig = {
     name: "",
     description: "",
   },
-  validationSchema: Yup.object().shape({
-    name: stringValidations(Yup.string(), [
+  validationSchema: object().shape({
+    name: stringValidations(string(), [
       {type: "required", message: "El nombre de la categoria es obligatorio"},
       {type: "maxLength", value: 60},
       {type: "alphanumeric"}
     ]),
-    description: stringValidations(Yup.string(), [
+    description: stringValidations(string(), [
       {type: "required", message: "La descripción es obligatoria"},
       {type: "maxLength", value: 300},
     ]),
-  }) as Yup.ObjectSchema<CategoryForm>,
+  }) as ObjectSchema<CategoryForm>,
 };

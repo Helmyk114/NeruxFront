@@ -1,26 +1,17 @@
-import * as Yup from 'yup';
-import { ValidationRules } from '../../../shared/validations/ValidationRules';
-
-type OlvideContraseñaFormValues ={
-  email: string;
-}
+import { object, string, ObjectSchema } from "yup";
+import { OlvideContraseñaForm } from "@/domain";
+import { authValidations } from "@/shared";
 
 interface OlvideContraseñaConfig {
-    initialValues: OlvideContraseñaFormValues;
-    validationSchema: Yup.ObjectSchema<Partial<OlvideContraseñaFormValues>>;
-}
+  initialValues: OlvideContraseñaForm;
+  validationSchema: ObjectSchema<OlvideContraseñaForm>;
+};
 
 export const olvideContraseñaConfig: OlvideContraseñaConfig = {
-    initialValues: {
-        email: "",
-    },
-    validationSchema: Yup.object().shape({
-        email: ValidationRules.email({
-            campo: "correo electrónico",
-        }).concat(
-            ValidationRules.campoRequerido({
-                campo: "El correo electrónico",
-            })
-        ),
-    }) as Yup.ObjectSchema<Partial<OlvideContraseñaFormValues>>,
-}
+  initialValues: {
+    email: "",
+  },
+  validationSchema: object().shape({
+    email: authValidations(string(), [{ type: "required" }, { type: "email" }]),
+  }) as ObjectSchema<OlvideContraseñaForm>,
+};

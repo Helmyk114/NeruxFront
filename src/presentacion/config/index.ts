@@ -1,3 +1,4 @@
+export * from "./forms/OlvideContraseñaConfig";
 export * from "./forms/categorias.config";
 export * from "./forms/crearEmpresa.config";
 export * from "./forms/login.config";

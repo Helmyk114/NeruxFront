@@ -1,26 +1,24 @@
 import { InputOtp } from "@heroui/react";
-interface InputOtpProps{
-    length: number;
-    size: "sm" | "md" | "lg";
-    color?: "default" | "primary" | "secondary" ;
-    variant: "bordered" | "underlined" | "faded";
-    className?: string;
-    value: string;
-    onValueChange: (value: string) => void;
+interface InputOtpProps {
+  length: number;
+  size: "sm" | "md" | "lg";
+  color?: "default" | "primary" | "secondary";
+  variant: "bordered" | "underlined" | "faded";
+  className?: string;
+  value: string;
+  onValueChange: (value: string) => void;
 }
 
 export function InputsOtp({
-    length,
-    size,
-    color,
-    variant,
-    className,
-    value,
-    onValueChange
+  length,
+  size,
+  color,
+  variant,
+  className,
+  value,
+  onValueChange,
 }: InputOtpProps): JSX.Element {
-    
   return (
-    <div>
     <InputOtp
       length={length}
       size={size}
@@ -30,6 +28,5 @@ export function InputsOtp({
       value={value}
       onValueChange={onValueChange}
     />
-    </div>
-  )
+  );
 }
