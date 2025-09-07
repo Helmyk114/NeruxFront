@@ -1,9 +1,9 @@
-import { ProductoDto} from "@/domain";
+import { ProductoCreate, ProductoDto} from "@/domain";
 import { apiClient } from "@/infrastructure";
 import { ResponseApi } from "@/shared";
 
 export const productService = {
-  createProduct: async (product: Partial<ProductoDto>) => {
+  createProduct: async (product: Partial<ProductoCreate>) => {
     try {
       await apiClient.post("/create/product", product);
     } catch (error) {

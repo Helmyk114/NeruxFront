@@ -93,7 +93,7 @@ export function CrearProductoFormComponent({
             };
 
             console.log("newValues", newValues);
-            await productUseCase.createProduct(newValues);
+            await productUseCase.create(newValues);
             if (onSuccess) onSuccess();
             resetForm();
           } catch (error) {
