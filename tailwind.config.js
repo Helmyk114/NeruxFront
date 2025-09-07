@@ -1,6 +1,7 @@
 import { heroui } from "@heroui/react";
 import { colors } from "./src/theme/Colors"
 
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
