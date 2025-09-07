@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { HeroUIProvider, ToastProvider } from "@heroui/react";
 import { AppRouter } from "./routes/AppRoutes";
 import { setupInterceptors } from "./infrastructure";
-import "@heroui/react/styles.css"; 
+import "@heroui/theme/styles.css";
 import "./index.css";
 
 setupInterceptors();
