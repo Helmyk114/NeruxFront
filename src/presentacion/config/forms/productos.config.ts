@@ -3,8 +3,8 @@ import { stringValidations, ValidationRules } from "@/shared";
 import { ProductoCreate } from "@/domain";
 
 interface ProductoConfigProps {
-  initialValues: ProductoCreate;
-  validationSchema: ObjectSchema<ProductoCreate>;
+  initialValues: Partial<ProductoCreate>;
+  validationSchema: ObjectSchema<Partial<ProductoCreate>>;
 }
 
 export const productoConfig: ProductoConfigProps = {

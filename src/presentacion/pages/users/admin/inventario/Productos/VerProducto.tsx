@@ -31,7 +31,7 @@ export function VerProducto({
     error,
   } = useItemFetch<ProductoUi>(
     async (id) => {
-      const data = await productUseCase.getById("/product/detail", id);
+      const data = await productUseCase.detail("/product/detail", id);
       return { data: adapterProducto.sidemodal(data) };
     },
     {

@@ -8,7 +8,7 @@ export const productUseCase: ProductoRepository = {
     return response;
   },
 
-  getById: async (endpoint: string, id: string | number): Promise<ProductoDto> => {
+  detail: async (endpoint: string, id: string | number): Promise<ProductoDto> => {
     const response = await productService.getById(endpoint, id);
     return response;
   },

@@ -7,7 +7,7 @@ export const adapterProducto = {
     id: dataApi.id,
     name: dataApi.name,
     sku: dataApi.sku,
-    stock: dataApi.stock,
+    stock: 0,
     state: { id: dataApi.state.id, name: dataApi.state.name },
     category: { id: dataApi.category.id, name: dataApi.category.name },
     salePrice: formatPrice(dataApi.salePrice),

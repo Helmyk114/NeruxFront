@@ -30,7 +30,7 @@ export function CrearProductos(): JSX.Element {
     error,
   } = useItemFetch<ProductoUi>(
     async (idProduct) => {
-      const data = await productUseCase.getById("/product/detail", idProduct);
+      const data = await productUseCase.detail("/product/detail", idProduct);
       return { data: adapterProducto.sidemodal(data) };
     },
     {

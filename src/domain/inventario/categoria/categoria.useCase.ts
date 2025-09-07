@@ -1,6 +1,6 @@
   import { PaginatedResponse } from "@/shared/types/ResponsePaginada";
   import { categoriaService } from "@/infrastructure";
-  import { Category, CategoryForm } from "@/domain";
+  import { Category } from "@/domain";
 
   export const categoriasUseCase = {
     create: async (endpoint: string, categoria: Partial<Category>) => {
@@ -42,7 +42,7 @@
     update: async (
       endpotin: string,
       id: number,
-      category: CategoryForm
+      category: Partial<Category>
     ): Promise<Category> => {
       return categoriaService.update(endpotin, id, category);
     },

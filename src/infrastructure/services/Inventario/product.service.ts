@@ -3,7 +3,7 @@ import { apiClient } from "@/infrastructure";
 import { ResponseApi } from "@/shared";
 
 export const productService = {
-  createProduct: async (product: ProductoDto) => {
+  createProduct: async (product: Partial<ProductoDto>) => {
     try {
       await apiClient.post("/create/product", product);
     } catch (error) {

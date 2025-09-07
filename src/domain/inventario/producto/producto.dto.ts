@@ -26,3 +26,20 @@ export interface ProductoDto {
     name: string;
   };
 }
+
+export interface ProductoCreate {
+  id: string;
+  name: string;
+  sku: string;
+  salePrice: number;
+  alert: boolean;
+  minStock: number;
+  description: string;
+  create_at: string;
+  update_at: string;
+  category: number,
+  supplier: number,
+  unit: number;
+  business_id: string,
+  state: number
+}

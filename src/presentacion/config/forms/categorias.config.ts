@@ -1,9 +1,9 @@
 import { object, ObjectSchema, string } from "yup";
-import { CategoryForm } from "@/domain";
+import { Category, CategoryForm } from "@/domain";
 import { stringValidations } from "@/shared/validations/stringValidations";
 
 interface CategoriasConfig {
-  initialValues: CategoryForm;
+  initialValues: Partial<Category>;
   validationSchema: ObjectSchema<CategoryForm>;
 }
 

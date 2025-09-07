@@ -1,4 +1,4 @@
-import { Category, CategoryForm, CategoryRepository } from "@/domain";
+import { Category, CategoryRepository } from "@/domain";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { PaginatedResponse } from "@/shared";
 import { ResponseApi } from '../../../shared/types/ResponseApi';
@@ -51,7 +51,7 @@ export const categoriaService: CategoryRepository = {
   update: async (
     endpoint: string,
     id: number | string,
-    category: CategoryForm
+    category: Partial<Category>
   ): Promise<Category> => {
     try {
       return await apiClient.put<Category>(`${endpoint}/${id}`, category);
