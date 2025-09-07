@@ -7,7 +7,7 @@ export interface AuthResponse {
 
 export interface UserApi {
   idUser: string;
-  has_changed_password: number;
+  has_changed_password: boolean;
   business: string | null;
   state: number;
   role: number;
@@ -15,7 +15,7 @@ export interface UserApi {
 
 export interface User {
   idUser: string;
-  has_changed_password: number;
+  has_changed_password: boolean;
   business: string | null;
   state: string;
   role: UserRole;

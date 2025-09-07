@@ -32,7 +32,7 @@ export const Acordion = ({
       radioGroup=""
       showDivider={false}
       itemClasses={{
-        base: "bg-background-three",
+        base: "bg-base-second",
       }}
 
     >

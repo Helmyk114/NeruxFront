@@ -1,5 +1,4 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
+import { AnyObject, StringSchema } from "yup";
 
 // Tipo de validaciones disponibles para el Login, Olvide conraseña y Cambio de contraseña primera vez
 type AuthValidation =
@@ -14,11 +13,11 @@ type AuthValidation =
   | { type: "email"; message?: string };
 
 export function authValidations(
-  schema: Yup.StringSchema<string | undefined | null, Yup.AnyObject>,
+  schema: StringSchema<string | undefined | null, AnyObject>,
   rules: AuthValidation[]
-): Yup.StringSchema<string | undefined | null, Yup.AnyObject> {
+): StringSchema<string | undefined | null, AnyObject> {
   return rules.reduce<
-    Yup.StringSchema<string | undefined | null, Yup.AnyObject>
+    StringSchema<string | undefined | null, AnyObject>
   >((acc, rule) => {
     switch (rule.type) {
       case "required":

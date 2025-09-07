@@ -1,13 +1,13 @@
 export const statusProductMap: Record<string, { color: string; dot: string }> = {
-  Activo:{
+  Disponible:{
     color: "text-semantic-exito",
     dot: "bg-semantic-exito",
   },
-  Inactivo: {
+  Agotado: {
     color: "text-semantic-error",
     dot: "bg-semantic-error",
   },
-  error: {
+  "Stock bajo": {
     color: "text-semantic-advertencia",
     dot: "bg-semantic-advertencia",
   },

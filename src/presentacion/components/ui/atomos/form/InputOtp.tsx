@@ -2,7 +2,6 @@ import { InputOtp } from "@heroui/react";
 interface InputOtpProps {
   length: number;
   size: "sm" | "md" | "lg";
-  color?: "default" | "primary" | "secondary";
   variant: "bordered" | "underlined" | "faded";
   className?: string;
   value: string;
@@ -12,7 +11,6 @@ interface InputOtpProps {
 export function InputsOtp({
   length,
   size,
-  color,
   variant,
   className,
   value,
@@ -20,9 +18,12 @@ export function InputsOtp({
 }: InputOtpProps): JSX.Element {
   return (
     <InputOtp
+      classNames={{
+        segmentWrapper: 'gap-x-4',
+        segment: 'dark:border-brand-first',
+      }}
       length={length}
       size={size}
-      color={color}
       variant={variant}
       className={className}
       value={value}

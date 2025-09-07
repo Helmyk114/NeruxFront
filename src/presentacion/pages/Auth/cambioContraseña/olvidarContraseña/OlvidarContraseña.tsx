@@ -1,14 +1,11 @@
-
 import {
-  OlvideContraseñaForm, 
+  OlvideContraseñaForm,
   PlantillaGenerica,
   RichText,
 } from "@/presentacion/components/ui";
 
-
 export function OlvidarContraseña(): JSX.Element {
   return (
-
     <PlantillaGenerica
       texto={
         <RichText
@@ -26,8 +23,6 @@ export function OlvidarContraseña(): JSX.Element {
         />
       }
       formulario={<OlvideContraseñaForm />}
- 
     />
   );
- 
 }

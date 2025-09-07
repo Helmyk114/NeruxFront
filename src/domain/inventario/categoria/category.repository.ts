@@ -11,7 +11,7 @@ export interface CategoryRepository {
     data: Category[];
     metadata: { totalItems: number; totalPages: number; currentPage: number };
   }>;
-  create: (endpoint: string, category: CategoryForm) => Promise<void>;
+  create: (endpoint: string, category: Partial<Category>) => Promise<void>;
   update: (
     endpoint: string,
     id: number | string,

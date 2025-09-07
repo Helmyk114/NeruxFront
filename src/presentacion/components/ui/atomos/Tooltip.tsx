@@ -1,10 +1,14 @@
 import { Tooltip } from "@heroui/react";
 import { IconInfoOctagon } from "@tabler/icons-react";
 
- export function TooltipAtom (): JSX.Element {
+interface TooltipAtomProps {
+  content?: string;
+}
+
+ export function TooltipAtom ({ content }: TooltipAtomProps): JSX.Element {
   return(
     <Tooltip
-    content="Te avisaremos cuando el stock esté por debajo de este valor. El número debe ser en unidades."
+    content={content}
     placement="top"
     >
       <IconInfoOctagon className="text-semantic-informacion"/>

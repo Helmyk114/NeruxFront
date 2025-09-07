@@ -23,7 +23,7 @@ export function Categories(): JSX.Element {
   const { data, metadata, loading, error } = useFetchPaginated<Category>(
     (options) =>
       categoriasUseCase.getPaginated(
-        "/categories",
+        "/categories/table",
         options.currentPage ?? 1,
         options.pageSize ?? 5
       ),

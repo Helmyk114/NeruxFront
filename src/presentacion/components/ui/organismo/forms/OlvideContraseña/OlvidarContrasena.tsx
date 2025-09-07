@@ -3,15 +3,14 @@ import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 import { olvideContraseñaConfig } from "../../../../../config/forms/OlvideContraseñaConfig";
 import { OlvideContraseñaFormfields } from "../../../moleculas/formsFields/OlvideContraseñaFormfields";
-import { VentanaModal } from "../../modal";
-import { InputsOtp } from "../../../atomos/form/InputOtp";
+import { authUseCase } from "@/domain";
 import { useDisclosure } from "@heroui/react";
+import { OlvidarContraseDrawer } from "./OlveidarContraseñaDrawer";
 import { useState } from "react";
 
 export function OlvideContraseñaForm(): JSX.Element {
-
-  const popUp = useDisclosure();
-  const [values, setValues] = useState("");
+  const [email, setEmail] = useState("");
+  const modal = useDisclosure();
 
   return (
     <div className="w-full">
@@ -23,11 +22,10 @@ export function OlvideContraseñaForm(): JSX.Element {
         initialValues={olvideContraseñaConfig.initialValues}
         validationSchema={olvideContraseñaConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          //const result = await handleLoginValidation(values);
-          const email = values.email;
-          console.log(email);
-          popUp.onOpen();
+          await authUseCase.forgetPassword(values);
           setSubmitting(false);
+          modal.onOpen();
+          setEmail(values.email);
         }}
       >
         {({ isSubmitting, isValid, handleSubmit, dirty }) => (
@@ -45,46 +43,11 @@ export function OlvideContraseñaForm(): JSX.Element {
           </form>
         )}
       </Formik>
-
-        <VentanaModal
-          onClose={popUp.onClose}
-          size="md"
-          isOpen={popUp.isOpen}
-          isDimissable={false}
-          hideCloseButton={false}
-          header={<h2 className="felx justify-center m-auto">Img</h2>}
-          body={
-            <div className="flex flex-col items-center">
-              <h1 className="text-center font-bold text-4xl mb-5">
-                Revisa tu correo
-              </h1>
-              <p className="text-base text-center">
-                Hemos enviado un código de verificación a tu correo electrónico.
-                Por favor, ingresa el código, para continuar con el proceso de
-                recuperación de tu contraseña.
-              </p>
-              <div className="flex-row gap-5 mt-3 mb-5">
-                <InputsOtp
-                  className="flex gap-x-5"
-                  value={values}
-                  length={6}
-                  onValueChange={setValues}
-                  size="md"
-                  color="default"
-                  variant="bordered"
-                />
-              </div>
-            </div>
-          }
-          footer={
-            <ButtonAtom
-              texto="Verificar"
-              type="submit"
-              size="lg"
-              className="text-white mb-5 w-96 mx-auto"
-            />
-          }
-        />
+      <OlvidarContraseDrawer 
+      isOpen={modal.isOpen}
+      onClose={modal.onClose}
+      email={email}
+      />
     </div>
   );
 }

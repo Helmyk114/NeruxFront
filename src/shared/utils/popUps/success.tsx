@@ -1,5 +1,9 @@
 import { ModalTemplate } from "@/presentacion/components/ui";
-import { ButtonAtom, RichText, Title3 } from "@/presentacion/components/ui/atomos";
+import {
+  ButtonAtom,
+  RichText,
+  Title3,
+} from "@/presentacion/components/ui/atomos";
 import { SemanticIcons } from "@/shared/constants/icons/semanticIcons";
 
 interface PopUpSuccessProps {
@@ -14,7 +18,7 @@ interface PopUpSuccessProps {
   onSecondClick?: () => void;
 }
 
-export const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
+export function PopUpSuccess({
   isOpen,
   onClose,
   titulo,
@@ -24,7 +28,7 @@ export const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
   onClick,
   secondTextButton,
   onSecondClick,
-}) => {
+}: PopUpSuccessProps): JSX.Element {
   return (
     <ModalTemplate
       isOpen={isOpen}
@@ -33,9 +37,9 @@ export const PopUpSuccess: React.FC<PopUpSuccessProps> = ({
       hideCloseButton
       header={
         <div className="flex flex-col items-center justify-center">
-          <SemanticIcons.sucess className="text-semantic-exito" size={60}/>
+          <SemanticIcons.sucess className="text-semantic-exito" size={60} />
           <div className="mt-[19px]">
-            <Title3 titulo={titulo}/>
+            <Title3 titulo={titulo} />
           </div>
         </div>
       }

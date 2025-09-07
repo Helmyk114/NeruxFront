@@ -5,7 +5,7 @@ import { useItemFetch } from "@/presentacion/components/hook";
 import {
   ButtonAtom,
   DrawerWrapper,
-  Title2,
+  Section,
   Title3,
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
@@ -31,7 +31,7 @@ export function VerProducto({
     error,
   } = useItemFetch<ProductoUi>(
     async (id) => {
-      const data = await productUseCase.getById("/product", id);
+      const data = await productUseCase.getById("/product/detail", id);
       return { data: adapterProducto.sidemodal(data) };
     },
     {
@@ -40,8 +40,6 @@ export function VerProducto({
       reload: isOpen,
     }
   );
-
-
 
   const handleEditClick = () => {
     setMode("editar");
@@ -63,74 +61,54 @@ export function VerProducto({
           <div>Error: {"No se encontró el producto"}</div>
         ) : (
           <>
-            <div className="flex flex-col gap-2">
-              <div className="font-bold mt-1">📦 Información general</div>
-              <div>
-                <div className="text-typography-thrith ml-5">Nombre</div>
-                <Title2 clasname={"ml-5"} titulo={producto?.name} />
-              </div>
-              <div>
-                <div className="text-typography-thrith ml-5">Categoría</div>
-                <Title2 clasname={"ml-5"} titulo={producto?.category} />
-              </div>
-              <div>
-                <div className="text-typography-thrith ml-5">Proveedor</div>
-                <Title2 clasname={"ml-5"} titulo={producto?.supplier} />
-              </div>
-            </div>
+            <Section
+              border
+              title="🧾 Información general"
+              info={[
+                { subtitulo: "Nombre", valor: `${producto?.name}` },
+                { subtitulo: "SKU", valor: `${producto?.sku}` },
+                { subtitulo: "Categoría", valor: `${producto?.category.name}` },
+                { subtitulo: "Proveedor", valor: `${producto?.supplier.name}` },
+              ]}
+            />
 
-            <div className="flex flex-col gap-2 border-t-[2px] border-base-fourth">
-              <div className="font-bold mt-3">💰 Precios</div>
-              <div>
-                <div className="text-typography-thrith ml-5">
-                  Precio de venta
-                </div>
-                <Title2 clasname="ml-5" titulo={`$ ${producto?.salePrice}`} />
-              </div>
+            <Section
+              title="💲 Precios"
+              info={[
+                { subtitulo: "Precio de proveedor", valor: `$ ${"0"}` },
+                { subtitulo: "Precio de venta", valor: `$ ${producto?.salePrice}` },
+              ]}
+            />
 
-              <div>
-                <div className="text-typography-thrith ml-5">
-                  Precio de proveedor
-                </div>
-                <Title2
-                  clasname="ml-5"
-                  titulo={`$ ${producto?.supplierPrice}`}
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2 border-t-[2px] border-base-fourth">
-              <div className="font-bold mt-3">📊 Inventario</div>
-              <div>
-                <div className="text-typography-thrith ml-5">
-                  Stock disponible
-                </div>
-                <Title2
-                  clasname="ml-5 text-typography-thrith ml-5"
-                  titulo={`${producto?.stock} ${producto?.unit}`}
-                />
-              </div>
-              <div>
-                <div className="text-typography-thrith ml-5">
-                  Alerta de stock mínimo
-                </div>
-                <Title2
-                  clasname="ml-5"
-                  titulo={`${
+            <Section
+              title="📦 Inventario"
+              info={[
+                { subtitulo: "Stock disponible", valor: `${"-"}` },
+                { subtitulo: "Estado", valor: `${producto?.state.name}` },
+                {
+                  subtitulo: `Alerta de stock mínimo: ${
                     producto?.alert ? "Activo" : "Inactivo"
-                  } - Stock mínimo: ${producto?.minStock} ${
+                  }`,
+                  valor: `Stock mínimo: ${producto?.minStock} ${
                     producto?.minStock === 1 ? "Unidad" : "Unidades"
-                  }`}
-                />
-              </div>
-            </div>
+                  }`,
+                },
+              ]}
+            />
 
-            <div className="border-t-[2px] border-base-fourth">
-              <div className="text-typography-thrith mt-3">
-                🕒 Última modificación:
-              </div>
-              <Title2 clasname="ml-5" titulo={producto?.update_at} />
-            </div>
+            <Section
+              title="📊 Historial de movimientos"
+              info={[
+                { subtitulo: "Fecha de creación:", valor: `${producto?.create_at}`},
+                { subtitulo: "Última actualización:", valor: `${producto?.update_at}` },
+                { subtitulo: "Última entrada registrada:", valor: `${"-"} | ${"-"} | ${"-"}` },
+              ]}
+            />
+
+            <Section
+              title="📝 Descripción"
+              info={[{ valor: producto?.description || "Sin descripción" }]}
+            />
           </>
         )
       }

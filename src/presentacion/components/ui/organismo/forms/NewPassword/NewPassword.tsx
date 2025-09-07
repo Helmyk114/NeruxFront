@@ -13,10 +13,12 @@ import { FeedbackPassword } from "./FeedBackPassword";
 
 interface NewPasswordFormProps {
   onSuccess?: () => void;
+  email: string;
 }
 
 export function NewPasswordForm({
   onSuccess,
+  email,
 }: NewPasswordFormProps): JSX.Element {
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +37,11 @@ export function NewPasswordForm({
         validateOnBlur={false}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await authUseCase.newPassword(values);
+            await authUseCase.newPassword(
+              values.newPassword,
+              values.confirmPassword,
+              email
+            );
             if (onSuccess) onSuccess();
           } catch (error) {
             setError(

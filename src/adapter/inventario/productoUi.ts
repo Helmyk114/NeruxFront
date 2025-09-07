@@ -1,15 +1,28 @@
-export interface ProductoUi{
+export interface ProductoUi {
   id: string | number;
   name: string;
-  category: number;
+  sku: string;
+  category: {
+    id: number;
+    name: string;
+  };
   salePrice: string;
-  supplierPrice: string;
-  stock: number;
   alert: boolean;
+  stock: number;
   minStock: number;
-  unit: number;
-  supplier: number;
+  unit: {
+    id: number;
+    name: string;
+  };
+  supplier: {
+    id: number;
+    name: string;
+  };
   description: string;
-  create_in: string;
+  state: {
+    id: number;
+    name: string;
+  };
+  create_at: string;
   update_at: string;
-};
+}

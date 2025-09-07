@@ -3,7 +3,7 @@ import { useItemFetch } from "@/presentacion/components/hook";
 import {
   ButtonAtom,
   DrawerWrapper,
-  Title2,
+  Section,
   Title3,
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
@@ -29,7 +29,7 @@ export function VerProveedores({
     error,
   } = useItemFetch<Proveedor>(
     async (id) => {
-      const data = await proveedoresUseCase.getById("/supplier", id);
+      const data = await proveedoresUseCase.getById("/supplier/dateil", id);
       return { data };
     },
     {
@@ -58,19 +58,21 @@ export function VerProveedores({
         ) : error ? (
           <div>Error: {"No se encontró el proveedor"}</div>
         ) : (
-          <>
-            <div className="-mb-3">Nombre</div>
-            <Title2 titulo={proveedor?.name} />
-            <div className="-mb-3">Empresa</div>
-            <Title2 titulo={proveedor?.supplier || "-"} />
-            <div className="-mb-3">Correo</div>
-            <Title2 titulo={proveedor?.email || "-"} />
-
-            <div className="-mb-3">🗓️ Creado el:</div>
-            <Title2 clasname="ml-5" titulo={proveedor?.create_at} />
-            <div className="-mb-3 -mt-3">✏️ Ultima actualización:</div>
-            <Title2 clasname="ml-5" titulo={proveedor?.update_at} />
-          </>
+          <Section
+            border
+            info={[
+              { subtitulo: "Nombre", valor: proveedor?.name || "-" },
+              { subtitulo: "Empresa", valor: proveedor?.supplier || "-" },
+              { subtitulo: "Correo", valor: proveedor?.email || "-" },
+              { subtitulo: "Teléfono", valor: proveedor?.phone || "-" },
+              { subtitulo: "🗓️ Creado el:", valor: proveedor?.create_at },
+              {
+                subtitulo: "✏️ Ultima actualización:",
+                valor: proveedor?.update_at,
+              },
+              { subtitulo: "🔄 Última interacción registrada:", valor: `Producto: ${"-"} \nEntrada: ${"-"} unidades - el ${"-"}`},
+            ]}
+          />
         )
       }
       footer={

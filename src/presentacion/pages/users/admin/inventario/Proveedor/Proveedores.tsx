@@ -23,7 +23,7 @@ export function Proveedores(): JSX.Element {
   const { data, metadata, loading, error } = useFetchPaginated<Proveedor>(
     (options) =>
       proveedoresUseCase.getPaginated(
-        "/suppliers",
+        "/suppliers/table",
         options.currentPage ?? 1,
         options.pageSize ?? 5
       ),

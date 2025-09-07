@@ -4,9 +4,7 @@ import {
   RichText,
   Title1,
 } from "@/presentacion/components/ui/atomos";
-
 import { SemanticIcons } from "@/shared/constants/icons/semanticIcons";
-
 
 interface DeleteConfirmPopUpProps {
   isOpen: boolean;
@@ -38,9 +36,9 @@ export function DeleteConfirmPopUp({
       size="md"
       header={
         <div className="flex flex-col items-center justify-center mt-[33px]">
-          <SemanticIcons.warning className="text-semantic-advertencia" size={40} />
+          <SemanticIcons.warning className="text-semantic-advertencia" size={60} />
           <div className="mt-[19px]">
-            <Title1 titulo={titulo} clasname="text-texts-negro" />
+            <Title1 titulo={titulo} />
           </div>
         </div>
       }

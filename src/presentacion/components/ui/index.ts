@@ -31,6 +31,7 @@ export * from "./atomos/textos/textError";
 export * from "./atomos/textos/titles/level1";
 export * from "./atomos/textos/titles/level2";
 export * from "./atomos/textos/titles/level3";
+export * from "./moleculas/drawer/section";
 export * from "./moleculas/formsFields/CategoriasFormfields";
 export * from "./moleculas/formsFields/CrearEmpresaFormfields";
 export * from "./moleculas/formsFields/LoginFormfields";

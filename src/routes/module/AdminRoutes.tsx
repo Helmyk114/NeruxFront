@@ -18,7 +18,7 @@ export function AdminRoutes(): JSX.Element {
       <Route path="/Inicio" element={<Inicio />} />
       <Route path="/Productos" element={<Products />} />
       <Route path="/Productos/Crear" element={<CrearProductos />} />
-      <Route path="/Producto/:id" element={<CrearProductos />} />
+      <Route path="/Productos/:idProduct" element={<CrearProductos />} />
       <Route path="/Categorias" element={<Categories />} />
       <Route path="/Proveedores" element={<Proveedores />} />
     </Route>

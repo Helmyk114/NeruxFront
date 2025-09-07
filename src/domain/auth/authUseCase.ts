@@ -28,15 +28,38 @@ export const authUseCase = {
     };
   },
 
-  newPassword: async (password:{
+  forgetPassword: async (email: { email: string }): Promise<void> => {
+    if (!email.email) {
+      throw new Error("El correo electrónico es obligatorio");  
+    }
+    try {
+      await AuthServices.forgetPassword(email.email);
+    } catch (error) {
+      throw new Error(`Error al enviar el correo ${error}`);
+    }
+  },
+
+  validateOtp: async (otpData: { otp: string, email: string }): Promise<boolean> => {
+    if (!otpData.otp) {
+      throw new Error("El código OTP es obligatorio");
+    }
+    try {
+      const isValid = await AuthServices.validateOtp(otpData.otp, otpData.email);
+      return isValid;
+    } catch (error) {
+      throw new Error(`Error al validar el OTP ${error}`);
+    }
+  },
+
+  newPassword: async (
     newPassword: string,
-    confirmPassword: string
-  }): Promise<void> => {
-    if (!password.newPassword || !password.confirmPassword) {
+    confirmPassword: string,
+    email?: string): Promise<void> => {
+    if (!newPassword || !confirmPassword) {
       throw new Error("La contraseña y la confirmación son obligatorias");
     }
     try {
-      await AuthServices.newPassword(password);
+      await AuthServices.newPassword(newPassword, confirmPassword, email);
     } catch (error) {
       throw new Error(`Error al cambiar la contraseña ${error}`);
     }

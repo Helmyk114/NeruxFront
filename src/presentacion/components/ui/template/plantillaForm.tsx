@@ -8,7 +8,7 @@ export function TemplatePageForm({
 }: TemplatePageFormProps): JSX.Element {
   return (
     <div className="w-full">
-      <CardSimple className="bg-background-two">{children}</CardSimple>
+      <CardSimple className="bg-base-second">{children}</CardSimple>
     </div>
   );
 }

@@ -6,11 +6,14 @@ import {
 } from "@/presentacion/components/ui";
 import { PopUpSuccess } from "@/shared";
 import { useDisclosure } from "@heroui/react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export function NuevaContraseña(): JSX.Element {
   const modal = useDisclosure();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const email = searchParams.get("email");
 
   return (
     <>
@@ -32,7 +35,7 @@ export function NuevaContraseña(): JSX.Element {
             }
           />
         }
-        formulario={<NewPasswordForm onSuccess={modal.onOpen} />}
+        formulario={<NewPasswordForm onSuccess={modal.onOpen} email={email ?? ""} />}
       />
 
       <PopUpSuccess

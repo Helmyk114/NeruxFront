@@ -1,5 +1,4 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
+import { AnyObject, StringSchema } from "yup";
 
 //Tipo de validaciones disponibles para un campo tipo string
 type StringValidationsRule =
@@ -15,13 +14,13 @@ type StringValidationsRule =
 
 //Función que aplica múltiples validaciones a un campo tipo string
 export function stringValidations(
-  schema: Yup.StringSchema<string | undefined | null, Yup.AnyObject>,
+  schema: StringSchema<string | undefined | null, AnyObject>,
   rules: StringValidationsRule[]
-): Yup.StringSchema<string | undefined | null, Yup.AnyObject> {
+): StringSchema<string | undefined | null, AnyObject> {
   //acc: Acumulator para las validaciones aplicadas
   //rule: Regla de validación a aplicar
   return rules.reduce<
-    Yup.StringSchema<string | undefined | null, Yup.AnyObject>
+    StringSchema<string | undefined | null, AnyObject>
   >((acc, rule) => {
     switch (rule.type) {
       case "required":

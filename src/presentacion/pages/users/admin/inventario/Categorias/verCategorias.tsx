@@ -3,8 +3,10 @@ import { Category } from "../../../../../../domain/inventario/categoria/category
 import { categoriasUseCase } from "../../../../../../domain/inventario/categoria/categoria.useCase";
 import { useItemFetch } from "../../../../../components/hook/api/useItemFetch";
 import { DrawerWrapper } from "../../../../../components/ui/organismo/forms/Drawer";
-import { ButtonAtom, Title2 } from "../../../../../components/ui/atomos";
-import { Title3 } from "../../../../../components/ui/atomos/textos/titles/level3";
+import { ButtonAtom, Title3 } from "../../../../../components/ui/atomos";
+
+import { Section } from "@/presentacion/components/ui";
+import { formatDate } from "@/shared";
 
 interface VerCategorias {
   isOpen: boolean;
@@ -27,7 +29,7 @@ export function VerCategorias({
     error,
   } = useItemFetch<Category>(
     async (id) => {
-      const data = await categoriasUseCase.getById("/category", id);
+      const data = await categoriasUseCase.getById("/category/detail", id);
       return { data };
     },
     {
@@ -47,7 +49,7 @@ export function VerCategorias({
       isOpen={isOpen}
       onClose={onClose}
       isDimissable
-      header={<Title3 classname="mt-6" titulo="Ver categoría" />}
+      header={<Title3 classname="mt-6" titulo="Información de la categoría" />}
       body={
         loading ? (
           <div>
@@ -56,21 +58,28 @@ export function VerCategorias({
         ) : error ? (
           <div>Error: {"No se encontró la categoria"}</div>
         ) : (
-          <>
-            <div className="-mb-3">Categoría</div>
-            <Title2 titulo={category?.name} />
-            <div className="-mb-3">Descipción</div>
-            <Title2 titulo={category?.description} />
-            <div>
-              📦 Productos asociados:{" "}
-              {<Title2 titulo={category?.product_count} />}
-            </div>
-
-            <div className="-mb-3">🗓️ Creado el:</div>
-            <Title2 clasname="ml-5" titulo={category?.create_at} />
-            <div className="-mb-3 -mt-3">✏️ Ultima actualización:</div>
-            <Title2 clasname="ml-5" titulo={category?.update_at} />
-          </>
+          <Section
+            border
+            info={[
+              { subtitulo: "Nombre", valor: category?.name },
+              { subtitulo: "Descripción", valor: category?.description },
+              {
+                subtitulo: "Productos asociados",
+                valor: `${category?.product_count} ${
+                  category?.product_count === 1 ? "producto" : "productos"
+                }`,
+              },
+              { subtitulo: "🗓️ Creada el:", valor: formatDate(category?.created_at) },
+              {
+                subtitulo: "✏️ Ultima actualización:",
+                valor: formatDate(category?.updated_at),
+              },
+              {
+                subtitulo: "🔄 Último movimiento:",
+                valor: `Entrada: ${"-"} - el ${"-"}`,
+              },
+            ]}
+          />
         )
       }
       footer={

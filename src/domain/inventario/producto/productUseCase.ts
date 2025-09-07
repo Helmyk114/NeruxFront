@@ -1,9 +1,11 @@
 import { productService } from "@/infrastructure";
-import { ProductoDto, ProductoCreate } from "./producto.dto";
+import { ProductoDto } from "./producto.dto";
+import { ProductoRepository } from "./producto.repository";
 
-export const productUseCase = {
-  createProduct: async (product: ProductoCreate) => {
-    await productService.createProduct(product);
+export const productUseCase: ProductoRepository = {
+  create: async (product: Partial<ProductoDto>) => {
+    const response = await productService.createProduct(product);
+    return response;
   },
 
   getById: async (endpoint: string, id: string | number): Promise<ProductoDto> => {

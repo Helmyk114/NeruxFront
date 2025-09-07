@@ -4,7 +4,7 @@ import { PaginatedResponse } from "@/shared";
 import { ResponseApi } from '../../../shared/types/ResponseApi';
 
 export const categoriaService: CategoryRepository = {
-  create: async (endpoint: string, categoria: CategoryForm) => {
+  create: async (endpoint: string, categoria: Partial<Category>) => {
     try {
       await apiClient.post(endpoint, categoria);
     } catch (error) {

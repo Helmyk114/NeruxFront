@@ -1,12 +1,15 @@
 import { useDisclosure } from "@heroui/react";
 import { useState } from "react";
+import { useRedirect } from "./UseRedirect";
 
 type Mode = "ver" | "editar" | "crear";
 
 export const useActionTables = <ID extends string | number>(
   onDeleteItem?: (item: ID) => void,
-  onEditNavigate?: (item: ID) => void
+  onEditNavigate?: (item: ID) => void,
+  onCreateNavigate?: string,
 ) => {
+  const redirect = useRedirect();
   const drawer = useDisclosure();
   const popUp = useDisclosure();
   const [selectedItem, setSelectedItem] = useState<ID | null>(null);
@@ -15,7 +18,7 @@ export const useActionTables = <ID extends string | number>(
   const handleEdit = (item: ID) => {
     setSelectedItem(item);
     setMode("editar");
-    if(onEditNavigate) {
+    if (onEditNavigate) {
       onEditNavigate(item);
     } else {
       drawer.onOpen();
@@ -42,7 +45,11 @@ export const useActionTables = <ID extends string | number>(
   const handleCreate = () => {
     setSelectedItem(null);
     setMode("crear");
-    drawer.onOpen();
+    if (onCreateNavigate) {
+      redirect(onCreateNavigate);
+    } else {
+      drawer.onOpen();
+    }
   };
 
   return {

@@ -13,7 +13,7 @@ export const businessService = {
           token: string;
           business: string;
         };
-      }>("/create-business", business);
+      }>("/create/business", business);
 
       return {
         token: response.data.token,

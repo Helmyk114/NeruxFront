@@ -1,7 +1,6 @@
 import { Title2, Acordion } from "@/presentacion/components/ui/atomos";
 import {
   CrearEmpresaForm,
-  CrearProductoFormComponent,
 } from "@/presentacion/components/ui/organismo";
 import {
   TemplatePageForm,
@@ -29,7 +28,7 @@ const accordionItems = [
         color={"text-typography-first"}
       />
     ),
-    content: <CrearProductoFormComponent />,
+    content: "",
     isDisabled: true,
   },
 ];

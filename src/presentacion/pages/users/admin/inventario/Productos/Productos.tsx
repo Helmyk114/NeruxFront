@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ProductoDto } from "@/domain";
 import {
   useActionTables,
   UseFetchGet,
@@ -11,12 +10,13 @@ import {
 } from "@/presentacion/components/ui";
 import { ProductColumnRender, columnsProductos } from "@/presentacion/config";
 import { VerProducto } from "./VerProducto";
+import { ProductoUi } from "@/adapter/inventario/productoUi";
 
 export function Products(): JSX.Element {
   const redirect = useRedirect();
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGet<ProductoDto>("/product", {
+  const { data, metadata, loading, error } = UseFetchGet<ProductoUi>("/product", {
     paginated: true,
     currentPage,
     pageSize,
@@ -27,11 +27,12 @@ export function Products(): JSX.Element {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-
+  
   const {
     handleEdit,
     handleView,
     handleDelete,
+    handleCreate,
     drawer,
     selectedItem,
     mode,
@@ -41,7 +42,8 @@ export function Products(): JSX.Element {
     // async (id) => {
     //   await productUseCase.deleteProduct("/product", id);
     // },
-    (id) => redirect(`/Producto/${id}`)
+    (id) => redirect(`/Productos/${id}`),
+    "/Productos/Crear"
   );
 
   return (
@@ -53,7 +55,7 @@ export function Products(): JSX.Element {
           <TableSimple
             tabla="Productos"
             nameButton="Nuevo producto +"
-            onclick={() => redirect("/Productos/Crear")}
+            onclick={handleCreate}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
               (item) => handleEdit(item.id),

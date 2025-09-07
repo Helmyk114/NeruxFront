@@ -37,7 +37,7 @@ export function ProveedorFormDrawer({
     error,
   } = useItemFetch<Proveedor>(
     async (id) => {
-      const data = await proveedoresUseCase.getById("/supplier", id);
+      const data = await proveedoresUseCase.getById("/supplier/dateil", id);
       return { data };
     },
     {
@@ -74,7 +74,7 @@ export function ProveedorFormDrawer({
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
-            await proveedoresUseCase.create("/create-supplier", values);
+            await proveedoresUseCase.create("/create/supplier", values);
             newToast({
               mensaje: "Proveedor creado exitosamente",
               tipo: "success",

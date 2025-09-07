@@ -12,7 +12,6 @@ export const AuthServices = {
   }): Promise<AuthResponse> => {
     try {
       const authData = await apiClient.post<AuthResponse>("/login", credential);
-      console.log("authDatads", authData);
       return authData;
     } catch (error: unknown) {
       if (error && typeof error === "object" && "message" in error) {
@@ -29,12 +28,46 @@ export const AuthServices = {
     navigate("/", { replace: true });
   },
 
-  newPassword: async (password: {
-    newPassword: string,
-    confirmPassword: string
-  }): Promise<void> => {
+  forgetPassword: async (email: string): Promise<void> => {
     try {
-      await apiClient.patch("/first-password", password);
+      await apiClient.post("/forget/password", { email });
+    } catch (error) {
+      console.error("Error al enviar el correo", error);
+      throw new Error("Error al enviar el correo");
+    }
+  },
+
+  validateOtp: async (code: string, email: string): Promise<boolean> => {
+    try {
+      const response = await apiClient.post<boolean>("/validate", {
+        code,
+        email,
+      });
+      return response;
+    } catch (error) {
+      console.error("Error al validar el OTP", error);
+      throw new Error("Error al validar el OTP");
+    }
+  },
+
+  newPassword: async (
+    newPassword: string,
+    confirmPassword: string,
+    email?: string
+  ): Promise<void> => {
+    try {
+      if (!email) {
+        await apiClient.patch("/first/password", {
+          newPassword,
+          confirmPassword,
+        });
+      } else {
+        await apiClient.patch("/reset/password", {
+          newPassword,
+          confirmPassword,
+          email,
+        });
+      }
     } catch (error) {
       console.error("Error al cambiarla contraseña", error);
       throw new Error("Error al cambiar la contraseña");

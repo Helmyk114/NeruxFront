@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 type ColumnRenderMap<DataType> = {
-  [key: string]: (item: DataType, columnKey: React.Key) => React.ReactNode;
+  [key: string]: (item: DataType) => React.ReactNode;
 };
 
 export const useRenderCell = <DataType,>(
@@ -11,9 +11,10 @@ export const useRenderCell = <DataType,>(
     (item: DataType, columnKey: React.Key) => {
       const renderFunction = columnRenderMap[columnKey as string];
       if (renderFunction) {
-        return renderFunction(item, columnKey);
+        return renderFunction(item);
       }
-      return item[columnKey as keyof DataType];
+      console.warn(`No render function defined for column: ${String(columnKey)}`);
+      return null;
     },
     [columnRenderMap]
   );

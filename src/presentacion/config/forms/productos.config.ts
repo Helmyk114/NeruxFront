@@ -1,20 +1,18 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
-import { ValidationRules } from "@/shared";
+import { boolean, number, object, ObjectSchema, string } from "yup";
+import { stringValidations, ValidationRules } from "@/shared";
 import { ProductoCreate } from "@/domain";
 
 interface ProductoConfigProps {
   initialValues: ProductoCreate;
-  validationSchema: Yup.ObjectSchema<ProductoCreate>;
+  validationSchema: ObjectSchema<ProductoCreate>;
 }
 
 export const productoConfig: ProductoConfigProps = {
   initialValues: {
     name: "",
+    sku: "",
     category: 0,
     salePrice: 0,
-    supplierPrice: 0,
-    stock: 0,
     alert: false,
     minStock: 0,
     unit: 0,
@@ -22,28 +20,28 @@ export const productoConfig: ProductoConfigProps = {
     description: "",
   },
 
-  validationSchema: Yup.object().shape({
-    name: Yup.string().concat(ValidationRules.campoRequerido()),
-    category: Yup.number()
+  validationSchema: object().shape({
+    name: stringValidations(string(), [{ type: "required" }]),
+    sku: stringValidations(string(), [
+      { type: "maxLength", value: 20 },
+      { type: "optional" },
+    ]),
+    category: number()
       .transform((_, val) => (val === "" ? undefined : Number(val)))
       .concat(ValidationRules.campoRequeridoNumber()),
-    salePrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
-    supplierPrice: Yup.number().concat(ValidationRules.campoRequeridoNumber()).positive(),
-    stock: Yup.number().concat(ValidationRules.campoRequeridoNumber()),
-    alert: Yup.boolean(),
-    minStock: Yup.number().when("alert", {
+    salePrice: number().concat(ValidationRules.campoRequeridoNumber()),
+    alert: boolean(),
+    minStock: number().when("alert", {
       is: true,
       then: (schema) => schema.required().min(1),
       otherwise: (schema) => schema.optional(),
     }),
-    unit: Yup.number()
+    supplier: number()
       .transform((_, val) => (val === "" ? undefined : Number(val)))
       .concat(ValidationRules.campoRequeridoNumber()),
-    supplier: Yup.number()
-      .transform((_, val) => (val === "" ? undefined : Number(val)))
-      .concat(ValidationRules.campoRequeridoNumber()),
-    description: Yup.string()
-      .max(500, "La descripción no puede exceder los 500 caracteres")
-      .optional(),
-  }) as Yup.ObjectSchema<ProductoCreate>,
+    description: stringValidations(string(), [
+      { type: "maxLength", value: 500 },
+      { type: "optional" },
+    ]),
+  }) as ObjectSchema<ProductoCreate>,
 };

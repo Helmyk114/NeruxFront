@@ -3,7 +3,7 @@
   import { Category, CategoryForm } from "@/domain";
 
   export const categoriasUseCase = {
-    create: async (endpoint: string, categoria: CategoryForm) => {
+    create: async (endpoint: string, categoria: Partial<Category>) => {
       await categoriaService.create(endpoint, categoria);
     },
 

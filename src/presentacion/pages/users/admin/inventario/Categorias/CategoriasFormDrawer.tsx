@@ -108,7 +108,7 @@ export function CategoriasFormDrawer({
         }
       }}
     >
-      {({ isValid, handleSubmit, dirty }) => (
+      {({ isSubmitting, isValid, handleSubmit, dirty }) => (
         <form onSubmit={handleSubmit}>
           <DrawerWrapper
             isOpen={isOpen}
@@ -148,7 +148,7 @@ export function CategoriasFormDrawer({
                   }
                   className="w-[190px]"
                   disabled={
-                    !isValid || !dirty
+                    isSubmitting || !isValid || !dirty
                   }
                 />
               </div>
