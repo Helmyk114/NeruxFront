@@ -6,34 +6,29 @@ import {
 import { DeleteConfirmPopUp } from "@/shared";
 import {
   useActionTables,
-  useFetchPaginated,
+  useCategoriaPaginate,
+  useDeleteCategoria,
+  usePageState,
 } from "@/presentacion/components/hook";
-import { categoriasUseCase, Category } from "@/domain";
 import { TableSimple } from "@/presentacion/components/ui";
 import { CategoriaColumnRender, columnsCategoria } from "@/presentacion/config";
-import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
 import { VerCategorias } from "./verCategorias";
 import { IconFolderOpen } from "@tabler/icons-react";
+import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
 
 export function Categories(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
   const [reload, setReload] = useState(false);
 
-  const { data, metadata, loading, error } = useFetchPaginated<Category>(
-    (options) =>
-      categoriasUseCase.getPaginated(
-        "/categories/table",
-        options.currentPage ?? 1,
-        options.pageSize ?? 5
-      ),
-    {
-      currentPage,
-      pageSize,
-      enable: true,
-      reload,
-    }
+  const { data, metadata, loading, error } = useCategoriaPaginate(
+    currentPage,
+    pageSize,
+    reload
   );
+
+  const { mutate: remove } = useDeleteCategoria(() => {
+    setReload((prev) => !prev);
+  });
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -50,9 +45,8 @@ export function Categories(): JSX.Element {
     mode,
     drawer,
     popUp,
-  } = useActionTables<number | string>(async (id) => {
-    await categoriasUseCase.delete("/category", id);
-    setReload((prev) => !prev);
+  } = useActionTables<string>(async (id) => {
+    await remove({ id });
   });
 
   return (
@@ -68,12 +62,12 @@ export function Categories(): JSX.Element {
               onclick={handleCreate}
               columnas={columnsCategoria}
               columnRender={CategoriaColumnRender(
-                (item) => handleEdit(item.id),
-                (item) => handleView(item.id),
-                (item) => handleDelete(item.id)
+                (item) => handleEdit(item.id as string),
+                (item) => handleView(item.id as string),
+                (item) => handleDelete(item.id as string)
               )}
               data={data || []}
-              getRowKey={(item) => item.id}
+              getRowKey={(item) => item.id as string}
               isLoading={loading}
               error={error?.message}
               page={metadata?.currentPage || 1}
@@ -84,7 +78,7 @@ export function Categories(): JSX.Element {
             />
           ) : (
             <TemplateFormNoData
-              icon={<IconFolderOpen className="text-brand-first" size={100}/>}
+              icon={<IconFolderOpen className="text-brand-first" size={100} />}
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"
               descripcion2="Usarlas te ayudará a mantener tus productos organizados por tipo o uso. 
               ¡Puedes crear una nueva ahora mismo desde el botón “Nueva categoría”!"

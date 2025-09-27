@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import { PrivateRoute } from "../ProtectRoutes";
-import { UserRole } from "@/shared/types/loginTypes";
+import { UserRole } from "@/domain/interface";
 import {
   Categories,
   CrearEmpresa,

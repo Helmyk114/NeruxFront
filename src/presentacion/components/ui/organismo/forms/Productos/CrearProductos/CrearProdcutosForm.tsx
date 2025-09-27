@@ -1,19 +1,10 @@
 import { Formik } from "formik";
-import {
-  categoriasUseCase,
-  Category,
-  productUseCase,
-  Proveedor,
-  proveedoresUseCase,
-  // Unit,
-  // masterUseCase,
-} from "@/domain";
+
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
-import { useFetchAll } from "@/presentacion/components/hook";
 import { useMemo } from "react";
-import { ProductoUi } from "../../../../../../../adapter/inventario/productoUi";
+import { Producto } from "@/domain/interface";
 
 interface CrearProductoFormProps {
   createCategoria?: () => void;
@@ -22,7 +13,7 @@ interface CrearProductoFormProps {
   reload?: boolean;
   isEditing: boolean;
   idProduct: string | number | undefined;
-  data: ProductoUi | null;
+  data: Producto | null;
 }
 export function CrearProductoFormComponent({
   onSuccess,
@@ -32,28 +23,22 @@ export function CrearProductoFormComponent({
   isEditing,
   data,
 }: CrearProductoFormProps): JSX.Element {
-  const { data: supplier } = useFetchAll<Proveedor>(
-    () => proveedoresUseCase.getAll("/supplier/select"),
-    { enable: true, reload }
-  );
-  const { data: category } = useFetchAll<Category>(
-    () => categoriasUseCase.getAll("/categories/select"),
-    { enable: true, reload }
-  );
+  // const { data: supplier } = useFetchAll<Proveedor>(
+  //   () => proveedoresUseCase.getAll("/supplier/select"),
+  //   { enable: true, reload }
+  // );
+
 
   // const { data: unit } = useFetchAll<Unit>(
   //   () => masterUseCase.getAllUnits("/unit"),
   //   { enable: true, reload }
   // );
 
-  const supplierOptions = supplier.map((item) => ({
-    key: item.id,
-    label: item.name,
-  }));
-  const categoryOptions = category.map((item) => ({
-    key: item.id,
-    label: item.name,
-  }));
+  // const supplierOptions = supplier.map((item) => ({
+  //   key: item.id,
+  //   label: item.name,
+  // }));
+
   // const unitOptions = unit.map((item) => ({
   //   key: item.id,
   //   label: item.name,
@@ -110,7 +95,7 @@ export function CrearProductoFormComponent({
                 crearCategoria={createCategoria}
                 crearProveedor={createProveedor}
                 supplierOptions={supplierOptions}
-                categoryOptions={categoryOptions}
+                categoryOptions={supplierOptions}
                 //unitOptions={unitOptions}
               />
 

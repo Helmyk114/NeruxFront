@@ -1,4 +1,5 @@
-import { AuthServices } from "@/infrastructure";
+
+import { AuthServices } from "@/infrastructure/services/auth/Auth.service";
 import {
   NewPasswordForm,
   PlantillaGenerica,

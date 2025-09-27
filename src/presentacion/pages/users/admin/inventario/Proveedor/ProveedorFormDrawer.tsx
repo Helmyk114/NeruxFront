@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { useItemFetch } from "@/presentacion/components/hook";
 import { proveedorConfig } from "@/presentacion/config";
 import { toastStore } from "@/store/toastStore";
-import { Proveedor, proveedoresUseCase } from "@/domain";
 import {
   ButtonAtom,
   ButtonCancel,
@@ -12,12 +10,17 @@ import {
   Title3,
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
+import {
+  useCreateProveedor,
+  useProveedorById,
+  useUpdateProveedor,
+} from "@/presentacion/components/hook";
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
-  id: string | number | null;
+  id: string | null;
   mode: "crear" | "editar";
 }
 
@@ -35,17 +38,9 @@ export function ProveedorFormDrawer({
     data: proveedor,
     loading,
     error,
-  } = useItemFetch<Proveedor>(
-    async (id) => {
-      const data = await proveedoresUseCase.getById("/supplier/dateil", id);
-      return { data };
-    },
-    {
-      byId: shouldFetchData ? id : null,
-      enable: shouldFetchData,
-      reload: isOpen,
-    }
-  );
+  } = useProveedorById(shouldFetchData ? id : null, shouldFetchData, isOpen);
+  const { mutate: create } = useCreateProveedor();
+  const { mutate: update } = useUpdateProveedor();
 
   const initialValue = useMemo(() => {
     if (mode === "editar" && proveedor) {
@@ -74,17 +69,9 @@ export function ProveedorFormDrawer({
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
-            await proveedoresUseCase.create("/create/supplier", values);
-            newToast({
-              mensaje: "Proveedor creado exitosamente",
-              tipo: "success",
-            });
+            await create(values);
           } else {
-            await proveedoresUseCase.update("/supplier", Number(id), values);
-            newToast({
-              mensaje: "Proveedor actualizado correctamente",
-              tipo: "success",
-            });
+            await update({ id: id!, ...values });
           }
           setTimeout(() => {
             setSubmitting(false);
@@ -92,22 +79,13 @@ export function ProveedorFormDrawer({
             onClose();
             onSuccess?.();
           }, 800);
-        } catch (error) {
-          if (mode === "crear") {
-            newToast({
-              mensaje:
-                mode === "crear"
-                  ? "Error al crear el proveedor"
-                  : "Error al actualizar el proveedor",
-              tipo: "error",
-            });
-          } else {
-            newToast({
-              mensaje: "Ocurrio un error",
-              tipo: "error",
-            });
-          }
-          throw error;
+        } catch {
+          newToast({
+            mensaje: "Ocurrio un error. Inténtalo más tarde.",
+            tipo: "error",
+          });
+        } finally {
+          setSubmitting(false);
         }
       }}
     >

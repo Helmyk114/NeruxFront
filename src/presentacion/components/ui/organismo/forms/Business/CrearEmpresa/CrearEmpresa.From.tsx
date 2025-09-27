@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import { crearEmpresaConfig } from "@/presentacion/config";
 import { CrearEmpresaFormFields } from "@/presentacion/components/ui/moleculas";
-import { BusinessUseCase } from "@/domain";
+
 import { ButtonAtom } from "@/presentacion/components/ui/atomos";
+import { BusinessUseCase } from "@/domain/business/createBusinessUseCase";
 
 export function CrearEmpresaForm(): JSX.Element {
   const navigate = useNavigate();

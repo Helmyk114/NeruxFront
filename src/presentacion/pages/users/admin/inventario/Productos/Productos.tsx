@@ -1,7 +1,6 @@
-import { useState } from "react";
 import {
   useActionTables,
-  UseFetchGet,
+  usePageState,
   useRedirect,
 } from "@/presentacion/components/hook";
 import {
@@ -10,20 +9,17 @@ import {
 } from "@/presentacion/components/ui";
 import { ProductColumnRender, columnsProductos } from "@/presentacion/config";
 import { VerProducto } from "./VerProducto";
-import { ProductoUi } from "@/adapter/inventario/productoUi";
+import { useProductoPaginate } from "@/presentacion/components/hook/inventario/Productos/useProductoPaginate";
 
 export function Products(): JSX.Element {
+  const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
   const redirect = useRedirect();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
-  const { data, metadata, loading, error } = UseFetchGet<ProductoUi>("/product", {
-    paginated: true,
+
+  const { data, metadata, loading, error } = useProductoPaginate(
     currentPage,
     pageSize,
-    reload: false,
-    enable: true,
-  });
-
+  );
+  
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
@@ -37,7 +33,7 @@ export function Products(): JSX.Element {
     selectedItem,
     mode,
     setMode,
-  } = useActionTables<number | string>(
+  } = useActionTables<string>(
     undefined,
     // async (id) => {
     //   await productUseCase.deleteProduct("/product", id);
@@ -58,12 +54,12 @@ export function Products(): JSX.Element {
             onclick={handleCreate}
             columnas={columnsProductos}
             columnRender={ProductColumnRender(
-              (item) => handleEdit(item.id),
-              (item) => handleView(item.id),
-              (item) => handleDelete(item.id)
+              (item) => handleEdit(item.id as string),
+              (item) => handleView(item.id as string),
+              (item) => handleDelete(item.id as string)
             )}
             data={data || []}
-            getRowKey={(item) => item.id}
+            getRowKey={(item) => item.id as string}
             isLoading={loading}
             error={error?.message}
             page={metadata?.currentPage || 1}

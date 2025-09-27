@@ -2,7 +2,6 @@ import { Proveedor } from "@/domain";
 import { ActionsCell, SimpleCell } from "@/presentacion/components/ui/atomos";
 import { ColumnRender } from "@/shared/types/columRenderType";
 
-
 export const ProveedorColumnRender = (
   onEdit: (proveedor: Proveedor) => void,
   onView: (proveedor: Proveedor) => void,
@@ -11,7 +10,7 @@ export const ProveedorColumnRender = (
   name: (proveedor: Proveedor) => (
     <SimpleCell textTop={proveedor.name || ""} />
   ),
-  business: (proveedor: Proveedor) => (
+  supplier: (proveedor: Proveedor) => (
     <SimpleCell textTop={proveedor.supplier || "-"} />
   ),
   phone: (proveedor: Proveedor) => (

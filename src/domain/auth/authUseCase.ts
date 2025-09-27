@@ -1,32 +1,34 @@
-import { AuthServices, RedirectPath } from "@/infrastructure";
-import { cookie, mapUser, User } from "@/shared";
-import { userStore } from "@/store";
+
+// import { cookie, mapUser, User } from "@/shared";
+// import { userStore } from "@/store";
+
+import { AuthServices } from "@/infrastructure/services/auth/Auth.service";
 
 export const authUseCase = {
-  login: async (credential: {
-    username: string;
-    password: string;
-  }): Promise<{
-    token: string;
-    redirect: string;
-    infoUser: User;
-  }> => {
-    if (!credential.username || !credential.password) {
-      throw new Error("El nombre de usuario y la contraseña son obligatorios");
-    }
+  // login: async (credential: {
+  //   username: string;
+  //   password: string;
+  // }): Promise<{
+  //   token: string;
+  //   redirect: string;
+  //   infoUser: User;
+  // }> => {
+  //   if (!credential.username || !credential.password) {
+  //     throw new Error("El nombre de usuario y la contraseña son obligatorios");
+  //   }
 
-    const userData = await AuthServices.login(credential);
+  //   const userData = await AuthServices.login(credential);
 
-    cookie.set("token", userData.token);
-    const user = mapUser(userData.user);
-    userStore.getState().setUser(user);
+  //   cookie.set("token", userData.token);
+  //   const user = mapUser(userData.user);
+  //   userStore.getState().setUser(user);
 
-    return {
-      token: userData.token,
-      redirect: RedirectPath(user),
-      infoUser: user,
-    };
-  },
+  //   return {
+  //     token: userData.token,
+  //     redirect: RedirectPath(user),
+  //     infoUser: user,
+  //   };
+  // },
 
   forgetPassword: async (email: { email: string }): Promise<void> => {
     if (!email.email) {

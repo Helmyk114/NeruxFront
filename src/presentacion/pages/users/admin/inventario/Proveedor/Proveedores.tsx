@@ -1,39 +1,31 @@
-import {
-  useActionTables,
-  useFetchPaginated,
-  usePageState,
-} from "@/presentacion/components/hook";
+import { useActionTables, usePageState } from "@/presentacion/components/hook";
 import { columnsProveedor, ProveedorColumnRender } from "@/presentacion/config";
 import { useState } from "react";
 import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
 import { VerProveedores } from "./verProveedor";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
-import { Proveedor, proveedoresUseCase } from "@/domain";
 import {
   TableSimple,
   TemplateFormNoData,
   TemplatePageTable,
 } from "@/presentacion/components/ui";
 import { IconPackage } from "@tabler/icons-react";
+import { useProveedorPaginate } from "@/presentacion/components/hook/inventario/Proveedor/useProveedorPaginate";
+import { useDeleteProveedor } from "@/presentacion/components/hook/inventario/Proveedor/useProveedorDelete";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
   const [reload, setReload] = useState(false);
 
-  const { data, metadata, loading, error } = useFetchPaginated<Proveedor>(
-    (options) =>
-      proveedoresUseCase.getPaginated(
-        "/suppliers/table",
-        options.currentPage ?? 1,
-        options.pageSize ?? 5
-      ),
-    {
-      currentPage,
-      pageSize,
-      enable: true,
-      reload,
-    }
+  const { data, metadata, loading, error } = useProveedorPaginate(
+    currentPage,
+    pageSize,
+    reload
   );
+
+  const { mutate: remove } = useDeleteProveedor(() => {
+    setReload((prev) => !prev);
+  })
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -49,9 +41,8 @@ export function Proveedores(): JSX.Element {
     mode,
     drawer,
     popUp,
-  } = useActionTables<number | string>(async (id) => {
-    await proveedoresUseCase.delete("/supplier", id);
-    setReload((prev) => !prev);
+  } = useActionTables<string>(async (id) => {
+    await remove({ id });
   });
 
   return (
@@ -61,26 +52,26 @@ export function Proveedores(): JSX.Element {
       mainContent={
         <>
           {data && data.length > 0 ? (
-              <TableSimple
-                tabla="Proveedores"
-                nameButton="Nuevo proveedor +"
-                onclick={handleCreate}
-                columnas={columnsProveedor}
-                columnRender={ProveedorColumnRender(
-                  (item) => handleEdit(item.id),
-                  (item) => handleView(item.id),
-                  (item) => handleDelete(item.id)
-                )}
-                data={data || []}
-                getRowKey={(item) => item.id}
-                isLoading={loading}
-                error={error?.message}
-                page={metadata?.currentPage || 1}
-                totalPages={metadata?.totalPages || 1}
-                setPage={handlePageChange}
-                totalItems={metadata?.totalItems}
-                setPageSize={setPageSize}
-              />
+            <TableSimple
+              tabla="Proveedores"
+              nameButton="Nuevo proveedor +"
+              onclick={handleCreate}
+              columnas={columnsProveedor}
+              columnRender={ProveedorColumnRender(
+                (item) => handleEdit(item.id as string),
+                (item) => handleView(item.id as string),
+                (item) => handleDelete(item.id as string)
+              )}
+              data={data || []}
+              getRowKey={(item) => item.id as string}
+              isLoading={loading}
+              error={error?.message}
+              page={metadata?.currentPage || 1}
+              totalPages={metadata?.totalPages || 1}
+              setPage={handlePageChange}
+              totalItems={metadata?.totalItems}
+              setPageSize={setPageSize}
+            />
           ) : (
             <TemplateFormNoData
               icon={<IconPackage className="text-brand-first" size={100} />}
@@ -121,7 +112,7 @@ export function Proveedores(): JSX.Element {
             textButton="Cancelar"
             onClick={popUp.onClose}
             secondTextButton="Eliminar"
-            onSecondClick={handleDeleteConfirm }
+            onSecondClick={handleDeleteConfirm}
           />
         </>
       }

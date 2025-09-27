@@ -14,7 +14,7 @@ export function Toast({ mensaje, tipo }: Toast): void {
       base: cn([
         "font-OpenSans text-sm",
         "dark:bg-base-sidebar dark:text-typography-first",
-        "border-4",
+        "border-2",
         `dark: ${toastMap.color[tipo] || "border-semantic-informacion"}`,
       ]),
     },

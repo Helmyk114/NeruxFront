@@ -1,8 +1,7 @@
 import { Route } from "react-router-dom";
 import { Clientes, Home } from "@/presentacion/pages";
 import { PrivateRoute } from "../ProtectRoutes";
-import { UserRole } from "@/shared/types/loginTypes";
-
+import { UserRole } from "@/domain/interface";
 
 export function SuperAdminRoutes(): JSX.Element {
   return (

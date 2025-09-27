@@ -1,17 +1,16 @@
 import { Spinner } from "@heroui/react";
-import { Category } from "../../../../../../domain/inventario/categoria/category.entity";
-import { categoriasUseCase } from "../../../../../../domain/inventario/categoria/categoria.useCase";
-import { useItemFetch } from "../../../../../components/hook/api/useItemFetch";
-import { DrawerWrapper } from "../../../../../components/ui/organismo/forms/Drawer";
-import { ButtonAtom, Title3 } from "../../../../../components/ui/atomos";
-
-import { Section } from "@/presentacion/components/ui";
-import { formatDate } from "@/shared";
+import {
+  DrawerWrapper,
+  ButtonAtom,
+  Title3,
+  Section,
+} from "@/presentacion/components/ui";
+import { useCategoriaById } from "@/presentacion/components/hook";
 
 interface VerCategorias {
   isOpen: boolean;
   onClose: () => void;
-  id: string | number | null;
+  id: string | null;
   setMode: (mode: "ver" | "editar" | "crear") => void;
   onOpen: () => void;
 }
@@ -27,17 +26,7 @@ export function VerCategorias({
     data: category,
     loading,
     error,
-  } = useItemFetch<Category>(
-    async (id) => {
-      const data = await categoriasUseCase.getById("/category/detail", id);
-      return { data };
-    },
-    {
-      byId: id,
-      enable: Boolean(id),
-      reload: isOpen,
-    }
-  );
+  } = useCategoriaById(id, Boolean(id), isOpen);
 
   const handleEditClick = () => {
     setMode("editar");
@@ -65,14 +54,14 @@ export function VerCategorias({
               { subtitulo: "Descripción", valor: category?.description },
               {
                 subtitulo: "Productos asociados",
-                valor: `${category?.product_count} ${
-                  category?.product_count === 1 ? "producto" : "productos"
+                valor: `${category?.productCount} ${
+                  category?.productCount === 1 ? "producto" : "productos"
                 }`,
               },
-              { subtitulo: "🗓️ Creada el:", valor: formatDate(category?.created_at) },
+              { subtitulo: "🗓️ Creada el:", valor: category?.createAt },
               {
                 subtitulo: "✏️ Ultima actualización:",
-                valor: formatDate(category?.updated_at),
+                valor: category?.updateAt,
               },
               {
                 subtitulo: "🔄 Último movimiento:",

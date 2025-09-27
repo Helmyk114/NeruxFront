@@ -1,5 +1,5 @@
 import { heroui } from "@heroui/react";
-import { colors } from "./src/theme/Colors"
+import { colors } from "./src/theme/Colors";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -27,5 +27,28 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [
+    heroui({
+      // themes: {
+      //   dark: {
+      //     colors: {
+      //       semantic: { ...colors.semantic },
+      //       base: { ...colors.base },
+      //       typography: { ...colors.typography },
+      //       brand: { ...colors.brand },
+      //       button: { ...colors.button },
+      //     },
+      //   },
+      //   light: {
+      //     colors: {
+      //       semantic: { ...colors.semantic },
+      //       base: { ...colors.base },
+      //       typography: { ...colors.typography },
+      //       brand: { ...colors.brand },
+      //       button: { ...colors.button },
+      //     },
+      //   },
+      // },
+    }),
+  ],
 };

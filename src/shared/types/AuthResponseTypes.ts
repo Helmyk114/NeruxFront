@@ -1,24 +1,24 @@
-import { UserRole } from "./loginTypes";
+  import { UserRole } from "./loginTypes";
 
-export interface AuthResponse {
-  token: string;
-  user: UserApi;
-}
+  export interface AuthResponse {
+    token: string;
+    user: UserApi;
+  }
 
-export interface UserApi {
-  idUser: string;
-  has_changed_password: boolean;
-  business: string | null;
-  state: number;
-  role: number;
-}
+  export interface UserApi {
+    idUser: string;
+    has_changed_password: boolean;
+    business: string | null;
+    state: number;
+    role: number;
+  }
 
-export interface User {
-  idUser: string;
-  has_changed_password: boolean;
-  business: string | null;
-  state: string;
-  role: UserRole;
-}
+  export interface User {
+    idUser: string;
+    has_changed_password: boolean;
+    business: string | null;
+    state: string;
+    role: UserRole;
+  }
 
-export type State = 'Activo' | 'Inactivo' | 'Suspendido';
+  export type State = 'Activo' | 'Inactivo' | 'Suspendido';

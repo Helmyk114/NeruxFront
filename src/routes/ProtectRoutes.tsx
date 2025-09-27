@@ -1,12 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { UserRole } from "../shared/types/loginTypes";
 import { userStore } from "../store/userStore";
+import { UserRole } from "@/domain/interface";
 
 interface PrivateRouteProps {
   allowedRole: UserRole[];
   redirectTo?: string;
 }
-
 
 const defaultRedirects: Record<UserRole, string> = {
   1: "/Home",

@@ -3,10 +3,11 @@ import { Formik } from "formik";
 import { ButtonAtom } from "../../../atomos/button/ButtonAtom";
 import { olvideContraseñaConfig } from "../../../../../config/forms/OlvideContraseñaConfig";
 import { OlvideContraseñaFormfields } from "../../../moleculas/formsFields/OlvideContraseñaFormfields";
-import { authUseCase } from "@/domain";
+
 import { useDisclosure } from "@heroui/react";
 import { OlvidarContraseDrawer } from "./OlveidarContraseñaDrawer";
 import { useState } from "react";
+import { authUseCase } from "@/domain/auth/authUseCase";
 
 export function OlvideContraseñaForm(): JSX.Element {
   const [email, setEmail] = useState("");

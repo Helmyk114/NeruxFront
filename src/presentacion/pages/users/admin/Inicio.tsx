@@ -5,7 +5,7 @@ export function Inicio(): JSX.Element {
     <TemplatePageTable
       mainContent={
         <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-4xl font-bold dark:text-semantic-error">
+          <h1 className="text-4xl font-bold dark:text-typography-first">
             Bienvenido a la página de inicio
           </h1>
           <p className="mt-4 text-lg">

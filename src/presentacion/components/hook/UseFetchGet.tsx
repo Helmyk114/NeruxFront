@@ -1,5 +1,6 @@
+import { Axios } from "@/infrastructure/http/Axios";
 import { useEffect, useState } from "react";
-import { Axios } from "../../../infrastructure";
+
 
 interface PaginationMetadata {
   totalItems: number;

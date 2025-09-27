@@ -1,10 +1,9 @@
 import { object, ObjectSchema, string } from "yup";
-import { Category, CategoryForm } from "@/domain";
-import { stringValidations } from "@/shared/validations/stringValidations";
-
+import { stringValidations } from "@/shared";
+import { Categoria } from "@/domain";
 interface CategoriasConfig {
-  initialValues: Partial<Category>;
-  validationSchema: ObjectSchema<CategoryForm>;
+  initialValues: Categoria;
+  validationSchema: ObjectSchema<Categoria>;
 }
 
 export const categoriasConfig: CategoriasConfig = {
@@ -14,13 +13,13 @@ export const categoriasConfig: CategoriasConfig = {
   },
   validationSchema: object().shape({
     name: stringValidations(string(), [
-      {type: "required", message: "El nombre de la categoria es obligatorio"},
-      {type: "maxLength", value: 60},
-      {type: "alphanumeric"}
+      { type: "required", message: "El nombre de la categoria es obligatorio" },
+      { type: "maxLength", value: 60 },
+      { type: "alphanumeric" },
     ]),
     description: stringValidations(string(), [
-      {type: "required", message: "La descripción es obligatoria"},
-      {type: "maxLength", value: 300},
+      { type: "required", message: "La descripción es obligatoria" },
+      { type: "maxLength", value: 300 },
     ]),
-  }) as ObjectSchema<CategoryForm>,
+  }) as ObjectSchema<Categoria>,
 };

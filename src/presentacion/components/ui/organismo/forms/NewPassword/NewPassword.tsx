@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Formik } from "formik";
 import { mapRules } from "./mapRulePassword";
-import { authUseCase } from "@/domain";
+
 import { newPasswordConfig } from "@/presentacion/config";
 import {
   TextError,
@@ -10,6 +10,7 @@ import {
 } from "@/presentacion/components/ui/atomos";
 import { NewPasswordFromfield } from "../../../moleculas/formsFields/NewPasswordFormfields";
 import { FeedbackPassword } from "./FeedBackPassword";
+import { authUseCase } from "@/domain/auth/authUseCase";
 
 interface NewPasswordFormProps {
   onSuccess?: () => void;

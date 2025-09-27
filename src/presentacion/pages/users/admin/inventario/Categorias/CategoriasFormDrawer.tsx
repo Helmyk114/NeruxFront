@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { Formik } from "formik";
-import { useItemFetch } from "@/presentacion/components/hook";
 import { categoriasConfig } from "@/presentacion/config";
 import { DrawerWrapper } from "@/presentacion/components/ui/organismo";
 import {
@@ -9,15 +8,19 @@ import {
   Title3,
 } from "@/presentacion/components/ui/atomos";
 import { CategoriasFormFields } from "@/presentacion/components/ui/moleculas";
-import { categoriasUseCase, Category } from "@/domain";
 import { toastStore } from "@/store";
 import { Spinner } from "@heroui/react";
+import {
+  useCategoriaById,
+  useCreateCategoria,
+  useUpdateCategoria,
+} from "@/presentacion/components/hook";
 
 interface CategoriasFormDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess?: () => void;
-  id: string | number | null;
+  id: string | null;
   mode: "crear" | "editar";
 }
 
@@ -35,17 +38,9 @@ export function CategoriasFormDrawer({
     data: categoria,
     loading,
     error,
-  } = useItemFetch<Category>(
-    async (id) => {
-      const data = await categoriasUseCase.getById("/category", id);
-      return { data };
-    },
-    {
-      byId: shouldFetchData ? id : null,
-      enable: shouldFetchData,
-      reload: isOpen,
-    }
-  );
+  } = useCategoriaById(shouldFetchData ? id : null, shouldFetchData, isOpen);
+  const { mutate: create } = useCreateCategoria();
+  const { mutate: update } = useUpdateCategoria();
 
   const initialValue = useMemo(() => {
     if (mode === "editar" && categoria) {
@@ -71,17 +66,9 @@ export function CategoriasFormDrawer({
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         try {
           if (mode === "crear") {
-            await categoriasUseCase.create("/create-category", values);
-            newToast({
-              mensaje: "Categoría creada exitosamente",
-              tipo: "success",
-            });
+            await create(values);
           } else {
-            await categoriasUseCase.update("/category", Number(id), values);
-            newToast({
-              mensaje: "Categoría actualizada exitosamente",
-              tipo: "success",
-            });
+            await update({ id: id!, ...values });
           }
           setTimeout(() => {
             setSubmitting(false);
@@ -89,22 +76,13 @@ export function CategoriasFormDrawer({
             onClose();
             onSuccess?.();
           }, 800);
-        } catch (error) {
-          if (mode === "crear") {
-            newToast({
-              mensaje:
-                mode === "crear"
-                  ? "Error al crear la categoría"
-                  : "Error al actualizar la categoría",
-              tipo: "error",
-            });
-          } else {
-            newToast({
-              mensaje: "Ocurrio un error",
-              tipo: "error",
-            });
-          }
-          throw error;
+        } catch {
+          newToast({
+            mensaje: "Ocurrio un error. Inténtalo más tarde.",
+            tipo: "error",
+          });
+        } finally {
+          setSubmitting(false);
         }
       }}
     >
@@ -126,7 +104,7 @@ export function CategoriasFormDrawer({
               />
             }
             body={
-              mode ==='editar' && loading ? (
+              mode === "editar" && loading ? (
                 <div>
                   <Spinner title="Cargando..." />
                 </div>
@@ -147,9 +125,7 @@ export function CategoriasFormDrawer({
                       : "Actualizar categoría"
                   }
                   className="w-[190px]"
-                  disabled={
-                    isSubmitting || !isValid || !dirty
-                  }
+                  disabled={isSubmitting || !isValid || !dirty}
                 />
               </div>
             }

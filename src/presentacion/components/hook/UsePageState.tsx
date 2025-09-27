@@ -5,7 +5,10 @@ interface UsePageStateProps {
   initialPageSize?: number;
 }
 
-export function usePageState({ initialPage = 1, initialPageSize = 5 }: UsePageStateProps = {}) {
+export function usePageState({
+  initialPage = 1,
+  initialPageSize = 5,
+}: UsePageStateProps = {}) {
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [pageSize, setPageSize] = useState(initialPageSize);
 

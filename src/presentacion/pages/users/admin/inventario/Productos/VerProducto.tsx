@@ -1,19 +1,17 @@
-import { adapterProducto } from "@/adapter/inventario/producto.adapter";
-import { ProductoUi } from "@/adapter/inventario/productoUi";
-import { productUseCase } from "@/domain";
-import { useItemFetch } from "@/presentacion/components/hook";
+import { Spinner } from "@heroui/react";
 import {
   ButtonAtom,
   DrawerWrapper,
   Section,
   Title3,
 } from "@/presentacion/components/ui";
-import { Spinner } from "@heroui/react";
+import { useProductoById } from "@/presentacion/components/hook/inventario/Productos/useProductoById";
+
 
 interface VerProducto {
   isOpen: boolean;
   onClose: () => void;
-  id: string | number | null;
+  id: string | null;
   setMode: (mode: "ver" | "editar" | "crear") => void;
   onOpen: () => void;
 }
@@ -29,17 +27,7 @@ export function VerProducto({
     data: producto,
     loading,
     error,
-  } = useItemFetch<ProductoUi>(
-    async (id) => {
-      const data = await productUseCase.detail("/product/detail", id);
-      return { data: adapterProducto.sidemodal(data) };
-    },
-    {
-      byId: id,
-      enable: Boolean(id),
-      reload: isOpen,
-    }
-  );
+  } = useProductoById(id, Boolean(id), isOpen);
 
   const handleEditClick = () => {
     setMode("editar");
@@ -67,8 +55,8 @@ export function VerProducto({
               info={[
                 { subtitulo: "Nombre", valor: `${producto?.name}` },
                 { subtitulo: "SKU", valor: `${producto?.sku}` },
-                { subtitulo: "Categoría", valor: `${producto?.category.name}` },
-                { subtitulo: "Proveedor", valor: `${producto?.supplier.name}` },
+                { subtitulo: "Categoría", valor: `${producto?.category}` },
+                { subtitulo: "Proveedor", valor: `${producto?.supplier}` },
               ]}
             />
 
@@ -76,7 +64,10 @@ export function VerProducto({
               title="💲 Precios"
               info={[
                 { subtitulo: "Precio de proveedor", valor: `$ ${"0"}` },
-                { subtitulo: "Precio de venta", valor: `$ ${producto?.salePrice}` },
+                {
+                  subtitulo: "Precio de venta",
+                  valor: `$ ${producto?.salePrice}`,
+                },
               ]}
             />
 
@@ -84,7 +75,7 @@ export function VerProducto({
               title="📦 Inventario"
               info={[
                 { subtitulo: "Stock disponible", valor: `${"-"}` },
-                { subtitulo: "Estado", valor: `${producto?.state.name}` },
+                { subtitulo: "Estado", valor: `${producto?.state}` },
                 {
                   subtitulo: `Alerta de stock mínimo: ${
                     producto?.alert ? "Activo" : "Inactivo"
@@ -99,9 +90,18 @@ export function VerProducto({
             <Section
               title="📊 Historial de movimientos"
               info={[
-                { subtitulo: "Fecha de creación:", valor: `${producto?.create_at}`},
-                { subtitulo: "Última actualización:", valor: `${producto?.update_at}` },
-                { subtitulo: "Última entrada registrada:", valor: `${"-"} | ${"-"} | ${"-"}` },
+                {
+                  subtitulo: "Fecha de creación:",
+                  valor: `${producto?.create_at}`,
+                },
+                {
+                  subtitulo: "Última actualización:",
+                  valor: `${producto?.update_at}`,
+                },
+                {
+                  subtitulo: "Última entrada registrada:",
+                  valor: `${"-"} | ${"-"} | ${"-"}`,
+                },
               ]}
             />
 

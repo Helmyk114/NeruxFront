@@ -20,7 +20,7 @@ export const Clientes: React.FC = () => {
   };
 
   const { handleEdit, handleView, handleDelete } = useActionTables<
-    number | string
+     string
   >();
 
   return (

@@ -1,40 +1,39 @@
-import { statusProductMap } from "../../../../shared/constants/colors/statusProductMap";
+import { statusProductMap } from "@/shared/constants/colors/statusProductMap";
 import {
   ActionsCell,
   ChipCell,
   ImgCellSimple,
   SimpleCell,
 } from "../../../components/ui/atomos";
-import { ColumnRender } from "../../../../shared/types/columRenderType";
-import { ProductoUi } from "@/adapter/inventario/productoUi";
-import { formatPrice } from "@/shared";
+import { ColumnRender } from "@/shared/types/columRenderType";
+import { Producto } from "@/domain/interface";
 
 export const ProductColumnRender = (
-  onEdit: (product: ProductoUi) => void,
-  onView: (product: ProductoUi) => void,
-  onDelete: (product: ProductoUi) => void
-): ColumnRender<ProductoUi> => ({
-  name: (product: ProductoUi) => <ImgCellSimple textTop={product.name} />,
-  sku: (product: ProductoUi) => <SimpleCell textTop={product.sku || "-"} />,
+  onEdit: (product: Producto) => void,
+  onView: (product: Producto) => void,
+  onDelete: (product: Producto) => void
+): ColumnRender<Producto> => ({
+  name: (product: Producto) => <ImgCellSimple textTop={product.name} />,
+  sku: (product: Producto) => <SimpleCell textTop={product.sku || "-"} />,
 
-  category: (product: ProductoUi) => (
-    <SimpleCell textTop={product?.category?.name || "-"} />
+  category: (product: Producto) => (
+    <SimpleCell textTop={product?.category || "-"} />
   ),
-  supplier: (product: ProductoUi) => (
-    <SimpleCell textTop={product?.supplier?.name || "-"} />
+  supplier: (product: Producto) => (
+    <SimpleCell textTop={product?.supplier || "-"} />
   ),
-  salePrice: (product: ProductoUi) => (
-    <SimpleCell textTop={`$${formatPrice(product.salePrice)}`} />
+  salePrice: (product: Producto) => (
+    <SimpleCell textTop={`$ ${product?.salePrice}`} />
   ),
-  stock: (product: ProductoUi) => <SimpleCell textTop={product.stock || "-"} />,
-  state: (product: ProductoUi) => (
+  stock: (product: Producto) => <SimpleCell textTop={product.stock || "-"} />,
+  state: (product: Producto) => (
     <ChipCell
-      colorText={statusProductMap[product?.state?.name].color}
-      colorDot={statusProductMap[product?.state?.name].dot}
-      texto={product?.state?.name}
+      colorText={statusProductMap[product?.state || ""].color}
+      colorDot={statusProductMap[product?.state || ""].dot}
+      texto={product?.state || ""}
     />
   ),
-  acciones: (product: ProductoUi) => (
+  acciones: (product: Producto) => (
     <ActionsCell
       onEdit={() => onEdit(product)}
       onView={() => onView(product)}

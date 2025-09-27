@@ -1,6 +1,8 @@
 import { boolean, number, object, ObjectSchema, string } from "yup";
-import { stringValidations, ValidationRules } from "@/shared";
-import { ProductoCreate } from "@/domain";
+import { stringValidations } from "@/shared";
+import { ValidationRules } from "@/shared/validations/ValidationRules";
+import { ProductoCreate } from "@/domain/inventario/producto/producto.dto";
+
 
 interface ProductoConfigProps {
   initialValues: Partial<ProductoCreate>;

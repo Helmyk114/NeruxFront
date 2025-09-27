@@ -1,6 +1,7 @@
+import { User } from "@/domain";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { User } from "../shared/types/AuthResponseTypes";
+
 
 type UserState = {
   user: User | null,

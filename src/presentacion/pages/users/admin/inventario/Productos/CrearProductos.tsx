@@ -9,11 +9,9 @@ import { PopUpSuccess } from "@/shared";
 import { CategoriasFormDrawer } from "../Categorias/CategoriasFormDrawer";
 import { Spinner, useDisclosure } from "@heroui/react";
 import { ProveedorFormDrawer } from "../Proveedor/ProveedorFormDrawer";
-import { useItemFetch, useRedirect } from "@/presentacion/components/hook";
 import { useParams } from "react-router-dom";
-import { ProductoUi } from "@/adapter/inventario/productoUi";
-import { productUseCase } from "@/domain";
-import { adapterProducto } from "@/adapter/inventario/producto.adapter";
+import { useRedirect } from "@/presentacion/components/hook";
+import { useProductoById } from "@/presentacion/components/hook/inventario/Productos/useProductoById";
 
 export function CrearProductos(): JSX.Element {
   const { idProduct } = useParams<{ idProduct?: string }>();
@@ -28,16 +26,7 @@ export function CrearProductos(): JSX.Element {
     data: product,
     loading,
     error,
-  } = useItemFetch<ProductoUi>(
-    async (idProduct) => {
-      const data = await productUseCase.detail("/product/detail", idProduct);
-      return { data: adapterProducto.sidemodal(data) };
-    },
-    {
-      byId: idProduct ?? null,
-      enable: isEditing,
-    }
-  );
+  } = useProductoById(idProduct ?? null, isEditing);
 
   const isLoading = isEditing && loading;
   const hasError = isEditing && error;

@@ -1,4 +1,5 @@
-import { BusinessForm } from "@/domain";
+
+import { BusinessForm } from "@/domain/business/business.entity";
 import { Axios } from "../../http/Axios";
 
 export const businessService = {

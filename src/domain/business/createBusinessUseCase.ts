@@ -1,7 +1,8 @@
-import { businessService } from "@/infrastructure";
+
 import { BusinessForm } from "./business.entity";
 import { userStore } from "@/store";
 import { cookie } from "@/shared";
+import { businessService } from "@/infrastructure/services/business/business.service";
 
 export const BusinessUseCase = {
   createBusiness: async (business: BusinessForm) => {

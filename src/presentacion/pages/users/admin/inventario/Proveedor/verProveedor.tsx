@@ -1,5 +1,4 @@
-import { Proveedor, proveedoresUseCase } from "@/domain";
-import { useItemFetch } from "@/presentacion/components/hook";
+import { useProveedorById } from "@/presentacion/components/hook";
 import {
   ButtonAtom,
   DrawerWrapper,
@@ -8,10 +7,11 @@ import {
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
 
+
 interface VerProveedorProps {
   isOpen: boolean;
   onClose: () => void;
-  id: string | number | null;
+  id: string | null;
   setMode: (mode: "ver" | "editar" | "crear") => void;
   onOpen: () => void;
 }
@@ -27,17 +27,7 @@ export function VerProveedores({
     data: proveedor,
     loading,
     error,
-  } = useItemFetch<Proveedor>(
-    async (id) => {
-      const data = await proveedoresUseCase.getById("/supplier/dateil", id);
-      return { data };
-    },
-    {
-      byId: id,
-      enable: Boolean(id),
-      reload: isOpen,
-    }
-  );
+  } = useProveedorById(id, Boolean(id), isOpen);
 
   const handleEditClick = () => {
     setMode("editar");

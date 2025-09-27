@@ -1,11 +1,10 @@
-// skipcq: JS-C1003
-import * as Yup from "yup";
-import { ProveedorForm } from "@/domain";
-import { stringValidations } from "@/shared/validations/stringValidations";
+import { object, ObjectSchema, string } from "yup";
+import { stringValidations } from "@/shared";
+import { Proveedor } from "@/domain";
 
 interface ProveedorConfig {
-  intiatialValues: ProveedorForm;
-  validationSchema: Yup.ObjectSchema<ProveedorForm>;
+  intiatialValues: Proveedor;
+  validationSchema: ObjectSchema<Proveedor>;
 }
 
 export const proveedorConfig: ProveedorConfig = {
@@ -16,31 +15,31 @@ export const proveedorConfig: ProveedorConfig = {
     email: "",
     note: "",
   },
-  validationSchema: Yup.object().shape({
-    name: stringValidations(Yup.string(), [
-      {type: "required", message: "El nombre del proveedor es obligatorio"},
-      {type: "maxLength", value: 60},
-      {type: "alphanumeric"},
+  validationSchema: object().shape({
+    name: stringValidations(string(), [
+      { type: "required", message: "El nombre del proveedor es obligatorio" },
+      { type: "maxLength", value: 60 },
+      { type: "alphanumeric" },
     ]),
-    supplier: stringValidations(Yup.string(), [
-      {type: "maxLength", value: 60},
-      {type: "alphanumeric"},
-      {type: "optional"}
+    supplier: stringValidations(string(), [
+      { type: "maxLength", value: 60 },
+      { type: "alphanumeric" },
+      { type: "optional" },
     ]),
-    phone: stringValidations(Yup.string(), [
-      {type: "required", message: "El número de teléfono es obligatorio"},
-      {type: "maxLength", value: 15},
-      {type: "minLength", value: 7},
-      {type: "numeric"},
+    phone: stringValidations(string(), [
+      { type: "required", message: "El número de teléfono es obligatorio" },
+      { type: "maxLength", value: 15 },
+      { type: "minLength", value: 7 },
+      { type: "numeric" },
     ]),
-    email: stringValidations(Yup.string(), [
-      {type: "maxLength", value: 100},
-      {type: "email",},
-      {type: "optional"}
+    email: stringValidations(string(), [
+      { type: "maxLength", value: 100 },
+      { type: "email" },
+      { type: "optional" },
     ]),
-    note: stringValidations(Yup.string(), [
-      {type: "maxLength", value: 300},
-      {type: "optional"}
-    ])
-  }) as Yup.ObjectSchema<ProveedorForm>,
+    note: stringValidations(string(), [
+      { type: "maxLength", value: 300 },
+      { type: "optional" },
+    ]),
+  }) as ObjectSchema<Proveedor>,
 };
