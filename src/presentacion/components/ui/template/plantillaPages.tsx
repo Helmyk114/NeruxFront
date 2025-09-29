@@ -1,6 +1,6 @@
 import { sidebarStore } from "@/store";
-import { Title1, Title2 } from "@/presentacion/components/ui/atomos"
 import { Sidebar } from "../organismo";
+import { Title } from "../atomos/textos/Titles";
 
 interface TemplatePageProps {
   mainContent: React.ReactNode;
@@ -22,8 +22,8 @@ export function TemplatePageTable({
           isCollapsed ? "p-12" : "p-12"
         }  overflow-auto h-screen`}
       >
-        <Title1 clasname=" mb-1.5 text-start" titulo={titulo1 || ""} />
-        <Title2 clasname="mb-6" titulo={titulo2 || ""} />
+        <Title.PageTitle titulo={titulo1 || ""} />
+        <Title.Subtitle titulo={titulo2 || ""} />
         {mainContent}
       </div>
     </div>
