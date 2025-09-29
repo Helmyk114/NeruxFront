@@ -1,9 +1,8 @@
+import { useMemo } from "react";
 import { Formik } from "formik";
-
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
-import { useMemo } from "react";
 import { Producto } from "@/domain/interface";
 
 interface CrearProductoFormProps {
@@ -19,7 +18,7 @@ export function CrearProductoFormComponent({
   onSuccess,
   createCategoria,
   createProveedor,
-  reload,
+  //reload,
   isEditing,
   data,
 }: CrearProductoFormProps): JSX.Element {
@@ -43,17 +42,17 @@ export function CrearProductoFormComponent({
   //   key: item.id,
   //   label: item.name,
   // }));
-
+console.log('data', data)
   const initialValue = useMemo(() => {
     if (isEditing && data) {
       return {
         name: data.name,
         sku: data.sku,
-        category: data?.category.id,
+        category: data?.category,
         salePrice: data.salePrice,
         alert: data.alert,
         minStock: data.minStock,
-        supplier: data?.supplier.id,
+        supplier: data?.supplier,
         description: data.description,
       };
     }
@@ -78,7 +77,7 @@ export function CrearProductoFormComponent({
             };
 
             console.log("newValues", newValues);
-            await productUseCase.create(newValues);
+
             if (onSuccess) onSuccess();
             resetForm();
           } catch (error) {
@@ -94,8 +93,8 @@ export function CrearProductoFormComponent({
               <ProductosFormfields
                 crearCategoria={createCategoria}
                 crearProveedor={createProveedor}
-                supplierOptions={supplierOptions}
-                categoryOptions={supplierOptions}
+                // supplierOptions={supplierOptions}
+                // categoryOptions={supplierOptions}
                 //unitOptions={unitOptions}
               />
 

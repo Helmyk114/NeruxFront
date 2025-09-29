@@ -7,13 +7,13 @@ import {
   SelectAtom,
   TooltipAtom,
 } from "../../atomos";
-import { ProductoDto } from "@/domain";
+import { Producto } from "@/domain/interface";
 
 interface ProductosFormfieldsProps {
   crearCategoria?: () => void;
   crearProveedor?: () => void;
-  supplierOptions: { key: string | number; label: string }[];
-  categoryOptions: { key: string | number; label: string }[];
+  supplierOptions?: { key: string | number; label: string }[];
+  categoryOptions?: { key: string | number; label: string }[];
 }
 
 export function ProductosFormfields({
@@ -22,7 +22,7 @@ export function ProductosFormfields({
   supplierOptions,
   categoryOptions,
 }: ProductosFormfieldsProps): JSX.Element {
-  const { values } = useFormikContext<ProductoDto>();
+  const { values } = useFormikContext<Producto>();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

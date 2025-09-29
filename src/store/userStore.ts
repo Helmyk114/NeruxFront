@@ -1,4 +1,4 @@
-import { User } from "@/domain";
+import { User } from "@/domain/interface";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
