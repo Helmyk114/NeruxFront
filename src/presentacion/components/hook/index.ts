@@ -3,7 +3,7 @@ export * from "./UseFetchGet";
 export * from "./UsePageState";
 export * from "./UseRedirect";
 export * from "./UseRenderCell";
-export * from "./api/useFetchAll";
+export * from "./api/useAll";
 export * from "./api/useItem";
 export * from "./api/useMutation";
 export * from "./api/usePaginate";

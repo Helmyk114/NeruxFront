@@ -3,7 +3,7 @@ export type Producto = {
   name: string;
   sku: string;
   category: string;
-  salePrice?: string;
+  salePrice: string;
   alert?: boolean;
   stock?: number;
   minStock?: number;

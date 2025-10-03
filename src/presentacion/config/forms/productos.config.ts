@@ -1,24 +1,21 @@
 import { boolean, number, object, ObjectSchema, string } from "yup";
 import { stringValidations } from "@/shared";
-import { ValidationRules } from "@/shared/validations/ValidationRules";
-import { ProductoCreate } from "@/domain/inventario/producto/producto.dto";
-
+import { CreateProductoCommand } from "@/application/Inventario/productos/CreateProdcuto";
 
 interface ProductoConfigProps {
-  initialValues: Partial<ProductoCreate>;
-  validationSchema: ObjectSchema<Partial<ProductoCreate>>;
+  initialValues: CreateProductoCommand;
+  validationSchema: ObjectSchema<CreateProductoCommand>;
 }
 
 export const productoConfig: ProductoConfigProps = {
   initialValues: {
     name: "",
     sku: "",
-    category: 0,
-    salePrice: 0,
+    category: "",
+    salePrice: "",
     alert: false,
     minStock: 0,
-    unit: 0,
-    supplier: 0,
+    supplier: "",
     description: "",
   },
 
@@ -28,22 +25,18 @@ export const productoConfig: ProductoConfigProps = {
       { type: "maxLength", value: 20 },
       { type: "optional" },
     ]),
-    category: number()
-      .transform((_, val) => (val === "" ? undefined : Number(val)))
-      .concat(ValidationRules.campoRequeridoNumber()),
-    salePrice: number().concat(ValidationRules.campoRequeridoNumber()),
+    category: stringValidations(string(), [{ type: "required" }]),
+    salePrice: stringValidations(string(), [{ type: "required" }]),
     alert: boolean(),
     minStock: number().when("alert", {
       is: true,
       then: (schema) => schema.required().min(1),
       otherwise: (schema) => schema.optional(),
     }),
-    supplier: number()
-      .transform((_, val) => (val === "" ? undefined : Number(val)))
-      .concat(ValidationRules.campoRequeridoNumber()),
+    supplier: stringValidations(string(), [{ type: "required" }]),
     description: stringValidations(string(), [
       { type: "maxLength", value: 500 },
       { type: "optional" },
     ]),
-  }) as ObjectSchema<ProductoCreate>,
+  }) as ObjectSchema<CreateProductoCommand>,
 };

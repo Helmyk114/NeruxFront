@@ -1,10 +1,5 @@
-import { Categoria } from "@/domain/interface";
+import { Categoria, CreateCategoriaCommand } from "@/domain/interface";
 import { CategoryRepository } from "@/domain/repository";
-
-export type CreateCategoriaCommand = {
-  name: string;
-  description: string;
-};
 
 export function CreateCategoria(categoryRepository: CategoryRepository) {
   return async (createCategoriaCommand: CreateCategoriaCommand) => {

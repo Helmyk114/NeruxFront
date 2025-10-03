@@ -1,8 +1,7 @@
 import { toastStore } from "@/store";
 import { useMutation } from "../../api/useMutation";
-import { CreateCategoriaCommand } from "@/application/Inventario/categoria";
+import { CreateCategoriaCommand } from "@/domain/interface";
 import { CreateCategoriaUseCase } from "@/Dependencies/inverntario/categoria";
-
 
 export function useCreateCategoria() {
   const newToast = toastStore((state) => state.newToast);

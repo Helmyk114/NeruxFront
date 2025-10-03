@@ -2,7 +2,6 @@ import { Producto } from "@/domain/interface";
 import { ProductoRepository } from "@/domain/repository";
 import { ProductoAdapter } from "@/infrastructure/adapters/inventario/producto/ProductoAdapter";
 import { ProductoDetail, ProductoPaginate } from "@/infrastructure/adapters/inventario/producto/ProductoDto";
-
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from "@/shared";
 
@@ -13,7 +12,6 @@ export const ProductoApiRepository: ProductoRepository = {
         `/product/detail/${id}`
       );
       const domainData = ProductoAdapter.toDomainDetail(res.data);
-      console.log(domainData);
       return { data: domainData };
     } catch (error) {
       throw new Error(`Error al obtener el producto por ID: ${error}`);
@@ -49,7 +47,8 @@ export const ProductoApiRepository: ProductoRepository = {
 
   async create(producto: Producto): Promise<void> {
     try {
-      await apiClient.post("/create/product", producto);
+      const newProducto = ProductoAdapter.fromDomainProducto(producto);
+      await apiClient.post("/create/product", newProducto);
     } catch (error) {
       throw new Error(`Error al crear el producto: ${error}`);
     }

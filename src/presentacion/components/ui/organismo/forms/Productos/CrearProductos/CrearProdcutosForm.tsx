@@ -4,6 +4,8 @@ import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
 import { Producto } from "@/domain/interface";
+import { useCategoriaProveedorMaster } from "@/presentacion/components/hook/master/useCategoriaProveedorMaster";
+import { useProductoCreate } from "@/presentacion/components/hook/inventario/Productos/useProductoCreate";
 
 interface CrearProductoFormProps {
   createCategoria?: () => void;
@@ -18,41 +20,23 @@ export function CrearProductoFormComponent({
   onSuccess,
   createCategoria,
   createProveedor,
-  //reload,
+  reload,
   isEditing,
   data,
 }: CrearProductoFormProps): JSX.Element {
-  // const { data: supplier } = useFetchAll<Proveedor>(
-  //   () => proveedoresUseCase.getAll("/supplier/select"),
-  //   { enable: true, reload }
-  // );
+  const { categorias, proveedores } = useCategoriaProveedorMaster(true, reload);
+  const { mutate: create } = useProductoCreate();
 
-
-  // const { data: unit } = useFetchAll<Unit>(
-  //   () => masterUseCase.getAllUnits("/unit"),
-  //   { enable: true, reload }
-  // );
-
-  // const supplierOptions = supplier.map((item) => ({
-  //   key: item.id,
-  //   label: item.name,
-  // }));
-
-  // const unitOptions = unit.map((item) => ({
-  //   key: item.id,
-  //   label: item.name,
-  // }));
-console.log('data', data)
   const initialValue = useMemo(() => {
     if (isEditing && data) {
       return {
         name: data.name,
         sku: data.sku,
-        category: data?.category,
+        category: data?.category || "",
         salePrice: data.salePrice,
         alert: data.alert,
         minStock: data.minStock,
-        supplier: data?.supplier,
+        supplier: data?.supplier || "",
         description: data.description,
       };
     }
@@ -68,15 +52,12 @@ console.log('data', data)
         // skipcq: JS-0417
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
-            const newValues = {
-              ...values,
-              category: Number(values.category) ,
-              salePrice: Number(values.salePrice),
-              supplier: Number(values.supplier),
-              minStock: values.alert ? Number(values.minStock) : 1,
-            };
-
-            console.log("newValues", newValues);
+            if (isEditing) {
+              console.log("Editando producto, no implementado");
+              return;
+            } else {
+              await create(values);
+            }
 
             if (onSuccess) onSuccess();
             resetForm();
@@ -93,9 +74,8 @@ console.log('data', data)
               <ProductosFormfields
                 crearCategoria={createCategoria}
                 crearProveedor={createProveedor}
-                // supplierOptions={supplierOptions}
-                // categoryOptions={supplierOptions}
-                //unitOptions={unitOptions}
+                supplierOptions={proveedores}
+                categoryOptions={categorias}
               />
 
               <div className="flex flex-row justify-end gap-9 ">

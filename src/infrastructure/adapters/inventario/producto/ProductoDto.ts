@@ -22,3 +22,14 @@ export type ProductoPaginate = {
   supplier: { id: number; name: string };
   state: { id: number; name: string };
 };
+
+export type CreateProductoDto = {
+  name: string;
+  sku: string;
+  salePrice: number;
+  alert?: boolean;
+  minStock: number;
+  description?: string;
+  category: number;
+  supplier: number;
+}

@@ -1,29 +1,23 @@
+import { ResponseApi } from "@/shared";
 import { useEffect, useState } from "react";
 
-interface UseFetchAllOptions {
-  reload?: boolean;
-  enable?: boolean; 
-}
-
-type FetchAllFunction<T> = () => Promise<T[]>;
-
-export function useFetchAll<T>(
-  fetchFn: FetchAllFunction<T>,
-  options: UseFetchAllOptions
+export function useAll<T>(
+  action: () => Promise<ResponseApi<T[]>>,
+  { enable = true, reload = false }: { enable?: boolean; reload?: boolean }
 ) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (!options.enable) return;
+    if (!enable) return;
 
     const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await fetchFn();
-        setData(response);
+        const res = await action();
+        setData(res.data);
       } catch (err) {
         setError(err as Error);
       } finally {
@@ -32,7 +26,7 @@ export function useFetchAll<T>(
     };
 
     fetchData();
-  }, [options.reload, options.enable]);
+  }, [action, reload, enable]);
 
   return { data, loading, error };
 }

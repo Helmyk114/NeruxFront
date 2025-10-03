@@ -6,11 +6,10 @@ export type CreateProductoCommand = {
   sku: string;
   category: string;
   salePrice: string;
-  alert: boolean;
-  minStock: number;
-  unit: string;
+  alert?: boolean;
+  minStock?: number;
   supplier: string;
-  description: string;
+  description?: string;
 };
 
 export function CreateProducto(productoRepository: ProductoRepository) {
@@ -22,7 +21,6 @@ export function CreateProducto(productoRepository: ProductoRepository) {
       salePrice,
       alert,
       minStock,
-      unit,
       supplier,
       description,
     } = createProductoCommand;
@@ -32,9 +30,8 @@ export function CreateProducto(productoRepository: ProductoRepository) {
       sku,
       category,
       salePrice,
-      alert,
+      alert: alert ?? false,
       minStock,
-      unit,
       supplier,
       description,
     };

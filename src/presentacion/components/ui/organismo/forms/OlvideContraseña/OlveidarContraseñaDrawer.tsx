@@ -26,7 +26,6 @@ export function OlvidarContraseDrawer({
       validationSchema={""}
       onSubmit={async (values, { setSubmitting }) => {
         const resp = await authUseCase.validateOtp({ otp: values.otp, email });
-        console.log(resp);
         if (resp) {
           setSubmitting(false);
           onClose();

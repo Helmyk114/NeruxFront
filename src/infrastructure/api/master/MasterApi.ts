@@ -5,8 +5,8 @@ import { MasterRes } from "@/infrastructure/adapters/master/MasterDto";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from "@/shared";
 
-export const MasterApi: MasterRepository = {
-  async getMasterCategoria(): Promise<Master[]> {
+export const MasterApiRepository: MasterRepository = {
+  async getMasterCategoria(): Promise<ResponseApi<Master[]>> {
     try {
       const res = await apiClient.get<ResponseApi<MasterRes[]>>(
         "/categories/select"
@@ -14,12 +14,13 @@ export const MasterApi: MasterRepository = {
       const domainData = res.data.map((item: MasterRes) =>
         MasterAdapter.toDomain(item)
       );
-      return domainData;
+      return { data: domainData };
     } catch (error) {
       throw new Error(`Error al obtener el maestro de categorias: ${error}`);
     }
   },
-  async getMasterProveedor(): Promise<Master[]> {
+
+  async getMasterProveedor(): Promise<ResponseApi<Master[]>> {
     try {
       const res = await apiClient.get<ResponseApi<MasterRes[]>>(
         "/supplier/select"
@@ -27,7 +28,7 @@ export const MasterApi: MasterRepository = {
       const domainData = res.data.map((item: MasterRes) =>
         MasterAdapter.toDomain(item)
       );
-      return domainData;
+      return { data: domainData };
     } catch (error) {
       throw new Error(`Error al obtener el maestro de proveedores: ${error}`);
     }

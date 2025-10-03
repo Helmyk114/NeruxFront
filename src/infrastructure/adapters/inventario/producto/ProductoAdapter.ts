@@ -1,5 +1,5 @@
 import { Producto } from "@/domain/interface";
-import { ProductoDetail, ProductoPaginate } from "./ProductoDto";
+import { CreateProductoDto, ProductoDetail, ProductoPaginate } from "./ProductoDto";
 
 export const ProductoAdapter = {
   toDomainPaginate(api: ProductoPaginate): Producto {
@@ -30,4 +30,17 @@ export const ProductoAdapter = {
       state: api.state.name,
     };
   },
+
+  fromDomainProducto(data: Producto): CreateProductoDto {
+    return {
+      name: data.name,
+      sku: data.sku,
+      salePrice: Number(data.salePrice),
+      alert: data.alert,
+      minStock: data.alert ? Number(data.minStock) : 1,
+      description: data.description,
+      category: Number(data.category),
+      supplier: Number(data.supplier),
+    };
+  }
 };

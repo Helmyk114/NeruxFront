@@ -1,6 +1,7 @@
 import { Master } from "@/domain/interface";
+import { ResponseApi } from '../../../shared/types/ResponseApi';
 
 export interface MasterRepository {
-  getMasterCategoria: () => Promise<Master[]>;
-  getMasterProveedor: () => Promise<Master[]>;
+  getMasterCategoria: () => Promise<ResponseApi<Master[]>>;
+  getMasterProveedor: () => Promise<ResponseApi<Master[]>>;
 }

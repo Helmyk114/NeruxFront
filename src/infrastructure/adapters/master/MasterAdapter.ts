@@ -3,6 +3,6 @@ import { MasterRes } from "./MasterDto";
 
 export const MasterAdapter = {
   toDomain(api: MasterRes): Master {
-    return { id: api.id, name: api.name };
+    return { key: api.id, label: api.name };
   },
 };

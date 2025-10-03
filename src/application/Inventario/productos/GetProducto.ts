@@ -7,7 +7,6 @@ export function GetAllPaginateProducto(productoRepository: ProductoRepository) {
     paginateCommand: PaginateCommand
   ): Promise<ResponseApi<Producto[]>> => {
     const { currentPage, pageSize } = paginateCommand;
-    console.log('hola1')
     const res = await productoRepository.getPaginated(currentPage, pageSize);
     return {
       data: res.data,

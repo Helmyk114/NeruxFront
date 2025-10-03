@@ -1,4 +1,4 @@
 export type Master = {
-  id: string;
-  name: string;
+  key: string;
+  label: string;
 }

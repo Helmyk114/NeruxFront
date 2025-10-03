@@ -1,14 +1,15 @@
 import { object, ObjectSchema, string } from "yup";
 import { stringValidations } from "@/shared";
-import { Proveedor } from "@/domain";
+import { Proveedor } from "@/domain/interface";
+
 
 interface ProveedorConfig {
-  intiatialValues: Proveedor;
+  initialValues: Proveedor;
   validationSchema: ObjectSchema<Proveedor>;
 }
 
 export const proveedorConfig: ProveedorConfig = {
-  intiatialValues: {
+  initialValues: {
     name: "",
     supplier: "",
     phone: "",

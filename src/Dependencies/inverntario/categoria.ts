@@ -1,4 +1,3 @@
-
 import { CreateCategoria, DeleteCategoria, GetAllPaginateCategoria, GetByIdCategoria, UpdateCategoria } from "@/application/Inventario/categoria";
 import { CategoriaApiRepository } from "@/infrastructure/api/inventario/CategoriaApi";
 

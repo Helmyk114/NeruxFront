@@ -7,13 +7,13 @@ import {
   SelectAtom,
   TooltipAtom,
 } from "../../atomos";
-import { Producto } from "@/domain/interface";
+import { Master, Producto } from "@/domain/interface";
 
 interface ProductosFormfieldsProps {
   crearCategoria?: () => void;
   crearProveedor?: () => void;
-  supplierOptions?: { key: string | number; label: string }[];
-  categoryOptions?: { key: string | number; label: string }[];
+  supplierOptions?: Master[];
+  categoryOptions?: Master[];
 }
 
 export function ProductosFormfields({
