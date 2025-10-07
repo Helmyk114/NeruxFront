@@ -1,7 +1,6 @@
 import { object, ObjectSchema, string } from "yup";
 import { stringValidations } from "@/shared";
-import { Proveedor } from "@/domain/interface";
-
+import { Proveedor } from "@/Domain/interface";
 
 interface ProveedorConfig {
   initialValues: Proveedor;

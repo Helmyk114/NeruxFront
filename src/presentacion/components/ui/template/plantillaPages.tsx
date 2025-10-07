@@ -1,5 +1,5 @@
 import { sidebarStore } from "@/store";
-import { Title1, Title2 } from "@/presentacion/components/ui/atomos"
+import { Title1, Title2 } from "@/presentacion/components/ui/atomos";
 import { Sidebar } from "../organismo";
 
 interface TemplatePageProps {

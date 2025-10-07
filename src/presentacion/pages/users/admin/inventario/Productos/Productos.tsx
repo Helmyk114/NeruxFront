@@ -3,13 +3,10 @@ import {
   usePageState,
   useRedirect,
 } from "@/presentacion/components/hook";
-import {
-  TableSimple,
-  TemplatePageTable,
-} from "@/presentacion/components/ui";
-import { ProductColumnRender, columnsProductos } from "@/presentacion/config";
 import { VerProducto } from "./VerProducto";
-import { useProductoPaginate } from "@/presentacion/components/hook/inventario/Productos/useProductoPaginate";
+import { useProductoPaginate } from "@/application/Hooks";
+import { TableSimple, TemplatePageTable } from "@/presentacion/components/ui";
+import { columnsProductos, ProductColumnRender } from "@/presentacion/config";
 
 export function Products(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
@@ -17,13 +14,13 @@ export function Products(): JSX.Element {
 
   const { data, metadata, loading, error } = useProductoPaginate(
     currentPage,
-    pageSize,
+    pageSize
   );
-  
+
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
-  
+
   const {
     handleEdit,
     handleView,

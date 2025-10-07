@@ -1,11 +1,19 @@
-import { Proveedor } from "@/domain/interface";
-import { ResponseApi } from "@/shared";
+import {
+  Proveedor,
+  ProveedorDetail,
+  ProveedorPaginate,
+} from "@/domain/interface";
+import { PaginateCommand, ResponseApi } from "@/shared/types";
 
 export interface ProveedorRepository {
   getAll: () => Promise<Proveedor[]>;
-  getById: (id: string | null) => Promise<ResponseApi<Proveedor>>;
-  getPaginated: (currentPage: number, pageSize: number) => Promise<ResponseApi<Proveedor[]>>;
-  create: (categoria: Proveedor) => Promise<void>;
-  update: (categoria: Proveedor) => Promise<void>;
-  delete: (id: string) => Promise<void>;
+  getById: (
+    id: Proveedor["id"] | null
+  ) => Promise<ResponseApi<ProveedorDetail>>;
+  getPaginated: (
+    paginateCommand: PaginateCommand
+  ) => Promise<ResponseApi<ProveedorPaginate[]>>;
+  create: (proveedor: Partial<Proveedor>) => Promise<void>;
+  update: (proveedor: Partial<Proveedor>) => Promise<void>;
+  delete: (id: Proveedor["id"]) => Promise<void>;
 }

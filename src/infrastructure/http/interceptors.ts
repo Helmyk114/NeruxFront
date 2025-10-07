@@ -1,5 +1,5 @@
+import { cookie } from "@/shared/utils/cookies";
 import { axiosInstance } from "./axiosInstanse";
-import { cookie } from "@/shared";
 
 export const setupInterceptors = () => {
   axiosInstance.interceptors.request.use(

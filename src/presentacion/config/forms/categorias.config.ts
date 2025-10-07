@@ -1,6 +1,6 @@
 import { object, ObjectSchema, string } from "yup";
 import { stringValidations } from "@/shared";
-import { Categoria } from "@/domain/interface";
+import { Categoria } from "@/Domain/interface";
 
 interface CategoriasConfig {
   initialValues: Categoria;

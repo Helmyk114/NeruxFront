@@ -1,7 +1,10 @@
-import { Producto } from "@/domain/interface";
+import { Producto } from "@/Domain/interface";
 import { ProductoRepository } from "@/domain/repository";
-import { ProductoAdapter } from "@/infrastructure/adapters/inventario/producto/ProductoAdapter";
-import { ProductoDetail, ProductoPaginate } from "@/infrastructure/adapters/inventario/producto/ProductoDto";
+import { ProductoAdapter } from "@/mapping/inventario/ProductoAdapter";
+import {
+  ProductoDetail,
+  ProductoPaginate,
+} from "@/infrastructure/dto/inventario/ProductoDto";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from "@/shared";
 

@@ -1,5 +1,5 @@
-import { User, UserRole } from "@/domain/interface";
-import { LoginRoutes } from "@/shared";
+import { User, UserRole } from "@/Domain/interface";
+import { LoginRoutes } from "@/shared/types";
 
 const handlerBusinessUser = (user: User): string =>
   user.business ? LoginRoutes.DASHBOARD : LoginRoutes.CREATE_BUSINESS;

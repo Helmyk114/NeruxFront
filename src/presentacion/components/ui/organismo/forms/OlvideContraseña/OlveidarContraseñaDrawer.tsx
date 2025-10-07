@@ -29,11 +29,18 @@ export function OlvidarContraseDrawer({
         if (resp) {
           setSubmitting(false);
           onClose();
-          redirect(`/Nueva/Contraseña?email=${email}`); 
+          redirect(`/Nueva/Contraseña?email=${email}`);
         }
       }}
     >
-      {({ values, setFieldValue, isSubmitting, handleSubmit, isValid, dirty }) => (
+      {({
+        values,
+        setFieldValue,
+        isSubmitting,
+        handleSubmit,
+        isValid,
+        dirty,
+      }) => (
         <form onSubmit={handleSubmit}>
           <VentanaModal
             onClose={onClose}

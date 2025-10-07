@@ -1,8 +1,8 @@
 import { AuthRepository } from "@/domain/repository";
-import { LoginRes } from "@/infrastructure/adapters/auth/login/loginDto";
+import { LoginRes } from "@/infrastructure/dto/auth/loginDto";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { User } from "../../../domain/interface/auth/user";
-import { LoginAdapter } from "@/infrastructure/adapters/auth/login/LoginAdapter";
+import { LoginAdapter } from "@/mapping/auth/LoginAdapter";
 
 export const AuthApiRepository: AuthRepository = {
   async login(username: string, password: string): Promise<User> {

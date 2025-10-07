@@ -1,7 +1,6 @@
 import { Axios } from "@/infrastructure/http/Axios";
 import { useEffect, useState } from "react";
 
-
 interface PaginationMetadata {
   totalItems: number;
   totalPages: number;

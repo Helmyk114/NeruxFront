@@ -5,7 +5,7 @@ import {
   Title3,
   Section,
 } from "@/presentacion/components/ui";
-import { useCategoriaById } from "@/presentacion/components/hook";
+import { useCategoriaById } from "@/application/Hooks";
 
 interface VerCategorias {
   isOpen: boolean;

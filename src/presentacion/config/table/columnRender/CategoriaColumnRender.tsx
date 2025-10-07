@@ -1,19 +1,19 @@
 import { ColumnRender } from "@/shared/types/columRenderType";
 import { ActionsCell, SimpleCell } from "@/presentacion/components/ui/atomos";
-import { Categoria } from "@/domain/interface/inventario/categoria";
+import { CategoriaPaginateUi } from "@/presentacion/models";
 
 export const CategoriaColumnRender = (
-  onEdit: (categoria: Categoria) => void,
-  onView: (categoria: Categoria) => void,
-  onDelete: (categoria: Categoria) => void
-): ColumnRender<Categoria> => ({
-  name: (categoria: Categoria) => (
+  onEdit: (categoria: CategoriaPaginateUi) => void,
+  onView: (categoria: CategoriaPaginateUi) => void,
+  onDelete: (categoria: CategoriaPaginateUi) => void
+): ColumnRender<CategoriaPaginateUi> => ({
+  name: (categoria: CategoriaPaginateUi) => (
     <SimpleCell textTop={categoria.name || ""} />
   ),
-  description: (categoria: Categoria) => (
+  description: (categoria: CategoriaPaginateUi) => (
     <SimpleCell textTop={categoria.description || ""} />
   ),
-  acciones: (categoria: Categoria) => (
+  acciones: (categoria: CategoriaPaginateUi) => (
     <ActionsCell
       onEdit={() => onEdit(categoria)}
       onView={() => onView(categoria)}

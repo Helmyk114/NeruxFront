@@ -44,10 +44,10 @@ export function OlvideContraseñaForm(): JSX.Element {
           </form>
         )}
       </Formik>
-      <OlvidarContraseDrawer 
-      isOpen={modal.isOpen}
-      onClose={modal.onClose}
-      email={email}
+      <OlvidarContraseDrawer
+        isOpen={modal.isOpen}
+        onClose={modal.onClose}
+        email={email}
       />
     </div>
   );

@@ -14,7 +14,7 @@ import {
   useCreateProveedor,
   useProveedorById,
   useUpdateProveedor,
-} from "@/presentacion/components/hook";
+} from "@/application/Hooks";
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;
@@ -52,7 +52,7 @@ export function ProveedorFormDrawer({
         note: proveedor.note,
       };
     }
-    return proveedorConfig.intiatialValues;
+    return proveedorConfig.initialValues;
   }, [mode, proveedor]);
 
   const isReady = mode === "crear" || (mode === "editar" && proveedor);

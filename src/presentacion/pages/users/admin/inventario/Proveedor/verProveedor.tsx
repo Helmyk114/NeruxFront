@@ -1,4 +1,5 @@
-import { useProveedorById } from "@/presentacion/components/hook";
+
+import { useProveedorById } from "@/application/Hooks";
 import {
   ButtonAtom,
   DrawerWrapper,
@@ -55,10 +56,10 @@ export function VerProveedores({
               { subtitulo: "Empresa", valor: proveedor?.supplier || "-" },
               { subtitulo: "Correo", valor: proveedor?.email || "-" },
               { subtitulo: "Teléfono", valor: proveedor?.phone || "-" },
-              { subtitulo: "🗓️ Creado el:", valor: proveedor?.create_at },
+              { subtitulo: "🗓️ Creado el:", valor: proveedor?.createAt },
               {
                 subtitulo: "✏️ Ultima actualización:",
-                valor: proveedor?.update_at,
+                valor: proveedor?.updateAt,
               },
               { subtitulo: "🔄 Última interacción registrada:", valor: `Producto: ${"-"} \nEntrada: ${"-"} unidades - el ${"-"}`},
             ]}

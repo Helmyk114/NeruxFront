@@ -1,7 +1,7 @@
-import { Master } from "@/domain/interface";
+import { Master } from "@/Domain/interface";
 import { MasterRepository } from "@/domain/repository/master/master.repository";
-import { MasterAdapter } from "@/infrastructure/adapters/master/MasterAdapter";
-import { MasterRes } from "@/infrastructure/adapters/master/MasterDto";
+import { MasterAdapter } from "@/mapping/master/MasterAdapter";
+import { MasterRes } from "@/infrastructure/dto/master/MasterDto";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from "@/shared";
 

@@ -7,9 +7,7 @@ export const ProveedorColumnRender = (
   onView: (proveedor: Proveedor) => void,
   onDelete: (proveedor: Proveedor) => void
 ): ColumnRender<Proveedor> => ({
-  name: (proveedor: Proveedor) => (
-    <SimpleCell textTop={proveedor.name || ""} />
-  ),
+  name: (proveedor: Proveedor) => <SimpleCell textTop={proveedor.name || ""} />,
   supplier: (proveedor: Proveedor) => (
     <SimpleCell textTop={proveedor.supplier || "-"} />
   ),
@@ -26,4 +24,4 @@ export const ProveedorColumnRender = (
       onDelete={() => onDelete(proveedor)}
     />
   ),
-})
+});

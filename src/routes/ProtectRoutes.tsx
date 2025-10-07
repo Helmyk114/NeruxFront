@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { userStore } from "../store/userStore";
-import { UserRole } from "@/domain/interface";
+import { UserRole } from "@/Domain/interface";
 
 interface PrivateRouteProps {
   allowedRole: UserRole[];
@@ -20,9 +20,9 @@ export const PrivateRoute = ({
 }: PrivateRouteProps) => {
   const user = userStore((state) => state.user);
 
-
   if (!user || !allowedRole.includes(user.role)) {
-    const redirectDefault = redirectTo || defaultRedirects[user?.role ?? UserRole.ADMIN];
+    const redirectDefault =
+      redirectTo || defaultRedirects[user?.role ?? UserRole.ADMIN];
     return <Navigate to={redirectDefault} replace />;
   }
 

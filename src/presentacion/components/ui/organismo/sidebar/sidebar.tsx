@@ -16,7 +16,7 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { Logo } from "@/presentacion/components/ui/atomos";
-import { UserRole } from "@/domain/interface";
+import { UserRole } from "@/Domain/interface";
 import { AuthServices } from "@/infrastructure/services/auth/Auth.service";
 
 export const Sidebar = () => {
@@ -157,7 +157,7 @@ export const Sidebar = () => {
         </button>
       )}
 
-      <div  className="flex-1 flex flex-col justify-between">
+      <div className="flex-1 flex flex-col justify-between">
         <nav className="flex flex-col space-y-2">
           {startItems.map((item) => renderItem(item))}
         </nav>

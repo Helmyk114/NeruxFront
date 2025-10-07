@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
-import { Clientes, Home } from "@/presentacion/pages";
+import { Clientes, Home } from "@/Presentacion/pages";
 import { PrivateRoute } from "../ProtectRoutes";
-import { UserRole } from "@/domain/interface";
+import { UserRole } from "@/Domain/interface";
 
 export function SuperAdminRoutes(): JSX.Element {
   return (

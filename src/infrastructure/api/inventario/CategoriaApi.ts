@@ -1,12 +1,10 @@
-import { Categoria } from "@/domain/interface";
 import { CategoryRepository } from "@/domain/repository";
 import { apiClient } from "@/infrastructure/http/ApiClient";
-import { ResponseApi } from "@/shared";
-import { CategoriaAdapter } from "@/infrastructure/adapters/inventario/categoria/CategoriaAdapter";
-import {
-  CategoriaDetail,
-  CategoriaPaginate,
-} from "@/infrastructure/adapters/inventario/categoria/CategoriaDto";
+import { CategoriaAdapter } from "@/mapping/inventario/CategoriaAdapter";
+import { ResponseApi, PaginateCommand } from "@/shared/types";
+import { CategoriaDetailApi, CategoriaPaginateApi } from "@/infrastructure/dto";
+import { Categoria, CategoriaDetail, CategoriaPaginate } from '@/domain/interface/inventario/categoria';
+
 
 export const CategoriaApiRepository: CategoryRepository = {
   async getAll(): Promise<Categoria[]> {
@@ -18,12 +16,14 @@ export const CategoriaApiRepository: CategoryRepository = {
     }
   },
 
-  async getById(id: string | null): Promise<ResponseApi<Categoria>> {
+  async getById(
+    id: Categoria["id"] | null
+  ): Promise<ResponseApi<CategoriaDetail>> {
     try {
-      const res = await apiClient.get<ResponseApi<CategoriaDetail>>(
+      const res = await apiClient.get<ResponseApi<CategoriaDetailApi>>(
         `/category/detail/${id}`
       );
-      const domainData = CategoriaAdapter.toDomainDetail(res.data);
+      const domainData = CategoriaAdapter.toUiDetail(res.data);
       return { data: domainData };
     } catch (error) {
       throw new Error(`Error al obtener la categoria por ID: ${error}`);
@@ -31,22 +31,21 @@ export const CategoriaApiRepository: CategoryRepository = {
   },
 
   async getPaginated(
-    currentPage: number,
-    pageSize: number
-  ): Promise<ResponseApi<Categoria[]>> {
+    paginateCommand: PaginateCommand
+  ): Promise<ResponseApi<CategoriaPaginate[]>> {
     try {
-      const res = await apiClient.get<ResponseApi<CategoriaPaginate[]>>(
+      const res = await apiClient.get<ResponseApi<CategoriaPaginateApi[]>>(
         "/categories/table",
         {
           params: {
-            page: currentPage,
-            size: pageSize,
+            page: paginateCommand.currentPage,
+            size: paginateCommand.pageSize,
           },
         }
       );
 
       const domainData = res.data.map((item) =>
-        CategoriaAdapter.toDomainPaginate(item)
+        CategoriaAdapter.toUipaginate(item)
       );
       return {
         data: domainData,
@@ -57,7 +56,7 @@ export const CategoriaApiRepository: CategoryRepository = {
     }
   },
 
-  async create(categoria: Categoria): Promise<void> {
+  async create(categoria: Partial<Categoria>): Promise<void> {
     try {
       await apiClient.post("/create/category", categoria);
     } catch (error) {
@@ -65,7 +64,7 @@ export const CategoriaApiRepository: CategoryRepository = {
     }
   },
 
-  async update(categoria: Categoria): Promise<void> {
+  async update(categoria: Partial<Categoria>): Promise<void> {
     try {
       await apiClient.put(`/update/category/${categoria.id}`, categoria);
     } catch (error) {
@@ -73,7 +72,7 @@ export const CategoriaApiRepository: CategoryRepository = {
     }
   },
 
-  async delete(id: string): Promise<void> {
+  async delete(id: Categoria["id"]): Promise<void> {
     try {
       await apiClient.delete(`/category/${Number(id)}`);
     } catch (error) {

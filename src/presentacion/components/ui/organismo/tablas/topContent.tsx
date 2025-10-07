@@ -1,4 +1,8 @@
-import { ButtonAtom, ItemsByPage, TotalItems } from "@/presentacion/components/ui/atomos";
+import {
+  ButtonAtom,
+  ItemsByPage,
+  TotalItems,
+} from "@/presentacion/components/ui/atomos";
 
 interface TopContentPorps {
   onclick?: () => void;

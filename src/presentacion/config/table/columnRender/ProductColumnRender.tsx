@@ -6,7 +6,7 @@ import {
   SimpleCell,
 } from "../../../components/ui/atomos";
 import { ColumnRender } from "@/shared/types/columRenderType";
-import { Producto } from "@/domain/interface";
+import { Producto } from "@/Domain/interface";
 
 export const ProductColumnRender = (
   onEdit: (product: Producto) => void,

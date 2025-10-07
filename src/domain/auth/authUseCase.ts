@@ -1,4 +1,3 @@
-
 // import { cookie, mapUser, User } from "@/shared";
 // import { userStore } from "@/store";
 
@@ -32,7 +31,7 @@ export const authUseCase = {
 
   forgetPassword: async (email: { email: string }): Promise<void> => {
     if (!email.email) {
-      throw new Error("El correo electrónico es obligatorio");  
+      throw new Error("El correo electrónico es obligatorio");
     }
     try {
       await AuthServices.forgetPassword(email.email);
@@ -41,12 +40,18 @@ export const authUseCase = {
     }
   },
 
-  validateOtp: async (otpData: { otp: string, email: string }): Promise<boolean> => {
+  validateOtp: async (otpData: {
+    otp: string;
+    email: string;
+  }): Promise<boolean> => {
     if (!otpData.otp) {
       throw new Error("El código OTP es obligatorio");
     }
     try {
-      const isValid = await AuthServices.validateOtp(otpData.otp, otpData.email);
+      const isValid = await AuthServices.validateOtp(
+        otpData.otp,
+        otpData.email
+      );
       return isValid;
     } catch (error) {
       throw new Error(`Error al validar el OTP ${error}`);
@@ -56,7 +61,8 @@ export const authUseCase = {
   newPassword: async (
     newPassword: string,
     confirmPassword: string,
-    email?: string): Promise<void> => {
+    email?: string
+  ): Promise<void> => {
     if (!newPassword || !confirmPassword) {
       throw new Error("La contraseña y la confirmación son obligatorias");
     }

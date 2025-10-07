@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
-import { Producto } from "@/domain/interface";
+import { Producto } from "@/Domain/interface";
 import { useCategoriaProveedorMaster } from "@/presentacion/components/hook/master/useCategoriaProveedorMaster";
 import { useProductoCreate } from "@/presentacion/components/hook/inventario/Productos/useProductoCreate";
 

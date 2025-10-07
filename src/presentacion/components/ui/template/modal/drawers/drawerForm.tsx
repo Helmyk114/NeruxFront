@@ -17,7 +17,7 @@ export function DrawerForm({
   body,
   footer,
 }: DrawerFormProps): JSX.Element {
-  return(
+  return (
     <DrawerWrapper
       isOpen={isOpen}
       onClose={onClose}
@@ -25,6 +25,6 @@ export function DrawerForm({
       header={<div className="flex flex-col">{header}</div>}
       body={<div className="flex flex-col">{body}</div>}
       footer={<div className="flex flex-col">{footer}</div>}
-      />
-  ) 
+    />
+  );
 }

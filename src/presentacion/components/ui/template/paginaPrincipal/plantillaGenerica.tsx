@@ -1,7 +1,10 @@
 import FondoLogin from "../../../../../images/ContainerBg.webp";
 import Logotipo from "../../../../../images/Logotipo.png";
 import { Background } from "@/presentacion/components/ui/atomos";
-import { SeccionIzquierda, SeccionDerecha } from "@/presentacion/components/ui/organismo";
+import {
+  SeccionIzquierda,
+  SeccionDerecha,
+} from "@/presentacion/components/ui/organismo";
 
 interface PlantillaProps {
   fondo?: string;

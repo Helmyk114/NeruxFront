@@ -2,7 +2,6 @@ import { useActionTables, usePageState } from "@/presentacion/components/hook";
 import { columnsProveedor, ProveedorColumnRender } from "@/presentacion/config";
 import { useState } from "react";
 import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
-import { VerProveedores } from "./verProveedor";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
 import {
   TableSimple,
@@ -10,22 +9,21 @@ import {
   TemplatePageTable,
 } from "@/presentacion/components/ui";
 import { IconPackage } from "@tabler/icons-react";
-import { useProveedorPaginate } from "@/presentacion/components/hook/inventario/Proveedor/useProveedorPaginate";
-import { useDeleteProveedor } from "@/presentacion/components/hook/inventario/Proveedor/useProveedorDelete";
+import { useDeleteProveedor, useProveedorPaginate } from "@/application/Hooks";
+import { VerProveedores } from "./verProveedor";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
   const [reload, setReload] = useState(false);
 
   const { data, metadata, loading, error } = useProveedorPaginate(
-    currentPage,
-    pageSize,
+    { currentPage, pageSize },
     reload
   );
 
   const { mutate: remove } = useDeleteProveedor(() => {
     setReload((prev) => !prev);
-  })
+  });
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);

@@ -1,8 +1,5 @@
 import { Field } from "formik";
-import {
-  InputFiled,
-  InputTextArea,
-} from "@/presentacion/components/ui/atomos";
+import { InputFiled, InputTextArea } from "@/presentacion/components/ui/atomos";
 
 export function ProveedorFormFields(): JSX.Element {
   return (

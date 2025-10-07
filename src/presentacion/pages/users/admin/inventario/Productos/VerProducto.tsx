@@ -5,8 +5,7 @@ import {
   Section,
   Title3,
 } from "@/presentacion/components/ui";
-import { useProductoById } from "@/presentacion/components/hook/inventario/Productos/useProductoById";
-
+import { useProductoById } from "@/application/Hooks";
 
 interface VerProducto {
   isOpen: boolean;

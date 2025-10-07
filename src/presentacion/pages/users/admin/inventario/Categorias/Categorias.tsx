@@ -3,26 +3,21 @@ import {
   TemplatePageTable,
   TemplateFormNoData,
 } from "@/presentacion/components/ui/template";
-import { DeleteConfirmPopUp } from "@/shared";
-import {
-  useActionTables,
-  useCategoriaPaginate,
-  useDeleteCategoria,
-  usePageState,
-} from "@/presentacion/components/hook";
 import { TableSimple } from "@/presentacion/components/ui";
 import { CategoriaColumnRender, columnsCategoria } from "@/presentacion/config";
-import { VerCategorias } from "./verCategorias";
 import { IconFolderOpen } from "@tabler/icons-react";
+import { useActionTables, usePageState } from "@/presentacion/components/hook";
+import { useCategoriaPaginate, useDeleteCategoria } from "@/application/Hooks";
 import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
+import { VerCategorias } from "./verCategorias";
+import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
 
 export function Categories(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
   const [reload, setReload] = useState(false);
 
   const { data, metadata, loading, error } = useCategoriaPaginate(
-    currentPage,
-    pageSize,
+    { currentPage, pageSize },
     reload
   );
 

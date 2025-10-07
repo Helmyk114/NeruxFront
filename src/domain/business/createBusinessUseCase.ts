@@ -1,4 +1,3 @@
-
 import { BusinessForm } from "./business.entity";
 import { userStore } from "@/store";
 import { cookie } from "@/shared";
@@ -17,7 +16,6 @@ export const BusinessUseCase = {
       if (user) {
         setUser({ ...user, business: idBusiness });
       }
-
     } catch (error) {
       console.error(error);
     }
