@@ -3,10 +3,11 @@ import {
   usePageState,
   useRedirect,
 } from "@/presentacion/components/hook";
-import { VerProducto } from "./VerProducto";
+
 import { useProductoPaginate } from "@/application/Hooks";
 import { TableSimple, TemplatePageTable } from "@/presentacion/components/ui";
 import { columnsProductos, ProductColumnRender } from "@/presentacion/config";
+import { VerProducto } from "./VerProducto";
 
 export function Products(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();

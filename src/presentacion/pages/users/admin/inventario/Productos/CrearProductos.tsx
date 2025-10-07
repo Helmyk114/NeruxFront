@@ -5,13 +5,14 @@ import {
   TemplatePageForm,
   TemplatePageTable,
 } from "@/presentacion/components/ui";
-import { PopUpSuccess } from "@/shared";
-import { CategoriasFormDrawer } from "../Categorias/CategoriasFormDrawer";
 import { Spinner, useDisclosure } from "@heroui/react";
-import { ProveedorFormDrawer } from "../Proveedor/ProveedorFormDrawer";
 import { useParams } from "react-router-dom";
 import { useRedirect } from "@/presentacion/components/hook";
-import { useProductoById } from "@/presentacion/components/hook/inventario/Productos/useProductoById";
+import { useProductoById } from "@/application/Hooks";
+import { CategoriasFormDrawer } from "../Categorias/CategoriasFormDrawer";
+import { ProveedorFormDrawer } from "../Proveedor/ProveedorFormDrawer";
+import { PopUpSuccess } from "@/shared/utils/popUps/success";
+
 
 export function CrearProductos(): JSX.Element {
   const { idProduct } = useParams<{ idProduct?: string }>();

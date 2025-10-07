@@ -1,7 +1,6 @@
 import { useActionTables, usePageState } from "@/presentacion/components/hook";
 import { columnsProveedor, ProveedorColumnRender } from "@/presentacion/config";
 import { useState } from "react";
-import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
 import {
   TableSimple,
@@ -11,6 +10,7 @@ import {
 import { IconPackage } from "@tabler/icons-react";
 import { useDeleteProveedor, useProveedorPaginate } from "@/application/Hooks";
 import { VerProveedores } from "./verProveedor";
+import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();

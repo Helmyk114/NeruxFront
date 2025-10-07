@@ -1,10 +1,7 @@
 import { Formik } from "formik";
-
 import { useNavigate } from "react-router-dom";
-
 import { crearEmpresaConfig } from "@/presentacion/config";
 import { CrearEmpresaFormFields } from "@/presentacion/components/ui/moleculas";
-
 import { ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { BusinessUseCase } from "@/domain/business/createBusinessUseCase";
 

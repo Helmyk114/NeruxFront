@@ -1,7 +1,7 @@
 import { toastStore } from "@/store";
 import { useMutation } from "@/presentacion/components/hook";
 import { DeleteProveedorUseCase } from "@/dependencies/inverntario/proveedor";
-import { DeleteProveedorCommand } from "@/presentacion/Models/Inventario/ProveedorModels";
+import { DeleteProveedorCommand } from "@/presentacion/Models";
 
 export function useDeleteProveedor(onSuccess: () => void) {
   const newToast = toastStore((state) => state.newToast);

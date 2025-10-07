@@ -1,10 +1,10 @@
 import { object, ObjectSchema, string } from "yup";
-import { stringValidations } from "@/shared";
-import { Categoria } from "@/Domain/interface";
+import { stringValidations } from "@/shared/validations/stringValidations";
+import { CreateCategoriaCommand } from "@/presentacion/Models";
 
 interface CategoriasConfig {
-  initialValues: Categoria;
-  validationSchema: ObjectSchema<Categoria>;
+  initialValues: CreateCategoriaCommand;
+  validationSchema: ObjectSchema<CreateCategoriaCommand>;
 }
 
 export const categoriasConfig: CategoriasConfig = {
@@ -22,5 +22,5 @@ export const categoriasConfig: CategoriasConfig = {
       { type: "required", message: "La descripción es obligatoria" },
       { type: "maxLength", value: 300 },
     ]),
-  }) as ObjectSchema<Categoria>,
+  }) as ObjectSchema<CreateCategoriaCommand>,
 };

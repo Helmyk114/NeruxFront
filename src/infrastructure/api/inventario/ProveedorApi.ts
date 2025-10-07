@@ -10,6 +10,7 @@ import { PaginateCommand } from "@/shared/types";
 import { ProveedorAdapter } from "@/mapping";
 import { ProveedorDetailApi, ProveedorPaginateApi } from "@/infrastructure/dto";
 
+
 export const ProveedorApiRepository: ProveedorRepository = {
   async getAll(): Promise<Proveedor[]> {
     throw new Error("Function not implemented.");

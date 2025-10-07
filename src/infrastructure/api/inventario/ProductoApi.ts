@@ -1,17 +1,16 @@
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
 import { ProductoRepository } from "@/domain/repository";
 import { ProductoAdapter } from "@/mapping/inventario/ProductoAdapter";
-import {
-  ProductoDetail,
-  ProductoPaginate,
-} from "@/infrastructure/dto/inventario/ProductoDto";
+
 import { apiClient } from "@/infrastructure/http/ApiClient";
-import { ResponseApi } from "@/shared";
+import { ResponseApi } from '../../../shared/types/ResponseApi';
+
+
 
 export const ProductoApiRepository: ProductoRepository = {
   async getById(id: string | null): Promise<ResponseApi<Producto>> {
     try {
-      const res = await apiClient.get<ResponseApi<ProductoDetail>>(
+      const res = await apiClient.get<ResponseApi<ProductoDetailApi>>(
         `/product/detail/${id}`
       );
       const domainData = ProductoAdapter.toDomainDetail(res.data);
@@ -26,7 +25,7 @@ export const ProductoApiRepository: ProductoRepository = {
     pageSize: number
   ): Promise<ResponseApi<Producto[]>> {
     try {
-      const res = await apiClient.get<ResponseApi<ProductoPaginate[]>>(
+      const res = await apiClient.get<ResponseApi<ProductoPaginateApi[]>>(
         "/product/table",
         {
           params: {

@@ -1,13 +1,5 @@
 import { ProveedorRepository } from "@/domain/repository";
-
-export type UpdateProveedorCommand = {
-  id: string;
-  name: string;
-  supplier: string;
-  phone: string;
-  email: string;
-  note: string;
-};
+import { UpdateProveedorCommand } from "@/presentacion/Models";
 
 export function UpdateProveedor(proveedorRepository: ProveedorRepository) {
   return async (updateProveedorCommand: UpdateProveedorCommand) => {

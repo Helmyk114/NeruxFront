@@ -1,11 +1,11 @@
+import { OlvideContraseñaForm } from "@/domain/auth/auth.dto";
+import { authValidations } from "@/shared/validations/authValidations";
 import { object, string, ObjectSchema } from "yup";
-import { OlvideContraseñaForm } from "@/domain";
-import { authValidations } from "@/shared";
 
 interface OlvideContraseñaConfig {
   initialValues: OlvideContraseñaForm;
   validationSchema: ObjectSchema<OlvideContraseñaForm>;
-};
+}
 
 export const olvideContraseñaConfig: OlvideContraseñaConfig = {
   initialValues: {

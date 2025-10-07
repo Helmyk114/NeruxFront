@@ -4,7 +4,7 @@ import {
   GetAllPaginateCategoria,
   GetByIdCategoria,
   UpdateCategoria,
-} from "@/Application/UseCase/Inventario/categoria";
+} from "@/application/UseCase";
 import { CategoriaApiRepository } from "@/infrastructure/api/inventario/CategoriaApi";
 
 export const CreateCategoriaUseCase = CreateCategoria(CategoriaApiRepository);

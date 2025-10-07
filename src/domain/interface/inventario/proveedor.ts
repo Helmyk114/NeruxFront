@@ -12,7 +12,7 @@ export type ProveedorPaginate = Omit<Proveedor, "note"> & {
 };
 
 export type ProveedorDetail = Proveedor & {
-  create_at: string;
-  update_at: string;
+  createAt: string;
+  updateAt: string;
   isDefault: boolean;
 };

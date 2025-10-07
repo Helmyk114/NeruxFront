@@ -1,6 +1,6 @@
 import { toastStore } from "@/store";
 import { CreateProveedorUseCase } from "@/dependencies/inverntario/proveedor";
-import { CreateProveedorCommand } from "@/presentacion/Models/Inventario/ProveedorModels";
+import { CreateProveedorCommand } from "@/presentacion/Models";
 import { useMutation } from "@/presentacion/components/hook";
 
 export function useCreateProveedor() {

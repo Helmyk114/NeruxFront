@@ -1,7 +1,7 @@
 import { toastStore } from "@/store";
 import { UpdateCategoriaUseCase } from "@/dependencies/inverntario/categoria";
 import { useMutation } from "@/presentacion/components/hook";
-import { UpdateCategoriaCommand } from "@/presentacion/models";
+import { UpdateCategoriaCommand } from "@/presentacion/Models";
 
 export function useUpdateCategoria() {
   const newToast = toastStore((state) => state.newToast);

@@ -2,11 +2,11 @@ import { formatDate } from "@/shared/utils/convert/fechaFormat";
 import {
   CategoriaDetailApi,
   CategoriaPaginateApi,
-} from "../../infrastructure/dto/inventario/CategoriaDto";
-import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/models";
+} from "@/infrastructure/dto/inventario/CategoriaDto";
+import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/Models";
 
 export const CategoriaAdapter = {
-  toUipaginate(api: CategoriaPaginateApi): CategoriaPaginateUi {
+  toUiPaginate(api: CategoriaPaginateApi): CategoriaPaginateUi {
     return {
       id: api.id,
       name: api.name,

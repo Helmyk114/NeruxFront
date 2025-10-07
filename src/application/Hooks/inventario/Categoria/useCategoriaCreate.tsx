@@ -1,6 +1,6 @@
 import { toastStore } from "@/store";
 import { useMutation } from "@/presentacion/components/hook";
-import { CreateCategoriaCommand } from "@/presentacion/models";
+import { CreateCategoriaCommand } from "@/presentacion/Models";
 import { CreateCategoriaUseCase } from "@/dependencies/inverntario/categoria";
 
 export function useCreateCategoria() {

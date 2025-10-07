@@ -2,9 +2,8 @@ import { CategoryRepository } from "@/domain/repository";
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { CategoriaAdapter } from "@/mapping/inventario/CategoriaAdapter";
 import { ResponseApi, PaginateCommand } from "@/shared/types";
-import { CategoriaDetailApi, CategoriaPaginateApi } from "@/infrastructure/dto";
 import { Categoria, CategoriaDetail, CategoriaPaginate } from '@/domain/interface/inventario/categoria';
-
+import { CategoriaDetailApi, CategoriaPaginateApi } from "@/infrastructure/dto";
 
 export const CategoriaApiRepository: CategoryRepository = {
   async getAll(): Promise<Categoria[]> {
@@ -45,7 +44,7 @@ export const CategoriaApiRepository: CategoryRepository = {
       );
 
       const domainData = res.data.map((item) =>
-        CategoriaAdapter.toUipaginate(item)
+        CategoriaAdapter.toUiPaginate(item)
       );
       return {
         data: domainData,

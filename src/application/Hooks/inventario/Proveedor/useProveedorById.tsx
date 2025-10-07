@@ -1,6 +1,7 @@
 import { useItem } from "@/presentacion/components/hook";
 import { GetByIdProveedorUseCase } from "@/dependencies/inverntario/proveedor";
-import { ProveedorDetailUi } from "@/presentacion/Models/Inventario/ProveedorModels";
+import { ProveedorDetailUi } from "@/presentacion/Models";
+
 
 export function useProveedorById(
   id: string | null,

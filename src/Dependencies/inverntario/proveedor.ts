@@ -4,7 +4,7 @@ import {
   GetAllPaginateProveedor,
   GetByIdProveedor,
   UpdateProveedor,
-} from "@/Application/UseCase/Inventario/proveedores";
+} from "@/application/UseCase";
 import { ProveedorApiRepository } from "@/infrastructure/api/inventario/ProveedorApi";
 
 export const CreateProveedorUseCase = CreateProveedor(ProveedorApiRepository);

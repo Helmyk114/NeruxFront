@@ -3,7 +3,7 @@ import { ProveedorRepository } from "@/domain/repository";
 import {
   ProveedorDetailUi,
   ProveedorPaginateUi,
-} from "@/presentacion/Models/Inventario/ProveedorModels";
+} from "@/presentacion/Models/inventario/ProveedorModels";
 import { PaginateCommand, ResponseApi } from "@/shared/types";
 
 export function GetAllPaginateProveedor(

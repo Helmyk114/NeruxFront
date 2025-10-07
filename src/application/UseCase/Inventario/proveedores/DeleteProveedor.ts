@@ -1,5 +1,5 @@
 import { ProveedorRepository } from "@/domain/repository";
-import { DeleteProveedorCommand } from "@/presentacion/Models/Inventario/ProveedorModels";
+import { DeleteProveedorCommand } from "@/presentacion/Models/inventario/ProveedorModels";
 
 export function DeleteProveedor(proveedorRepository: ProveedorRepository) {
   return async (deleteProveedorCommand: DeleteProveedorCommand) => {

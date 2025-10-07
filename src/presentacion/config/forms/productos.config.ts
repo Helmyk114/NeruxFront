@@ -1,6 +1,7 @@
 import { boolean, number, object, ObjectSchema, string } from "yup";
-import { stringValidations } from "@/shared";
+
 import { CreateProductoCommand } from "@/application/UseCase/Inventario/productos/CreateProdcuto";
+import { stringValidations } from "@/shared/validations/stringValidations";
 
 interface ProductoConfigProps {
   initialValues: CreateProductoCommand;

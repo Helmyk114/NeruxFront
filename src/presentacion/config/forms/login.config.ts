@@ -1,7 +1,6 @@
+import { LoginForm } from "@/domain/auth/auth.dto";
+import { authValidations } from "@/shared/validations/authValidations";
 import { object, ObjectSchema, string } from "yup";
-import { LoginForm } from "@/domain";
-import { authValidations } from "@/shared";
-
 interface LoginConfig {
   initialValues: LoginForm;
   validationSchema: ObjectSchema<LoginForm>;

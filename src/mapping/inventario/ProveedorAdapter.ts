@@ -1,5 +1,9 @@
+
 import { ProveedorDetailApi, ProveedorPaginateApi } from "@/infrastructure/dto";
-import { ProveedorDetailUi, ProveedorPaginateUi } from "@/presentacion/Models/Inventario/ProveedorModels";
+import {
+  ProveedorDetailUi,
+  ProveedorPaginateUi,
+} from "@/presentacion/Models/inventario/ProveedorModels";
 import { formatDate } from "@/shared/utils/convert/fechaFormat";
 
 export const ProveedorAdapter = {

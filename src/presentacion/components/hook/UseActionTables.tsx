@@ -7,7 +7,7 @@ type Mode = "ver" | "editar" | "crear";
 export const useActionTables = <ID extends string>(
   onDeleteItem?: (item: ID) => void,
   onEditNavigate?: (item: ID) => void,
-  onCreateNavigate?: string,
+  onCreateNavigate?: string
 ) => {
   const redirect = useRedirect();
   const drawer = useDisclosure();

@@ -1,9 +1,9 @@
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
 import {
   CreateProductoDto,
   ProductoDetail,
   ProductoPaginate,
-} from "../../infrastructure/dto/inventario/ProductoDto";
+} from "@/infrastructure/dto/inventario/ProductoDto";
 
 export const ProductoAdapter = {
   toDomainPaginate(api: ProductoPaginate): Producto {

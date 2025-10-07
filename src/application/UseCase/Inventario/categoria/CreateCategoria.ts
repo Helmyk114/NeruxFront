@@ -1,5 +1,5 @@
-import { CreateCategoriaCommand } from "@/presentacion/models";
 import { CategoryRepository } from "@/domain/repository";
+import { CreateCategoriaCommand } from "@/presentacion/Models";
 
 export function CreateCategoria(categoryRepository: CategoryRepository) {
   return async (createCategoriaCommand: CreateCategoriaCommand) => {

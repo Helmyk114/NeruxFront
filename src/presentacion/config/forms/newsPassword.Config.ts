@@ -1,6 +1,7 @@
+import { NewPasswordForm } from "@/domain/auth/auth.dto";
+import { authValidations } from "@/shared/validations/authValidations";
 import { object, ObjectSchema, string } from "yup";
-import { NewPasswordForm } from "@/domain";
-import { authValidations } from "@/shared";
+
 
 interface NewPasswordConfig {
   initialValues: NewPasswordForm;

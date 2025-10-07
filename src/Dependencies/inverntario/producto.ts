@@ -1,8 +1,5 @@
-import { CreateProducto } from "@/application/UseCase/Inventario/productos/CreateProdcuto";
-import {
-  GetAllPaginateProducto,
-  GetByIdProducto,
-} from "@/application/UseCase/Inventario/productos/GetProducto";
+
+import { CreateProducto, GetAllPaginateProducto, GetByIdProducto } from "@/application/UseCase";
 import { ProductoApiRepository } from "@/infrastructure/api/inventario/ProductoApi";
 
 export const CreateProductoUseCase = CreateProducto(ProductoApiRepository);

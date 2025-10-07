@@ -1,10 +1,9 @@
+import { CreateProveedorCommand } from "@/presentacion/Models";
+import { stringValidations } from "@/shared/validations/stringValidations";
 import { object, ObjectSchema, string } from "yup";
-import { stringValidations } from "@/shared";
-import { Proveedor } from "@/Domain/interface";
-
 interface ProveedorConfig {
-  initialValues: Proveedor;
-  validationSchema: ObjectSchema<Proveedor>;
+  initialValues: CreateProveedorCommand;
+  validationSchema: ObjectSchema<CreateProveedorCommand>;
 }
 
 export const proveedorConfig: ProveedorConfig = {
@@ -41,5 +40,5 @@ export const proveedorConfig: ProveedorConfig = {
       { type: "maxLength", value: 300 },
       { type: "optional" },
     ]),
-  }) as ObjectSchema<Proveedor>,
+  }) as ObjectSchema<CreateProveedorCommand>,
 };

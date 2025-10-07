@@ -1,13 +1,13 @@
 import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { loginConfig } from "@/presentacion/config/forms/login.config";
 import {
   ButtonAtom,
   TextError,
   Title1,
 } from "@/presentacion/components/ui/atomos";
 import { LoginFormfields } from "@/presentacion/components/ui/moleculas";
-import { useLogin } from "@/presentacion/components/hook";
+import { useLogin } from "@/application/Hooks";
+import { loginConfig } from "@/presentacion/config";
 
 export function LoginForm(): JSX.Element {
   const navigate = useNavigate();

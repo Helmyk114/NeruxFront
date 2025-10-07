@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Formik } from "formik";
 import { mapRules } from "./mapRulePassword";
-
 import { newPasswordConfig } from "@/presentacion/config";
 import {
   TextError,

@@ -3,7 +3,6 @@ import { VentanaModal } from "../../modal";
 import { ButtonAtom, Title1 } from "../../../atomos";
 import { InputsOtp } from "../../../atomos/form/InputOtp";
 import { Formik } from "formik";
-
 import { useRedirect } from "@/presentacion/components/hook";
 import { authUseCase } from "@/domain/auth/authUseCase";
 

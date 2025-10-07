@@ -1,6 +1,7 @@
+import { BusinessForm } from "@/domain/business/business.entity";
+import { stringValidations } from "@/shared/validations/stringValidations";
 import { object, ObjectSchema, string } from "yup";
-import { BusinessForm } from "@/domain";
-import { stringValidations } from "@/shared";
+
 
 interface CrearEmpresaConfig {
   initialValues: BusinessForm;

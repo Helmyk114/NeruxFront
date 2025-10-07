@@ -1,4 +1,4 @@
-import { ResponseApi } from "@/shared";
+import { ResponseApi } from "@/shared/types";
 import { useEffect, useState } from "react";
 
 export function useItem<T>(

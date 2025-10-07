@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PaginateCommand, PaginationMetadata, ResponseApi } from "@/shared";
+import { PaginateCommand, PaginationMetadata, ResponseApi } from "@/shared/types";
 
 export function usePaginate<T>(
   action: (comannd: PaginateCommand) => Promise<ResponseApi<T[]>>,

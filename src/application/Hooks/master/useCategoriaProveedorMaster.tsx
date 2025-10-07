@@ -1,5 +1,5 @@
-import { Master } from "@/Domain/interface";
-import { useAll } from "../api/useAll";
+import { Master } from "@/domain/interface";
+import { useAll } from "@/presentacion/components/hook";
 import {
   GetAllCategoriasUseCase,
   GetAllProveedorUseCase,

@@ -1,11 +1,10 @@
-
 import { AuthServices } from "@/infrastructure/services/auth/Auth.service";
 import {
   NewPasswordForm,
   PlantillaGenerica,
   RichText,
 } from "@/presentacion/components/ui";
-import { PopUpSuccess } from "@/shared";
+import { PopUpSuccess } from "@/shared/utils/popUps/success";
 import { useDisclosure } from "@heroui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 

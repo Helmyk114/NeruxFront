@@ -1,4 +1,4 @@
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
 import { usePaginate } from "@/presentacion/components/hook";
 import { GetAllPaginateProductoUseCase } from "@/dependencies/inverntario/producto";
 

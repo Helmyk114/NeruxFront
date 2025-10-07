@@ -1,6 +1,6 @@
-import { axiosInstance } from "./axiosInstanse";
 import { AxiosRequestConfig } from "axios";
 import { ResponseApi } from "@/shared/types";
+import { axiosInstance } from "./axiosInstanse";
 
 export const apiClient = {
   get: async <T, P = unknown>(
