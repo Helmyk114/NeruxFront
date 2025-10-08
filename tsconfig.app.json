@@ -19,6 +19,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
 
      /* Alias rutas */
     "baseUrl": "./src",
@@ -26,8 +27,11 @@
       "@/*": ["*"]
     },
 
-     /* Importante para despliegues */
-    "forceConsistentCasingInFileNames": true
+     /* Importante para despliegues */  
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    
   },
   "include": ["src"]
 }

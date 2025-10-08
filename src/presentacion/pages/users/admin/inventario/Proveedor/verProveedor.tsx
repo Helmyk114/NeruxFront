@@ -1,4 +1,5 @@
-import { useProveedorById } from "@/application/Hooks";
+
+import { useProveedorById } from "@/application/hooks";
 import {
   ButtonAtom,
   DrawerWrapper,
@@ -6,7 +7,6 @@ import {
   Title3,
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
-
 
 interface VerProveedorProps {
   isOpen: boolean;
@@ -60,7 +60,10 @@ export function VerProveedores({
                 subtitulo: "✏️ Ultima actualización:",
                 valor: proveedor?.updateAt,
               },
-              { subtitulo: "🔄 Última interacción registrada:", valor: `Producto: ${"-"} \nEntrada: ${"-"} unidades - el ${"-"}`},
+              {
+                subtitulo: "🔄 Última interacción registrada:",
+                valor: `Producto: ${"-"} \nEntrada: ${"-"} unidades - el ${"-"}`,
+              },
             ]}
           />
         )

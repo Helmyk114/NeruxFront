@@ -10,11 +10,8 @@ import {
   Title3,
 } from "@/presentacion/components/ui";
 import { Spinner } from "@heroui/react";
-import {
-  useCreateProveedor,
-  useProveedorById,
-  useUpdateProveedor,
-} from "@/application/Hooks";
+import { useCreateProveedor, useProveedorById, useUpdateProveedor } from "@/application/hooks";
+
 
 interface ProveedorFormDrawerProps {
   isOpen: boolean;

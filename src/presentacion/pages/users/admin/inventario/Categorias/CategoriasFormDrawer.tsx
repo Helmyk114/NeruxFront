@@ -10,7 +10,7 @@ import {
 import { CategoriasFormFields } from "@/presentacion/components/ui/moleculas";
 import { toastStore } from "@/store";
 import { Spinner } from "@heroui/react";
-import { useCategoriaById, useCreateCategoria, useUpdateCategoria } from "@/application/Hooks";
+import { useCategoriaById, useCreateCategoria, useUpdateCategoria } from "@/application/hooks";
 
 
 interface CategoriasFormDrawerProps {

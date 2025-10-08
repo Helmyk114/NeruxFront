@@ -6,11 +6,12 @@ import {
 import { TableSimple } from "@/presentacion/components/ui";
 import { CategoriaColumnRender, columnsCategoria } from "@/presentacion/config";
 import { IconFolderOpen } from "@tabler/icons-react";
-import { useActionTables, usePageState } from "@/presentacion/components/hook";
-import { useCategoriaPaginate, useDeleteCategoria } from "@/application/Hooks";
+
 import { CategoriasFormDrawer } from "./CategoriasFormDrawer";
 import { VerCategorias } from "./verCategorias";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
+import { useActionTables, usePageState } from "@/presentacion/components/hook";
+import { useCategoriaPaginate, useDeleteCategoria } from "@/application/hooks";
 
 export function Categories(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();

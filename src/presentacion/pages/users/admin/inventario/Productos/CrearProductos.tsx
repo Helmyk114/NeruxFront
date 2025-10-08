@@ -8,11 +8,11 @@ import {
 import { Spinner, useDisclosure } from "@heroui/react";
 import { useParams } from "react-router-dom";
 import { useRedirect } from "@/presentacion/components/hook";
-import { useProductoById } from "@/application/Hooks";
+
 import { CategoriasFormDrawer } from "../Categorias/CategoriasFormDrawer";
 import { ProveedorFormDrawer } from "../Proveedor/ProveedorFormDrawer";
 import { PopUpSuccess } from "@/shared/utils/popUps/success";
-
+import { useProductoById } from "@/application/hooks";
 
 export function CrearProductos(): JSX.Element {
   const { idProduct } = useParams<{ idProduct?: string }>();

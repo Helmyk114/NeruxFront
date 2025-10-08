@@ -8,9 +8,9 @@ import {
   TemplatePageTable,
 } from "@/presentacion/components/ui";
 import { IconPackage } from "@tabler/icons-react";
-import { useDeleteProveedor, useProveedorPaginate } from "@/application/Hooks";
 import { VerProveedores } from "./verProveedor";
 import { ProveedorFormDrawer } from "./ProveedorFormDrawer";
+import { useDeleteProveedor, useProveedorPaginate } from "@/application/hooks";
 
 export function Proveedores(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
