@@ -1,6 +1,7 @@
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
 import { ProductoRepository } from "@/domain/repository";
-import { PaginateCommand, ResponseApi } from "@/shared";
+import { PaginateCommand, ResponseApi } from "@/shared/types";
+
 
 export function GetAllPaginateProducto(productoRepository: ProductoRepository) {
   return async (

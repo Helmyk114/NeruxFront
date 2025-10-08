@@ -1,3 +1,4 @@
+
 import { Categoria, CategoriaDetail, CategoriaPaginate } from "@/domain/interface";
 import { PaginateCommand, ResponseApi } from "@/shared/types";
 export interface CategoryRepository {

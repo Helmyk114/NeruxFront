@@ -1,4 +1,4 @@
-import { User } from "@/Domain/interface";
+import { User } from "@/domain/interface";
 import { AuthRepository } from "@/domain/repository";
 import { RedirectPath } from "@/infrastructure/services/auth/Redirect.service";
 import { userStore } from "@/store";

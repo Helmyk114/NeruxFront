@@ -1,9 +1,9 @@
-import { Master } from "@/Domain/interface";
+import { Master } from "@/domain/interface";
 import { MasterRepository } from "@/domain/repository/master/master.repository";
 import { MasterAdapter } from "@/mapping/master/MasterAdapter";
 import { MasterRes } from "@/infrastructure/dto/master/MasterDto";
 import { apiClient } from "@/infrastructure/http/ApiClient";
-import { ResponseApi } from "@/shared";
+import { ResponseApi } from "@/shared/types";
 
 export const MasterApiRepository: MasterRepository = {
   async getMasterCategoria(): Promise<ResponseApi<Master[]>> {

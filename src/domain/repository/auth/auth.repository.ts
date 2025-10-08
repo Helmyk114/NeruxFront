@@ -1,5 +1,4 @@
-import { User } from "@/domain";
-
+import { User } from "@/domain/interface";
 
 export interface AuthRepository {
   login: (username: string, password: string) => Promise<User>;

@@ -1,4 +1,4 @@
-  import { UserRole } from "./loginTypes";
+import { UserRole } from "@/domain/interface";
 
   export interface AuthResponse {
     token: string;

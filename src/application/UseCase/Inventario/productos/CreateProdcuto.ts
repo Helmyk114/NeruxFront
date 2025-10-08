@@ -1,4 +1,4 @@
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
 import { ProductoRepository } from "@/domain/repository";
 
 export type CreateProductoCommand = {

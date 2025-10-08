@@ -1,5 +1,5 @@
-import { Master } from "@/Domain/interface";
-import { MasterRes } from "../../infrastructure/dto/master/MasterDto";
+import { Master } from "@/domain/interface";
+import { MasterRes } from "@/infrastructure/dto";
 
 export const MasterAdapter = {
   toDomain(api: MasterRes): Master {

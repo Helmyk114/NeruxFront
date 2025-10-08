@@ -1,4 +1,4 @@
-import { User, UserRole } from "@/Domain/interface";
+import { User, UserRole } from "@/domain/interface";
 import { LoginRoutes } from "@/shared/types";
 
 const handlerBusinessUser = (user: User): string =>

@@ -1,5 +1,5 @@
 import { LoginRes } from "../../infrastructure/dto/auth/loginDto";
-import { User, UserState } from "@/Domain/interface";
+import { User, UserState } from "@/domain/interface";
 import { UserRole } from "@/domain/interface/auth/userRole";
 
 const mapRol: Record<string, UserRole> = {
