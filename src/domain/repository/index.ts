@@ -1,4 +1,4 @@
-export * from "./auth/auth.repsoitory";
+export * from "./auth/auth.repository";
 export * from "./inventario/category.repository";
 export * from "./inventario/producto.repository";
 export * from "./inventario/proveedor.repository";

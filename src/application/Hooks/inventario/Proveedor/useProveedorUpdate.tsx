@@ -1,7 +1,7 @@
 import { toastStore } from "@/store";
 import { useMutation } from "@/presentacion/components/hook";
-import { UpdateProveedorCommand } from "@/presentacion/Models/inventario/ProveedorModels";
-import { UpdateProveedorUseCase } from "@/dependencies/inverntario/proveedor";
+import { UpdateProveedorCommand } from "@/presentacion/models/inventario/ProveedorModels";
+import { UpdateProveedorUseCase } from "@/dependencies/inventario/proveedor";
 
 export function useUpdateProveedor() {
   const newToast = toastStore((state) => state.newToast);

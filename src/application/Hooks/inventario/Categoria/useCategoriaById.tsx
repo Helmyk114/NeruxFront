@@ -1,7 +1,7 @@
 import { Categoria } from "@/domain/interface";
-import { GetByIdCategoriaUseCase } from "@/dependencies/inverntario/categoria";
+import { GetByIdCategoriaUseCase } from "@/dependencies/inventario/categoria";
 import { useItem } from "@/presentacion/components/hook";
-import { CategoriaDetailUi } from "@/presentacion/Models";
+import { CategoriaDetailUi } from "@/presentacion/models";
 
 export function useCategoriaById(
   id: Categoria["id"] | null,

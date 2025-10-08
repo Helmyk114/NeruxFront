@@ -1,5 +1,5 @@
 import { ProveedorRepository } from "@/domain/repository";
-import { UpdateProveedorCommand } from "@/presentacion/Models";
+import { UpdateProveedorCommand } from "@/presentacion/models";
 
 export function UpdateProveedor(proveedorRepository: ProveedorRepository) {
   return async (updateProveedorCommand: UpdateProveedorCommand) => {

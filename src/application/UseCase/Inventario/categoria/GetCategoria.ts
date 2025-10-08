@@ -1,6 +1,6 @@
 import { Categoria } from "@/domain/interface";
 import { CategoryRepository } from "@/domain/repository";
-import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/Models";
+import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/models";
 import { PaginateCommand, ResponseApi } from "@/shared/types";
 
 export function GetAllPaginateCategoria(

@@ -1,6 +1,6 @@
 import { Producto } from "@/domain/interface";
 import { useItem } from "@/presentacion/components/hook";
-import { GetByIdProductoUseCase } from "@/dependencies/inverntario/producto";
+import { GetByIdProductoUseCase } from "@/dependencies/inventario/producto";
 
 export function useProductoById(
   id: string | null,

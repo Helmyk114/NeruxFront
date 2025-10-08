@@ -16,7 +16,7 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { Logo } from "@/presentacion/components/ui/atomos";
-import { UserRole } from "@/Domain/interface";
+import { UserRole } from "@/domain/interface";
 import { AuthServices } from "@/infrastructure/services/auth/Auth.service";
 
 export const Sidebar = () => {

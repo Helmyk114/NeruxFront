@@ -1,6 +1,6 @@
 import { useDisclosure } from "@heroui/react";
 import { useState } from "react";
-import { useRedirect } from "./UseRedirect";
+import { useRedirect } from "./useRedirect";
 
 type Mode = "ver" | "editar" | "crear";
 

@@ -1,6 +1,6 @@
-import { GetAllPaginateCategoriaUseCase } from "@/dependencies/inverntario/categoria";
+import { GetAllPaginateCategoriaUseCase } from "@/dependencies/inventario/categoria";
 import { usePaginate } from "@/presentacion/components/hook";
-import { CategoriaPaginateUi } from "@/presentacion/Models";
+import { CategoriaPaginateUi } from "@/presentacion/models";
 import { PaginateCommand } from "@/shared/types";
 
 export function useCategoriaPaginate(

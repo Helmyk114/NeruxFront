@@ -1,6 +1,6 @@
 import { object, ObjectSchema, string } from "yup";
 import { stringValidations } from "@/shared/validations/stringValidations";
-import { CreateCategoriaCommand } from "@/presentacion/Models";
+import { CreateCategoriaCommand } from "@/presentacion/models";
 
 interface CategoriasConfig {
   initialValues: CreateCategoriaCommand;

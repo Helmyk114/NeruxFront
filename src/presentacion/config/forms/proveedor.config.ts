@@ -1,4 +1,4 @@
-import { CreateProveedorCommand } from "@/presentacion/Models";
+import { CreateProveedorCommand } from "@/presentacion/models";
 import { stringValidations } from "@/shared/validations/stringValidations";
 import { object, ObjectSchema, string } from "yup";
 interface ProveedorConfig {

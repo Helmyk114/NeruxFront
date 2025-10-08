@@ -1,2 +1,2 @@
-export * from './inventario/CategoriaMoldes';
+export * from './inventario/CategoriaModels';
 export * from './inventario/ProveedorModels';

@@ -1,6 +1,6 @@
 import { Producto } from "@/domain/interface";
 import { usePaginate } from "@/presentacion/components/hook";
-import { GetAllPaginateProductoUseCase } from "@/dependencies/inverntario/producto";
+import { GetAllPaginateProductoUseCase } from "@/dependencies/inventario/producto";
 
 export function useProductoPaginate(
   currentPage: number,

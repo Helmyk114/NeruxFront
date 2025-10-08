@@ -3,8 +3,9 @@ import { Formik } from "formik";
 import { BackButton, ButtonAtom } from "@/presentacion/components/ui/atomos";
 import { ProductosFormfields } from "@/presentacion/components/ui/moleculas";
 import { productoConfig } from "@/presentacion/config";
-import { Producto } from "@/domain/interface";
+
 import { useCategoriaProveedorMaster, useProductoCreate } from "@/application/Hooks";
+import { Producto } from "@/domain/interface";
 
 
 interface CrearProductoFormProps {

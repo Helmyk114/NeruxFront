@@ -1,11 +1,8 @@
 import { Producto } from "@/domain/interface";
 import { ProductoRepository } from "@/domain/repository";
 import { ProductoAdapter } from "@/mapping/inventario/ProductoAdapter";
-
 import { apiClient } from "@/infrastructure/http/ApiClient";
 import { ResponseApi } from '../../../shared/types/ResponseApi';
-
-
 
 export const ProductoApiRepository: ProductoRepository = {
   async getById(id: string | null): Promise<ResponseApi<Producto>> {

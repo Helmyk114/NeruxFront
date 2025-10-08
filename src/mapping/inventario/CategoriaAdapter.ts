@@ -3,7 +3,7 @@ import {
   CategoriaDetailApi,
   CategoriaPaginateApi,
 } from "@/infrastructure/dto/inventario/CategoriaDto";
-import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/Models";
+import { CategoriaDetailUi, CategoriaPaginateUi } from "@/presentacion/models";
 
 export const CategoriaAdapter = {
   toUiPaginate(api: CategoriaPaginateApi): CategoriaPaginateUi {

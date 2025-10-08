@@ -7,7 +7,7 @@ import {
   SelectAtom,
   TooltipAtom,
 } from "../../atomos";
-import { Master, Producto } from "@/Domain/interface";
+import { Master, Producto } from "@/domain/interface";
 
 interface ProductosFormfieldsProps {
   crearCategoria?: () => void;

@@ -1,12 +1,7 @@
 import { statusProductMap } from "@/shared/constants/colors/statusProductMap";
-import {
-  ActionsCell,
-  ChipCell,
-  ImgCellSimple,
-  SimpleCell,
-} from "../../../components/ui/atomos";
 import { ColumnRender } from "@/shared/types/columRenderType";
-import { Producto } from "@/Domain/interface";
+import { Producto } from "@/domain/interface";
+import { ActionsCell, ChipCell, ImgCellSimple, SimpleCell } from "@/presentacion/components/ui";
 
 export const ProductColumnRender = (
   onEdit: (product: Producto) => void,
