@@ -1,5 +1,5 @@
 import { useToastStore } from "@/common/store";
-import { UpdateCategoriaUseCase } from "@/dependencies";
+import { UpdateCategoriaUseCase } from "@/providers";
 import { useMutation } from "@/presentation/components/hook";
 import { UpdateCategoriaCommand } from "@/presentation/models";
 

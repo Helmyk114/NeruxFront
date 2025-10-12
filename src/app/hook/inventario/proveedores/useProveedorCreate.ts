@@ -1,5 +1,5 @@
 import { useToastStore } from "@/common/store";
-import { CreateProveedorUseCase } from "@/dependencies";
+import { CreateProveedorUseCase } from "@/providers";
 import { useMutation } from "@/presentation/components/hook";
 import { CreateProveedorCommand } from "@/presentation/models";
 

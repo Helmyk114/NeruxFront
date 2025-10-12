@@ -1,4 +1,4 @@
-import { GetByIdProductoUseCase } from "@/dependencies";
+import { GetByIdProductoUseCase } from "@/providers";
 import { Producto } from "@/dominio";
 import { useItem } from "@/presentation/components/hook";
 import { ProductoDetailUi } from "@/presentation/models";
