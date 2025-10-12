@@ -1,4 +1,4 @@
-import { Login } from "@/presentacion/pages";
+import { Login } from "./presentation/pages";
 
 export default function App(): JSX.Element {
   return <Login />;

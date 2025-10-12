@@ -1,0 +1,14 @@
+import { CreateCategoriaCommand } from "@/presentation/models";
+import { CategoryRepository } from "@/app/repository";
+
+export function CreateCategoria(categoryRepository: CategoryRepository) {
+  return async (createCategoriaCommand: CreateCategoriaCommand) => {
+    const { name, description } = createCategoriaCommand;
+
+    const categoria = {
+      name,
+      description,
+    };
+    await categoryRepository.create(categoria);
+  };
+}

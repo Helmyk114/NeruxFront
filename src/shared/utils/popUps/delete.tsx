@@ -1,11 +1,7 @@
-import { ModalTemplate } from "@/presentacion/components/ui";
-import {
-  ButtonAtom,
-  RichText,
-  Title1,
-} from "@/presentacion/components/ui/atomos";
-import { SemanticIcons } from "@/shared/constants/icons/semanticIcons";
-
+import { SemanticIcons } from "@/common/constant/icon";
+import { ButtonAtom } from "@/presentation/components/ui/atom/form/button";
+import { RichText, Title1 } from "@/presentation/components/ui/atom/typography";
+import { ModalTemplate } from "@/presentation/components/ui/template";
 interface DeleteConfirmPopUpProps {
   isOpen: boolean;
   onClose: () => void;
@@ -34,6 +30,8 @@ export function DeleteConfirmPopUp({
       isOpen={isOpen}
       onClose={onClose}
       size="md"
+      isDimissable
+      hideCloseButton
       header={
         <div className="flex flex-col items-center justify-center mt-[33px]">
           <SemanticIcons.warning

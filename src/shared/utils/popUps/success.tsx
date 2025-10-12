@@ -1,10 +1,7 @@
-import { ModalTemplate } from "@/presentacion/components/ui";
-import {
-  ButtonAtom,
-  RichText,
-  Title3,
-} from "@/presentacion/components/ui/atomos";
-import { SemanticIcons } from "@/shared/constants/icons/semanticIcons";
+import { SemanticIcons } from "@/common/constant/icon";
+import { ButtonAtom } from "@/presentation/components/ui/atom/form/button";
+import { RichText, Title3 } from "@/presentation/components/ui/atom/typography";
+import { ModalTemplate } from "@/presentation/components/ui/template";
 
 interface PopUpSuccessProps {
   isOpen: boolean;
@@ -35,6 +32,7 @@ export function PopUpSuccess({
       onClose={onClose}
       size="md"
       hideCloseButton
+      isDimissable={false}
       header={
         <div className="flex flex-col items-center justify-center">
           <SemanticIcons.sucess className="text-semantic-exito" size={60} />

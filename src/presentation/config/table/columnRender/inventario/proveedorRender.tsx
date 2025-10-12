@@ -1,0 +1,32 @@
+import { ColumnRender } from "@/common/types";
+import {
+  ActionsCell,
+  SimpleCell,
+} from "@/presentation/components/ui/molecule/table/cell";
+import { ProveedorPaginateUi } from "@/presentation/models";
+
+export const ProveedorColumnRender = (
+  onEdit: (proveedor: ProveedorPaginateUi) => void,
+  onView: (proveedor: ProveedorPaginateUi) => void,
+  onDelete: (proveedor: ProveedorPaginateUi) => void
+): ColumnRender<ProveedorPaginateUi> => ({
+  name: (proveedor: ProveedorPaginateUi) => (
+    <SimpleCell textTop={proveedor.name || ""} />
+  ),
+  supplier: (proveedor: ProveedorPaginateUi) => (
+    <SimpleCell textTop={proveedor.supplier || "-"} />
+  ),
+  phone: (proveedor: ProveedorPaginateUi) => (
+    <SimpleCell textTop={proveedor.phone || ""} />
+  ),
+  email: (proveedor: ProveedorPaginateUi) => (
+    <SimpleCell textTop={proveedor.email || "-"} />
+  ),
+  acciones: (proveedor: ProveedorPaginateUi) => (
+    <ActionsCell
+      onEdit={() => onEdit(proveedor)}
+      onView={() => onView(proveedor)}
+      onDelete={() => onDelete(proveedor)}
+    />
+  ),
+});

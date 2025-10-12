@@ -1,6 +1,6 @@
+import { useUserStore } from "@/common/store";
+import { UserRole } from "@/common/constant/enum";
 import { Navigate, Outlet } from "react-router-dom";
-import { userStore } from "../store/userStore";
-import { UserRole } from "@/domain/interface";
 
 interface PrivateRouteProps {
   allowedRole: UserRole[];
@@ -18,7 +18,7 @@ export const PrivateRoute = ({
   allowedRole,
   redirectTo,
 }: PrivateRouteProps) => {
-  const user = userStore((state) => state.user);
+  const user = useUserStore((state) => state.user);
 
   if (!user || !allowedRole.includes(user.role)) {
     const redirectDefault =

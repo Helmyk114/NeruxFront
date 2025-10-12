@@ -1,5 +1,4 @@
-import { UserRole } from "@/domain/interface";
-
+import { UserRole } from "@/common/constant/enum";
   export interface AuthResponse {
     token: string;
     user: UserApi;

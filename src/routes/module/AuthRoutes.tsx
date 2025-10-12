@@ -3,8 +3,8 @@ import {
   NuevaContraseña,
   OlvidarContraseña,
   RestablecerContraseña,
-} from "@/presentacion/pages";
-import App from "../../App";
+} from "@/presentation/pages";
+import App from "@/App";
 
 export function AuthRoutes(): JSX.Element {
   return (

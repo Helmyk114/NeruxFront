@@ -1,0 +1,36 @@
+import { ButtonAtom } from "../../atom/form/button";
+import { TotalItems } from "../../atom/typography";
+import { ItemsByPage } from "../../molecule/table/control";
+
+interface TableTopContentPorps {
+  onclick?: () => void;
+  totalItems: number;
+  texto: string;
+  nameButton: string;
+  handleRowsPerPageChange: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
+}
+
+export function TableTopContent({
+  onclick,
+  totalItems,
+  texto,
+  nameButton,
+  handleRowsPerPageChange,
+}: TableTopContentPorps): JSX.Element {
+  return (
+    <>
+      <div className="flex justify-end">
+        <ButtonAtom className="w-40 " texto={nameButton} onClick={onclick} />
+      </div>
+      <div className="flex justify-between w-full mt-8">
+        <TotalItems valor={totalItems} texto={texto} />
+        <ItemsByPage
+          tabla={texto}
+          onRowsPerPageChange={handleRowsPerPageChange}
+        />
+      </div>
+    </>
+  );
+}

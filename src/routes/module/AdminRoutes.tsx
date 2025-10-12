@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import { PrivateRoute } from "../ProtectRoutes";
-import { UserRole } from "@/domain/interface";
+import { UserRole } from "@/common/constant/enum";
 import {
   Categories,
   CrearEmpresa,
@@ -8,7 +8,7 @@ import {
   Inicio,
   Products,
   Proveedores,
-} from "@/presentacion/pages";
+} from "@/presentation/pages";
 
 export function AdminRoutes(): JSX.Element {
   return (
