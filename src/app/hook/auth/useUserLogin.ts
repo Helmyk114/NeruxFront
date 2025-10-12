@@ -1,7 +1,7 @@
 import { useMutation } from "@/presentation/components/hook";
 import { LoginCommand } from "@/presentation/models";
 import { TokenManager } from "@/infraestructura/session";
-import { LoginUseCase } from "@/dependencies";
+import { LoginUseCase } from "@/providers";
 import { Login } from "@/dominio";
 
 
