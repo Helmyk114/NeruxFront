@@ -1,4 +1,4 @@
-import { GetByIdProveedorUseCase } from "@/dependencies/inventario/proveedores";
+import { GetByIdProveedorUseCase } from "@/dependencies";
 import { Proveedor } from "@/dominio";
 import { useItem } from "@/presentation/components/hook";
 import { ProveedorDetailUi } from "@/presentation/models";

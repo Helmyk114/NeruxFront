@@ -14,7 +14,8 @@ export function EmpresaForm(): JSX.Element {
         // skipcq: JS-0417
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await BusinessUseCase.createBusiness(values);
+            // await BusinessUseCase.createBusiness(values);
+            console.log(values);
             navigate("/Inicio");
             window.location.reload();
           } catch (error) {

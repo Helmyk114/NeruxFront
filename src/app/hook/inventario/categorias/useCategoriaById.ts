@@ -1,4 +1,4 @@
-import { GetByIdCategoriaUseCase } from "@/dependencies/inventario/categorias";
+import { GetByIdCategoriaUseCase } from "@/dependencies";
 import { Categoria } from "@/dominio";
 import { useItem } from "@/presentation/components/hook";
 import { CategoriaDetailUi } from "@/presentation/models";

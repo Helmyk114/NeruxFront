@@ -33,11 +33,12 @@ export function NewPasswordForm({
         validateOnBlur={false}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await authUseCase.newPassword(
-              values.newPassword,
-              values.confirmPassword,
-              email
-            );
+            // await authUseCase.newPassword(
+            //   values.newPassword,
+            //   values.confirmPassword,
+            //   email
+            // );
+            console.log(values, email);
             if (onSuccess) onSuccess();
           } catch (error) {
             setError(

@@ -1,5 +1,5 @@
 import { useToastStore } from "@/common/store";
-import { CreateCategoriaUseCase } from "@/dependencies/inventario/categorias";
+import { CreateCategoriaUseCase } from "@/dependencies";
 import { useMutation } from "@/presentation/components/hook";
 import { CreateCategoriaCommand } from "@/presentation/models";
 

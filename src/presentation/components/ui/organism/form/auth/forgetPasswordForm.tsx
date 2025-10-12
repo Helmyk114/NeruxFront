@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { olvideContraseñaConfig } from "@/presentation/config/form";
 import { OlvideContraseñaFormFields } from "../../../molecule/form";
 import { ButtonAtom } from "../../../atom/form/button";
+import { OtpVerificationModal } from "../../modal/auth/otpVerificationModal";
 
 export function OlvideContraseñaForm(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export function OlvideContraseñaForm(): JSX.Element {
         initialValues={olvideContraseñaConfig.initialValues}
         validationSchema={olvideContraseñaConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          await authUseCase.forgetPassword(values);
+          // await authUseCase.forgetPassword(values);
           setSubmitting(false);
           modal.onOpen();
           setEmail(values.email);
@@ -41,7 +42,7 @@ export function OlvideContraseñaForm(): JSX.Element {
           </form>
         )}
       </Formik>
-      <OlvidarContraseDrawer
+      <OtpVerificationModal
         isOpen={modal.isOpen}
         onClose={modal.onClose}
         email={email}

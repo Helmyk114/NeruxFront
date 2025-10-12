@@ -1,3 +1,4 @@
+import { ToastAtom } from "@/presentation/components/ui/atom/feedback";
 import { create } from "zustand";
 
 type ToastType = "success" | "error" | "info" | "warning";
@@ -13,6 +14,6 @@ interface ToastStore {
 
 export const useToastStore = create<ToastStore>(() => ({
   newToast: (toast: Toast) => {
-    Toast(toast);
+    ToastAtom(toast);
   },
 }));

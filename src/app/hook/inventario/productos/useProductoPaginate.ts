@@ -1,5 +1,5 @@
 import { PaginateCommand } from "@/common/types";
-import { GetAllPaginateProductoUseCase } from "@/dependencies/inventario/productos";
+import { GetAllPaginateProductoUseCase } from "@/dependencies";
 import { usePaginate } from "@/presentation/components/hook";
 import { ProductoPaginateUi } from "@/presentation/models";
 

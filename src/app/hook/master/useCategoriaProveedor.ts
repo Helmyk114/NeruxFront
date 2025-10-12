@@ -1,4 +1,5 @@
-import { GetAllCategoriasUseCase, GetAllProveedorUseCase } from "@/dependencies/master/master";
+
+import { GetAllCategoriasUseCase, GetAllProveedorUseCase } from "@/dependencies";
 import { Master } from "@/dominio";
 import { useAll } from "@/presentation/components/hook";
 

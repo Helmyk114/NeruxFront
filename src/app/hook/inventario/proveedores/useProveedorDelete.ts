@@ -1,5 +1,5 @@
 import { useToastStore } from "@/common/store";
-import { DeleteProveedorUseCase } from "@/dependencies/inventario/proveedores";
+import { DeleteProveedorUseCase } from "@/dependencies";
 import { useMutation } from "@/presentation/components/hook";
 import { DeleteProveedorCommand } from "@/presentation/models";
 
