@@ -5,8 +5,10 @@ import { IconLockPassword } from "@tabler/icons-react";
 import { Title1 } from "../../../atom/typography";
 import { InputOtpAtom } from "../../../atom/form/input";
 import { ButtonAtom } from "../../../atom/form/button";
+import { validateOtpConfig } from "@/presentation/config/form";
+import { useValidateOtp } from "@/app/hook";
 
-interface OlvidaOtpVerificationModalProps {
+interface OtpVerificateModalProps {
   isOpen: boolean;
   onClose: () => void;
   email: string;
@@ -16,18 +18,17 @@ export function OtpVerificationModal({
   isOpen,
   onClose,
   email,
-}: OlvidaOtpVerificationModalProps): JSX.Element {
+}: OtpVerificateModalProps): JSX.Element {
+  const { mutate: validateOtp } = useValidateOtp();
   const redirect = useRedirect();
 
   return (
     <Formik
-      initialValues={{ otp: "" }}
-      validationSchema={""}
+      initialValues={validateOtpConfig.initialValues}
+      validationSchema={validateOtpConfig.validationSchema}
       onSubmit={async (values, { setSubmitting }) => {
-        // const resp = await authUseCase.validateOtp({ otp: values.otp, email });
-        console.log(values);
-        const resp = true;
-        if (resp) {
+        const res = await validateOtp({ code: values.code, email });
+        if (res) {
           setSubmitting(false);
           onClose();
           redirect(`/Nueva/Contraseña?email=${email}`);
@@ -63,9 +64,9 @@ export function OtpVerificationModal({
                   el proceso de recuperación de tu contraseña.
                 </p>
                 <InputOtpAtom
-                  value={values.otp}
+                  value={values.code}
                   length={6}
-                  onValueChange={(value) => setFieldValue("otp", value)}
+                  onValueChange={(value) => setFieldValue("code", value)}
                   size="md"
                   variant="bordered"
                 />

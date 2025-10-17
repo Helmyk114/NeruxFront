@@ -11,9 +11,9 @@ export function LoginForm(): JSX.Element {
   const { mutate, error } = useLogin();
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col w-full gap-[58px]">
       <Title1
-        clasname="mb-[58px] text-center text-typography-first"
+        clasname="text-center text-typography-first"
         titulo="Iniciar sesión"
       />
       <Formik

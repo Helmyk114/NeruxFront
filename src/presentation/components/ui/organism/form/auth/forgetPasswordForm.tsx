@@ -6,8 +6,10 @@ import { olvideContraseñaConfig } from "@/presentation/config/form";
 import { OlvideContraseñaFormFields } from "../../../molecule/form";
 import { ButtonAtom } from "../../../atom/form/button";
 import { OtpVerificationModal } from "../../modal/auth/otpVerificationModal";
+import { useForgetPassword } from "@/app/hook";
 
 export function OlvideContraseñaForm(): JSX.Element {
+  const { mutate: forgetPassword } = useForgetPassword();
   const [email, setEmail] = useState("");
   const modal = useDisclosure();
 
@@ -21,7 +23,7 @@ export function OlvideContraseñaForm(): JSX.Element {
         initialValues={olvideContraseñaConfig.initialValues}
         validationSchema={olvideContraseñaConfig.validationSchema}
         onSubmit={async (values, { setSubmitting }) => {
-          // await authUseCase.forgetPassword(values);
+          await forgetPassword(values);
           setSubmitting(false);
           modal.onOpen();
           setEmail(values.email);

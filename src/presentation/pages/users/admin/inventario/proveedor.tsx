@@ -50,7 +50,7 @@ export function Proveedores(): JSX.Element {
       titulo2="Gestioná fácilmente la información de tus proveedores."
       mainContent={
         <>
-          {data && data.length > 0 ? (
+          {(metadata.totalItems ?? 0) > 1 ? (
             <TableBase
               tabla="Proveedores"
               nameButton="Nuevo proveedor +"

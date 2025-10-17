@@ -3,9 +3,12 @@ import { crearEmpresaConfig } from "@/presentation/config/form";
 import { Formik } from "formik";
 import { EmpresaFormFields } from "../../../molecule/form";
 import { ButtonAtom } from "../../../atom/form/button";
+import { useCreateBusiness } from "@/app/hook";
 
 export function EmpresaForm(): JSX.Element {
   const navigate = useRedirect();
+  const { mutate: create } = useCreateBusiness(() => navigate("/Inicio"));
+
   return (
     <div className="w-full">
       <Formik
@@ -14,10 +17,7 @@ export function EmpresaForm(): JSX.Element {
         // skipcq: JS-0417
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // await BusinessUseCase.createBusiness(values);
-            console.log(values);
-            navigate("/Inicio");
-            window.location.reload();
+            await create(values);
           } catch (error) {
             console.error("Error al crear la empresa:", error);
           } finally {

@@ -5,8 +5,8 @@ import { LinkAtom } from "../../../atom/navigation";
 
 export function LoginFormFields(): JSX.Element {
   return (
-    <>
-      <div>
+    <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-11">
         <Field
           nombre="username"
           label="Usuario"
@@ -17,8 +17,7 @@ export function LoginFormFields(): JSX.Element {
           }
           className="w-3/5 mx-auto"
         />
-      </div>
-      <div className="mt-11">
+
         <Field
           nombre="password"
           label="Contraseña"
@@ -27,13 +26,14 @@ export function LoginFormFields(): JSX.Element {
           className="w-3/5 mx-auto"
         />
       </div>
+
       <div className="w-3/5 mx-auto text-end">
         <LinkAtom
           to="/Olvide/Contraseña"
           texto="¿Olvidaste tu contraseña?"
-          className="text-semantic-informacion text-sm mt-2"
+          className="text-semantic-informacion text-sm"
         />
       </div>
-    </>
+    </div>
   );
 }

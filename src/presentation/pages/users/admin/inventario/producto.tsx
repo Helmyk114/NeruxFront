@@ -6,9 +6,13 @@ import {
 } from "@/presentation/components/hook";
 import { VerProducto } from "@/presentation/components/ui/organism/drawer/inventario/productos/viewProductoDrawer";
 import { TableBase } from "@/presentation/components/ui/organism/table/tableBase";
-import { MainPageTemplate } from "@/presentation/components/ui/template";
+import {
+  MainPageTemplate,
+  NoDataTemplate,
+} from "@/presentation/components/ui/template";
 import { ProductColumnRender } from "@/presentation/config/table/columnRender";
 import { productoColumns } from "@/presentation/config/table/columns";
+import { IconFolderOpen } from "@tabler/icons-react";
 
 export function Products(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
@@ -42,42 +46,54 @@ export function Products(): JSX.Element {
   );
 
   return (
-    <>
-      <MainPageTemplate
-        titulo1="Productos"
-        titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
-        mainContent={
-          <TableBase
-            tabla="Productos"
-            nameButton="Nuevo producto +"
-            onclick={handleCreate}
-            columnas={productoColumns}
-            columnRender={ProductColumnRender(
-              (item) => handleEdit(item.id as string),
-              (item) => handleView(item.id as string),
-              (item) => handleDelete(item.id as string)
-            )}
-            data={data || []}
-            getRowKey={(item) => item.id as string}
-            isLoading={loading}
-            error={error?.message}
-            page={metadata?.currentPage || 1}
-            totalPages={metadata?.totalPages || 1}
-            setPage={handlePageChange}
-            totalItems={metadata.totalItems}
-            setPageSize={setPageSize}
-          />
-        }
-      />
-      {mode === "ver" && (
-        <VerProducto
-          isOpen={drawer.isOpen}
-          onClose={drawer.onOpenChange}
-          id={selectedItem}
-          setMode={setMode}
-          onOpen={drawer.onOpen}
-        />
-      )}
-    </>
+    <MainPageTemplate
+      titulo1="Productos"
+      titulo2="Consulta, organiza y gestiona fácilmente todos tus productos en inventario."
+      mainContent={
+        <>
+          {data && data.length > 0 ? (
+            <TableBase
+              tabla="Productos"
+              nameButton="Nuevo producto +"
+              onclick={handleCreate}
+              columnas={productoColumns}
+              columnRender={ProductColumnRender(
+                (item) => handleEdit(item.id as string),
+                (item) => handleView(item.id as string),
+                (item) => handleDelete(item.id as string)
+              )}
+              data={data || []}
+              getRowKey={(item) => item.id as string}
+              isLoading={loading}
+              error={error?.message}
+              page={metadata?.currentPage || 1}
+              totalPages={metadata?.totalPages || 1}
+              setPage={handlePageChange}
+              totalItems={metadata.totalItems}
+              setPageSize={setPageSize}
+            />
+          ) : (
+            <NoDataTemplate
+              icon={<IconFolderOpen className="text-brand-first" size={100} />}
+              descripcion1="¡EMPECEMOS A ORDENAR TODO!"
+              descripcion2="Usarlas te ayudará a mantener tus productos organizados por tipo o uso. 
+              ¡Puedes crear una nueva ahora mismo desde el botón “Nueva categoría”!"
+              textButton="Nuevo producto +"
+              onClick={handleCreate}
+            />
+          )}
+
+          {mode === "ver" && (
+            <VerProducto
+              isOpen={drawer.isOpen}
+              onClose={drawer.onOpenChange}
+              id={selectedItem}
+              setMode={setMode}
+              onOpen={drawer.onOpen}
+            />
+          )}
+        </>
+      }
+    />
   );
 }

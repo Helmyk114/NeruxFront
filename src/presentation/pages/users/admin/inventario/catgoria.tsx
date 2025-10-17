@@ -51,7 +51,7 @@ export function Categories(): JSX.Element {
       titulo2="Organiza tus productos agrupándolos por tipo o uso."
       mainContent={
         <>
-          {data && data.length > 1 ? (
+          {(metadata.totalItems ?? 0) > 1 ? (
             <TableBase
               tabla="Categorías"
               nameButton="Nueva categoría +"

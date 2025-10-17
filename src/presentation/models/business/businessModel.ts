@@ -5,3 +5,8 @@ export type CreateBusinessCommand = {
   phone: string;
   address: string;
 };
+
+export type BusinessCreate ={
+  token: string;
+  idBusiness: string;
+}

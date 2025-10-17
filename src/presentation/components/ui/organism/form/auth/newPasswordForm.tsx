@@ -6,6 +6,7 @@ import { mapRules } from "@/common/constant/mapping";
 import { PasswordCheckList } from "../../../molecule/feedback";
 import { NewPasswordFormField } from "../../../molecule/form";
 import { ButtonAtom } from "../../../atom/form/button";
+import { useNewPassword } from "@/app/hook";
 
 interface NewPasswordFormProps {
   onSuccess?: () => void;
@@ -17,6 +18,7 @@ export function NewPasswordForm({
   email,
 }: NewPasswordFormProps): JSX.Element {
   const [error, setError] = useState<string | null>(null);
+  const { mutate: newPassword } = useNewPassword(onSuccess)
 
   return (
     <div className="flex flex-col p-2 text-center gap-4">
@@ -33,13 +35,8 @@ export function NewPasswordForm({
         validateOnBlur={false}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            // await authUseCase.newPassword(
-            //   values.newPassword,
-            //   values.confirmPassword,
-            //   email
-            // );
-            console.log(values, email);
-            if (onSuccess) onSuccess();
+            await newPassword({...values, email});
+            console.log({...values, email});
           } catch (error) {
             setError(
               error instanceof Error

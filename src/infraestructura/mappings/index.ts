@@ -1,1 +1,2 @@
-export * from './inventario/productoApiAdapter';
+export * from "./auth/authApiAdpater";
+export * from "./inventario/productoApiAdapter";

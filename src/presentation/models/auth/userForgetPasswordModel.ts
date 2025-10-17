@@ -1,3 +1,3 @@
-export interface ForgetPasswordCommand {
+export type ForgetPasswordCommand = {
   email: string;
 };
