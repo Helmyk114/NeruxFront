@@ -10,8 +10,8 @@ import {
 import { CategoriaColumnRender } from "@/presentation/config/table/columnRender";
 import { categoriaColumns } from "@/presentation/config/table/columns";
 import { DeleteConfirmPopUp } from "@/shared/utils/popUps/delete";
-import { IconFolderOpen } from "@tabler/icons-react";
 import { useState } from "react";
+import { NoDataIcon } from '@/common/constant/icon';
 
 export function Categories(): JSX.Element {
   const { currentPage, setCurrentPage, pageSize, setPageSize } = usePageState();
@@ -74,7 +74,7 @@ export function Categories(): JSX.Element {
             />
           ) : (
             <NoDataTemplate
-              icon={<IconFolderOpen className="text-brand-first" size={100} />}
+              icon={<NoDataIcon.categoria className="text-brand-first" size={100} />}
               descripcion1="¡EMPECEMOS A ORDENAR TODO!"
               descripcion2="Usarlas te ayudará a mantener tus productos organizados por tipo o uso. 
               ¡Puedes crear una nueva ahora mismo desde el botón “Nueva categoría”!"
